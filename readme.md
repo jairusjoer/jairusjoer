@@ -1,4 +1,4 @@
-### Hi there 👋
+### Hello there ✌️
 
 ### I'm a designer and developer from Germany, focused on crafting unified and clear design languages for rich, beautiful products.
 
@@ -16,3 +16,17 @@ Today, I'm working at [neuwaerts](https://www.neuwaerts.de/), helping clients de
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+### 🔭 Current Projects
+- My personal portfolio
+- Stock finance PWA built with React and Strapi
+
+### 🌱 Currently Learning
+- Docker
+- esbuild
+- React
+- Snowpack
+
+### 📫 Contact Me
+- [hello@jairusjoer.com](mailto:hello@jairusjoer.com)
+- [business@jairusjoer.com](mailto:business@jairusjoer.com)
