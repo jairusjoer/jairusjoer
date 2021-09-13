@@ -1,10 +1,10 @@
-### Hello there ✌️
+# Hello there ✌️
 
-### I'm a designer and developer from Germany, focused on crafting unified and clear design languages for rich, beautiful products.
+### I am a Designer and Developer from Germany, focused on crafting unified and clear Design Languages for rich, beautiful Products.
 
-Media designer at neuwaerts, co-founder of XVI CHAPEL, marketing manager at World of Bass and freelance designer – In the past decade I had the delight to experience many facettes of the design industry.
+Junior Frontend Developer at neuwaerts, Co-Founder of XVI CHAPEL, Marketing Manager at World of Bass and Freelance Designer – In the past Decade I had the Delight to experience many Facettes of the Design Industry.
 
-Today, I'm working at [neuwaerts](https://www.neuwaerts.de/), helping clients design, develop and launch their products.
+Today, I am working at neuwaerts, helping Clients design, develop and launch their Products.
 
 <!--
 - 🔭 I’m currently working on ...
@@ -18,15 +18,15 @@ Today, I'm working at [neuwaerts](https://www.neuwaerts.de/), helping clients de
 -->
 
 ### 🔭 Current Projects
-- My personal portfolio
-- Stock finance PWA built with React and Strapi
+- My [personal Portfolio](https://jairusjoer.com/)
+- Design Systems Development with Figma
 
 ### 🌱 Currently Learning
-- Docker
-- esbuild
-- React
-- Snowpack
+- Svelte
+- Next.js
+- Cloud CMS Integrations
+- GraphQL
 
-### 📫 Contact Me
+### 📫 Contact
 - [hello@jairusjoer.com](mailto:hello@jairusjoer.com)
 - [business@jairusjoer.com](mailto:business@jairusjoer.com)
