@@ -1,10 +1,10 @@
 # Hello there ✌️
 
-### I am a Designer and Developer from Germany, focused on crafting unified and clear Design Languages for rich, beautiful Products.
+### I am a designer and developer from Germany. Focused on creating consistent and clear design languages for rich, beautiful products.
 
-Junior Frontend Developer at neuwaerts, Co-Founder of XVI CHAPEL, Marketing Manager at World of Bass and Freelance Designer – In the past Decade I had the Delight to experience many Facettes of the Design Industry.
+Full Stack Developer at neuwaerts, Co-Founder of XVI CHAPEL, Marketing Manager at World of Bass and Freelance Designer & Developer - over the past decade I have had the delight of experiencing many facets of the design industry.
 
-Today, I am working at neuwaerts, helping Clients design, develop and launch their Products.
+Today I'm working at neuwaerts, helping clients to design, develop and launch their products. In my spare time I contribute to aggregata.de and freelance for selected clients.
 
 <!--
 - 🔭 I’m currently working on ...
@@ -17,15 +17,17 @@ Today, I am working at neuwaerts, helping Clients design, develop and launch the
 - ⚡ Fun fact: ...
 -->
 
-### 🔭 Current Projects
-- My [personal Portfolio](https://jairusjoer.com/)
-- Design Systems Development with Figma
+### 🔭 Current projects
+- **[Aggregata](https://aggregata.de/)** – a platform for the web, applications, and machine learning, which discusses current trends and topics.
+- Design systems integration for different development environments
+- Design systems development with Figma
 
-### 🌱 Currently Learning
-- Svelte
-- Next.js
-- Cloud CMS Integrations
+### 🌱 Currently learning
+- Laravel
 - GraphQL
+- Cloudflare
+- CI/CD processes
+- Next.js
 
 ### 📫 Contact
 - [hello@jairusjoer.com](mailto:hello@jairusjoer.com)
