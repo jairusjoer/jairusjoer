@@ -1,0 +1,33 @@
+---
+// Navigation.astro
+interface Props {
+  pages: Record<string, string>;
+}
+
+const { pages } = Astro.props;
+
+const isCurrentPath = (path: string) => Astro.url.pathname === path;
+---
+
+<nav
+  class="py-4 font-medium"
+  transition:name="nav"
+>
+  <ul class="flex flex-wrap gap-2">
+    {
+      Object.entries(pages).map(([title, href]) => (
+        <li>
+          <a
+            class:list={{
+              block: true,
+              'text-foreground font-medium underline': isCurrentPath(href),
+            }}
+            href={href}
+          >
+            {title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

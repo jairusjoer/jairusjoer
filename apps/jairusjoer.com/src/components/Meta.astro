@@ -1,0 +1,106 @@
+---
+import type { Metadata } from '../types';
+import { defaultMetadata } from '../constants';
+
+interface Props {
+  metadata?: Metadata;
+}
+
+const props = Astro.props;
+const metadata = Object.assign(structuredClone(defaultMetadata), props.metadata);
+
+const useURL = (path: string) => String(new URL(path, Astro.url.origin));
+const title =
+  metadata?.title && metadata.title !== defaultMetadata.title
+    ? [metadata.title, defaultMetadata.title].join(' • ')
+    : defaultMetadata.title;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width"
+/>
+
+<meta
+  name="generator"
+  content={Astro.generator}
+/>
+
+<!-- Favicons -->
+<link
+  rel="icon"
+  href={useURL('favicon.png')}
+/>
+<link
+  rel="apple-touch-icon"
+  href={useURL('favicon.png')}
+/>
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta
+  name="title"
+  content={title}
+/>
+<meta
+  name="description"
+  content={metadata?.description}
+/>
+
+<!-- Open Graph / Facebook -->
+<meta
+  property="og:type"
+  content="website"
+/>
+<meta
+  property="og:url"
+  content={useURL(Astro.url.pathname)}
+/>
+<meta
+  property="og:title"
+  content={title}
+/>
+<meta
+  property="og:description"
+  content={metadata?.description}
+/>
+<meta
+  property="og:image"
+  content={metadata?.image?.src}
+/>
+
+<!-- Twitter -->
+<meta
+  property="twitter:card"
+  content="summary_large_image"
+/>
+<meta
+  property="twitter:url"
+  content={useURL(Astro.url.pathname)}
+/>
+<meta
+  property="twitter:title"
+  content={title}
+/>
+<meta
+  property="twitter:description"
+  content={metadata?.description}
+/>
+<meta
+  property="twitter:image"
+  content={metadata?.image?.src}
+/>
+
+{
+  metadata?.schema && (
+    <script
+      is:inline
+      set:html={JSON.stringify(metadata.schema)}
+      type="application/ld+json"
+    />
+  )
+}
+
+<slot />

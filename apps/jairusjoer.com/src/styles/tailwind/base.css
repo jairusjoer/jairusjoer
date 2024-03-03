@@ -1,0 +1,23 @@
+@layer base {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opactiy: 1;
+    }
+  }
+
+  :root {
+    color-scheme: light dark;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scrollbar-gutter: stable;
+  }
+}

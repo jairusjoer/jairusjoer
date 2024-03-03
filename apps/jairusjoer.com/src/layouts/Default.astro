@@ -1,0 +1,55 @@
+---
+import '../styles/tailwind.css';
+import Meta from '../components/Meta.astro';
+import { ClientRouter } from 'astro:transitions';
+import type { Metadata } from '../types';
+import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  metadata?: Metadata;
+}
+
+const { metadata } = Astro.props;
+---
+
+<script>
+  import { useExternalizedLinks } from '../composables/useExternalizedLinks';
+  useExternalizedLinks();
+</script>
+
+<html
+  lang="en"
+  class="bg-background-subtle font-body antialiased print:scheme-light"
+>
+  <head>
+    <Meta {metadata} />
+    <ClientRouter />
+  </head>
+  <body class="text-foreground-subtle grid min-h-screen px-4 py-16 text-sm leading-6">
+    <div
+      id="root"
+      class="mx-auto flex w-full max-w-xl flex-col"
+    >
+      <Header
+        image="/favicon.png"
+        title="Jairus Joer"
+        subtitle="Full Stack Developer & Designer in Hanover, Germany, He/him"
+      />
+
+      <Navigation
+        pages={{
+          About: '/',
+          Blog: '/blog',
+        }}
+      />
+      <slot />
+      <Footer
+        pages={{
+          Imprint: '/imprint',
+        }}
+      />
+    </div>
+  </body>
+</html>

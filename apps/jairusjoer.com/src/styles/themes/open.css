@@ -1,0 +1,14 @@
+@theme {
+  --color-background: light-dark(var(--color-zinc-100), var(--color-zinc-800));
+  --color-background-subtle: light-dark(var(--color-zinc-200), var(--color-zinc-900));
+
+  --color-foreground: light-dark(var(--color-zinc-900), var(--color-zinc-200));
+  --color-foreground-subtle: light-dark(var(--color-zinc-600), var(--color-zinc-400));
+
+  --color-theme: light-dark(var(--color-zinc-900), var(--color-zinc-300));
+
+  --color-border: light-dark(var(--color-zinc-300), var(--color-zinc-700));
+
+  --font-headings: system-ui, ui-sans-serif, sans-serif;
+  --font-body: system-ui, ui-sans-serif, sans-serif;
+}

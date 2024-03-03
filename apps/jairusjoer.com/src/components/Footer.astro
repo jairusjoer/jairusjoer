@@ -1,0 +1,34 @@
+---
+interface Props {
+  pages: Record<string, string>;
+}
+
+const { pages } = Astro.props;
+
+const isCurrentPath = (path: string) => Astro.url.pathname === path;
+---
+
+<footer
+  class="mt-auto"
+  transition:name="footer"
+>
+  <nav class="mt-16 py-4 font-medium">
+    <ul class="flex flex-wrap gap-2">
+      {
+        Object.entries(pages).map(([title, href]) => (
+          <li>
+            <a
+              class:list={{
+                block: true,
+                'text-foreground font-medium underline': isCurrentPath(href),
+              }}
+              href={href}
+            >
+              {title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</footer>
