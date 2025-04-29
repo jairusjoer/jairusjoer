@@ -27,7 +27,7 @@ if (entry.value?.data.image) {
     v-if="entry"
     class="group not-prose relative"
   >
-    <div class="border-background flex overflow-hidden rounded-lg border">
+    <div class="border-background flex overflow-hidden rounded border">
       <div class="relative hidden w-32 shrink-0 sm:block">
         <img
           v-if="image"
@@ -59,7 +59,7 @@ if (entry.value?.data.image) {
       </div>
     </div>
     <a
-      class="absolute inset-0 rounded-lg border-0"
+      class="absolute inset-0 rounded"
       :href="`/${entry.id}`"
       :title="entry.data.title"
       :aria-label="entry.data.title"

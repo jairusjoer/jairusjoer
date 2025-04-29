@@ -41,13 +41,14 @@ const { metadata } = Astro.props;
       <Navigation
         pages={{
           About: '/',
-          Blog: '/blog',
+          Blog: '/blog/',
+          Links: '/links/',
         }}
       />
       <slot />
       <Footer
         pages={{
-          Imprint: '/imprint',
+          Imprint: '/imprint/',
         }}
       />
     </div>

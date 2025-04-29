@@ -7,6 +7,7 @@ import type { Metadata } from '../types';
 import { useMDXComponents } from '../composables/useMDXComponents';
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
+import Draft from '../components/Draft.astro';
 
 export async function getStaticPaths() {
   const collections: CollectionKey[] = ['blog', 'pages'];
@@ -14,60 +15,65 @@ export async function getStaticPaths() {
   return (
     await Promise.all(
       collections.map(async (collectionKey) => {
-        const collection = await getCollection(collectionKey);
+        let collection = await getCollection(collectionKey);
 
-        return collection
-          .filter((entry) => !entry.data?.draft)
-          .map((entry) => ({
-            params: { page: entry.id },
-            props: { collection: collectionKey, page: entry.id },
-          }));
+        if (import.meta.env.PROD) {
+          collection = collection.filter((entry) => !entry.data?.draft);
+        }
+
+        return collection.map((entry) => ({
+          params: { page: entry.id },
+          props: { collection: collectionKey, id: entry.id },
+        }));
       }),
     )
   ).flat();
 }
 
-const { collection, page } = Astro.props;
+const { collection, id } = Astro.props;
 
-const entry = await getEntry(collection, page)!;
+const entry = await getEntry(collection, id)!;
 const { Content } = await render(entry);
 
 const components = useMDXComponents();
 ---
 
 <Default metadata={entry.data as Metadata}>
-  <header>
-    <h1 class="text-foreground truncate font-medium">{entry.data.title}</h1>
-    <p>{entry.data?.description}</p>
-    {
-      'date' in entry.data && (
-        <time
-          class="text-right"
-          datetime={entry.data.date.toISOString()}
-        >
-          {entry.data.date.toLocaleDateString(undefined, { dateStyle: 'long' })}
-        </time>
-      )
-    }
-    {
-      entry.data?.image && (
-        <Image
-          class="mt-4 rounded"
-          src={entry.data.image}
-          alt=""
-          width={1152}
-          height={648}
-          format="avif"
-          loading="eager"
-        />
-      )
-    }
-  </header>
-  <hr class="my-4" />
   <main
     class="prose prose-sm prose-theme"
     transition:name="main"
   >
+    {
+      collection === 'blog' && (
+        <>
+          <header class="not-prose">
+            {entry.data?.draft && <Draft />}
+            <h1 class="text-foreground truncate font-medium">{entry.data.title}</h1>
+            <p>{entry.data?.description}</p>
+            {'date' in entry.data && (
+              <time
+                class="text-right"
+                datetime={entry.data.date.toISOString()}
+              >
+                {entry.data.date.toLocaleDateString(undefined, { dateStyle: 'long' })}
+              </time>
+            )}
+            {entry.data?.image && (
+              <Image
+                class="mt-4 rounded"
+                src={entry.data.image}
+                alt=""
+                width={1152}
+                height={648}
+                format="avif"
+                loading="eager"
+              />
+            )}
+          </header>
+          <hr class="my-10" />
+        </>
+      )
+    }
     <Content {components} />
   </main>
 </Default>

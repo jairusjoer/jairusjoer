@@ -11,13 +11,13 @@ const { image, title, subtitle } = Astro.props;
 ---
 
 <header
-  class="mb-4 flex gap-4"
+  class="relative mb-4 flex gap-4"
   transition:persist
 >
   {
     image && (
       <Image
-        class="size-12 rounded-lg object-cover"
+        class="size-12 object-cover"
         src={image}
         alt={title}
         width="48"
@@ -31,4 +31,10 @@ const { image, title, subtitle } = Astro.props;
     <span class="text-foreground font-medium">{title}</span>
     {subtitle && <span>{subtitle}</span>}
   </div>
+  <a
+    class="absolute inset-0 rounded"
+    href="/"
+    title="Return to homepage"
+    aria-label="Return to homepage"
+  ></a>
 </header>
