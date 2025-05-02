@@ -1,7 +1,6 @@
 ---
 import '../styles/tailwind.css';
 import Meta from '../components/Meta.astro';
-import { ClientRouter } from 'astro:transitions';
 import type { Metadata } from '../types';
 import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
@@ -25,7 +24,6 @@ const { metadata } = Astro.props;
 >
   <head>
     <Meta {metadata} />
-    <ClientRouter />
   </head>
   <body class="text-foreground-subtle grid min-h-screen px-4 py-16 text-sm leading-6">
     <div
@@ -43,6 +41,7 @@ const { metadata } = Astro.props;
           About: '/',
           Blog: '/blog/',
           Links: '/links/',
+          Experiments: '/experiments/',
         }}
       />
       <slot />

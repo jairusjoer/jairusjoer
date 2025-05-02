@@ -14,18 +14,16 @@ const blog = (await getCollection('blog')).sort((a, b) => b.data.date.getTime() 
 
 <Default {metadata}>
   <main
-    class="prose prose-sm prose-theme"
+    class="space-y-4"
     transition:name="main"
   >
-    <section class="space-y-4">
-      {
-        blog.map((entry) => (
-          <Artifact
-            collection="blog"
-            id={entry.id}
-          />
-        ))
-      }
-    </section>
+    {
+      blog.map((entry) => (
+        <Artifact
+          collection="blog"
+          id={entry.id}
+        />
+      ))
+    }
   </main>
 </Default>

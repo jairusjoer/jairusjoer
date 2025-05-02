@@ -1,23 +1,48 @@
 @layer base {
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
+  @media (prefers-color-scheme: dark) {
+    :is(.astro-code, .shiki),
+    :is(.astro-code, .shiki) span {
+      background-color: var(--shiki-dark-bg) !important;
+      color: var(--shiki-dark) !important;
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
     }
+  }
 
-    100% {
-      opactiy: 1;
-    }
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition {
+    pointer-events: none;
   }
 
   :root {
     color-scheme: light dark;
+    view-transition-name: none;
   }
 
   * {
     border-color: var(--color-border);
   }
 
+  code,
+  pre {
+    font-size: 0.75rem !important;
+  }
+
+  img,
+  pre {
+    border-radius: 0.25rem;
+  }
+
   html {
     scrollbar-gutter: stable;
+    text-wrap: pretty;
+  }
+
+  pre {
+    max-width: calc(100dvw - 2rem);
   }
 }
