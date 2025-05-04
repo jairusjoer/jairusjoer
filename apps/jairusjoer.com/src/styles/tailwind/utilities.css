@@ -3,7 +3,7 @@
     --tw-prose-body: var(--color-foreground-subtle);
     --tw-prose-headings: var(--color-foreground);
     --tw-prose-lead: var(--color-foreground-subtle);
-    --tw-prose-links: var(--color-foreground-subtle);
+    --tw-prose-links: var(--color-foreground);
     --tw-prose-bold: var(--color-foreground);
     --tw-prose-counters: var(--color-theme);
     --tw-prose-bullets: var(--color-theme);
@@ -18,5 +18,13 @@
     --tw-prose-pre-bg: var(--color-background-subtle);
     --tw-prose-th-borders: var(--color-border);
     --tw-prose-td-borders: var(--color-border);
+
+    a {
+      text-decoration: none;
+
+      &:not([href^='/'])::after {
+        content: ' ↗';
+      }
+    }
   }
 }

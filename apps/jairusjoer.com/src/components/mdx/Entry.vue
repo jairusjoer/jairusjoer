@@ -9,12 +9,11 @@ defineProps<{
 
 <template>
   <div class="relative grid sm:grid-cols-[6rem_1fr] sm:gap-8">
-    <span>{{ meta }}</span>
+    <span class="tabular-nums">{{ meta }}</span>
     <article>
       <h3 class="not-prose text-foreground font-medium">
         <a
           v-if="url"
-          class="underline"
           :href="url"
           target="_blank"
         >
