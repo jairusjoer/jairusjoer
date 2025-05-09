@@ -17,6 +17,13 @@ const blog = (await getCollection('blog')).sort((a, b) => b.data.date.getTime() 
     class="space-y-4"
     transition:name="main"
   >
+    <a
+      class="text-foreground block font-medium"
+      href="https://aggregata.de"
+      target="_blank"
+    >
+      Read my most recent articles on Aggregata &nearr;
+    </a>
     {
       blog.map((entry) => (
         <Artifact

@@ -72,7 +72,7 @@ const renderCode = async () => {
     >
       <div
         v-html="code"
-        class="prose prose-sm prose-theme"
+        class="prose prose-sm prose-theme !max-w-none"
       />
     </div>
   </section>

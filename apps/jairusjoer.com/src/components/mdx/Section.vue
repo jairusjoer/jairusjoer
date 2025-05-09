@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <section class="space-y-8">
+  <section class="break-inside-avoid space-y-8">
     <h2
       v-if="title"
       class="text-foreground not-prose mb-4 font-medium"

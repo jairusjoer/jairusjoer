@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="relative grid sm:grid-cols-[6rem_1fr] sm:gap-8">
+  <div class="relative grid break-inside-avoid sm:grid-cols-[6rem_1fr] sm:gap-8">
     <span class="tabular-nums">{{ meta }}</span>
     <article>
       <h3 class="not-prose text-foreground font-medium">

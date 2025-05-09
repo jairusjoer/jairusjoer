@@ -10,7 +10,7 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
 ---
 
 <nav
-  class="py-4 font-medium"
+  class="py-4 font-medium print:hidden"
   transition:name="nav"
 >
   <ul class="flex flex-wrap gap-2">
