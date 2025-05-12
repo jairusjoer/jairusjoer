@@ -12,7 +12,7 @@ const { image, title, subtitle } = Astro.props;
 
 <header
   class="relative mb-4 flex gap-4"
-  transition:name="header"
+  style="view-transition-name: header"
 >
   {
     image && (
@@ -28,7 +28,7 @@ const { image, title, subtitle } = Astro.props;
     )
   }
   <div class="grid items-center">
-    <span class="text-foreground font-medium">{title}</span>
+    <span class="text-foreground font-headings font-medium">{title}</span>
     {subtitle && <span>{subtitle}</span>}
   </div>
   <a

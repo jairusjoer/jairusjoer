@@ -48,7 +48,7 @@ if (entry.value?.data.image) {
         </div>
       </div>
       <div class="bg-background grow overflow-hidden p-4">
-        <h4 class="text-foreground truncate font-medium">{{ entry.data.title }}</h4>
+        <h4 class="text-foreground font-headings truncate font-medium">{{ entry.data.title }}</h4>
         <time
           v-if="'date' in entry.data"
           class="text-right"

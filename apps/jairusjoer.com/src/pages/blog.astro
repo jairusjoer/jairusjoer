@@ -15,7 +15,7 @@ const blog = (await getCollection('blog')).sort((a, b) => b.data.date.getTime() 
 <Default {metadata}>
   <main
     class="space-y-4"
-    transition:name="main"
+    style="view-transition-name: main"
   >
     <a
       class="text-foreground block font-medium"

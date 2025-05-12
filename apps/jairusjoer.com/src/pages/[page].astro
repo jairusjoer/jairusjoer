@@ -41,14 +41,14 @@ const components = useMDXComponents();
 <Default metadata={entry.data as Metadata}>
   <main
     class="prose prose-sm prose-theme"
-    transition:name="main"
+    style="view-transition-name: main"
   >
     {
       collection === 'blog' && (
         <>
           <header class="not-prose">
             {entry.data?.draft && <Draft />}
-            <h1 class="text-foreground truncate font-medium">{entry.data.title}</h1>
+            <h1 class="text-foreground font-headings truncate font-medium">{entry.data.title}</h1>
             <p>{entry.data?.description}</p>
             {'date' in entry.data && (
               <time

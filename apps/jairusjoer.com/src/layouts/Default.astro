@@ -20,15 +20,15 @@ const { metadata } = Astro.props;
 
 <html
   lang="en"
-  class="bg-background-subtle font-body antialiased print:scheme-light"
+  class="bg-background-subtle antialiased print:scheme-light"
 >
   <head>
     <Meta {metadata} />
   </head>
-  <body class="text-foreground-subtle grid min-h-screen px-4 py-16 text-sm leading-6 print:p-0">
+  <body class="text-foreground-subtle flex min-h-screen flex-col px-4 py-16 text-sm leading-6 print:p-0">
     <div
       id="root"
-      class="mx-auto flex w-full max-w-xl flex-col"
+      class="font-body mx-auto flex w-full max-w-xl flex-col"
     >
       <Header
         image="/favicon.png"

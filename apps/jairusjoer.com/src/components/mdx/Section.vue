@@ -8,7 +8,7 @@ defineProps<{
   <section class="break-inside-avoid space-y-8">
     <h2
       v-if="title"
-      class="text-foreground not-prose mb-4 font-medium"
+      class="text-foreground not-prose font-headings mb-4 font-medium"
     >
       {{ title }}
     </h2>

@@ -38,7 +38,7 @@ const renderCode = async () => {
 <template>
   <section class="bg-background-subtle grid gap-1 overflow-hidden rounded-lg border p-1">
     <header class="bg-background flex gap-4 overflow-hidden rounded px-4 py-3">
-      <span class="text-foreground shrink truncate font-medium">{{ title }}</span>
+      <span class="text-foreground font-headings shrink truncate font-medium">{{ title }}</span>
       <span
         v-if="meta"
         class="whitespace-nowrap"

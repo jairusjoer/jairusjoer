@@ -8,10 +8,13 @@ defineProps<{
 </script>
 
 <template>
-  <div class="relative grid break-inside-avoid sm:grid-cols-[6rem_1fr] sm:gap-8">
-    <span class="tabular-nums">{{ meta }}</span>
+  <div class="relative grid break-inside-avoid sm:grid-cols-[auto_1fr] sm:gap-8">
+    <div class="tabular-nums">
+      <span class="absolute">{{ meta }}</span>
+      <span class="invisible whitespace-nowrap">0000 — 0000</span>
+    </div>
     <article>
-      <h3 class="not-prose text-foreground font-medium">
+      <h3 class="not-prose text-foreground font-headings font-medium">
         <a
           v-if="url"
           :href="url"

@@ -1,0 +1,21 @@
+@layer transitions {
+  @keyframes fade {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      filter: blur(0.125rem);
+      translate: 0 var(--fade-direction, -1em);
+    }
+  }
+
+  ::view-transition-old(main) {
+    animation: 300ms ease-out both fade;
+  }
+
+  ::view-transition-new(main) {
+    --fade-direction: 1em;
+    animation: 300ms 150ms ease-in both fade reverse;
+  }
+}

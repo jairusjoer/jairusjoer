@@ -10,8 +10,8 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
 ---
 
 <nav
-  class="py-4 font-medium print:hidden"
-  transition:name="nav"
+  class="font-headings py-4 font-medium print:hidden"
+  style="view-transition-name: nav"
 >
   <ul class="flex flex-wrap gap-2">
     {
@@ -19,8 +19,8 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
         <li>
           <a
             class:list={{
-              block: true,
-              'text-foreground font-medium': isCurrentPath(href),
+              'block rounded px-1': true,
+              'text-foreground bg-background font-medium': isCurrentPath(href),
             }}
             href={href}
           >
