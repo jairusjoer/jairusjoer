@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useViewTransition } from '../composables/useViewTransition';
+import { useViewTransition } from '../../composables/useViewTransition';
 
 const { file } = defineProps<{
   title: string;
@@ -15,17 +15,21 @@ const selectedTab = ref<string>(tabs[0]);
 
 const selectTab = async (selected: string) => {
   if (selected === 'Code' && !code.value) {
-    await renderCode();
+    await loadCode();
   }
 
-  useViewTransition(() => (selectedTab.value = selected));
+  selectedTab.value = selected;
 };
 
-const renderCode = async () => {
-  if (code.value || !file) return;
+const loadCode = async () => {
+  if (!file || code.value) return;
 
-  const { codeToHtml } = await import('shiki/bundle/web');
-  code.value = await codeToHtml((await import(`./experiments/${file}.vue?raw`)).default, {
+  const [raw, codeToHTML] = await Promise.all([
+    import(`../experiments/${file}.vue?raw`).then((m) => m.default),
+    import('shiki/bundle/web').then((m) => m.codeToHtml),
+  ]);
+
+  code.value = await codeToHTML(raw, {
     lang: 'vue',
     themes: {
       dark: 'vitesse-dark',
@@ -52,6 +56,7 @@ const renderCode = async () => {
         <button
           v-for="tab in tabs"
           :class="{ 'cursor-pointer rounded px-1': true, 'bg-background text-foreground': selectedTab === tab }"
+          @mouseover="loadCode"
           @click="() => selectTab(tab)"
         >
           {{ tab }}

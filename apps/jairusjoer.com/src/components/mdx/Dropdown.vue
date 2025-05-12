@@ -10,7 +10,9 @@ const props = defineProps<{
     class="group mt-4 overflow-hidden rounded border"
     :open
   >
-    <summary class="group-open:bg-background-subtle text-foreground flex cursor-pointer gap-4 p-4 leading-4 select-none">
+    <summary
+      class="group-open:bg-background-subtle text-foreground flex cursor-pointer gap-4 p-4 leading-4 select-none"
+    >
       <span
         class="text-foreground font-headings grow truncate font-medium"
         :title="props.title"
