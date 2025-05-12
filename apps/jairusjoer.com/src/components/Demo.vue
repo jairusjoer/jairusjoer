@@ -36,8 +36,8 @@ const renderCode = async () => {
 </script>
 
 <template>
-  <section class="bg-background-subtle grid gap-1 overflow-hidden rounded-lg border p-1">
-    <header class="bg-background flex gap-4 overflow-hidden rounded px-4 py-3">
+  <section class="bg-background grid gap-1 overflow-hidden rounded-lg border p-1">
+    <header class="bg-background-subtle flex gap-4 overflow-hidden rounded px-4 py-3">
       <span class="text-foreground font-headings shrink truncate font-medium">{{ title }}</span>
       <span
         v-if="meta"
@@ -51,7 +51,7 @@ const renderCode = async () => {
       >
         <button
           v-for="tab in tabs"
-          :class="{ 'cursor-pointer rounded px-1': true, 'bg-background-subtle text-foreground': selectedTab === tab }"
+          :class="{ 'cursor-pointer rounded px-1': true, 'bg-background text-foreground': selectedTab === tab }"
           @click="() => selectTab(tab)"
         >
           {{ tab }}

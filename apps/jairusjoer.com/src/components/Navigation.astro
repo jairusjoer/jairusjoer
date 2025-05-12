@@ -20,7 +20,7 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
           <a
             class:list={{
               'block rounded px-1': true,
-              'text-foreground bg-background font-medium': isCurrentPath(href),
+              'text-foreground bg-background-subtle font-medium': isCurrentPath(href),
             }}
             href={href}
           >

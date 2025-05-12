@@ -27,7 +27,7 @@ if (entry.value?.data.image) {
     v-if="entry"
     class="group not-prose relative"
   >
-    <div class="border-background flex overflow-hidden rounded border">
+    <div class="border-background-subtle flex overflow-hidden rounded border">
       <div class="relative hidden w-32 shrink-0 sm:block">
         <img
           v-if="image"
@@ -47,7 +47,7 @@ if (entry.value?.data.image) {
           ></div>
         </div>
       </div>
-      <div class="bg-background grow overflow-hidden p-4">
+      <div class="bg-background-subtle grow overflow-hidden p-4">
         <h4 class="text-foreground font-headings truncate font-medium">{{ entry.data.title }}</h4>
         <time
           v-if="'date' in entry.data"
