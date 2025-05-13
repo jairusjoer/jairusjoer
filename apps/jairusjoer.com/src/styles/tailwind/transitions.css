@@ -11,11 +11,11 @@
   }
 
   ::view-transition-old(main) {
-    animation: 300ms ease-out both fade;
+    animation: 150ms ease-out both fade;
   }
 
   ::view-transition-new(main) {
     --fade-direction: 1em;
-    animation: 300ms 150ms ease-in both fade reverse;
+    animation: 150ms 150ms ease-in both fade reverse;
   }
 }

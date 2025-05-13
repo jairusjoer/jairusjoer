@@ -1,14 +1,31 @@
+@font-face {
+  font-family: 'Departure Mono';
+  src: local('Departure Mono'), url('/fonts/DepartureMono-Regular.woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
 @theme {
-  --color-background: light-dark(var(--color-neutral-200), var(--color-neutral-900));
-  --color-background-subtle: light-dark(var(--color-neutral-100), var(--color-neutral-800));
+  --color-background: light-dark(var(--color-neutral-200), var(--color-neutral-950));
+  --color-background-subtle: light-dark(var(--color-neutral-100), var(--color-neutral-900));
 
   --color-foreground: light-dark(var(--color-neutral-900), var(--color-neutral-200));
   --color-foreground-subtle: light-dark(var(--color-neutral-600), var(--color-neutral-400));
 
-  --color-theme: light-dark(var(--color-neutral-300), var(--color-neutral-700));
+  --color-theme-background: light-dark(var(--color-neutral-950), var(--color-neutral-200));
+  --color-theme-foreground: light-dark(var(--color-neutral-200), var(--color-neutral-950));
 
   --color-border: light-dark(var(--color-neutral-300), var(--color-neutral-700));
 
-  --font-headings: system-ui, ui-sans-serif, sans-serif;
-  --font-body: system-ui, ui-sans-serif, sans-serif;
+  --font-headings: var(--default-mono-font-family);
+  --font-body: var(--default-mono-font-family);
+}
+
+:root {
+  --default-mono-font-family: 'Departure Mono', ui-monospace, monospace;
+
+  @media print {
+    --font-headings: ui-sans-serif, system-ui, sans-serif;
+    --font-body: ui-sans-serif, system-ui, sans-serif;
+  }
 }

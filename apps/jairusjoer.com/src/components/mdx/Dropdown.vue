@@ -7,11 +7,11 @@ const props = defineProps<{
 
 <template>
   <details
-    class="group mt-4 overflow-hidden rounded border"
+    class="group mt-4 overflow-hidden rounded-lg border p-1"
     :open
   >
     <summary
-      class="group-open:bg-background-subtle text-foreground flex cursor-pointer gap-4 p-4 leading-4 select-none"
+      class="group-open:bg-background-subtle text-foreground flex cursor-pointer gap-4 rounded p-4 leading-4 select-none"
     >
       <span
         class="text-foreground font-headings grow truncate font-medium"

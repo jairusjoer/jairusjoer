@@ -51,7 +51,6 @@ if (entry.value?.data.image) {
         <h4 class="text-foreground font-headings truncate font-medium">{{ entry.data.title }}</h4>
         <time
           v-if="'date' in entry.data"
-          class="text-right"
           :datetime="entry.data.date.toISOString()"
         >
           {{ entry.data.date.toLocaleDateString(undefined, { dateStyle: 'long' }) }}

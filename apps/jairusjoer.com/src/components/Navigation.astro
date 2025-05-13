@@ -10,21 +10,21 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
 ---
 
 <nav
-  class="font-headings py-4 font-medium print:hidden"
+  class="font-headings from-background sticky top-0 z-50 bg-gradient-to-b to-transparent py-4 print:hidden"
   style="view-transition-name: nav"
 >
-  <ul class="flex flex-wrap gap-2">
+  <ul class="text-foreground flex flex-wrap gap-2 font-medium">
     {
       Object.entries(pages).map(([title, href]) => (
         <li>
           <a
             class:list={{
-              'block rounded px-1': true,
-              'text-foreground bg-background-subtle font-medium': isCurrentPath(href),
+              'block px-1': true,
+              'text-theme-foreground bg-theme-background': isCurrentPath(href),
             }}
             href={href}
           >
-            {title}
+            {isCurrentPath(href) ? `[${title}]` : title}
           </a>
         </li>
       ))
