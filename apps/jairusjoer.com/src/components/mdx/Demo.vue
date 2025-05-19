@@ -51,18 +51,18 @@ const loadCode = async () => {
       </span>
       <div
         v-if="file"
-        class="ml-auto flex gap-2 font-medium"
+        class="ml-auto flex gap-1 font-medium"
       >
         <button
           v-for="tab in tabs"
           :class="{
-            'cursor-pointer px-1': true,
+            'cursor-pointer rounded px-1': true,
             'bg-theme-background text-theme-foreground': selectedTab === tab,
           }"
           @mouseover="loadCode"
           @click="() => selectTab(tab)"
         >
-          {{ selectedTab === tab ? `[${tab}]` : tab }}
+          {{ tab }}
         </button>
       </div>
     </header>

@@ -3,6 +3,7 @@ defineProps<{
   meta: string;
   title: string;
   subtitle?: string;
+  skills?: string[];
   url?: string;
 }>();
 </script>
@@ -24,15 +25,24 @@ defineProps<{
         </a>
         <template v-else>{{ title }}</template>
       </h3>
-      <span
-        v-if="subtitle"
-        :class="{ 'mb-4 block': $slots.default }"
-      >
+      <span v-if="subtitle">
         {{ subtitle }}
       </span>
       <div
+        v-if="skills?.length"
+        class="mt-4 flex flex-wrap gap-1"
+      >
+        <span
+          v-for="skill in skills"
+          :key="skill"
+          class="bg-background-subtle rounded px-1"
+        >
+          {{ skill }}
+        </span>
+      </div>
+      <div
         v-if="$slots.default"
-        class="prose prose-sm prose-theme"
+        class="prose prose-sm prose-theme mt-4"
       >
         <slot />
       </div>

@@ -2,8 +2,8 @@
 @plugin '@tailwindcss/typography';
 
 /* Choose one theme */
-@import './themes/open.css';
-/* @import './themes/read.css'; */
+/* @import './themes/mono.css'; */
+@import './themes/read.css';
 
 @import './tailwind/base.css';
 @import './tailwind/utilities.css';

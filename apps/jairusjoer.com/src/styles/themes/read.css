@@ -1,13 +1,14 @@
 /* A small glimpse of what was. */
 
 @theme {
-  --color-background-subtle  light-dark(var(--color-neutral-50), var(--color-neutral-700));
-  --color-background: light-dark(var(--color-neutral-100), var(--color-neutral-800));
+  --color-background: light-dark(var(--color-neutral-100), var(--color-neutral-900));
+  --color-background-subtle: light-dark(var(--color-neutral-200), var(--color-neutral-800));
 
-  --color-foreground: light-dark(var(--color-neutral-900), var(--color-neutral-200));
+  --color-foreground: light-dark(var(--color-neutral-900), var(--color-neutral-100));
   --color-foreground-subtle: light-dark(var(--color-neutral-600), var(--color-neutral-400));
 
-  --color-theme: light-dark(var(--color-neutral-900), var(--color-neutral-200));
+  --color-theme-background: light-dark(var(--color-neutral-900), var(--color-neutral-100));
+  --color-theme-foreground: light-dark(var(--color-neutral-100), var(--color-neutral-900));
 
   --color-border: light-dark(var(--color-neutral-300), var(--color-neutral-700));
 
