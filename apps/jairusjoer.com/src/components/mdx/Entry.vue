@@ -42,7 +42,7 @@ defineProps<{
       </div>
       <div
         v-if="$slots.default"
-        class="prose prose-sm prose-theme mt-4"
+        class="prose prose-sm prose-theme mt-4 tabular-nums"
       >
         <slot />
       </div>
