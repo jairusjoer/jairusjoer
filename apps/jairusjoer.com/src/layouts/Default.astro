@@ -13,14 +13,9 @@ interface Props {
 const { metadata } = Astro.props;
 ---
 
-<script>
-  import { useExternalizedLinks } from '../composables/useExternalizedLinks';
-  useExternalizedLinks();
-</script>
-
 <html
   lang="en"
-  class="bg-background print:bg-transparent antialiased print:scheme-light"
+  class="bg-background antialiased print:bg-transparent print:scheme-light"
 >
   <head>
     <Meta {metadata} />
@@ -51,5 +46,9 @@ const { metadata } = Astro.props;
         }}
       />
     </div>
+    <script>
+      import { useExternalizedLinks } from '../composables/useExternalizedLinks';
+      useExternalizedLinks();
+    </script>
   </body>
 </html>
