@@ -22,7 +22,7 @@
     a {
       text-decoration: none;
 
-      &:not([href^='/'])::after {
+      &[href^='http']::after {
         content: ' ↗';
       }
     }
