@@ -3,7 +3,7 @@ import '../styles/tailwind.css';
 import Meta from '../components/Meta.astro';
 import type { Metadata } from '../types';
 import Header from '../components/Header.astro';
-import Navigation from '../components/Navigation.astro';
+// import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
@@ -30,19 +30,19 @@ const { metadata } = Astro.props;
         title="Jairus Joer"
         subtitle="Full Stack Developer & Design Systems Expert, Germany, He/him"
       />
-
-      <Navigation
+      {/*<Navigation
         pages={{
           About: '/',
           Blog: '/blog/',
           Links: '/links/',
           Experiments: '/experiments/',
         }}
-      />
+      />*/}
       <slot />
       <Footer
         pages={{
           Imprint: '/imprint/',
+          Links: '/links/',
         }}
       />
     </div>

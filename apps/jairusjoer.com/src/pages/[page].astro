@@ -10,7 +10,7 @@ import { Image } from 'astro:assets';
 import Draft from '../components/Draft.astro';
 
 export async function getStaticPaths() {
-  const collections: CollectionKey[] = ['blog', 'pages'];
+  const collections: CollectionKey[] = [/* 'blog', */ 'pages'];
 
   return (
     await Promise.all(
@@ -20,6 +20,8 @@ export async function getStaticPaths() {
         if (import.meta.env.PROD) {
           collection = collection.filter((entry) => !entry.data?.draft);
         }
+
+        collection = collection.filter((entry) => entry.id !== 'index');
 
         return collection.map((entry) => ({
           params: { page: entry.id },
