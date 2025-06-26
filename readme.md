@@ -1,10 +1,10 @@
 # Hello there ✌️
 
-### I am a developer and designer from Germany. Focused on creating consistent and clear design languages for rich, beautiful products.
+As a full-stack developer and design systems expert based in Germany, I specialize in creating interdisciplinary solutions that drive measurable business impact for tens of thousands of users across diverse digital platforms and environments.
 
-Full Stack Developer at neuwaerts, Co-Founder of XVI CHAPEL, Marketing Manager at World of Bass and Freelance Designer & Developer - over the past decade I have had the delight of experiencing many facets of the design industry.
+My decade-long tenure spanning HERO Software, neuwaerts, and XVI CHAPEL has focused on transforming platforms through strategic technical leadership, seamlessly bridging advanced engineering capabilities with tangible business outcomes.
 
-Today I work at [HERO Software](https://hero-software.de). In my spare time I contribute to [aggregata.de](https://aggregata.de/de/).
+Currently driving platform modernization initiatives at [HERO Software](https://hero-software.de) while mentoring talented colleagues and championing cutting-edge technologies. My contributions to [Aggregata](https://aggregata.de/de/) have cultivated a thriving readership of 9,000+ monthly users.
 
 <!--
 - 🔭 I’m currently working on ...
