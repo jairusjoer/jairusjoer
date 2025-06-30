@@ -1,0 +1,72 @@
+---
+const { class: className } = Astro.props;
+
+const options: { type: keyof typeof buttonTypes; title: string; href: string }[] = [
+  {
+    type: 'solid',
+    title: 'hello@jairusjoer.com',
+    href: 'mailto:hello@jairusjoer.com',
+  },
+  {
+    type: 'subtle',
+    title: 'LinkedIn',
+    href: 'https://linkedin.com/in/jairusjoer',
+  },
+  {
+    type: 'outlined',
+    title: 'GitHub',
+    href: 'https://github.com/jairusjoer',
+  },
+];
+
+const buttonTypes = {
+  solid: 'bg-theme-background text-theme-foreground border-r',
+  subtle: 'bg-background-subtle',
+  outlined: '',
+};
+---
+
+<script>
+  const button = document.getElementById('copy-email');
+
+  document.addEventListener('DOMContentLoaded', () => {
+    button?.addEventListener('click', copyEmail);
+  });
+
+  const copyEmail = async () => {
+    if (!button) return;
+
+    try {
+      await navigator.clipboard.writeText('hello@jairusjoer.com');
+      button.textContent = '✅';
+    } catch (error) {
+      button.textContent = '❌';
+    } finally {
+      setTimeout(() => (button.textContent = '📋'), 1500);
+    }
+  };
+</script>
+
+<section class:list={['flex flex-wrap gap-1 font-medium', className]}>
+  {
+    options.map(({ type, title, href }) => (
+      <div class="flex rounded border">
+        <a
+          class={`block rounded px-1 leading-6 ${buttonTypes[type]}`}
+          href={href}
+        >
+          {title}
+        </a>
+        {type === 'solid' && (
+          <button
+            class="size-6 cursor-pointer"
+            title="Copy E-Mail"
+            id="copy-email"
+          >
+            📋
+          </button>
+        )}
+      </div>
+    ))
+  }
+</section>
