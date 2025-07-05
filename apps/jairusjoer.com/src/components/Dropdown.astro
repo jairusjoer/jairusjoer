@@ -1,0 +1,59 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  class?: string;
+  count?: string;
+  open?: boolean;
+  title: string;
+}
+const { class: className, count, title, open } = Astro.props;
+---
+
+<script>
+  const details = document.querySelectorAll('details');
+
+  if (details) {
+    const { animate, utils } = await import('animejs');
+
+    details?.forEach((element) => {
+      const count = element.dataset.count;
+      const badge = element.querySelector('i');
+
+      if (count && badge) {
+        animate(badge, {
+          duration: 600,
+          modifier: utils.round(0),
+          textContent: String(element.querySelectorAll(count).length),
+        });
+      }
+    });
+  }
+</script>
+
+<details
+  class:list={['group mt-4 overflow-hidden rounded-lg border p-1', className]}
+  data-count={count}
+  {open}
+>
+  <summary
+    class="group-open:bg-background-subtle text-foreground flex cursor-pointer gap-4 rounded p-4 leading-4 select-none"
+  >
+    <span
+      class="text-foreground font-headings grow truncate font-medium"
+      {title}
+    >
+      {title}
+      {count && <Badge label={0} />}
+    </span>
+    <span
+      class="text-center group-open:rotate-180"
+      aria-hidden="true"
+    >
+      ▼
+    </span>
+  </summary>
+  <div class="px-4">
+    <slot />
+  </div>
+</details>

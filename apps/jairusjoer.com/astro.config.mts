@@ -7,11 +7,9 @@ import sitemap from '@astrojs/sitemap';
 // Plugins
 import tailwindcss from '@tailwindcss/vite';
 
-import vue from '@astrojs/vue';
-
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), sitemap(), vue()],
+  integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
       themes: {

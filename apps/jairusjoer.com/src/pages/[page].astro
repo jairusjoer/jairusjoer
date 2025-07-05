@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
 import type { CollectionKey } from 'astro:content';
 import type { Metadata } from '../types';
-import { useMDXComponents } from '../composables/useMDXComponents';
+import { useComponents } from '../composables/useComponents';
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Draft from '../components/Draft.astro';
@@ -37,7 +37,7 @@ const { collection, id } = Astro.props;
 const entry = await getEntry(collection, id)!;
 const { Content } = await render(entry);
 
-const components = useMDXComponents();
+const components = useComponents();
 ---
 
 <Default metadata={entry.data as Metadata}>

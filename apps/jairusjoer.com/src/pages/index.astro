@@ -2,12 +2,12 @@
 import { render } from 'astro:content';
 import Default from '../layouts/Default.astro';
 import { getEntry } from 'astro:content';
-import { useMDXComponents } from '../composables/useMDXComponents';
+import { useComponents } from '../composables/useComponents';
 
 const entry = await getEntry('pages', 'index');
 const { Content } = await render(entry!);
 
-const components = useMDXComponents();
+const components = useComponents();
 ---
 
 <Default>

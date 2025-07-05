@@ -1,0 +1,57 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  class?: string;
+  meta: string;
+  skills?: string[];
+  subtitle?: string;
+  title: string;
+  url?: string;
+}
+
+const { class: className, meta, skills, subtitle, title, url } = Astro.props;
+---
+
+<div class:list={['relative grid break-inside-avoid sm:grid-cols-[6rem_1fr] sm:gap-8', className]}>
+  <div class="tabular-nums">
+    {meta}
+  </div>
+  <article>
+    <h3 class="not-prose text-foreground font-headings font-medium">
+      {
+        url ? (
+          <a
+            v-if="url"
+            href={url}
+            target="_blank"
+          >
+            {title}
+          </a>
+        ) : (
+          title
+        )
+      }
+    </h3>
+    {subtitle && <span v-if="subtitle">{subtitle}</span>}
+    {
+      skills && (
+        <div
+          v-if="skills?.length"
+          class="mt-4 flex flex-wrap gap-1"
+        >
+          {skills.map((skill) => (
+            <Badge label={skill} />
+          ))}
+        </div>
+      )
+    }
+    {
+      Astro.slots.has('default') && (
+        <div class="prose prose-sm prose-theme mt-4 tabular-nums">
+          <slot />
+        </div>
+      )
+    }
+  </article>
+</div>
