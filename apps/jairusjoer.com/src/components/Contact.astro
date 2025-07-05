@@ -20,7 +20,7 @@ const options: { type: keyof typeof buttonTypes; title: string; href: string }[]
 ];
 
 const buttonTypes = {
-  solid: 'bg-theme-background text-theme-foreground border-r',
+  solid: 'bg-theme-background text-theme-foreground print:text-foreground border-r print:border-0',
   subtle: 'bg-background-subtle',
   outlined: '',
 };
@@ -59,7 +59,7 @@ const buttonTypes = {
         </a>
         {type === 'solid' && (
           <button
-            class="size-6 cursor-pointer"
+            class="size-6 cursor-pointer print:hidden"
             title="Copy E-Mail"
             id="copy-email"
           >
