@@ -26,7 +26,7 @@ const { metadata } = Astro.props;
       class="font-body mx-auto flex w-full max-w-xl flex-col"
     >
       <Header
-        image="/favicon.png"
+        image={`${Astro.url.origin}/favicon.png`}
         title="Jairus Joer"
         subtitle="Full Stack Developer & Design Systems Expert, Germany, He/him"
       />
