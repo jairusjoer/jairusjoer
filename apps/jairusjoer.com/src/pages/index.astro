@@ -3,14 +3,38 @@ import { render } from 'astro:content';
 import Default from '../layouts/Default.astro';
 import { getEntry } from 'astro:content';
 import { useComponents } from '../composables/useComponents';
+import type { Metadata } from '@/types';
+import { defaultMetadata } from '@/constants';
 
 const entry = await getEntry('pages', 'index');
 const { Content } = await render(entry!);
 
 const components = useComponents();
+
+const metadata: Metadata = {
+  schema: {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    dateCreated: new Date().toISOString(),
+    dateModified: new Date().toISOString(),
+    mainEntity: {
+      '@type': 'Person',
+      name: defaultMetadata.title,
+      alternateName: 'jairusjoer',
+      identifier: 'jairusjoer',
+      description: defaultMetadata.description,
+      image: 'https://jairusjoer.com/avatar.jpeg',
+      sameAs: [
+        'https://aggregata.de/authors/jairusjoer/',
+        'https://github.com/jairusjoer',
+        'https://www.linkedin.com/in/jairusjoer/',
+      ],
+    },
+  },
+};
 ---
 
-<Default>
+<Default {metadata}>
   <main
     class="prose prose-sm prose-theme !max-w-none"
     style="view-transition-name: main"
