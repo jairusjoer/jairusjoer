@@ -7,33 +7,11 @@ interface Props {
   open?: boolean;
   title: string;
 }
-const { class: className, count, title, open } = Astro.props;
+const { class: className, title, open } = Astro.props;
 ---
-
-<script>
-  const details = document.querySelectorAll('details');
-
-  if (details) {
-    const { animate, utils } = await import('animejs');
-
-    details?.forEach((element) => {
-      const count = element.dataset.count;
-      const badge = element.querySelector('i');
-
-      if (count && badge) {
-        animate(badge, {
-          duration: 600,
-          modifier: utils.round(0),
-          textContent: String(element.querySelectorAll(count).length),
-        });
-      }
-    });
-  }
-</script>
 
 <details
   class:list={['group mt-4 overflow-hidden rounded-lg border p-1', className]}
-  data-count={count}
   {open}
 >
   <summary
@@ -44,7 +22,6 @@ const { class: className, count, title, open } = Astro.props;
       {title}
     >
       {title}
-      {count && <Badge label={0} />}
     </span>
     <span
       class="text-center group-open:rotate-180"
