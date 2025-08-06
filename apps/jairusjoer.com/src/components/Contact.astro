@@ -1,29 +1,25 @@
 ---
+import Button from './button.astro';
+
 const { class: className } = Astro.props;
 
-const options: { type: keyof typeof buttonTypes; title: string; href: string }[] = [
+const options = [
   {
-    type: 'solid',
+    variant: 'bold',
     title: 'hello@jairusjoer.com',
     href: 'mailto:hello@jairusjoer.com',
   },
   {
-    type: 'subtle',
+    variant: 'subtle',
     title: 'LinkedIn',
     href: 'https://linkedin.com/in/jairusjoer',
   },
   {
-    type: 'outlined',
+    variant: 'outline',
     title: 'GitHub',
     href: 'https://github.com/jairusjoer',
   },
 ];
-
-const buttonTypes = {
-  solid: 'bg-theme-background text-theme-foreground print:text-foreground border-r print:border-0',
-  subtle: 'bg-background-subtle',
-  outlined: '',
-};
 ---
 
 <script>
@@ -38,35 +34,30 @@ const buttonTypes = {
 
     try {
       await navigator.clipboard.writeText('hello@jairusjoer.com');
+      button.title = 'E-Mail Copied';
       button.textContent = '✅';
     } catch (error) {
+      button.title = 'Failed to copy E-Mail';
       button.textContent = '❌';
     } finally {
-      setTimeout(() => (button.textContent = '📋'), 1500);
+      setTimeout(() => {
+        button.title = 'Copy E-Mail';
+        button.textContent = '📋';
+      }, 1500);
     }
   };
 </script>
 
 <section class:list={['flex flex-wrap gap-1 font-medium', className]}>
   {
-    options.map(({ type, title, href }) => (
-      <div class="flex rounded border">
-        <a
-          class={`block rounded px-1 leading-6 ${buttonTypes[type]}`}
-          href={href}
-        >
-          {title}
-        </a>
-        {type === 'solid' && (
-          <button
-            class="size-6 cursor-pointer print:hidden"
-            title="Copy E-Mail"
-            id="copy-email"
-          >
-            📋
-          </button>
-        )}
-      </div>
+    options.map(({ href, title, variant }) => (
+      <Button
+        is="a"
+        {variant}
+        {href}
+      >
+        {title}
+      </Button>
     ))
   }
 </section>

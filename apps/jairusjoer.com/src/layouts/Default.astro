@@ -1,10 +1,9 @@
 ---
 import '../styles/tailwind.css';
-import Meta from '../components/Meta.astro';
+import Meta from '../components/meta.astro';
 import type { Metadata } from '../types';
-import Header from '../components/Header.astro';
-// import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
+import Header from '../components/header.astro';
+import Footer from '../components/footer.astro';
 
 interface Props {
   metadata?: Metadata;
@@ -50,7 +49,7 @@ const { metadata } = Astro.props;
       />
     </div>
     <script>
-      import { useExternalizedLinks } from '../composables/useExternalizedLinks';
+      import { useExternalizedLinks } from '../utils';
       useExternalizedLinks();
     </script>
   </body>

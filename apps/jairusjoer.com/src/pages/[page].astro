@@ -1,13 +1,13 @@
 ---
-import Default from '../layouts/Default.astro';
+import Default from '../layouts/default.astro';
 import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
 import type { CollectionKey } from 'astro:content';
 import type { Metadata } from '../types';
-import { useComponents } from '../composables/useComponents';
+import { useComponents } from '../utils';
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
-import Draft from '../components/Draft.astro';
+import Draft from '../components/draft.astro';
 
 export async function getStaticPaths() {
   const collections: CollectionKey[] = [/* 'blog', */ 'pages'];

@@ -1,0 +1,28 @@
+---
+interface Props {
+  class?: string;
+  href?: string;
+  is?: string;
+  variant?: 'bold' | 'subtle' | 'outline' | 'ghost';
+}
+
+const props = Astro.props;
+
+const Component = props.is || 'a';
+
+const variants = {
+  bold: 'border bg-theme-background text-theme-foreground print:text-foreground',
+  subtle: 'border bg-background-subtle',
+  outline: 'border',
+  ghost: '',
+};
+
+const variant = variants[(props.variant as keyof typeof variants) || 'bold'];
+---
+
+<Component
+  href={props.href}
+  class:list={['flex items-center gap-2 rounded px-1 leading-6', variant, props.class]}
+>
+  <slot />
+</Component>
