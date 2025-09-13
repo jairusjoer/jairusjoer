@@ -7,9 +7,11 @@ import sitemap from '@astrojs/sitemap';
 // Plugins
 import tailwindcss from '@tailwindcss/vite';
 
+import react from '@astrojs/react';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), react(), sitemap()],
   markdown: {
     shikiConfig: {
       themes: {
