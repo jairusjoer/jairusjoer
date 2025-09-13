@@ -6,9 +6,6 @@
     "baseUrl": ".",
     "jsx": "preserve",
     "jsxImportSource": "react",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
     "strictNullChecks": true
   }
 }

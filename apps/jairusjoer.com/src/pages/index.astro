@@ -3,8 +3,8 @@ import { render } from 'astro:content';
 import Default from '../layouts/default.astro';
 import { getEntry } from 'astro:content';
 import { useComponents } from '../utils';
-import type { Metadata } from '@/types';
-import { defaultMetadata } from '@/constants';
+import type { Metadata } from '../types';
+import { defaultMetadata } from '../constants';
 
 const entry = await getEntry('pages', 'index');
 const { Content } = await render(entry!);
