@@ -53,14 +53,16 @@ const Item = (item: Item) => (
     >
       {formatDate(String(item.pubDate))}
     </time>
-    <div className="mb-4 flex flex-wrap gap-1">
-      {item.categories?.map((category, index) => (
-        <Badge
-          key={index}
-          label={category}
-        />
-      ))}
-    </div>
+    {item.categories.length > 0 && (
+      <div className="mb-4 flex flex-wrap gap-1">
+        {item.categories?.map((category, index) => (
+          <Badge
+            key={index}
+            label={category}
+          />
+        ))}
+      </div>
+    )}
     <p>{item.content}</p>
     <a
       className="absolute inset-0 rounded"
