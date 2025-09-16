@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "prettier **.{astro,css,ts} -w"
+    "format": "prettier **.{astro,css,ts} -w"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

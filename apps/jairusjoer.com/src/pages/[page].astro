@@ -8,13 +8,12 @@ import { useComponents } from '../composables';
 import { getEntry } from 'astro:content';
 import { Image } from 'astro:assets';
 import Draft from '../components/astro/draft.astro';
+import { collections } from 'src/content.config';
 
 export async function getStaticPaths() {
-  const collections: CollectionKey[] = [/* 'blog', */ 'pages'];
-
   return (
     await Promise.all(
-      collections.map(async (collectionKey) => {
+      Object.keys(collections).map(async (collectionKey) => {
         let collection = await getCollection(collectionKey);
 
         if (import.meta.env.PROD) {
