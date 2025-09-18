@@ -1,0 +1,32 @@
+---
+import '../styles/tailwind.css';
+import Meta from '../components/astro/meta.astro';
+import type { Metadata } from '../types';
+
+interface Props {
+  metadata?: Metadata;
+}
+
+const { metadata } = Astro.props;
+---
+
+<html
+  lang="en"
+  class="bg-background antialiased print:bg-transparent print:scheme-light"
+>
+  <head>
+    <Meta {metadata} />
+  </head>
+  <body class="text-foreground-subtle relative flex min-h-screen flex-col px-4 py-16 text-sm leading-6 print:p-0">
+    <div
+      id="root"
+      class="font-body mx-auto flex w-full max-w-xl flex-col"
+    >
+      <slot />
+    </div>
+    <script>
+      import { useExternalizedLinks } from '../composables';
+      useExternalizedLinks();
+    </script>
+  </body>
+</html>

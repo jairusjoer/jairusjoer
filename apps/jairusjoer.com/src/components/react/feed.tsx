@@ -45,7 +45,7 @@ const Skeleton = () => (
 );
 
 const Item = (item: Item) => (
-  <article className="group not-prose relative rounded border p-4 transition-colors">
+  <article className="not-prose relative rounded border p-4">
     <h2 className="text-foreground block font-medium">{item.title}</h2>
     <time
       className="mb-4 block"
