@@ -1,4 +1,6 @@
 ---
+// import { Theme } from '../react/theme';
+
 // Navigation.astro
 interface Props {
   pages: Record<string, string>;
@@ -10,7 +12,7 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
 ---
 
 <nav
-  class="font-headings from-background mb-8 bg-gradient-to-b to-transparent print:hidden"
+  class="from-background mb-4 flex justify-between bg-gradient-to-b to-transparent print:hidden"
   style="view-transition-name: nav"
 >
   <ul class="flex flex-wrap gap-1 font-medium">
@@ -30,4 +32,5 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
       ))
     }
   </ul>
+  <!-- <Theme client:only="react" /> -->
 </nav>

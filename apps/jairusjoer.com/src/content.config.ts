@@ -10,10 +10,11 @@ const pages = defineCollection({
   }),
   schema: ({ image }) =>
     z.object({
+      date: z.date().optional(),
+      description: z.string().optional(),
       draft: z.boolean().optional(),
       image: image().optional(),
       title: z.string(),
-      description: z.string().optional(),
     }),
 });
 

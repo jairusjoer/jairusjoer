@@ -30,6 +30,12 @@ const { image, title, subtitle } = Astro.props;
   <div class="grid items-center">
     <span class="text-foreground font-headings font-medium">{title}</span>
     {subtitle && <span>{subtitle}</span>}
+    <a
+      class="text-theme-foreground hidden underline print:block"
+      href="https://jairusjoer.com"
+    >
+      jairusjoer.com
+    </a>
   </div>
   <a
     class="absolute inset-0 rounded"

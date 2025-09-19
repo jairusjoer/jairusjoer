@@ -1,14 +1,15 @@
 ---
-interface Props {
+export interface Props {
   class?: string;
   href?: string;
-  is?: string;
+  is?: 'button' | 'a';
+  label?: string;
   variant?: 'bold' | 'subtle' | 'outline' | 'ghost';
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const props = Astro.props;
-
-const Component = props.is || 'a';
+const isButton = props.is === 'button';
 
 const variants = {
   bold: 'border bg-theme-background text-theme-foreground',
@@ -18,15 +19,23 @@ const variants = {
 };
 
 const variant = variants[(props.variant as keyof typeof variants) || 'bold'];
+const baseClasses = ['flex items-center gap-2 rounded px-1 leading-6', variant, props.class];
 ---
 
-<Component
-  href={props.href}
-  class:list={[
-    'print:!text-foreground print:!bg-background-subtle flex items-center gap-2 rounded px-1 leading-6',
-    variant,
-    props.class,
-  ]}
->
-  <slot />
-</Component>
+{
+  isButton ? (
+    <button
+      type={props.type || 'button'}
+      class:list={baseClasses}
+    >
+      {props.label || <slot />}
+    </button>
+  ) : (
+    <a
+      href={props.href}
+      class:list={baseClasses}
+    >
+      {props.label || <slot />}
+    </a>
+  )
+}

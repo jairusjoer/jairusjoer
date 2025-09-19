@@ -1,22 +1,22 @@
 ---
-import Button from './button.astro';
+import Button, { type Props as ButtonProps } from './button.astro';
 
 const { class: className } = Astro.props;
 
-const options = [
+const options: Array<ButtonProps> = [
   {
     variant: 'bold',
-    title: 'hello@jairusjoer.com',
+    label: 'hello@jairusjoer.com',
     href: 'mailto:hello@jairusjoer.com',
   },
   {
     variant: 'subtle',
-    title: 'LinkedIn',
+    label: 'LinkedIn',
     href: 'https://linkedin.com/in/jairusjoer',
   },
   {
     variant: 'outline',
-    title: 'GitHub',
+    label: 'GitHub',
     href: 'https://github.com/jairusjoer',
   },
 ];
@@ -34,6 +34,7 @@ const options = [
 
     try {
       await navigator.clipboard.writeText('hello@jairusjoer.com');
+
       button.title = 'E-Mail Copied';
       button.textContent = '✅';
     } catch (error) {
@@ -50,14 +51,22 @@ const options = [
 
 <section class:list={['flex flex-wrap gap-1 font-medium', className]}>
   {
-    options.map(({ href, title, variant }) => (
-      <Button
-        is="a"
-        {variant}
-        {href}
-      >
-        {title}
-      </Button>
-    ))
+    options.map((button) => {
+      if (button.href?.startsWith('mailto')) {
+        return (
+          <div class="flex">
+            <Button {...button} />
+            <button
+              id="copy-email"
+              class="ml-1 w-6.5 cursor-pointer rounded border print:hidden"
+            >
+              📋
+            </button>
+          </div>
+        );
+      }
+
+      return <Button {...button} />;
+    })
   }
 </section>

@@ -2,7 +2,8 @@
 
 @plugin '@tailwindcss/typography';
 
-@import './themes/read.css';
-
+@import './tailwind/themes.css';
 @import './tailwind/base.css';
 @import './tailwind/utilities.css';
+
+@import './fonts.css';
