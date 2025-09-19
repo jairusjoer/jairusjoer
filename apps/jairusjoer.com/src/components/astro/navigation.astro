@@ -13,7 +13,7 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
 ---
 
 <nav
-  class="mb-4 flex gap-1 print:hidden"
+  class="mb-4 flex flex-wrap gap-x-1 gap-y-4 print:hidden"
   style="view-transition-name: nav"
 >
   <ul class="mr-auto flex flex-wrap gap-1 font-medium">
@@ -33,6 +33,8 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
       ))
     }
   </ul>
-  <Theme client:only="react" />
-  <Mode client:only="react" />
+  <div class="flex gap-1">
+    <Theme client:only="react" />
+    <Mode client:only="react" />
+  </div>
 </nav>

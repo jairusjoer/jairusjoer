@@ -29,10 +29,6 @@
 
     a {
       text-decoration: none;
-
-      &[href^='http']:not(.absolute)::after {
-        content: ' ↗';
-      }
     }
   }
 }

@@ -16,6 +16,10 @@
     border-color: var(--color-border);
   }
 
+  a[href^='http']:not(.absolute)::after {
+    content: ' ↗';
+  }
+
   code,
   pre {
     font-size: 0.75rem !important;
