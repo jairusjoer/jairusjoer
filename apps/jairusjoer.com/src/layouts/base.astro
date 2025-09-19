@@ -15,6 +15,16 @@ const { metadata } = Astro.props;
   class="bg-background antialiased print:bg-transparent print:scheme-light"
 >
   <head>
+    <!-- Early inline script to apply saved theme before first paint to avoid flash -->
+    <script is:inline>
+      const theme = localStorage.getItem('theme') || 'Read';
+      const root = document.documentElement;
+      const className = `theme-${theme.toLowerCase()}`;
+
+      if (!root.classList.contains(className)) {
+        root.classList.add(className);
+      }
+    </script>
     <Meta {metadata} />
   </head>
   <body class="text-foreground-subtle relative flex min-h-screen flex-col px-4 py-16 text-sm leading-6 print:p-0">

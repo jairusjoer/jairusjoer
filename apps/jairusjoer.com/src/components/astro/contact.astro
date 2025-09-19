@@ -54,11 +54,11 @@ const options: Array<ButtonProps> = [
     options.map((button) => {
       if (button.href?.startsWith('mailto')) {
         return (
-          <div class="flex">
+          <div class="flex rounded border">
             <Button {...button} />
             <button
               id="copy-email"
-              class="ml-1 w-6.5 cursor-pointer rounded border print:hidden"
+              class="w-6.5 cursor-pointer rounded print:hidden"
             >
               📋
             </button>

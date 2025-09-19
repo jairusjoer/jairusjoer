@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 const themes = ['Read', 'Lara'];
 
-const get = () => {
-  return localStorage.getItem('theme') || 'Read';
-};
-
 export const Theme = () => {
-  const [theme, setTheme] = useState<string>(get());
+  const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'Read');
 
-  useEffect(() => {
-    Array.from(document.documentElement.classList)
-      .filter((className) => className.startsWith('theme-'))
-      .forEach((className) => document.documentElement.classList.remove(className));
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const className = `theme-${theme.toLowerCase()}`;
 
-    document.documentElement.classList.add(`theme-${theme.toLowerCase()}`);
+    if (!root.classList.contains(className)) {
+      Array.from(root.classList)
+        .filter((c) => c.startsWith('theme-'))
+        .forEach((c) => root.classList.remove(c));
+
+      root.classList.add(className);
+    }
   }, [theme]);
 
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
