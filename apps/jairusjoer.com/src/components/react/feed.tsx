@@ -36,16 +36,16 @@ const formatDate = (date: string) => {
 };
 
 const Skeleton = () => (
-  <div className="flex animate-pulse flex-col rounded border p-4">
-    <div className="bg-background-subtle my-1 h-4 w-80 rounded" />
-    <div className="bg-background-subtle my-1 h-4 w-40 rounded" />
-    <div className="bg-background-subtle my-4 h-6 w-60 rounded" />
-    <div className="bg-background-subtle h-12 w-full rounded" />
+  <div className="rounded-inner flex animate-pulse flex-col border p-4">
+    <div className="bg-background-subtle rounded-inner my-1 h-4 w-80" />
+    <div className="bg-background-subtle rounded-inner my-1 h-4 w-40" />
+    <div className="bg-background-subtle rounded-inner my-4 h-6 w-60" />
+    <div className="bg-background-subtle rounded-inner h-12 w-full" />
   </div>
 );
 
 const Item = (item: Item) => (
-  <article className="not-prose relative rounded border p-4">
+  <article className="not-prose rounded-inner relative border p-4">
     <h2 className="text-foreground block font-medium">{item.title}</h2>
     <time
       className="mb-4 block"
@@ -65,7 +65,7 @@ const Item = (item: Item) => (
     )}
     <p>{item.content}</p>
     <a
-      className="absolute inset-0 rounded"
+      className="rounded-inner absolute inset-0"
       href={item.link}
       target="_blank"
       title={item.title}

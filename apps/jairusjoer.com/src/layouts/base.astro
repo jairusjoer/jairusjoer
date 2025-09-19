@@ -12,18 +12,17 @@ const { metadata } = Astro.props;
 
 <html
   lang="en"
-  class="bg-background antialiased print:bg-transparent print:scheme-light"
+  class="bg-background antialiased print:!bg-transparent print:!scheme-light"
 >
   <head>
-    <!-- Early inline script to apply saved theme before first paint to avoid flash -->
     <script is:inline>
-      const theme = localStorage.getItem('theme') || 'Read';
       const root = document.documentElement;
-      const className = `theme-${theme.toLowerCase()}`;
 
-      if (!root.classList.contains(className)) {
-        root.classList.add(className);
-      }
+      const theme = localStorage.getItem('theme') || 'Read';
+      root.classList.add(`theme-${theme.toLowerCase()}`);
+
+      const mode = localStorage.getItem('mode') || 'System';
+      root.classList.add(`mode-${mode.toLowerCase()}`);
     </script>
     <Meta {metadata} />
   </head>

@@ -12,14 +12,14 @@ const props = Astro.props;
 const isButton = props.is === 'button';
 
 const variants = {
-  bold: 'bg-theme-background text-theme-foreground print:border',
+  bold: 'bg-theme-background text-theme-foreground print:!bg-border print:!text-foreground',
   subtle: 'border bg-background-subtle',
   outline: 'border',
   ghost: '',
 };
 
 const variant = variants[(props.variant as keyof typeof variants) || 'bold'];
-const baseClasses = ['flex items-center gap-2 rounded px-1 leading-6', variant, props.class];
+const baseClasses = ['flex items-center gap-2 rounded-inner px-1 leading-6', variant, props.class];
 ---
 
 {

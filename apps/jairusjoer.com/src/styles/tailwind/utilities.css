@@ -1,4 +1,12 @@
 @layer utilities {
+  .mode-dark {
+    color-scheme: dark;
+  }
+
+  .mode-light {
+    color-scheme: light;
+  }
+
   .prose-theme {
     --tw-prose-body: var(--color-foreground-subtle);
     --tw-prose-headings: var(--color-foreground);

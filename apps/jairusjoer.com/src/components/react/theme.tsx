@@ -1,42 +1,42 @@
 import { useLayoutEffect, useState } from 'react';
 
-const themes = ['Read', 'Lara'];
+const themes = ['Read', 'Lara', 'Mono'] as const;
+
+const applyTheme = (theme: string) => {
+  const root = document.documentElement;
+  const className = `theme-${theme}`;
+
+  if (!root.classList.contains(className)) {
+    Array.from(root.classList)
+      .filter((c) => c.startsWith('theme-'))
+      .forEach((c) => root.classList.remove(c));
+
+    root.classList.add(className.toLowerCase());
+  }
+};
 
 export const Theme = () => {
-  const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'Read');
+  const [theme, setTheme] = useState<string>((localStorage.getItem('theme') || 'Read') as (typeof themes)[number]);
 
-  useLayoutEffect(() => {
-    const root = document.documentElement;
-    const className = `theme-${theme.toLowerCase()}`;
-
-    if (!root.classList.contains(className)) {
-      Array.from(root.classList)
-        .filter((c) => c.startsWith('theme-'))
-        .forEach((c) => root.classList.remove(c));
-
-      root.classList.add(className);
-    }
-  }, [theme]);
+  useLayoutEffect(() => applyTheme(theme), [theme]);
 
   const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const key = event.currentTarget.value;
+    const key = event.currentTarget.value as (typeof themes)[number];
 
-    if (themes.includes(key)) {
-      setTheme(key);
-      localStorage.setItem('theme', key);
-    }
+    setTheme(key);
+    localStorage.setItem('theme', key);
   };
 
   return (
     <label className="flex items-center gap-1 text-xs font-medium">
       <span>Theme</span>
       <select
-        className="text-foreground h-6 rounded border px-1"
+        className="text-foreground rounded-inner h-6 border px-1"
         name="theme"
         id="theme"
         value={theme}
         onChange={onChange}
-        aria-label="Set site theme"
+        title="Set site theme"
       >
         {themes.map((theme) => (
           <option

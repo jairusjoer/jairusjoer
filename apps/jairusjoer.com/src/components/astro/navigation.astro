@@ -1,4 +1,5 @@
 ---
+import { Mode } from '../react/mode';
 import { Theme } from '../react/theme';
 
 // Navigation.astro
@@ -12,16 +13,16 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
 ---
 
 <nav
-  class="mb-4 flex justify-between print:hidden"
+  class="mb-4 flex gap-1 print:hidden"
   style="view-transition-name: nav"
 >
-  <ul class="flex flex-wrap gap-1 font-medium">
+  <ul class="mr-auto flex flex-wrap gap-1 font-medium">
     {
       Object.entries(pages).map(([title, href]) => (
         <li>
           <a
             class:list={{
-              'bg-background-subtle block rounded px-2': true,
+              'bg-background-subtle rounded-inner block px-2': true,
               'text-theme-foreground bg-theme-background': isCurrentPath(href),
             }}
             href={href}
@@ -33,4 +34,5 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
     }
   </ul>
   <Theme client:only="react" />
+  <Mode client:only="react" />
 </nav>
