@@ -83,8 +83,8 @@ const Feed = ({ src }: Props) => {
 
   useEffect(() => {
     const retrieve = async () => {
-      const proxy = 'https://cors-anywhere.com/';
-      const response = await (await fetch(proxy + src)).text();
+      const proxy = (url: string) => `https://corsproxy.io/?url=${url}`;
+      const response = await (await fetch(proxy(src))).text();
 
       setFeed(rssToJson(response));
     };
