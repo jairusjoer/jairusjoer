@@ -1,6 +1,10 @@
 import Badge from './badge';
 import { useEffect, useState } from 'react';
 
+export interface Props {
+  src: string;
+}
+
 export interface Item {
   title: string;
   link: string;
@@ -10,7 +14,7 @@ export interface Item {
   categories: Array<string>;
 }
 
-export const rssToJson = (rss: string): Array<Item> => {
+const rssToJson = (rss: string): Array<Item> => {
   const parser = new DOMParser();
   const xml = parser.parseFromString(rss, 'application/xml');
 
@@ -34,6 +38,12 @@ const formatDate = (date: string) => {
     day: 'numeric',
   });
 };
+
+const Error = () => (
+  <div className="rounded-inner bg-danger-background px-4 leading-12">
+    <span className="text-danger-foreground font-medium">Failed to fetch RSS feed…</span>
+  </div>
+);
 
 const Skeleton = () => (
   <div className="rounded-inner flex animate-pulse flex-col border p-4">
@@ -74,25 +84,30 @@ const Item = (item: Item) => (
   </article>
 );
 
-export interface Props {
-  src: string;
-}
-
 const Feed = ({ src }: Props) => {
   const [feed, setFeed] = useState<Array<Item>>([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const retrieve = async () => {
       const proxy = (url: string) => `https://corsproxy.io/?url=${url}`;
-      const response = await (await fetch(proxy(src))).text();
 
-      setFeed(rssToJson(response));
+      try {
+        const response = await (await fetch(proxy(src))).text();
+        setFeed(rssToJson(response));
+      } catch (error) {
+        setError(true);
+      }
     };
 
     retrieve();
   }, []);
 
   const render = () => {
+    if (error) {
+      return <Error />;
+    }
+
     if (!feed.length)
       return (
         <div className="space-y-4">
@@ -116,7 +131,18 @@ const Feed = ({ src }: Props) => {
     );
   };
 
-  return <>{render()}</>;
+  return (
+    <>
+      <a
+        className="bg-background-subtle rounded-inner text-foreground mb-4 block px-4 py-3"
+        href="https://aggregata.de/authors/jairusjoer/"
+        target="_blank"
+      >
+        <span>For all articles by yours truly, visit Aggregata</span>
+      </a>
+      {render()}
+    </>
+  );
 };
 
 export default Feed;

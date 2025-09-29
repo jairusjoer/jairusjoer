@@ -15,25 +15,21 @@
 
   --radius-inner: 0.25rem;
   --radius-outer: 0.5rem;
+
+  /* Defaults */
+  --color-danger-background: light-dark(var(--color-red-200), var(--color-red-950));
+  --color-danger-foreground: light-dark(var(--color-red-950), var(--color-red-200));
 }
 
 .theme-lara {
-  --color-background: light-dark(var(--color-stone-50), var(--color-stone-950));
-  --color-background-subtle: light-dark(var(--color-stone-100), var(--color-stone-900));
-
-  --color-foreground: light-dark(var(--color-stone-900), var(--color-stone-100));
-  --color-foreground-subtle: light-dark(var(--color-stone-600), var(--color-stone-400));
-
-  --color-theme-background: color-mix(in lch, var(--color-theme-foreground), transparent 90%);
-  --color-theme-foreground: color-mix(in lch, var(--color-red-500) 75%, var(--color-orange-500));
-
-  --color-border: light-dark(var(--color-stone-200), var(--color-stone-800));
+  --color-theme-background: color-mix(in lch, var(--color-red-500) 75%, var(--color-orange-500));
+  --color-theme-foreground: color-mix(in lch, var(--color-theme-background), black 87.5%);
 
   --font-headings: 'Instrument Sans', system-ui, ui-sans-serif, sans-serif;
   --font-body: 'Instrument Sans', system-ui, ui-sans-serif, sans-serif;
 
-  --radius-inner: 0.25rem;
-  --radius-outer: 0.5rem;
+  --radius-inner: 0rem;
+  --radius-outer: 0rem;
 }
 
 .theme-mono {

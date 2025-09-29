@@ -13,11 +13,11 @@
     --tw-prose-lead: var(--color-foreground-subtle);
     --tw-prose-links: var(--color-foreground);
     --tw-prose-bold: var(--color-foreground);
-    --tw-prose-counters: var(--color-theme-foreground);
-    --tw-prose-bullets: var(--color-theme-foreground);
+    --tw-prose-counters: var(--color-theme-background);
+    --tw-prose-bullets: var(--color-theme-background);
     --tw-prose-hr: var(--color-border);
     --tw-prose-quotes: var(--color-foreground);
-    --tw-prose-quote-borders: var(--color-theme-foreground);
+    --tw-prose-quote-borders: var(--color-theme-background);
     --tw-prose-captions: var(--color-foreground-subtle);
     --tw-prose-kbd: var(--color-foreground);
     --tw-prose-kbd-shadows: from var(--color-foreground) r g b;
