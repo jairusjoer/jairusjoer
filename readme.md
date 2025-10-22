@@ -1,6 +1,6 @@
 # Hello there ✌️
 
-As a full-stack developer and design systems expert based in Germany, I specialize in creating interdisciplinary solutions that drive measurable business impact for tens of thousands of users across diverse digital platforms and environments.
+As a full-stack developer and design system consultant based in Germany, I specialize in creating interdisciplinary solutions that drive measurable business impact for tens of thousands of users across diverse digital platforms and environments.
 
 My decade-long tenure spanning HERO Software, neuwaerts, and XVI CHAPEL has focused on transforming platforms through strategic technical leadership, seamlessly bridging advanced engineering capabilities with tangible business outcomes.
 
