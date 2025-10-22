@@ -1,0 +1,14 @@
+---
+import Badge from 'src/components/react/badge';
+
+interface Props {
+  skills: string[];
+  class?: string;
+}
+
+const { class: className, skills } = Astro.props;
+---
+
+<div class:list={['flex flex-wrap gap-1', className]}>
+  {skills.map((skill) => <Badge label={skill} />)}
+</div>

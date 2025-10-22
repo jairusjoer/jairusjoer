@@ -1,5 +1,5 @@
-const astroComponents = import.meta.glob<{ default: object }>('/src/components/astro/*.astro', { eager: true });
-const reactComponents = import.meta.glob<{ default: object }>('/src/components/react/*.tsx', { eager: true });
+const astroComponents = import.meta.glob<{ default: object }>('/src/components/astro/**/*.astro', { eager: true });
+const reactComponents = import.meta.glob<{ default: object }>('/src/components/react/**/*.tsx', { eager: true });
 
 const components = [...Object.entries(astroComponents), ...Object.entries(reactComponents)];
 

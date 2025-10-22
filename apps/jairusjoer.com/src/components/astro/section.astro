@@ -6,9 +6,13 @@ interface Props {
 const { class: className, title } = Astro.props;
 ---
 
-<section class="break-inside-avoid space-y-8">
-  <h2 class:list={['text-foreground not-prose font-headings mb-4 font-medium', className]}>
-    {title}
-  </h2>
-  <slot />
+<section class:list={['break-inside-avoid', className]}>
+  <header class="not-prose mb-4 flex items-center gap-2 border-b border-dotted pb-4">
+    <h2 class:list={['text-foreground not-prose font-headings font-medium']}>
+      {title}
+    </h2>
+  </header>
+  <div class="space-y-8">
+    <slot />
+  </div>
 </section>
