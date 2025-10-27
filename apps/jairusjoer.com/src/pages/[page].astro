@@ -26,7 +26,7 @@ export async function getStaticPaths() {
           params: { page: entry.id },
           props: { collection: collectionKey, id: entry.id },
         }));
-      }),
+      })
     )
   ).flat();
 }
@@ -44,37 +44,6 @@ const components = useComponents();
     class="prose prose-sm prose-theme !max-w-none"
     style="view-transition-name: main"
   >
-    {
-      collection === 'blog' && (
-        <>
-          <header class="not-prose">
-            {entry.data?.draft && <Draft />}
-            <h1 class="text-foreground font-headings truncate font-medium">{entry.data.title}</h1>
-            <p>{entry.data?.description}</p>
-            {entry.data?.date && (
-              <time
-                class="text-right"
-                datetime={entry.data.date.toISOString()}
-              >
-                {entry.data.date.toLocaleDateString(undefined, { dateStyle: 'long' })}
-              </time>
-            )}
-            {entry.data.image && (
-              <Image
-                class="rounded-inner mt-4"
-                src={entry.data.image}
-                alt=""
-                width={1152}
-                height={648}
-                format="avif"
-                loading="eager"
-              />
-            )}
-          </header>
-          <hr class="my-10" />
-        </>
-      )
-    }
     <Content {components} />
   </main>
 </Default>
