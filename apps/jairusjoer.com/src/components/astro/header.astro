@@ -11,23 +11,25 @@ const { image, title, subtitle } = Astro.props;
 ---
 
 <header
-  class="relative mb-16 flex gap-4"
+  class="relative mb-16 flex gap-4 md:gap-8"
   style="view-transition-name: header"
 >
   {
     image && (
-      <Image
-        class="size-12 object-cover"
-        src={image}
-        alt={title}
-        width="384"
-        height="384"
-        format="avif"
-        loading="eager"
-      />
+      <div class="md:max-w-48 md:grow-1">
+        <Image
+          class="rounded-outer size-12 object-cover"
+          src={image}
+          alt={title}
+          width="384"
+          height="384"
+          format="avif"
+          loading="eager"
+        />
+      </div>
     )
   }
-  <div class="grid items-center">
+  <div class="grid max-w-144 grow-3">
     <span class="text-foreground font-headings font-medium">{title}</span>
     {subtitle && <span>{subtitle}</span>}
     <a
@@ -38,7 +40,7 @@ const { image, title, subtitle } = Astro.props;
     </a>
   </div>
   <a
-    class="rounded-inner absolute inset-0"
+    class="rounded-inner absolute inset-0 print:hidden"
     href="/"
     title="Return to homepage"
     aria-label="Return to homepage"

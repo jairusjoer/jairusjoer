@@ -11,7 +11,7 @@ const { class: className, meta, subtitle, title, url } = Astro.props;
 ---
 
 <div class:list={['relative col-span-full grid break-inside-avoid grid-cols-subgrid items-start', className]}>
-  <span class="bg-background sticky top-10 tabular-nums">{meta.join(' — ')}</span>
+  <span class="bg-background print:bg-transparent top-10 tabular-nums md:sticky">{meta.join(' — ')}</span>
   <article>
     <h3 class="not-prose text-foreground font-headings font-medium">
       {

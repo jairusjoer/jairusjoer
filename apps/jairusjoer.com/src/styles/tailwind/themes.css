@@ -17,6 +17,8 @@
   --radius-outer: 0.5rem;
 
   /* Defaults */
+  --breakpoint-md: 52rem;
+
   --color-danger-background: light-dark(var(--color-red-200), var(--color-red-950));
   --color-danger-foreground: light-dark(var(--color-red-950), var(--color-red-200));
 }
