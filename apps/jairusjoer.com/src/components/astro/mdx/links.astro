@@ -1,0 +1,35 @@
+---
+export interface Props {
+  data: Record<string, Array<string>>;
+}
+
+const { data } = Astro.props as Props;
+
+const shortenLink = (link: string) => {
+  return link.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+};
+---
+
+<>
+  {
+    Object.entries(data).map(([category, items]) => (
+      <details>
+        <summary>{category}</summary>
+
+        <ul>
+          {items.map((item) => (
+            <li>
+              <a
+                class="line-clamp-1"
+                href={item}
+                target="_blank"
+              >
+                {shortenLink(item)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ))
+  }
+</>

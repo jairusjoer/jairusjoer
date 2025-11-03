@@ -1,6 +1,6 @@
 ---
 import { JSDOM } from 'jsdom';
-import Entry from './table/entry.astro';
+import Entry from '../table/entry.astro';
 
 export interface Item {
   title: string;
@@ -40,7 +40,7 @@ const formatDate = (date: string) => {
 };
 ---
 
-<div class="not-prose -my-5 [&>*:first-child]:border-t-0">
+<div class="not-prose space-y-5">
   {
     items.map((item) => (
       <Entry
@@ -54,4 +54,14 @@ const formatDate = (date: string) => {
       />
     ))
   }
+  <p class="border-t pt-5">
+    For all blog posts by your's truly, visit
+    <a
+      class="text-foreground"
+      href="https://aggregata.de/authors/jairusjoer/"
+      target="_blank"
+    >
+      aggregata.de
+    </a>
+  </p>
 </div>

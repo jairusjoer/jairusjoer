@@ -32,10 +32,8 @@ const components = getComponents();
 <Default metadata={entry.data as Metadata}>
   <main>
     <Category {...entry.data}>
-      <div class="border-t py-5">
-        <div class="prose prose-sm prose-theme">
-          <Content {components} />
-        </div>
+      <div class="prose prose-sm prose-theme">
+        <Content {components} />
       </div>
     </Category>
   </main>
