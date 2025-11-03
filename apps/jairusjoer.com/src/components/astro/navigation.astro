@@ -1,9 +1,5 @@
 ---
-import { Mode } from '../react/mode';
-import { Theme } from '../react/theme';
-
-// Navigation.astro
-interface Props {
+export interface Props {
   pages: Record<string, string>;
 }
 
@@ -13,17 +9,17 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
 ---
 
 <nav
-  class="mb-4 flex flex-wrap gap-x-1 gap-y-4 md:ml-56 print:hidden"
-  style="view-transition-name: nav"
+  class="mt-auto print:hidden"
+  style="view-transition-name: navigation"
 >
-  <ul class="mr-auto flex flex-wrap gap-1 font-medium">
+  <ul class="flex flex-wrap gap-5 leading-6">
     {
       Object.entries(pages).map(([title, href]) => (
-        <li>
+        <li class="-my-0.5">
           <a
             class:list={{
-              'bg-background-subtle rounded-inner block px-2': true,
-              'text-theme-foreground bg-theme-background': isCurrentPath(href),
+              block: true,
+              'text-foreground font-semibold': isCurrentPath(href),
             }}
             href={href}
           >
@@ -33,8 +29,4 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
       ))
     }
   </ul>
-  <div class="flex gap-1">
-    <Theme client:only="react" />
-    <Mode client:only="react" />
-  </div>
 </nav>

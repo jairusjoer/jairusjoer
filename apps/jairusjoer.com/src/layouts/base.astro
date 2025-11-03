@@ -12,7 +12,7 @@ const { metadata } = Astro.props;
 
 <html
   lang="en"
-  class="bg-background antialiased print:!bg-transparent print:!scheme-light"
+  class="bg-background antialiased print:bg-transparent print:scheme-light"
 >
   <head>
     <script is:inline>
@@ -26,18 +26,12 @@ const { metadata } = Astro.props;
     </script>
     <Meta {metadata} />
   </head>
-  <body
-    class="text-foreground-subtle relative flex min-h-screen flex-col overflow-x-hidden px-4 py-16 text-sm leading-6 print:p-0"
-  >
+  <body class="text-foreground-subtle relative overflow-x-hidden text-sm leading-5">
     <div
       id="root"
-      class="font-body mx-auto flex w-full max-w-200 flex-col"
+      class="font-body flex min-h-screen flex-col px-5"
     >
       <slot />
     </div>
-    <script>
-      import { useExternalizedLinks } from '../composables';
-      useExternalizedLinks();
-    </script>
   </body>
 </html>

@@ -1,0 +1,49 @@
+---
+import type { Metadata } from '../types';
+import Default from '../layouts/default.astro';
+import Category from '../components/astro/table/category.astro';
+import links from '../content/links.json';
+import Entry from '../components/astro/table/entry.astro';
+
+const data = {
+  title: 'Archive',
+  description: 'Curated collection of my favorite websites and resources.',
+};
+
+const shortenLink = (link: string) => {
+  return link.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+};
+---
+
+<Default metadata={data as Metadata}>
+  <main>
+    <Category {...data}>
+      <Entry
+        id="links"
+        content={{ title: 'Links' }}
+      >
+        {
+          Object.entries(links).map(([category, items]) => (
+            <details>
+              <summary>{category}</summary>
+
+              <ul>
+                {items.map((item) => (
+                  <li>
+                    <a
+                      class="line-clamp-1"
+                      href={item}
+                      target="_blank"
+                    >
+                      {shortenLink(item)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))
+        }
+      </Entry>
+    </Category>
+  </main>
+</Default>

@@ -1,0 +1,33 @@
+---
+import EntryContent from './entry-content.astro';
+import Details from '../../vue/details.vue';
+import type { Props as EntryContentProps } from './entry-content.astro';
+
+export interface Props {
+  id: string;
+  content: EntryContentProps;
+}
+
+const { content, id } = Astro.props;
+---
+
+<article
+  class="bg-background break-inside-avoid border-t py-5 print:bg-transparent"
+  style={`view-transition-name: ${id}`}
+>
+  {
+    Astro.slots.has('default') ? (
+      <Details client:load>
+        <EntryContent
+          slot="summary"
+          {...content}
+        />
+        <div class="prose prose-sm prose-theme mt-4">
+          <slot />
+        </div>
+      </Details>
+    ) : (
+      <EntryContent {...content} />
+    )
+  }
+</article>

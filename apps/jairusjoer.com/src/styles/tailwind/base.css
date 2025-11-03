@@ -9,20 +9,16 @@
 
   :root {
     color-scheme: light dark;
-    view-transition-name: none;
   }
 
   * {
     border-color: var(--color-border);
   }
 
-  a[href^='http']:not(.absolute)::after {
-    content: ' ↗';
-  }
-
-  code,
-  pre {
-    font-size: 0.75rem !important;
+  details {
+    summary {
+      user-select: none;
+    }
   }
 
   img,
@@ -33,9 +29,5 @@
   html {
     scrollbar-gutter: stable;
     text-wrap: pretty;
-  }
-
-  pre {
-    max-width: calc(100dvw - 2rem);
   }
 }

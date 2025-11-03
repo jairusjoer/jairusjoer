@@ -1,0 +1,57 @@
+---
+import { JSDOM } from 'jsdom';
+import Entry from './table/entry.astro';
+
+export interface Item {
+  title: string;
+  link: string;
+  pubDate: string;
+  isoDate: string;
+  content: string;
+  categories: Array<string>;
+}
+
+export interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+
+const data = await (await fetch(url)).text();
+
+const dom = new JSDOM(data, { contentType: 'text/xml' });
+const items = Array.from(dom.window.document.querySelectorAll('item')).map(
+  (item) =>
+    ({
+      title: item.querySelector('title')?.textContent,
+      link: item.querySelector('link')?.textContent,
+      pubDate: item.querySelector('pubDate')?.textContent,
+      content: item.querySelector('description')?.textContent,
+      categories: Array.from(item.querySelectorAll('category')).map((category) => category.textContent),
+    }) as Item,
+);
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString('en', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+};
+---
+
+<div class="not-prose -my-5 [&>*:first-child]:border-t-0">
+  {
+    items.map((item) => (
+      <Entry
+        id={item.link}
+        content={{
+          title: item.title,
+          subtitle: item.content,
+          meta: formatDate(item.pubDate),
+          href: item.link,
+        }}
+      />
+    ))
+  }
+</div>

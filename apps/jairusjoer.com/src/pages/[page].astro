@@ -3,47 +3,40 @@ import Default from '../layouts/default.astro';
 import { getCollection } from 'astro:content';
 import { render } from 'astro:content';
 import type { Metadata } from '../types';
-import { useComponents } from '../composables';
 import { getEntry } from 'astro:content';
-import { collections } from 'src/content.config';
-import type { CollectionKey } from 'astro:content';
-import Section from 'src/components/astro/section.astro';
+import Category from '../components/astro/table/category.astro';
+import { getComponents } from '../scripts/getComponents';
 
 export async function getStaticPaths() {
-  return (
-    await Promise.all(
-      Object.keys(collections).map(async (collectionKey) => {
-        let collection = await getCollection(collectionKey as CollectionKey);
+  let collection = await getCollection('pages');
 
-        if (import.meta.env.PROD) {
-          collection = collection.filter((entry) => !entry.data?.draft);
-        }
+  if (import.meta.env.PROD) {
+    collection = collection.filter((entry) => !entry.data?.draft);
+  }
 
-        collection = collection.filter((entry) => entry.id !== 'index');
+  collection = collection.filter((entry) => entry.id !== 'index');
 
-        return collection.map((entry) => ({
-          params: { page: entry.id },
-          props: { collection: collectionKey, id: entry.id },
-        }));
-      }),
-    )
-  ).flat();
+  return collection.map((entry) => ({
+    params: { page: entry.id },
+    props: { id: entry.id },
+  }));
 }
 
-const { collection, id } = Astro.props;
+const { id } = Astro.props;
 
-const entry = await getEntry(collection as CollectionKey, id)!;
+const entry = await getEntry('pages', id)!;
 const { Content } = await render(entry);
-
-const components = useComponents();
+const components = getComponents();
 ---
 
 <Default metadata={entry.data as Metadata}>
-  <main style="view-transition-name: main">
-    <Section title={entry.data.title}>
-      <div class="prose prose-sm prose-theme !max-w-none md:col-2">
-        <Content {components} />
+  <main>
+    <Category {...entry.data}>
+      <div class="border-t py-5">
+        <div class="prose prose-sm prose-theme">
+          <Content {components} />
+        </div>
       </div>
-    </Section>
+    </Category>
   </main>
 </Default>

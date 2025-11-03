@@ -30,5 +30,13 @@
     a {
       text-decoration: none;
     }
+
+    details {
+      summary {
+        cursor: pointer;
+        color: var(--color-foreground);
+        font-weight: 600;
+      }
+    }
   }
 }

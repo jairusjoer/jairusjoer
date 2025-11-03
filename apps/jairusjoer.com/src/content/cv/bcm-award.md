@@ -1,0 +1,7 @@
+---
+category: 'Awards'
+title: 'BCM Content Platforms B2C Gold'
+subtitle: 'For zukunftswaende.de, at neuwaerts'
+description: 'Awarded for zukunftswaende in association with neuwaerts'
+date: ['2022-01']
+---

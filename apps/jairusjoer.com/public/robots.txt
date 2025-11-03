@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aggregata.de/sitemap-index.xml
+Sitemap: https://jairusjoer.com/sitemap-index.xml

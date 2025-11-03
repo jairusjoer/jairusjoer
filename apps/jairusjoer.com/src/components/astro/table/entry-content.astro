@@ -1,0 +1,20 @@
+---
+export interface Props {
+  title: string;
+  subtitle?: string;
+  meta?: string;
+  href?: string;
+}
+
+const { title, subtitle, meta, href } = Astro.props;
+const Element = href ? 'a' : 'div';
+---
+
+<Element
+  {href}
+  target={href && '_blank'}
+>
+  <h3 class="text-foreground font-semibold">{title}</h3>
+  {subtitle && <p class="text-foreground-subtler">{subtitle}</p>}
+  {meta && <p class="tabular-nums">{meta}</p>}
+</Element>

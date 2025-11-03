@@ -7,7 +7,7 @@ Personal website built with [Astro 5](https://astro.build), MDX content collecti
 - **Astro 5 + Islands Architecture**: Fast static-first site with selective hydration
 - **Content Collections**: `src/content/pages` managed via `astro:content` + Zod schema
 - **MD & MDX Support**: Create and publish pages in Markdown / MDX
-- **React Components**: Co-located interactive UI under `src/components/react`
+- **Vue Components**: Interactive UI islands under `src/components/vue`
 - **Astro Components**: Layout + structural components in `src/components/astro`
 - **Tailwind CSS v4** with Typography plugin and custom theme layers
 - **Shiki Code Highlighting** with light/dark themes
@@ -22,7 +22,7 @@ Personal website built with [Astro 5](https://astro.build), MDX content collecti
 | Framework  | Astro 5                                  |
 | Styling    | Tailwind CSS 4, Typography plugin        |
 | Content    | `astro:content`, MDX                     |
-| UI Islands | React 19                                 |
+| UI Islands | Vue 3                                    |
 | Tooling    | TypeScript 5, Vite (via Astro), Prettier |
 | Deploy     | Static (deployed to Cloudflare Pages)    |
 
@@ -32,7 +32,7 @@ Personal website built with [Astro 5](https://astro.build), MDX content collecti
 src/
   components/
     astro/        # Pure Astro components
-    react/        # React islands
+    vue/          # Vue islands
   composables/    # Helper/composition functions
   content/
     pages/        # Markdown files registered as a collection
@@ -87,12 +87,14 @@ image: ./relative-or-imported.png # Optional
 ---
 ```
 
-Use MDX for React components inline:
+Use MDX for Vue components inline:
 
 ```mdx
-import Badge from '../../components/react/badge.tsx';
+import Details from '../../components/vue/details.vue';
 
-<Badge label="Alpha" />
+<Details client:load>
+  <p>Content here</p>
+</Details>
 ```
 
 ## Tailwind & Theming

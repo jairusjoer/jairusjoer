@@ -1,0 +1,13 @@
+@layer transitions {
+  .v-enter-active,
+  .v-leave-active {
+    transition: all 150ms ease-in-out;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
+    filter: blur(0.25rem);
+    scale: 0.9875;
+  }
+}

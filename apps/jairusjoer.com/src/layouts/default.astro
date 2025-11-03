@@ -1,10 +1,10 @@
 ---
-import '../styles/tailwind.css';
 import type { Metadata } from '../types';
 import Header from '../components/astro/header.astro';
 import Footer from '../components/astro/footer.astro';
-import Navigation from 'src/components/astro/navigation.astro';
+import Navigation from '../components/astro/navigation.astro';
 import Base from './base.astro';
+import { navigation, siteInfo } from '../constants';
 
 interface Props {
   metadata?: Metadata;
@@ -15,25 +15,13 @@ const { metadata } = Astro.props;
 
 <Base {metadata}>
   <Header
-    image={`${Astro.url.origin}/avatar.jpeg`}
-    title="Jairus Joer"
-    subtitle="Full Stack Developer & Design System Consultant, Germany, He/him"
-  />
+    title={siteInfo.title}
+    subtitle={siteInfo.subtitle}
+  >
+    <Navigation pages={navigation.main} />
+  </Header>
 
-  <Navigation
-    pages={{
-      About: '/',
-      Blog: '/blog/',
-      Links: '/links/',
-    }}
-  />
   <slot />
-  <Footer
-    pages={{
-      Imprint: '/imprint/',
-      Privacy: 'https://www.iubenda.com/privacy-policy/41205652',
-      Cookies: 'https://www.iubenda.com/privacy-policy/41205652/cookie-policy',
-      Source: 'https://github.com/jairusjoer/jairusjoer.com/',
-    }}
-  />
+
+  <Footer pages={navigation.footer} />
 </Base>

@@ -1,6 +1,6 @@
 ---
 title: 'Imprint'
-description: 'Find essential contact information and legal details about the operation of this website.'
+description: 'Contact information and legal details about this website.'
 ---
 
 ## Information in accordance with section 5 TMG

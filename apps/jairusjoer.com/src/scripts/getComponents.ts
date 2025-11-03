@@ -1,7 +1,7 @@
 const astroComponents = import.meta.glob<{ default: object }>('/src/components/astro/**/*.astro', { eager: true });
-const reactComponents = import.meta.glob<{ default: object }>('/src/components/react/**/*.tsx', { eager: true });
+const vueComponents = import.meta.glob<{ default: object }>('/src/components/vue/**/*.vue', { eager: true });
 
-const components = [...Object.entries(astroComponents), ...Object.entries(reactComponents)];
+const components = [...Object.entries(astroComponents), ...Object.entries(vueComponents)];
 
 const mapped = Object.fromEntries(
   components.map(([path, component]) => {
@@ -12,4 +12,4 @@ const mapped = Object.fromEntries(
   }),
 );
 
-export const useComponents = () => mapped;
+export const getComponents = () => mapped;

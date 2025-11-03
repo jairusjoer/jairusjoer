@@ -1,15 +1,33 @@
 ---
-import { render } from 'astro:content';
 import Default from '../layouts/default.astro';
-import { getEntry } from 'astro:content';
-import { useComponents } from '../composables';
 import type { Metadata } from '../types';
 import { defaultMetadata } from '../constants';
+import Category from '../components/astro/table/category.astro';
+import Entry from '../components/astro/table/entry.astro';
+import { getCollection } from 'astro:content';
 
-const entry = await getEntry('pages', 'index');
-const { Content } = await render(entry!);
+const collection = await getCollection('cv');
 
-const components = useComponents();
+const entriesByCategory = collection.reduce(
+  (acc, entry) => {
+    const category = entry.data.category;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(entry);
+    return acc;
+  },
+  {} as Record<string, typeof collection>,
+);
+
+Object.keys(entriesByCategory).forEach((category) => {
+  entriesByCategory[category].sort((a, b) => {
+    return new Date(b.data.date[0]).getTime() - new Date(a.data.date[0]).getTime();
+  });
+});
+
+const categoryOrder = ['Experience', 'Awards', 'Projects', 'Speaking', 'Education'];
+const orderedEntriesByCategory = Object.fromEntries(categoryOrder.map((cat) => [cat, entriesByCategory[cat]]));
 
 const metadata: Metadata = {
   schema: {
@@ -32,13 +50,48 @@ const metadata: Metadata = {
     },
   },
 };
+
+const formatDate = (dates: string[]) => {
+  return dates
+    .map((date: string) => {
+      if (date === 'Present') return date;
+
+      return new Date(date).toLocaleString('en', { year: 'numeric', month: 'short' });
+    })
+    .join(' — ');
+};
 ---
 
 <Default {metadata}>
-  <main
-    class="prose prose-sm prose-theme !max-w-none"
-    style="view-transition-name: main"
-  >
-    <Content {components} />
+  <main class="grow">
+    {
+      Object.keys(orderedEntriesByCategory).map((category) => (
+        <Category title={category}>
+          {orderedEntriesByCategory[category]?.map((entry) =>
+            entry.rendered?.html.trim() ? (
+              <Entry
+                id={entry.id}
+                content={{
+                  title: entry.data.title,
+                  subtitle: entry.data.subtitle,
+                  meta: formatDate(entry.data.date),
+                }}
+              >
+                <Fragment set:html={entry.rendered?.html} />
+              </Entry>
+            ) : (
+              <Entry
+                id={entry.id}
+                content={{
+                  title: entry.data.title,
+                  subtitle: entry.data.subtitle,
+                  meta: formatDate(entry.data.date),
+                }}
+              />
+            ),
+          )}
+        </Category>
+      ))
+    }
   </main>
 </Default>
