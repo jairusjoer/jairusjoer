@@ -1,0 +1,30 @@
+---
+import Default from '../layouts/default.astro';
+import Category from '../components/astro/table/category.astro';
+import Links from 'src/components/astro/mdx/links.astro';
+import Entry from 'src/components/astro/table/entry.astro';
+import { getCollection } from 'astro:content';
+
+const links = await getCollection('links');
+
+const data = {
+  title: 'Archive',
+  description: 'Curated collection of my favorites from the web',
+};
+---
+
+<Default metadata={data}>
+  <main>
+    <Category {...data}>
+      <Entry
+        id="links"
+        content={{
+          title: 'Links',
+          meta: 'Evergrowing collection of my favorite websites',
+        }}
+      >
+        <Links data={links} />
+      </Entry>
+    </Category>
+  </main>
+</Default>

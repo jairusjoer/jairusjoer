@@ -1,5 +1,5 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { file, glob } from 'astro/loaders';
 
 const cv = defineCollection({
   loader: glob({
@@ -17,6 +17,11 @@ const cv = defineCollection({
   }),
 });
 
+const links = defineCollection({
+  loader: file('src/content/links.json'),
+  schema: z.array(z.string().url()),
+});
+
 const pages = defineCollection({
   loader: glob({
     base: `./src/content/pages`,
@@ -30,4 +35,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { cv, pages };
+export const collections = { cv, links, pages };

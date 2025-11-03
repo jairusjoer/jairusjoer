@@ -1,6 +1,8 @@
 ---
+import type { CollectionEntry } from 'astro:content';
+
 export interface Props {
-  data: Record<string, Array<string>>;
+  data: CollectionEntry<'links'>[];
 }
 
 const { data } = Astro.props as Props;
@@ -12,19 +14,20 @@ const shortenLink = (link: string) => {
 
 <>
   {
-    Object.entries(data).map(([category, items]) => (
+    data.map((item) => (
       <details>
-        <summary>{category}</summary>
+        <summary>{item.id}</summary>
 
         <ul>
-          {items.map((item) => (
+          {item.data.map((link) => (
             <li>
               <a
                 class="line-clamp-1"
-                href={item}
+                href={link}
                 target="_blank"
+                title={shortenLink(link)}
               >
-                {shortenLink(item)}
+                {shortenLink(link)}
               </a>
             </li>
           ))}
