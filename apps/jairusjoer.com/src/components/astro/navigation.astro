@@ -12,7 +12,7 @@ const isCurrentPath = (path: string) => Astro.url.pathname === path;
   class="mt-auto print:hidden"
   style="view-transition-name: navigation"
 >
-  <ul class="flex flex-wrap gap-5 leading-6">
+  <ul class="flex flex-wrap gap-6">
     {
       Object.entries(pages).map(([title, href]) => (
         <li class="-my-0.5">

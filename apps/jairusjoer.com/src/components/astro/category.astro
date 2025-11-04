@@ -12,10 +12,10 @@ const slug = title
   .replace(/[^a-z0-9-]/g, '');
 ---
 
-<section class="print:not-first:mt-15">
+<section class="print:not-first:mt-18">
   <div class="grid break-inside-avoid items-start md:grid-cols-2">
     <header
-      class="bg-background sticky -top-px z-20 border-t py-5 md:bg-transparent print:static print:bg-transparent"
+      class="bg-background sticky -top-px z-20 border-t py-6 md:bg-transparent print:static print:bg-transparent"
       style={`view-transition-name: ${slug}`}
     >
       <h2 class="text-foreground font-semibold">
@@ -24,7 +24,7 @@ const slug = title
       {description && <p>{description}</p>}
     </header>
 
-    <div class="space-y-5 border-t py-5">
+    <div class="space-y-6 border-t py-6">
       <slot />
     </div>
   </div>

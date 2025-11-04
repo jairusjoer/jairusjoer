@@ -23,7 +23,7 @@ const toggleOpen = () => {
     >
       <slot name="summary" />
       <span
-        :class="['ml-auto w-5 text-center print:hidden', { 'rotate-180': open }]"
+        :class="['ml-auto w-6 text-center print:hidden', { 'rotate-180': open }]"
         aria-hidden="true"
       >
         ▼
