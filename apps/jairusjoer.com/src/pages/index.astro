@@ -2,9 +2,15 @@
 import Default from '../layouts/default.astro';
 import type { Metadata } from '../types';
 import { defaultMetadata } from '../constants';
-import Category from '../components/astro/table/category.astro';
-import Entry from '../components/astro/table/entry.astro';
+import Category from '../components/astro/category.astro';
+import Entry from '../components/astro/entry.astro';
 import { getCollection } from 'astro:content';
+
+// Logos
+import Hannover from '../assets/logos/hannover.svg';
+import Continental from '../assets/logos/continental.svg';
+import Sparkasse from '../assets/logos/sparkasse.svg';
+import LBS from '../assets/logos/lbs.svg';
 
 const collection = await getCollection('cv');
 
@@ -64,6 +70,35 @@ const formatDate = (dates: string[]) => {
 
 <Default {metadata}>
   <main class="grow">
+    <Category title="About">
+      <div class="prose prose-sm prose-theme">
+        <p>
+          As a full-stack developer and design system consultant based in Germany, I specialize in creating
+          interdisciplinary solutions that drive measurable business impact for tens of thousands of users across
+          diverse digital platforms and environments.
+        </p>
+        <p>
+          My decade-long tenure spanning HERO Software, neuwaerts, and XVI CHAPEL has focused on transforming platforms
+          through strategic technical leadership, seamlessly bridging advanced engineering capabilities with tangible
+          business outcomes.
+        </p>
+        <p>
+          Currently driving platform modernization initiatives at HERO Software while mentoring talented colleagues and
+          championing cutting-edge technologies. My contributions to Aggregata have cultivated a thriving readership of
+          9,000+ monthly users.
+        </p>
+
+        <div>
+          <small>I had the privilege of working with these companies in various roles:</small>
+          <div class="not-prose mt-4 flex flex-wrap items-center gap-x-10 gap-y-5 [&>*]:w-auto">
+            <Sparkasse class="h-7.5" />
+            <Continental class="h-5" />
+            <Hannover class="h-7.5" />
+            <LBS class="h-5" />
+          </div>
+        </div>
+      </div>
+    </Category>
     {
       Object.keys(orderedEntriesByCategory).map((category) => (
         <Category title={category}>

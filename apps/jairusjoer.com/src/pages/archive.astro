@@ -1,8 +1,8 @@
 ---
 import Default from '../layouts/default.astro';
-import Category from '../components/astro/table/category.astro';
-import Links from 'src/components/astro/mdx/links.astro';
-import Entry from 'src/components/astro/table/entry.astro';
+import Category from '../components/astro/category.astro';
+import Links from 'src/components/astro/links.astro';
+import Entry from 'src/components/astro/entry.astro';
 import { getCollection } from 'astro:content';
 
 const links = await getCollection('links');
