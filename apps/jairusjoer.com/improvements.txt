@@ -1,0 +1,77 @@
+Improvements to reach 95+ ￼
+
+1. Executive summary and essentials at top.
+
+ ▫ 2–3 lines with role, scope, domains, core outcomes (modernization, DX, accessibility), plus location, work authorization, languages, and priority links.
+
+ ▫ Surface Portfolio ↗ prominently.
+
+2. Quantify impact with business and reliability metrics.
+
+ ▫ Build/CI: “Cut build times 50%+ and CI throughput +35%, saving 18 engineer‑hours/week; deployment frequency +2.1×; MTTR −40%.”
+
+ ▫ Monorepo: “Unified 12 repos; reduced duplicated tooling by 80%; standardized pipelines, cutting new‑service setup from 2 days to 3 hours.”
+
+ ▫ Design system: “Adoption across 4 product lines; 70% component reuse; reduced UI defects −32%; time‑to‑feature −25%.”
+
+ ▫ Temporal automation: “Eliminated 95% manual accounting steps; reduced reconciliation errors −60%; batch throughput +3×; SLA from 48h to 8h.”
+
+3. Clarify leadership scope and collaboration.
+
+ ▫ Add team sizes, stakeholders, and ownership level: “Led 6 engineers; partnered with Head of Product and Design; authored 8 RFCs; drove org‑wide standards.”
+
+4. Tighten structure and consistency.
+
+ ▫ Remove duplicate headings and “▼”; keep one clean section set.
+
+ ▫ Unify tense: past for completed roles; present for current.
+
+ ▫ Replace ampersands with “and”; consistent punctuation.
+
+ ▫ Standardize date formats.
+
+5. Consolidate and prioritize skills.
+
+ ▫ Group by domains with proficiency indicators (Expert/Advanced/Working).
+
+ ▫ De‑duplicate and emphasize differentiators: Rspack/Turborepo/Temporal, WCAG 2.1, Storybook/Style Dictionary, Vue/TypeScript, GraphQL, testing (Playwright/Jest/Vitest), CI/CD, Docker.
+
+ ▫ Consider removing niche or legacy tools unless relevant to target roles.
+
+6. Resolve education entries.
+
+ ▫ Merge “Media Designer Apprentice” with “Media Design Apprenticeship” into one, with institution, exact dates, and the 95/100 distinction.
+
+7. Add award context.
+
+ ▫ “BCM Content Platforms B2C Gold (2022) — German ‘Best of Content Marketing’ award; recognized for accessibility (WCAG 2.1 AA), performance (95+ Lighthouse), and audience engagement.”
+
+8. Elevate accessibility and testing outcomes.
+
+ ▫ Include audits passed, defect trends, assistive tech testing, test coverage tied to reliability: “95%+ coverage correlated with escaped defects −28%; a11y audits: 0 critical violations across releases.”
+
+9. Results‑first rewrites for key bullets.
+
+ ▫ HERO example:
+
+ ⁃ “Modernized frontend via Rspack migration, cutting build times 52% and cold start −41%, enabling +2× daily deploys and faster incident recovery.”
+
+ ⁃ “Established design tokens and Storybook; 70% component reuse and −25% feature cycle time across 4 surfaces.”
+
+ ⁃ “Automated accounting workflows with Temporal; reduced reconciliation SLA from 48h to 8h and error rate −60%.”
+
+ ▫ neuwaerts example:
+
+ ⁃ “Grew organic traffic +120% YoY through performance, structured content, and SEO; improved conversion +14%.”
+
+10. Add concise “Selected Projects” with outcomes.
+
+ ▫ 3–4 entries with one‑line metrics (users, uptime, revenue/efficiency gains) to complement roles.
+
+11. Include links and artifacts.
+
+ ▫ Architecture RFCs, design system Storybook, accessibility audit summary, and a small case study for “Stock Management” module.
+
+12. Minor phrasing trims.
+
+ ▫ Reduce adjectives (“championed,” “cutting‑edge”) in favor of measurable results; keep bullets compact.

@@ -1,6 +1,6 @@
 ---
 category: 'Speaking'
-title: 'Working with Projects & Files'
+title: 'Working with Projects and Files'
 subtitle: 'neuwaerts'
 description: 'Multi-part organizational training for an enterprise client'
 date: ['2023-09']

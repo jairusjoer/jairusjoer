@@ -3,7 +3,7 @@ import type { Metadata } from './types';
 export const defaultMetadata: Metadata = {
   title: 'Jairus Joer',
   description:
-    'Senior Full Stack Developer & Design System Consultant in Germany; scaling platforms, modernizing architecture, accelerating delivery.',
+    'I am a Senior Full Stack Developer and Designer based in Germany. I specialize in scaling platforms, modernizing architecture, and accelerating delivery.',
 };
 
 export const navigation = {
@@ -22,5 +22,5 @@ export const navigation = {
 
 export const siteInfo = {
   title: 'Jairus Joer',
-  subtitle: 'Software Gestalter',
+  subtitle: 'Senior Developer and Designer',
 };

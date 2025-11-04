@@ -6,15 +6,14 @@ description: 'Hanover, Germany'
 date: ['2024-04', 'Present']
 ---
 
-- **Modernized frontend platform** via scalable architectural patterns and migration pathways for future applications
-- **Cut incremental & full build times 50%+** via transition from Webpack to Rspack with targeted cache & bundle strategy
-- **Unified repos into a governed monorepo** (PNPM + Turborepo) enabling shared tooling, faster CI, and standardized workflows
-- **Established design system foundation** (tokens + Storybook + Style Dictionary) to drive UI consistency and reuse
-- **Delivered enterprise component library** accelerating feature delivery and reducing duplication across product surfaces
-- **Architected Stock Management module end-to-end** (requirements, UX flows, implementation, handover)
-- **Automated Accounting workflows** using Temporal + batch process orchestration to reduce manual handling risk
-- **Embedded accessibility & testing rigor** (WCAG 2.1 adherence, 95%+ coverage targets, linting & formatting baselines)
-- **Championed engineering alignment** through authored RFCs, standards documentation, and cross-team design reviews
-- **Improved cross-functional velocity** by creating shared collaboration patterns and visual language cohesion
+**Tools**: CakePHP, Codegen, Design Systems, Docker, ESLint, GraphQL, Jest, MySQL, Nuxt, PHP 8.3, PNPM, Playwright, Prettier, Rspack, Sentry, Storybook, Style Dictionary, Tailwind CSS, Temporal, Turborepo, TypeScript, Vitest, Vue.js, WCAG 2.1
 
-**Skills**: CakePHP, Codegen, Design Systems, Docker, ESLint, GraphQL, Jest, MySQL, Nuxt, PHP 8.3, PNPM, Playwright, Prettier, Rspack, Sentry, Storybook, Style Dictionary, Tailwind CSS, Temporal, Turborepo, TypeScript, Vitest, Vue.js, WCAG 2.1
+- **Modernized frontend platform via Rspack migration**, cutting incremental build times 50%+ and cold start 41%
+- **Unified 4 services into governed monorepo** standardizing pipelines and enabling shared tooling across teams
+- **Established design system foundation** driving UI consistency and rollout across product design and 5 engineering teams spanning 30+ people
+- **Delivered enterprise component library** accelerating feature delivery and reducing duplication across product surfaces
+- **[Architected Stock Management module end-to-end](https://hero-software.de/features/lagerverwaltung)** from requirements and UX flows through implementation and handover
+- **Automated accounting workflows** using Temporal and batch process orchestration to reduce manual handling risk
+- **Embedded accessibility and testing rigor** with accessibility adherence, coverage targets, linting and formatting baselines
+- **Authored RFCs and partnered with Staff Full Stack Engineers** to drive alignment through standards documentation and cross-team design reviews
+- **Improved cross-functional velocity** by creating shared collaboration patterns and visual language cohesion

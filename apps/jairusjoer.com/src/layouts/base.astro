@@ -15,15 +15,6 @@ const { metadata } = Astro.props;
   class="bg-background antialiased print:bg-transparent print:scheme-light"
 >
   <head>
-    <script is:inline>
-      const root = document.documentElement;
-
-      const theme = localStorage.getItem('theme') || 'Read';
-      root.classList.add(`theme-${theme.toLowerCase()}`);
-
-      const mode = localStorage.getItem('mode') || 'System';
-      root.classList.add(`mode-${mode.toLowerCase()}`);
-    </script>
     <Meta {metadata} />
   </head>
   <body class="text-foreground-subtle relative overflow-x-hidden text-sm">

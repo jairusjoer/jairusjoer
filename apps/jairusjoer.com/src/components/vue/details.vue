@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { startViewTransition } from '../../scripts/startViewTransition';
-import { ref } from 'vue';
+import { ref, useId } from 'vue';
 
 const open = ref(false);
+const uniqueId = useId();
 
 const toggleOpen = () => {
   startViewTransition(() => {
@@ -16,14 +17,20 @@ const toggleOpen = () => {
     <button
       class="flex w-full cursor-pointer items-start gap-1.25 text-left select-none"
       :aria-expanded="open"
-      aria-controls="details-content"
+      :aria-controls="uniqueId"
       @click="toggleOpen"
+      title="Click to toggle details"
     >
       <slot name="summary" />
-      <span :class="['ml-auto w-5 text-center print:hidden', { 'rotate-180': open }]">▼</span>
+      <span
+        :class="['ml-auto w-5 text-center print:hidden', { 'rotate-180': open }]"
+        aria-hidden="true"
+      >
+        ▼
+      </span>
     </button>
     <div
-      id="details-content"
+      :id="uniqueId"
       v-show="open"
       class="print:!block"
       role="region"
