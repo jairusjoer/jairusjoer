@@ -1,22 +1,22 @@
 ---
+import { getUniqueId } from 'src/scripts/getUniqueId';
+
 export interface Props {
   title: string;
   description?: string;
 }
 
 const { title, description } = Astro.props;
-
-const slug = title
-  .toLowerCase()
-  .replace(/\s+/g, '-')
-  .replace(/[^a-z0-9-]/g, '');
 ---
 
-<section class="print:not-first:mt-18">
+<section
+  class="print:not-first:mt-18"
+  style={`view-transition-name: ${getUniqueId()}`}
+>
   <div class="grid break-inside-avoid items-start md:grid-cols-2">
     <header
       class="bg-background sticky -top-px z-20 border-t py-6 md:bg-transparent print:static print:bg-transparent"
-      style={`view-transition-name: ${slug}`}
+      style={`view-transition-name: ${getUniqueId()}`}
     >
       <h2 class="text-foreground font-semibold">
         {title}

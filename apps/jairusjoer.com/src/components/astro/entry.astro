@@ -2,18 +2,18 @@
 import EntryContent from './entry-content.astro';
 import Details from '../vue/details.vue';
 import type { Props as EntryContentProps } from './entry-content.astro';
+import { getUniqueId } from 'src/scripts/getUniqueId';
 
 export interface Props {
-  id: string;
   content: EntryContentProps;
 }
 
-const { content, id } = Astro.props;
+const { content } = Astro.props;
 ---
 
 <article
   class="bg-background max-w-none break-inside-avoid not-first:border-t not-first:pt-6 print:bg-transparent"
-  style={`view-transition-name: ${id}`}
+  style={`view-transition-name: ${getUniqueId()}`}
 >
   {
     Astro.slots.has('default') ? (

@@ -87,7 +87,7 @@ const formatDate = (dates: string[]) => {
           system adoption. I am committed to design and engineering excellence, sharing these values with my colleagues.
         </p>
 
-        <p><small>I had the privilege of working with:</small></p>
+        <p><small>In various roles I had the privilege of working with:</small></p>
         <div class="not-prose flex flex-wrap items-end gap-x-12 gap-y-6 [&_svg]:w-auto">
           <div title="Sparkasse">
             <Sparkasse class="h-8" />
@@ -104,34 +104,32 @@ const formatDate = (dates: string[]) => {
         </div>
       </div>
     </Category>
+    {
+      Object.keys(orderedEntriesByCategory).map((category) => (
+        <Category title={category}>
+          {orderedEntriesByCategory[category]?.map((entry) =>
+            entry.rendered?.html.trim() ? (
+              <Entry
+                content={{
+                  title: entry.data.title,
+                  subtitle: entry.data.subtitle,
+                  meta: formatDate(entry.data.date),
+                }}
+              >
+                <Fragment set:html={entry.rendered?.html} />
+              </Entry>
+            ) : (
+              <Entry
+                content={{
+                  title: entry.data.title,
+                  subtitle: entry.data.subtitle,
+                  meta: formatDate(entry.data.date),
+                }}
+              />
+            )
+          )}
+        </Category>
+      ))
+    }
   </main>
-  {
-    Object.keys(orderedEntriesByCategory).map((category) => (
-      <Category title={category}>
-        {orderedEntriesByCategory[category]?.map((entry) =>
-          entry.rendered?.html.trim() ? (
-            <Entry
-              id={entry.id}
-              content={{
-                title: entry.data.title,
-                subtitle: entry.data.subtitle,
-                meta: formatDate(entry.data.date),
-              }}
-            >
-              <Fragment set:html={entry.rendered?.html} />
-            </Entry>
-          ) : (
-            <Entry
-              id={entry.id}
-              content={{
-                title: entry.data.title,
-                subtitle: entry.data.subtitle,
-                meta: formatDate(entry.data.date),
-              }}
-            />
-          )
-        )}
-      </Category>
-    ))
-  }
 </Default>

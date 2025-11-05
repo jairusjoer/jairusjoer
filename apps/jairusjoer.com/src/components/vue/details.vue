@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { getUniqueId } from 'src/scripts/getUniqueId';
 import { startViewTransition } from '../../scripts/startViewTransition';
-import { ref, useId } from 'vue';
+import { ref } from 'vue';
 
 const open = ref(false);
-const uniqueId = useId();
+const uniqueId = getUniqueId();
 
 const toggleOpen = () => {
   startViewTransition(() => {
