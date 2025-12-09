@@ -23,7 +23,7 @@ const entriesByCategory = collection.reduce(
     acc[category].push(entry);
     return acc;
   },
-  {} as Record<string, typeof collection>
+  {} as Record<string, typeof collection>,
 );
 
 Object.keys(entriesByCategory).forEach((category) => {
@@ -126,7 +126,7 @@ const formatDate = (dates: string[]) => {
                   meta: formatDate(entry.data.date),
                 }}
               />
-            )
+            ),
           )}
         </Category>
       ))

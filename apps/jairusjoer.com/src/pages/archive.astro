@@ -4,6 +4,7 @@ import Category from '../components/astro/category.astro';
 import Links from 'src/components/astro/links.astro';
 import Entry from 'src/components/astro/entry.astro';
 import { getCollection } from 'astro:content';
+import Feed from 'src/components/astro/feed.astro';
 
 const links = await getCollection('links');
 
@@ -16,6 +17,15 @@ const data = {
 <Default metadata={data}>
   <main>
     <Category {...data}>
+      <Entry
+        content={{
+          title: 'Aggregata',
+          meta: 'Articles previously published on Aggregata',
+        }}
+      >
+        <Feed filter="archive/aggregata/" />
+      </Entry>
+
       <Entry
         content={{
           title: 'Links',

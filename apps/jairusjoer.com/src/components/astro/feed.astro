@@ -1,37 +1,34 @@
 ---
-import { JSDOM } from 'jsdom';
 import Entry from './entry.astro';
-
-export interface Item {
-  title: string;
-  link: string;
-  pubDate: string;
-  isoDate: string;
-  content: string;
-  categories: Array<string>;
-}
+import { getCollection } from 'astro:content';
 
 export interface Props {
-  url: string;
+  filter?: string;
 }
 
-const { url } = Astro.props;
+const { filter } = Astro.props;
+let collection = await getCollection('pages', ({ id }) => {
+  if (id.endsWith('index')) return false;
 
-const data = await (await fetch(url)).text();
+  return filter ? id.startsWith(filter) : true;
+});
 
-const dom = new JSDOM(data, { contentType: 'text/xml' });
-const items = Array.from(dom.window.document.querySelectorAll('item')).map(
-  (item) =>
-    ({
-      title: item.querySelector('title')?.textContent,
-      link: item.querySelector('link')?.textContent,
-      pubDate: item.querySelector('pubDate')?.textContent,
-      content: item.querySelector('description')?.textContent,
-      categories: Array.from(item.querySelectorAll('category')).map((category) => category.textContent),
-    }) as Item,
-);
+collection = collection.sort((a, b) => {
+  const dateA = Array.isArray(a.data?.date) ? a.data.date[0] : a.data?.date;
+  const dateB = Array.isArray(b.data?.date) ? b.data.date[0] : b.data?.date;
 
-const formatDate = (date: string) => {
+  if (!dateA && !dateB) return 0;
+  if (!dateA) return 1;
+  if (!dateB) return -1;
+
+  return new Date(dateB).getTime() - new Date(dateA).getTime();
+});
+
+if (import.meta.env.PROD) {
+  collection = collection.filter((entry) => !entry.data?.draft);
+}
+
+const formatDate = (date: Date | string) => {
   return new Date(date).toLocaleDateString('en', {
     year: 'numeric',
     month: 'short',
@@ -42,25 +39,15 @@ const formatDate = (date: string) => {
 
 <div class="not-prose space-y-6">
   {
-    items.map((item) => (
+    collection.map((entry) => (
       <Entry
         content={{
-          title: item.title,
-          subtitle: item.content,
-          meta: formatDate(item.pubDate),
-          href: item.link,
+          title: entry.data.title,
+          subtitle: entry.data.description,
+          meta: entry.data.date ? formatDate(entry.data.date) : undefined,
+          href: `/${entry.id}`,
         }}
       />
     ))
   }
-  <p class="border-t pt-6">
-    For all blog posts by your's truly, visit
-    <a
-      class="text-foreground"
-      href="https://aggregata.de/authors/jairusjoer/"
-      target="_blank"
-    >
-      aggregata.de
-    </a>
-  </p>
 </div>

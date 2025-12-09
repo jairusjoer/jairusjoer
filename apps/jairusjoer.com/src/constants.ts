@@ -9,7 +9,6 @@ export const defaultMetadata: Metadata = {
 export const navigation = {
   main: {
     About: '/',
-    Blog: '/blog/',
     Archive: '/archive/',
   },
   footer: {
