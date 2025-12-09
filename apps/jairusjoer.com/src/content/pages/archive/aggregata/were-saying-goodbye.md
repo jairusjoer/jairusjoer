@@ -31,4 +31,5 @@ As part of the shutdown process, all user data associated with Aggregata, such a
 We have found the process of creating and maintaining Aggregata to be a meaningful experience. While it has not grown into what we had originally envisioned, we are grateful for the journey. To all those who have taken the time to read, share, or quietly appreciate our work over the years, we extend our sincere gratitude for your consideration and attention.
 
 We wish you all the best for the future
+
 **Henrik & Jairus, your authors at Aggregata**
