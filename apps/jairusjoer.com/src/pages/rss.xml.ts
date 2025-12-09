@@ -3,9 +3,8 @@ import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
 import { formatDatetime } from 'src/scripts/formatDatetime';
 import { defaultMetadata } from 'src/constants';
-import config from 'astro.config';
 
-export const GET: APIRoute = async () => {
+export const GET: APIRoute = async (context) => {
   let collection = await getCollection('pages', ({ data }) => !data.draft);
 
   if (import.meta.env.PROD) {
@@ -30,9 +29,9 @@ export const GET: APIRoute = async () => {
   }
 
   return rss({
-    title: String(defaultMetadata.title),
-    description: String(defaultMetadata.description),
-    site: String(config.site),
+    title: defaultMetadata.title!,
+    description: defaultMetadata.description!,
+    site: context.site?.toString() ?? 'https://jairusjoer.com',
     items: entries,
   });
 };
