@@ -12,7 +12,9 @@ The purpose of this issue is thus to shine a spotlight on great minds and source
 
 ---
 
-![](./assets/spatial-tooltip.mp4)
+<video controls>
+  <source src="/assets/spatial-tooltip.mp4" type="video/mp4" />
+</video>
 
 > _Rauno Freiberg's "Spatial Tooltip" illustrates the intricacies of simple interactions in an isolated context, such as a tooltip. Including a deliberate detail like this in frequent interactions elevates the quality and emotional connection to the product through craftsmanship._
 
@@ -42,7 +44,9 @@ Both companies promote design and interaction, [provide us with methods](https:
 
 ---
 
-![](./assets/family.mp4)
+<video controls>
+  <source src="/assets/family.mp4" type="video/mp4" />
+</video>
 
 > *From* [_Great Animations_](https://emilkowal.ski/ui/great-animations)_, Emil Kowalski showcases the fluidity of user interfaces through transforms and presence animation. This creates the perception of continuity and increases relevance for on-screen elements throughout the user journey._
 
