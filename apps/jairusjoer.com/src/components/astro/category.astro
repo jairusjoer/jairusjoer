@@ -24,7 +24,7 @@ const { title, description, date } = Astro.props;
         <h2 class="text-foreground font-semibold">
           {title}
         </h2>
-        {description && <p>{description}</p>}
+        {description && <p class="max-md:hidden">{description}</p>}
         {date && <time datetime={new Date(date).toISOString()}>{formatDatetime(date)}</time>}
       </div>
     </header>
