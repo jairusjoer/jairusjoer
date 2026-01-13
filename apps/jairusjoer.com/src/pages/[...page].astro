@@ -1,40 +1,64 @@
 ---
-import Default from '../layouts/default.astro';
-import { getCollection } from 'astro:content';
-import { render } from 'astro:content';
-import type { Metadata } from '../types';
-import { getEntry } from 'astro:content';
-import Category from '../components/astro/category.astro';
-import { getComponents } from '../scripts/getComponents';
+import { getCollection, render } from 'astro:content';
+import { getComponents } from '@scripts/getComponents';
+import PageLayout from '@layouts/PageLayout.astro';
+import { formatDatetime } from '@scripts/formatDatetime';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
+  const staticPaths = [];
+
   let collection = await getCollection('pages');
 
   if (import.meta.env.PROD) {
     collection = collection.filter((entry) => !entry.data?.draft);
   }
 
-  collection = collection.filter((entry) => entry.id !== 'index');
+  for (const entry of collection) {
+    staticPaths.push({
+      params: { page: entry.id === 'index' ? undefined : entry.id },
+      props: { entry },
+    });
+  }
 
-  return collection.map((entry) => ({
-    params: { page: entry.id },
-    props: { id: entry.id },
-  }));
+  return staticPaths;
 }
 
-const { id } = Astro.props;
+const { entry } = Astro.props;
 
-const entry = await getEntry('pages', id)!;
 const { Content } = await render(entry);
+
 const components = getComponents();
 ---
 
-<Default metadata={entry.data as Metadata}>
-  <main>
-    <Category {...entry.data}>
-      <div class="prose prose-theme">
-        <Content {components} />
-      </div>
-    </Category>
+<PageLayout metadata={entry.data}>
+  <main class="prosa text-default my-[6em] w-full">
+    <header class="has-[p,time,img]:mb-[3em]">
+      {
+        entry.data.image && (
+          <Image
+            class="mb-[1.5em]"
+            src={entry.data.image}
+            alt=""
+            width={864}
+            height={486}
+            format="avif"
+          />
+        )
+      }
+      <h1>{entry.data.title}</h1>
+      {entry.data.description && <p>{entry.data.description}</p>}
+      {entry.data.date && <time class="tabular-nums">{formatDatetime(entry.data.date)}</time>}
+    </header>
+
+    <Content {components} />
   </main>
-</Default>
+</PageLayout>
+
+<script>
+  import { toggleDetails } from '@scripts/toggleDetails';
+  import { externalizeLinks } from '@scripts/externalizeLinks';
+
+  toggleDetails();
+  externalizeLinks();
+</script>

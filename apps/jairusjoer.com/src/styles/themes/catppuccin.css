@@ -1,0 +1,39 @@
+@import '../fonts/spectral.css';
+
+/* https://tailwindcss.com/docs/theme */
+@theme static {
+  --color-accent: light-dark(#8839ef, #cba6f7); /* Latte Mauve / Mocha Mauve */
+
+  --color-background-subtle: light-dark(#e6e9ef, #1e1e2e); /* Latte Base / Mocha Base */
+  --color-background: light-dark(#eff1f5, #181825); /* Latte Mantle / Mocha Mantle */
+
+  --color-border: light-dark(#ccd0da, #313244); /* Latte Surface0 / Mocha Surface0 */
+
+  --color-foreground-subtle: light-dark(#6c6f85, #a6adc8); /* Latte Subtext0 / Mocha Subtext0 */
+  --color-foreground: light-dark(#4c4f69, #cdd6f4); /* Latte Text / Mocha Text */
+
+  --font-default: var(--font-sans);
+
+  --radius-default: 0.125rem;
+
+  --spacing-default: 60ch;
+
+  --text-default: 1rem;
+}
+
+@layer custom {
+  header p:first-child,
+  li strong:first-child,
+  th,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  em {
+    font-family: 'Spectral', var(--font-serif);
+    font-size: calc(1em + 1px);
+    font-style: inherit;
+  }
+}

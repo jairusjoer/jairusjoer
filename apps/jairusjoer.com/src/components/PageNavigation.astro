@@ -1,0 +1,39 @@
+---
+import type { SiteConfigLink } from '../types';
+
+export interface Props {
+  links?: Array<SiteConfigLink>;
+}
+
+const { links } = Astro.props;
+
+const active = (path: string) => {
+  if (path === '/') {
+    return Astro.url.pathname === path;
+  } else {
+    return Astro.url.pathname.startsWith(path);
+  }
+};
+---
+
+{
+  links && (
+    <nav class="print:hidden">
+      <ul class="flex flex-wrap items-center gap-1 font-semibold">
+        {links.map((link) => (
+          <li>
+            <a
+              class:list={[
+                'rounded-default bg-background-subtle block px-[0.5em]',
+                active(link.href) && 'bg-accent! text-background!',
+              ]}
+              href={link.href}
+            >
+              {link.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+
+const links = await getCollection('links');
+---
+
+{
+  links.map((entry) => (
+    <details>
+      <summary>{entry.id}</summary>
+      <ul>
+        {entry.data.map((link) => (
+          <li>
+            <article>
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link}
+              </a>
+            </article>
+          </li>
+        ))}
+      </ul>
+    </details>
+  ))
+}

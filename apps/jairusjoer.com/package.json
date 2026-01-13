@@ -1,5 +1,5 @@
 {
-  "name": "jairusjoer.com",
+  "name": "open.cv",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -7,30 +7,24 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write \"**/*.{astro,css,md,ts,tsx}\""
+    "check-types": "astro check",
+    "format": "prettier --write '**/*.{astro,css,json,md,mdx,ts}'",
+    "lint": "eslint --fix --max-warnings 0"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
+    "@astrojs/markdoc": "^0.15.10",
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.1",
-    "@astrojs/vue": "^5.1.4",
-    "@tailwindcss/typography": "^0.5.19",
+    "@lucide/astro": "^0.555.0",
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.8",
-    "jsdom": "^27.4.0",
-    "sharp": "^0.34.5",
+    "astro": "^5.16.9",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3",
-    "vue": "^3.5.26"
-  },
-  "devDependencies": {
-    "@types/jsdom": "^27.0.0",
-    "prettier": "^3.7.4",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.14"
+    "typescript": "^5.9.3"
   },
   "prettier": {
+    "tabWidth": 2,
     "printWidth": 120,
     "singleAttributePerLine": true,
     "singleQuote": true,
@@ -39,5 +33,22 @@
       "prettier-plugin-tailwindcss"
     ]
   },
-  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
+  "devDependencies": {
+    "@eslint/css": "^0.14.1",
+    "@eslint/js": "^9.39.2",
+    "@eslint/json": "^0.14.0",
+    "@eslint/markdown": "^7.5.1",
+    "@types/eslint-plugin-jsx-a11y": "^6.10.1",
+    "@typescript-eslint/parser": "^8.53.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "globals": "^16.5.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "sharp": "^0.34.5",
+    "typescript-eslint": "^8.53.0"
+  }
 }

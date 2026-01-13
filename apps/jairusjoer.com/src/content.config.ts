@@ -1,21 +1,5 @@
-import { defineCollection, z } from 'astro:content';
 import { file, glob } from 'astro/loaders';
-
-const cv = defineCollection({
-  loader: glob({
-    base: `./src/content/cv`,
-    pattern: '**/*.{md,mdx}',
-  }),
-  schema: z.object({
-    category: z.string(),
-    title: z.string(),
-    subtitle: z.string(),
-    description: z.string(),
-    date: z.array(z.string()),
-    draft: z.boolean().optional(),
-    href: z.string().optional(),
-  }),
-});
+import { defineCollection, z } from 'astro:content';
 
 const links = defineCollection({
   loader: file('src/content/links.json'),
@@ -24,15 +8,18 @@ const links = defineCollection({
 
 const pages = defineCollection({
   loader: glob({
-    base: `./src/content/pages`,
-    pattern: '**/*.{md,mdx}',
+    base: `./src/content`,
+    pattern: '**/*.{md,mdoc,mdx}',
   }),
-  schema: z.object({
-    date: z.date().optional(),
-    description: z.string().optional(),
-    draft: z.boolean().optional(),
-    title: z.string(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      date: z.date().optional(),
+      description: z.string().max(300).optional(),
+      draft: z.boolean().optional(),
+      image: image().optional(),
+      title: z.string().max(150),
+    }),
 });
 
-export const collections = { cv, links, pages };
+// https://docs.astro.build/en/guides/content-collections/
+export const collections = { links, pages };

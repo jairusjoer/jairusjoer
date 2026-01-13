@@ -1,10 +1,10 @@
 import rss from '@astrojs/rss';
+import { site } from '../config';
 import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
-import { formatDatetime } from 'src/scripts/formatDatetime';
-import { defaultMetadata } from 'src/constants';
+import { formatDatetime } from '@scripts/formatDatetime';
 
-export const GET: APIRoute = async (context) => {
+export const GET: APIRoute = async () => {
   let collection = await getCollection('pages', ({ data }) => !data.draft);
 
   if (import.meta.env.PROD) {
@@ -29,9 +29,9 @@ export const GET: APIRoute = async (context) => {
   }
 
   return rss({
-    title: defaultMetadata.title!,
-    description: defaultMetadata.description!,
-    site: context.site?.toString() ?? 'https://jairusjoer.com',
+    title: site.title,
+    description: site.description,
+    site: site.site,
     items: entries,
   });
 };

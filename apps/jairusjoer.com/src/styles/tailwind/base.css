@@ -1,36 +1,4 @@
 @layer base {
-  @view-transition {
-    navigation: auto;
-  }
-
-  ::view-transition {
-    pointer-events: none;
-  }
-
-  :root {
-    color-scheme: light dark;
-  }
-
-  * {
-    border-color: var(--color-border);
-  }
-
-  details {
-    summary {
-      user-select: none;
-    }
-  }
-
-  img,
-  pre {
-    border-radius: 0.25rem;
-  }
-
-  html {
-    scrollbar-gutter: stable;
-    text-wrap: pretty;
-  }
-
   @media (prefers-color-scheme: dark) {
     .astro-code,
     .astro-code span {
@@ -40,5 +8,36 @@
       font-weight: var(--shiki-dark-font-weight) !important;
       text-decoration: var(--shiki-dark-text-decoration) !important;
     }
+  }
+
+  :root {
+    color-scheme: light dark;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+  }
+
+  * {
+    border-color: var(--color-border);
+
+    &[id] {
+      scroll-margin-block: 1.5em;
+    }
+  }
+
+  a {
+    @apply touch-hitbox;
+
+    &[href^='http']::after {
+      content: ' ↗';
+    }
+  }
+
+  html {
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
+    text-wrap: pretty;
   }
 }

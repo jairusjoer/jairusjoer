@@ -1,0 +1,137 @@
+---
+import type { ImageMetadata } from 'astro';
+import { site } from '../config';
+
+export interface Metadata {
+  title: string;
+  description?: string;
+  image?: ImageMetadata;
+  schema?: Record<string, unknown>;
+}
+
+export interface Props {
+  metadata: Metadata;
+}
+
+const { metadata } = Astro.props;
+
+const titleTemplate = `${metadata.title} • ${site.title}`;
+
+const getURL = (path: string) => String(new URL(path, Astro.site));
+---
+
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width"
+/>
+
+<meta
+  name="generator"
+  content={Astro.generator}
+/>
+
+<link
+  rel="sitemap"
+  href="/sitemap-index.xml"
+/>
+
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={site.title}
+  href={new URL('rss.xml', Astro.site)}
+/>
+
+<link
+  rel="icon"
+  href={getURL('favicon.png')}
+  sizes="32x32"
+/>
+<link
+  rel="apple-touch-icon"
+  href={getURL('apple-touch-icon.png')}
+/>
+
+{/* Title */}
+<title>{titleTemplate}</title>
+<meta
+  name="title"
+  content={titleTemplate}
+/>
+<meta
+  property="og:title"
+  content={titleTemplate}
+/>
+<meta
+  property="twitter:title"
+  content={titleTemplate}
+/>
+
+{/* Description */}
+{
+  metadata.description && (
+    <>
+      <meta
+        name="description"
+        content={metadata.description}
+      />
+      <meta
+        property="og:description"
+        content={metadata.description}
+      />
+      <meta
+        property="twitter:description"
+        content={metadata.description}
+      />
+    </>
+  )
+}
+
+{/* Image */}
+{
+  metadata.image && (
+    <>
+      <meta
+        property="og:image"
+        content={metadata.image.src}
+      />
+      <meta
+        property="twitter:image"
+        content={metadata.image.src}
+      />
+    </>
+  )
+}
+
+{/* URL */}
+<meta
+  property="og:url"
+  content={getURL(Astro.url.pathname)}
+/>
+<meta
+  property="twitter:url"
+  content={getURL(Astro.url.pathname)}
+/>
+
+{/* Platform */}
+<meta
+  property="og:type"
+  content="website"
+/>
+<meta
+  property="twitter:card"
+  content="summary_large_image"
+/>
+
+{
+  metadata?.schema && (
+    <script
+      is:inline
+      set:html={JSON.stringify(metadata.schema)}
+      type="application/ld+json"
+    />
+  )
+}
+
+<slot />

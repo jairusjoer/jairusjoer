@@ -1,22 +1,5 @@
-const formatter = new Intl.DateTimeFormat('en', {
-  year: 'numeric',
-  month: 'short',
-  day: 'numeric',
-});
+import { site } from '../config';
 
-export const formatDatetime = (date?: Date | string | string[]) => {
-  if (!date) return formatter.format(new Date());
+const formatter = new Intl.DateTimeFormat(site.locale, site?.datetime);
 
-  const dateArray = Array.isArray(date) ? date : [date];
-  const formatted: string[] = [];
-
-  for (const date of dateArray) {
-    try {
-      formatted.push(formatter.format(new Date(date)));
-    } catch {
-      formatted.push(date as string);
-    }
-  }
-
-  return formatted.join(' — ');
-};
+export const formatDatetime = (date: Date) => formatter.format(new Date(date));

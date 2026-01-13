@@ -1,24 +1,29 @@
+// @ts-check
 import { defineConfig } from 'astro/config';
-
 import mdx from '@astrojs/mdx';
+import tailwindcss from '@tailwindcss/vite';
+import { site } from './src/config';
+
+import markdoc from '@astrojs/markdoc';
+
 import sitemap from '@astrojs/sitemap';
 
-import tailwindcss from '@tailwindcss/vite';
-
-import vue from '@astrojs/vue';
-
+// https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), sitemap(), vue()],
+  integrations: [mdx(), markdoc(), sitemap()],
+
   markdown: {
     shikiConfig: {
       themes: {
-        dark: 'vitesse-dark',
-        light: 'vitesse-light',
+        dark: 'catppuccin-mocha',
+        light: 'catppuccin-latte',
       },
     },
   },
-  site: 'https://jairusjoer.com',
+
   vite: {
     plugins: [tailwindcss()],
   },
+
+  site: site.site,
 });

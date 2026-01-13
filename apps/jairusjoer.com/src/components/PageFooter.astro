@@ -1,0 +1,19 @@
+---
+import PageNavigation from './PageNavigation.astro';
+
+import type { SiteConfigLink } from '../types';
+
+export interface Props {
+  links?: Array<SiteConfigLink>;
+}
+
+const { links } = Astro.props;
+---
+
+{
+  links && (
+    <footer class="mt-auto print:hidden">
+      <PageNavigation links={links} />
+    </footer>
+  )
+}
