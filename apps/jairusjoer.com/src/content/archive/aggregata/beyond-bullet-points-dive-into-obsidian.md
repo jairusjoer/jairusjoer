@@ -4,7 +4,7 @@ date: 2024-04-01
 description: "Obsidian, a tool for building a 'second brain' - a system for organizing and managing information effectively. Learn how this free, open source platform can help you organize notes, connect ideas and potentially improve workflow efficiency."
 ---
 
-[Obsidian](https://obsidian.md/?ref=aggregata.de) describes itself as **_”… the private and flexible writing app that adapts to the way you think”_** and offers besides a Markdown text editor the capability to build your own knowledge base.
+[Obsidian](https://obsidian.md/?ref=aggregata.de) describes itself as ***”… the private and flexible writing app that adapts to the way you think”*** and offers besides a Markdown text editor the capability to build your own knowledge base.
 
 I’ve been using Obsidian personally for a year now, and I’ve grown quite fond of its focused approach to writing and organization. So I thought a dip into Obsidian’s feature pool might be in order.
 

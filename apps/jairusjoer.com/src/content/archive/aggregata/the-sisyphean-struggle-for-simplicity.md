@@ -12,7 +12,7 @@ Recently I somewhat randomly watched [**Behind The Scenes Of Notion's INSANE De
 
 ## The Essence in itself
 
-When viewed through a narrow lens, **_simplicity_** appears to be as ambiguous a term as **_clean_** when it comes to its pure definition. Yet it emerges with distinct characteristics that elevate its status as a desirable yet ephemeral goal in both design and development.
+When viewed through a narrow lens, ***simplicity*** appears to be as ambiguous a term as ***clean*** when it comes to its pure definition. Yet it emerges with distinct characteristics that elevate its status as a desirable yet ephemeral goal in both design and development.
 
 In our individual work and lives, we strive for simplicity, somewhat unknowingly forming a consensus on its characteristics. A distilled, essential idea; reduced complexity revealing clarity; shaped by purpose and elegance – yet elusive through relentless reduction and refinement.
 
@@ -32,7 +32,7 @@ The initial stages of the reduction process promise a vision of a simpler, more 
 
 ## Expanding the boundaries
 
-In the name of simplicity and everything simple, the design should **_feel_** simple to the user. But what makes a design feel **_simple_**? At some point set boundaries begin to dissolve for the sake of more simplicity – more reduction and refinement for a yet simpler experience to possibly delight in.
+In the name of simplicity and everything simple, the design should ***feel*** simple to the user. But what makes a design feel ***simple***? At some point set boundaries begin to dissolve for the sake of more simplicity – more reduction and refinement for a yet simpler experience to possibly delight in.
 
 Expanding boundaries can be a healthy step towards improved designs and implementations. However, if we rely too heavily on expansion, it can undermine the very thing we are trying to improve, resulting in the process itself becoming self-destructive, like the [Ouroboros](https://en.wikipedia.org/wiki/Ouroboros).
 
@@ -44,7 +44,7 @@ Yet the outcome so far has been promising. There are plenty of ideas on how to o
 
 What seems simple is often the most difficult. At some point, considerations outweigh the possibilities of implementation, and layers of complexity become increasingly apparent and intertwined. At one point, a complete rewrite might even be considered, starting from a clean slate.
 
-However, a clean slate won’t stop the relentlessness in its tracks. The only way to leave this cycle is to compromise, accepting that **_good_** might just have to be good enough, and that the excellence we so nobly strove for is as unobtainable as it is absurd.
+However, a clean slate won’t stop the relentlessness in its tracks. The only way to leave this cycle is to compromise, accepting that ***good*** might just have to be good enough, and that the excellence we so nobly strove for is as unobtainable as it is absurd.
 
 This compromise rarely provides relief, as we know that we could have achieved so much more. However, the relentless and elusive nature of the Sisyphean struggle can overcome even the strongest-willed designers and developers. This is a fate that should never be ordained.
 
@@ -76,4 +76,4 @@ In the end, the pursuit of simplicity is less about achieving a final, flawless 
 
 By setting clear boundaries, focusing on the essentials and resisting the urge for endless refinement, we can create work that is functional, elegant and genuinely meaningful. The struggle may be Sisyphean, but it is the lessons learned along the way that make the effort worthwhile.
 
-The true reward does not lie in achieving **_perfect_** simplicity, but in the clarity and confidence gained from grappling with complexity. Every attempt, whether successful or not, shapes our intuition of what truly matters. In this way, the struggle itself becomes a source of growth and creativity.
+The true reward does not lie in achieving ***perfect*** simplicity, but in the clarity and confidence gained from grappling with complexity. Every attempt, whether successful or not, shapes our intuition of what truly matters. In this way, the struggle itself becomes a source of growth and creativity.

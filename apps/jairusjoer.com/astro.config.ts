@@ -19,6 +19,9 @@ export default defineConfig({
         light: 'catppuccin-latte',
       },
     },
+    remarkRehype: {
+      footnoteLabelProperties: {},
+    },
   },
 
   vite: {

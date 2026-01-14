@@ -22,7 +22,7 @@ A dependency-based approach to browser issues has taken hold for a variety of va
 
 In particular, jQuery was an early and strong advocate for implementing common functionality across browsers. Today, efforts such as the Interop project, supported by major companies such as Apple, Google, and Mozilla, are enforcing common features and compatibility across the board.
 
-[GitHub - web-platform-tests/interop: web-platform-tests Interop project](https://github.com/web-platform-tests/interop
+[GitHub - web-platform-tests/interop: web-platform-tests Interop project](https://github.com/web-platform-tests/interop)
 
 Over the past 10 years, browsers have consolidated into a standardized and mature ecosystem, spawning working groups to implement cross-compatible features, such as the WebExtensions Community Group (WECG).
 

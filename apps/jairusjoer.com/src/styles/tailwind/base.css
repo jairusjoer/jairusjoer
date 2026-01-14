@@ -28,8 +28,6 @@
   }
 
   a {
-    @apply touch-hitbox;
-
     &[href^='http']::after {
       content: ' ↗';
     }

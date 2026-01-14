@@ -1,10 +1,5 @@
 {
-  "AI": [
-    "https://claude.ai/",
-    "https://gemini.google.com/",
-    "https://www.deepl.com/",
-    "https://www.perplexity.ai/"
-  ],
+  "AI": ["https://claude.ai/", "https://gemini.google.com/", "https://www.deepl.com/", "https://www.perplexity.ai/"],
   "Agencies & Studios": [
     "http://antidote.ie/",
     "http://fuge.ru/",
@@ -286,10 +281,7 @@
     "https://ionicons.com/",
     "https://undraw.co/"
   ],
-  "Interactive Experiences": [
-    "https://lumon-industries.com/",
-    "https://www.2q17.de/#/"
-  ],
+  "Interactive Experiences": ["https://lumon-industries.com/", "https://www.2q17.de/#/"],
   "Landingpages": [
     "http://alanacompany.com/",
     "https://2021.iad-lab.ch/",

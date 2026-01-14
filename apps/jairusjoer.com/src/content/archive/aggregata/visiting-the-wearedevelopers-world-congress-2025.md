@@ -13,7 +13,7 @@ As I did last year, I arrived on Wednesday to take part in the pre-check-in even
 | 17:00 – 19:30 | Visit to the Latin American restaurant Paracas II                  |
 | 19:30 – 21:30 | Check-in & Badge Pickup powered by CARIAD @Volkswagen DRIVE.studio |
 
-![](./assets/image-2.png)
+![Group of four people standing and talking](./assets/image-2.png)
 
 ## Thursday
 
@@ -49,7 +49,7 @@ As an [advocate of native web capabilities](https://aggregata.de/the-future-of-
 
 Although I am biased towards this session, I would still like to point out that this session successfully condenses our current in-house approach to cycles into a brief 5-minute overview, offering a concise yet accessible insight into our processes.
 
-![](./assets/image.png)
+![Milton Leon presenting Reinventing Agile for a B2B SaaS Scale-Up](./assets/image.png)
 
 [Milton Leon](https://www.linkedin.com/in/miltonleon86/) presenting [**Reinventing Agile for a B2B SaaS Scale-Up**](https://www.youtube.com/watch?v=_AI56iglIks)
 
@@ -84,7 +84,7 @@ Another difference was our presence at the congress. Our group doubled in size, 
 
 Overall, I would rate this year's congress as a success, and I hope to have the privilege of attending again next year. Special thanks to my colleagues, and in particular to Lennart, for accompanying me to, from and around the congress.
 
-![](./assets/image-1.png)
+![Our beautiful group of 24+ people](./assets/image-1.png)
 Our beautiful group of 24+ people
 
 ## TL;DR

@@ -70,7 +70,7 @@ The gradual service extraction path provides a balanced approach that addresses 
 
 To give you a better picture, I've visualized a rudimentary diagram of the current monolithic core application, its contained products as well as external factors such as native applications and third-party tenants.
 
-![](./assets/monolith.drawio-8.png)
+![Technical diagram describing a monolithic system architecture](./assets/monolith.drawio-8.png)
 
 The current architecture exhibits several architectural anti-patterns. The circular dependency between business logic and API layers creates a situation where changes in either layer can cascade unpredictably throughout the system.
 
@@ -78,7 +78,7 @@ Products are tightly coupled modules sharing database schemas and business logic
 
 Our target architecture eliminates problematic coupling while preserving shared infrastructure benefits. The proposed modular design establishes clear product boundaries with a unified API gateway and shared core services.
 
-![](./assets/modulith.drawio-2.png)
+![Technical diagram describing a modular system architecture](./assets/modulith.drawio-2.png)
 
 ### Architectural Approach
 
