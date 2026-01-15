@@ -32,8 +32,11 @@ const components = getComponents();
 ---
 
 <PageLayout metadata={entry.data}>
-  <main class="prosa text-default my-[6em] w-full">
-    <header class="has-[p,time,img]:mb-[3em] has-[p,time,img]:border-b has-[p,time,img]:pb-[3em]">
+  <main class="text-default my-[6em] w-full">
+    <header
+      class="mb-[1.5em] has-[p,time,img]:mb-[3em] has-[p,time,img]:border-b has-[p,time,img]:pb-[3em]"
+      style="view-transition-name: main-header;"
+    >
       {
         entry.data.image && (
           <Image
@@ -46,12 +49,19 @@ const components = getComponents();
           />
         )
       }
-      <h1>{entry.data.title}</h1>
+      <h1 class="text-foreground inline-block font-semibold">
+        {entry.data.title}
+      </h1>
       {entry.data.description && <p>{entry.data.description}</p>}
       {entry.data.date && <time class="tabular-nums">{formatDatetime(entry.data.date)}</time>}
     </header>
 
-    <Content {components} />
+    <section
+      class="prosa"
+      style="view-transition-name: main-content;"
+    >
+      <Content {components} />
+    </section>
   </main>
 </PageLayout>
 

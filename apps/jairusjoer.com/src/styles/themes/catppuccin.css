@@ -9,7 +9,7 @@
 
   --color-border: light-dark(#ccd0da, #313244); /* Latte Surface0 / Mocha Surface0 */
 
-  --color-foreground-subtle: light-dark(#6c6f85, #a6adc8); /* Latte Subtext0 / Mocha Subtext0 */
+  --color-foreground-subtle: light-dark(#5c5f77, #a6adc8); /* Latte Subtext1 / Mocha Subtext0 */
   --color-foreground: light-dark(#4c4f69, #cdd6f4); /* Latte Text / Mocha Text */
 
   --font-default: var(--font-sans);

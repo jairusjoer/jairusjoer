@@ -24,7 +24,7 @@ const active = (path: string) => {
           <li>
             <a
               class:list={[
-                'rounded-default bg-background-subtle block px-[0.5em]',
+                'rounded-default transition-press bg-background-subtle block px-[0.5em]',
                 active(link.href) && 'bg-accent! text-background!',
               ]}
               href={link.href}

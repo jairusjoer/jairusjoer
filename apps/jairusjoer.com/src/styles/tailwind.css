@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './tailwind/base.css';
 @import './tailwind/utilities.css';
+@import './tailwind/transitions.css';
 
 /* Choose one theme or create your own. */
 /* @import './themes/aggregata.css'; */

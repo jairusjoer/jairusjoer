@@ -34,12 +34,7 @@ if (import.meta.env.PROD) {
           <a href={`/${entry.id}`}>
             <strong>{entry.data.title}</strong>
           </a>
-          {entry.data.date && (
-            <>
-              <br />
-              <time>{formatDatetime(entry.data.date)}</time>
-            </>
-          )}
+          {entry.data.date && <time class="block">{formatDatetime(entry.data.date)}</time>}
         </article>
       </li>
     ))
