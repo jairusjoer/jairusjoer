@@ -1,0 +1,11 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+---
+
+{entry.data.status && <div class="text-accent">{entry.data.status}</div>}

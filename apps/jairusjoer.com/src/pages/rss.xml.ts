@@ -5,10 +5,10 @@ import type { APIRoute } from 'astro';
 import { formatDatetime } from '@scripts/formatDatetime';
 
 export const GET: APIRoute = async () => {
-  let collection = await getCollection('pages', ({ data }) => !data.draft);
+  let collection = await getCollection('pages');
 
   if (import.meta.env.PROD) {
-    collection = collection.filter((entry) => !entry.data?.draft);
+    collection = collection.filter((entry) => entry.data?.status !== 'Draft');
   }
 
   const entries = [];

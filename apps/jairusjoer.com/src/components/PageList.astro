@@ -1,6 +1,7 @@
 ---
 import { formatDatetime } from '@scripts/formatDatetime';
 import { getCollection } from 'astro:content';
+import PageStatus from './PageStatus.astro';
 
 export interface Props {
   filter?: string;
@@ -22,7 +23,7 @@ collection = collection.sort((a, b) => {
 });
 
 if (import.meta.env.PROD) {
-  collection = collection.filter((entry) => !entry.data?.draft);
+  collection = collection.filter((entry) => entry.data?.status !== 'Draft');
 }
 ---
 
@@ -30,11 +31,11 @@ if (import.meta.env.PROD) {
   {
     collection.map((entry) => (
       <li>
-        <article>
+        <article class="inline-grid">
           <a href={`/${entry.id}`}>
             <strong>{entry.data.title}</strong>
           </a>
-          {entry.data.date && <time class="block">{formatDatetime(entry.data.date)}</time>}
+          {entry.data.date && <time>{formatDatetime(entry.data.date)}</time>}
         </article>
       </li>
     ))

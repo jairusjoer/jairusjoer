@@ -1,6 +1,6 @@
 ---
 title: 'Migrating the Monolith III: Execution'
-draft: true
+status: 'Draft'
 ---
 
 ## Execution

@@ -1,5 +1,5 @@
 ---
-import PageNavigation from './PageNavigation.astro';
+import SiteNavigation from './SiteNavigation.astro';
 
 import type { SiteConfigLink } from '../types';
 
@@ -14,9 +14,9 @@ const { links } = Astro.props;
   links && (
     <footer
       class="mt-auto print:hidden"
-      style="view-transition-name: page-footer;"
+      style="view-transition-name: site-footer;"
     >
-      <PageNavigation links={links} />
+      <SiteNavigation links={links} />
     </footer>
   )
 }

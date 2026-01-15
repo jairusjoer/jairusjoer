@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import { site } from '../config';
+import SiteNavigation from './SiteNavigation.astro';
+---
+
+<header
+  class="space-y-[1.5em]"
+  style="view-transition-name: site-header;"
+>
+  <a
+    class="relative flex items-start gap-[1em]"
+    href="/"
+  >
+    {
+      site?.image && (
+        <Image
+          class="rounded-default size-[3em]"
+          src={site.image}
+          alt="Portrait"
+          width={160}
+          height={160}
+          format="avif"
+          loading="eager"
+        />
+      )
+    }
+    <div>
+      <p class="text-foreground font-semibold">{site.title}</p>
+      {site?.description && <p>{site.description}</p>}
+    </div>
+  </a>
+
+  {site?.navigation?.length && <SiteNavigation links={site.navigation} />}
+</header>
