@@ -8,6 +8,11 @@ export interface Props {
 const { links } = Astro.props;
 
 const active = (path: string) => {
+  // @todo: Temporary override
+  if (Astro.url.pathname.startsWith('/archive/')) {
+    return path === '/writing';
+  }
+
   if (path === '/') {
     return Astro.url.pathname === path;
   } else {
