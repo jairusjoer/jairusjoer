@@ -2,9 +2,6 @@
 import { getCollection, render } from 'astro:content';
 import { getComponents } from '@scripts/getComponents';
 import PageLayout from '@layouts/PageLayout.astro';
-import { formatDatetime } from '@scripts/formatDatetime';
-import { Image } from 'astro:assets';
-import PageStatus from '@components/PageStatus.astro';
 import PageHeader from '@components/PageHeader.astro';
 
 export async function getStaticPaths() {

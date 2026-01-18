@@ -126,7 +126,7 @@
         color: var(--color-accent);
       }
 
-      input {
+      input[type='checkbox'] {
         appearance: none;
         background-color: var(--color-background-subtle);
         border-radius: var(--radius-default);
@@ -138,14 +138,18 @@
         top: 0.25em;
         width: 1em;
 
-        &[checked] {
+        &:not(:disabled) {
+          cursor: pointer;
+        }
+
+        &:checked {
           background-color: var(--color-accent);
 
           &::after {
             content: '✓';
             font-size: small;
             inset: 0;
-            line-height: calc(1em - 2px);
+            line-height: 1em;
             position: absolute;
             text-align: center;
             font-weight: 600;

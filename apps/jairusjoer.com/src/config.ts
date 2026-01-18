@@ -13,7 +13,7 @@ export const site: SiteConfig = {
   navigation: [
     { title: 'About', href: '/' },
     { title: 'Writing', href: '/writing' },
-    { title: 'Links', href: '/links' },
+    { title: 'Reading', href: '/reading' },
   ],
   footer: [
     { title: 'Imprint', href: '/imprint' },

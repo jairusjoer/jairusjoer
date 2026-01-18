@@ -2,27 +2,107 @@
 import { getCollection } from 'astro:content';
 
 const links = await getCollection('links');
+
+const formatLink = (url: string) => {
+  return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+};
 ---
 
-{
-  links.map((entry) => (
-    <details>
-      <summary>{entry.id}</summary>
-      <ul>
-        {entry.data.map((link) => (
-          <li>
-            <article>
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link}
-              </a>
-            </article>
-          </li>
-        ))}
-      </ul>
-    </details>
-  ))
-}
+<div
+  id="link-list"
+  class="space-y-[0.75em]"
+>
+  {
+    links.map((entry) => (
+      <details>
+        <summary>{entry.id}</summary>
+        <ul>
+          {entry.data.map((link) => (
+            <li>
+              <article>
+                <input
+                  class="peer"
+                  class="touch-hitbox"
+                  type="checkbox"
+                  name="read"
+                  title="Toogle reading status"
+                  id={link}
+                />
+                <a
+                  class="transition-gentle peer-checked:line-through! peer-checked:opacity-50"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {formatLink(link)}
+                </a>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ))
+  }
+</div>
+
+<script>
+  const linkList = document.querySelector('#link-list');
+  const checkboxes = linkList?.querySelectorAll('input[type="checkbox"]');
+
+  const STORAGE_KEY = 'linkList';
+
+  const getLinkList = (): Set<string> => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return new Set(stored ? JSON.parse(stored) : []);
+    } catch {
+      return new Set();
+    }
+  };
+
+  const updateStorage = (id: string, checked: boolean) => {
+    const current = getLinkList();
+
+    if (checked) {
+      current.add(id);
+    } else {
+      current.delete(id);
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...current]));
+  };
+
+  if (linkList) {
+    const savedLinks = getLinkList();
+
+    checkboxes?.forEach((box) => {
+      if (box instanceof HTMLInputElement && savedLinks.has(box.id)) {
+        box.checked = true;
+      }
+    });
+
+    linkList.addEventListener('change', (e) => {
+      const target = e.target;
+
+      if (target instanceof HTMLInputElement && target.type === 'checkbox') {
+        updateStorage(target.id, target.checked);
+      }
+    });
+
+    linkList.addEventListener('click', (e) => {
+      const target = e.target;
+
+      if (target instanceof HTMLElement) {
+        const anchor = target.closest('a');
+        const checkbox = anchor?.previousElementSibling;
+
+        if (checkbox instanceof HTMLInputElement && checkbox.type === 'checkbox') {
+          if (!checkbox.checked) {
+            checkbox.checked = true;
+            updateStorage(checkbox.id, true);
+          }
+        }
+      }
+    });
+  }
+</script>
