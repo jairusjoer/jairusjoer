@@ -15,7 +15,7 @@ const pages = defineCollection({
     z.object({
       date: z.date().optional(),
       description: z.string().max(300).optional(),
-      status: z.enum(['Draft', 'Published', 'Archived']).optional(),
+      status: z.enum(['Draft']).optional(),
       image: image().optional(),
       title: z.string().max(150),
     }),

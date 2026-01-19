@@ -30,11 +30,19 @@ if (import.meta.env.PROD) {
   {
     collection.map((entry) => (
       <li>
-        <article class="inline-grid">
+        <article>
           <a href={`/${entry.id}`}>
             <strong>{entry.data.title}</strong>
           </a>
-          {entry.data.date && <time>{formatDatetime(entry.data.date)}</time>}
+
+          {entry.data.date && (
+            <>
+              <br />
+              <small>
+                <time>{formatDatetime(entry.data.date)}</time>
+              </small>
+            </>
+          )}
         </article>
       </li>
     ))

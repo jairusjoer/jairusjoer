@@ -3,6 +3,10 @@
 
   > * + * {
     margin-top: 1.5em;
+
+    &:is(h1, h2, h3, h4, h5, h6) {
+      margin-top: calc(var(--text-default) * 3);
+    }
   }
 
   a {
@@ -29,7 +33,7 @@
   }
 
   code {
-    font-size: small;
+    font-size: smaller;
 
     &:not(pre > code) {
       background-color: var(--color-background-subtle);
@@ -77,10 +81,11 @@
 
   figcaption {
     margin-top: 0.75em;
-    font-size: small;
+    font-size: smaller;
   }
 
   .footnotes {
+    font-size: smaller;
     margin-top: 6em;
   }
 
@@ -90,8 +95,38 @@
   h4,
   h5,
   h6 {
+    --scale: pow(1.5, 0.2);
     color: var(--color-foreground);
     font-weight: 600;
+    line-height: 1;
+
+    + * {
+      margin-top: 0.75em;
+    }
+  }
+
+  h1 {
+    font-size: calc(1em * pow(var(--scale), 5));
+  }
+
+  h2 {
+    font-size: calc(1em * pow(var(--scale), 4));
+  }
+
+  h3 {
+    font-size: calc(1em * pow(var(--scale), 3));
+  }
+
+  h4 {
+    font-size: calc(1em * pow(var(--scale), 2));
+  }
+
+  h5 {
+    font-size: calc(1em * pow(var(--scale), 1));
+  }
+
+  h6 {
+    font-size: calc(1em * pow(var(--scale), 0));
   }
 
   hr {
@@ -126,6 +161,10 @@
         color: var(--color-accent);
       }
 
+      > * + * {
+        margin-top: 0.75em;
+      }
+
       input[type='checkbox'] {
         appearance: none;
         background-color: var(--color-background-subtle);
@@ -147,7 +186,7 @@
 
           &::after {
             content: '✓';
-            font-size: small;
+            font-size: smaller;
             inset: 0;
             line-height: 1em;
             position: absolute;
@@ -202,5 +241,9 @@
         border-top: 1px solid var(--color-border);
       }
     }
+  }
+
+  time {
+    font-variant-numeric: tabular-nums;
   }
 }
