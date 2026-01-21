@@ -1,4 +1,4 @@
-.prosa {
+@utility prosa {
   word-break: break-word;
 
   > * + * {
@@ -30,6 +30,10 @@
   blockquote {
     border-left: 0.25em solid var(--color-accent);
     padding-left: 1.25em;
+
+    > * + * {
+      margin-top: 0.75em;
+    }
   }
 
   code {
@@ -85,7 +89,6 @@
   }
 
   .footnotes {
-    font-size: smaller;
     margin-top: 6em;
   }
 

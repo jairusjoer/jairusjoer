@@ -12,27 +12,27 @@ I am currently spearheading HERO Software's platform modernization through monor
 
 ## Experience
 
-- **_Senior Full Stack Engineer at HERO Software_**<br/>
+- **Senior Full Stack Engineer at HERO Software**<br/>
   Hanover, Germany · Hybrid<br/>
   Apr 2024 — Present
 
-- **_Freelance Developer and Designer_**<br/>
+- **Freelance Developer and Designer**<br/>
   Hanover, Germany · Remote, Part-time<br/>
   Nov 2020 — Present
 
-- **_Full Stack Developer at neuwaerts_**<br/>
+- **Full Stack Developer at neuwaerts**<br/>
   Hanover, Germany · Hybrid<br/>
   Jul 2019 — Mar 2024
 
-- **_Media Designer Apprentice at TA Bildungszentrum_**<br/>
+- **Media Designer Apprentice at TA Bildungszentrum**<br/>
   Hamelin, Germany · On-site<br/>
   Aug 2018 — May 2019
 
-- **_Co-Founder at XVI CHAPEL_**<br/>
+- **Co-Founder at XVI CHAPEL**<br/>
   New York, United States · Remote<br/>
   Apr 2016 — May 2017
 
-- **_Marketing Manager at World Of Bass Records_**<br/>
+- **Marketing Manager at World Of Bass Records**<br/>
   New York, United States · Remote, Part-time<br/>
   Oct 2015 — Aug 2016
 
@@ -40,7 +40,7 @@ I am currently spearheading HERO Software's platform modernization through monor
 
 ## Awards
 
-- **_BCM Content Platforms B2C Gold_**<br/>
+- **BCM Content Platforms B2C Gold**<br/>
   For zukunftswaende.de, at neuwaerts<br/>
   Jan 2022
 
@@ -48,7 +48,7 @@ I am currently spearheading HERO Software's platform modernization through monor
 
 ## Projects
 
-- **_Co-Author and Maintainer_**<br/>
+- **Co-Author and Maintainer**<br/>
   Aggregata<br/>
   Aug 2022 — Dec 2025
 
@@ -56,23 +56,23 @@ I am currently spearheading HERO Software's platform modernization through monor
 
 ## Speaking
 
-- **_Figma Workshop Series_**<br/>
+- **Figma Workshop Series**<br/>
   neuwaerts<br/>
   Nov 2023
 
-- **_Working with Projects and Files_**<br/>
+- **Working with Projects and Files**<br/>
   neuwaerts<br/>
   Sep 2023
 
-- **_Digital Tools for Clients_**<br/>
+- **Digital Tools for Clients**<br/>
   neuwaerts<br/>
   Jul 2023
 
-- **_Generative Texts_**<br/>
+- **Generative Texts**<br/>
   neuwaerts<br/>
   May 2023
 
-- **_New Work_**<br/>
+- **New Work**<br/>
   neuwaerts<br/>
   Nov 2019
 
@@ -80,10 +80,10 @@ I am currently spearheading HERO Software's platform modernization through monor
 
 ## Education
 
-- **_Media Design Apprenticeship_**<br/>
+- **Media Design Apprenticeship**<br/>
   Multi Media Berufsbildende Schulen Hannover (MMBbS)<br/>
   Aug 2018 — Jul 2021
 
-- **_Matura in Linguistics_**<br/>
+- **Matura in Linguistics**<br/>
   Kooperative Gesamtschule Gronau (Leine)<br/>
   Sep 2015 — Jun 2018

@@ -16,7 +16,7 @@ export const site: SiteConfig = {
     { title: 'Reading', href: '/reading' },
   ],
   footer: [
-    { title: 'Imprint', href: '/imprint' },
+    { title: 'Legal', href: '/legal' },
     { title: 'Privacy', href: 'https://www.iubenda.com/privacy-policy/41205652' },
     { title: 'Cookies', href: 'https://www.iubenda.com/privacy-policy/41205652/cookie-policy' },
     { title: 'Source', href: 'https://github.com/jairusjoer/jairusjoer.com' },

@@ -32,36 +32,46 @@ const components = getComponents();
 ---
 
 <PageLayout metadata={entry.data}>
-  <main
-    class="prosa text-default my-[6em] w-full"
-    style="view-transition-name: page-main;"
-  >
-    {
-      entry.data.image && (
-        <Image
-          src={entry.data.image}
-          alt=""
-          width={864}
-          height={486}
-          format="avif"
-        />
-      )
-    }
-    <h1>
-      {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
-      <span>{entry.data.title}</span>
-    </h1>
-    {entry.data.description && <p>{entry.data.description}</p>}
-    {
-      entry.data.date && (
-        <p>
-          <small>
-            <time>{formatDatetime(entry.data.date)}</time>
-          </small>
-        </p>
-      )
-    }
-    <Content {components} />
+  <main class="my-[6em] w-full">
+    <header
+      class="prosa mb-[0.75em] has-[img,p]:mb-[1.5em]"
+      style="view-transition-name: page-header;"
+    >
+      {
+        entry.data.image && (
+          <Image
+            src={entry.data.image}
+            alt=""
+            width={864}
+            height={486}
+            format="avif"
+          />
+        )
+      }
+      <h1>
+        {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
+        <span>{entry.data.title}</span>
+      </h1>
+      {entry.data.description && <p>{entry.data.description}</p>}
+      {
+        entry.data.date && (
+          <>
+            <p>
+              <small>
+                <time>{formatDatetime(entry.data.date)}</time>
+              </small>
+            </p>
+            <hr />
+          </>
+        )
+      }
+    </header>
+    <section
+      class="prosa"
+      style="view-transition-name: page-section;"
+    >
+      <Content {components} />
+    </section>
   </main>
 </PageLayout>
 

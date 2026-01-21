@@ -1,15 +1,10 @@
 ---
-title: 'Imprint'
-description: 'Contact information and legal details about this website'
+title: 'Legal Notice'
+description: 'Information in accordance with section 5 TMG'
 ---
-
-## Legal notice
-
-Information in accordance with section 5 TMG
 
 **Jairus Joer**<br/>
 [hello@jairusjoer.com](mailto:hello@jairusjoer.com)<br/>
-<br/>
 Herforder Straße 6<br/>
 30459 Hanover<br/>
 Germany<br/>

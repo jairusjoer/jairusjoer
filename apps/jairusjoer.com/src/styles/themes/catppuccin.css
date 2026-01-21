@@ -12,7 +12,7 @@
   --color-foreground-subtle: light-dark(#5c5f77, #a6adc8); /* Latte Subtext1 / Mocha Subtext0 */
   --color-foreground: light-dark(#4c4f69, #cdd6f4); /* Latte Text / Mocha Text */
 
-  --font-default: var(--font-sans);
+  --font-default: ui-sans-serif, system-ui, sans-serif;
 
   --radius-default: 0.125rem;
 
@@ -23,7 +23,6 @@
 
 @layer custom {
   header p:first-child,
-  li strong:first-child,
   th,
   h1,
   h2,
@@ -31,7 +30,7 @@
   h4,
   h5,
   h6,
-  em {
+  strong {
     font-family: 'Spectral', var(--font-serif);
     font-style: inherit;
   }
