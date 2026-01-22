@@ -4,9 +4,6 @@
 @import './tailwind/transitions.css';
 @import './tailwind/prosa.css';
 
-/* Choose one theme or create your own. */
-/* @import './themes/aggregata.css'; */
 @import './themes/catppuccin.css';
-/* @import './themes/read.css'; */
 
-@source inline("sr-only");
+@source inline('sr-only');

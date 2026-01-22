@@ -1,0 +1,37 @@
+@import '../fonts/spectral.css';
+
+/* https://tailwindcss.com/docs/theme */
+@theme static {
+  --color-accent: light-dark(#d7827e, #ebbcba); /* Rose Dawn / Rose Main */
+
+  --color-background-subtle: light-dark(#fffaf3, #1f1d2e); /* Surface Dawn / Surface Main */
+  --color-background: light-dark(#faf4ed, #191724); /* Base Dawn / Base Main */
+
+  --color-border: light-dark(#cecacd, #524f67); /* Highlight High Dawn / Highlight High Main */
+
+  --color-foreground-subtle: light-dark(#797593, #908caa); /*  Subtle Dawn /  Subtle Main */
+  --color-foreground: light-dark(#575279, #e0def4); /* Text Dawn / Text Main */
+
+  --font-default: ui-sans-serif, system-ui, sans-serif;
+
+  --radius-default: 0.125rem;
+
+  --spacing-default: 60ch;
+
+  --text-default: 1rem;
+}
+
+@layer custom {
+  header p:first-child,
+  th,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong {
+    font-family: 'Spectral', var(--font-serif);
+    font-style: inherit;
+  }
+}
