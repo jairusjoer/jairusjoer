@@ -11,10 +11,10 @@
 
   a {
     color: var(--color-accent);
-    text-decoration: underline;
 
-    &[data-footnote-backref] {
-      font-family: ui-sans-serif, system-ui, sans-serif;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
     }
 
     &[data-footnote-ref] {
@@ -158,14 +158,14 @@
 
     li {
       position: relative;
-      margin-top: 0.75em;
+      margin-top: 0.375em;
 
       &::marker {
         color: var(--color-accent);
       }
 
       > * + * {
-        margin-top: 0.75em;
+        margin-top: 0.375em;
       }
 
       input[type='checkbox'] {

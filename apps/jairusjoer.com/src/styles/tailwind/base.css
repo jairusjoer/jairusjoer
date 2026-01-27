@@ -30,7 +30,6 @@
   a {
     &[href^='http']::after {
       content: ' ↗';
-      font-family: ui-sans-serif, system-ui, sans-serif;
     }
   }
 
