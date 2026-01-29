@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 const links = await getCollection('links');
 
 const formatLink = (url: string) => {
-  return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 };
 ---
 

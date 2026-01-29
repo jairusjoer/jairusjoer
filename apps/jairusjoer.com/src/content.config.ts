@@ -1,8 +1,20 @@
 import { file, glob } from 'astro/loaders';
 import { defineCollection, z } from 'astro:content';
 
+const books = defineCollection({
+  loader: file('src/content/reading/books.json'),
+  schema: ({ image }) =>
+    z.object({
+      author: z.string(),
+      cover: image().optional(),
+      source: z.string().url().optional(),
+      status: z.enum(['Unread', 'Reading', 'Completed', 'Dropped']),
+      id: z.string(),
+    }),
+});
+
 const links = defineCollection({
-  loader: file('src/content/links.json'),
+  loader: file('src/content/reading/links.json'),
   schema: z.array(z.string().url()),
 });
 
@@ -22,4 +34,4 @@ const pages = defineCollection({
 });
 
 // https://docs.astro.build/en/guides/content-collections/
-export const collections = { links, pages };
+export const collections = { books, links, pages };

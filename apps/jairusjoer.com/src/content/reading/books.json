@@ -1,0 +1,23 @@
+[
+  {
+    "author": "Eliezer Yudkowsky, Nate Soares",
+    "cover": "./assets/if-anyone-builds-it-everyone-dies.jpg",
+    "source": "https://www.youtube.com/watch?v=8EvoUAxOlAQ",
+    "status": "Unread",
+    "id": "If Anyone Builds It, Everyone Dies: Why Superhuman AI Would Kill Us All"
+  },
+  {
+    "author": "Aya Jaff",
+    "cover": "./assets/broligarchie.jpg",
+    "source": "https://t3n.de/news/deutschland-tech-abhaengigkeit-google-amazon-microsoft-1721465/",
+    "status": "Reading",
+    "id": "Broligarchie: Die Machtspiele der Tech-Elite und wie sie Fortschritt verhindern"
+  },
+  {
+    "author": "qntm",
+    "cover": "./assets/there-is-no-antimemetics-division.jpg",
+    "source": "https://cguti.xyz/books",
+    "status": "Completed",
+    "id": "There Is No Antimemetics Division"
+  }
+]

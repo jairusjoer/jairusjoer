@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+
+const books = await getCollection('books');
+---
+
+<div id="book-list">
+  <ul>
+    {
+      books.map(({ data: book }) => (
+        <li>
+          <strong>{book.id}</strong>
+          <br />
+          <span>{book.author}</span>
+        </li>
+      ))
+    }
+  </ul>
+</div>
