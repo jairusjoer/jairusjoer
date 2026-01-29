@@ -28,8 +28,9 @@
   }
 
   blockquote {
-    border-left: 0.25em solid var(--color-accent);
-    padding-left: 1.25em;
+    font-style: italic;
+    border-left: 1px solid var(--color-accent);
+    padding-left: calc(1.5em - 1px);
 
     > * + * {
       margin-top: 0.75em;
@@ -140,7 +141,13 @@
   img,
   picture,
   video {
+    display: block;
     border-radius: var(--radius-default);
+
+    p:not(:only-child) & {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 
   mark {

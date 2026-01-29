@@ -186,8 +186,7 @@ Some text to show that the reference links can follow later.
 ```md
 Here's our logo (hover to see the title text):
 
-Inline-style:
-![alt text](https://picsum.photos/600/400 'Logo Title Text 1')
+Inline-style: ![alt text](https://picsum.photos/40/40 'Logo Title Text 1')
 
 Reference-style:
 ![alt text][logo]
@@ -212,8 +211,7 @@ Reference-style:
 
 Here's our logo (hover to see the title text):
 
-Inline-style:
-![alt text](https://picsum.photos/600/400 'Logo Title Text 1')
+Inline-style: ![alt text](https://picsum.photos/40/40 'Logo Title Text 1')
 
 Reference-style:
 ![alt text][logo]
