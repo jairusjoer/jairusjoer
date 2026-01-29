@@ -32,7 +32,10 @@ if (import.meta.env.PROD) {
       <li>
         <article>
           <a href={`/${entry.id}`}>
-            <strong>{entry.data.title}</strong>
+            <strong>
+              {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
+              {entry.data.title}
+            </strong>
           </a>
 
           {entry.data.date && (
