@@ -4,18 +4,15 @@ import { site } from '../config';
 import SiteNavigation from './SiteNavigation.astro';
 ---
 
-<header
-  class="space-y-[1.5em]"
-  style="view-transition-name: site-header;"
->
+<header class="site-header">
   <a
-    class="relative flex items-start gap-[1em]"
+    class="site-header-anchor"
     href="/"
   >
     {
       site?.image && (
         <Image
-          class="rounded-default size-[3em]"
+          class="site-header-portrait"
           src={site.image}
           alt="Portrait"
           width={160}
@@ -26,10 +23,37 @@ import SiteNavigation from './SiteNavigation.astro';
       )
     }
     <div>
-      <p class="text-foreground font-semibold">{site.title}</p>
+      <p class="site-header-title">{site.title}</p>
       {site?.description && <p>{site.description}</p>}
     </div>
   </a>
 
   {site?.navigation?.length && <SiteNavigation links={site.navigation} />}
 </header>
+
+<style>
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    view-transition-name: site-header;
+  }
+
+  .site-header-anchor {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1em;
+  }
+
+  .site-header-portrait {
+    border-radius: var(--radius-default);
+    width: 3em;
+    height: 3em;
+  }
+
+  .site-header-title {
+    color: var(--color-foreground);
+    font-weight: 600;
+  }
+</style>

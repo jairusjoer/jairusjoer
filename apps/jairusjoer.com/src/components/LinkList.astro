@@ -8,10 +8,7 @@ const formatLink = (url: string) => {
 };
 ---
 
-<div
-  id="link-list"
-  class="space-y-[0.75em]"
->
+<div class="link-list">
   {
     links.map((entry) => (
       <details>
@@ -21,15 +18,14 @@ const formatLink = (url: string) => {
             <li>
               <article>
                 <input
-                  class="peer"
-                  class="touch-hitbox"
+                  class="link-list-input touch-hitbox transition-press"
                   type="checkbox"
                   name="read"
                   title="Toogle reading status"
                   id={link}
                 />
                 <a
-                  class="transition-gentle peer-checked:line-through! peer-checked:opacity-50"
+                  class="link-list-anchor transition-gentle"
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -45,15 +41,26 @@ const formatLink = (url: string) => {
   }
 </div>
 
-<script>
-  const linkList = document.querySelector('#link-list');
-  const checkboxes = linkList?.querySelectorAll('input[type="checkbox"]');
+<style>
+  .link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+  }
 
-  const STORAGE_KEY = 'linkList';
+  .link-list-input:checked + .link-list-anchor {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+</style>
+
+<script>
+  const linkList = document.querySelector('.link-list');
+  const checkboxes = linkList?.querySelectorAll('input[type="checkbox"]');
 
   const getLinkList = (): Set<string> => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = localStorage.getItem('linkList');
       return new Set(stored ? JSON.parse(stored) : []);
     } catch {
       return new Set();
@@ -69,7 +76,7 @@ const formatLink = (url: string) => {
       current.delete(id);
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([...current]));
+    localStorage.setItem('linkList', JSON.stringify([...current]));
   };
 
   if (linkList) {

@@ -32,11 +32,8 @@ const components = getComponents();
 ---
 
 <PageLayout metadata={entry.data}>
-  <main class="my-[6em] w-full">
-    <header
-      class="prosa mb-[0.75em] has-[img,p]:mb-[1.5em]"
-      style="view-transition-name: page-header;"
-    >
+  <main class="page">
+    <header class="page-header prosa">
       {
         entry.data.image && (
           <Image
@@ -49,7 +46,7 @@ const components = getComponents();
         )
       }
       <h1>
-        {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
+        {entry.data.status && <span class="page-status">{entry.data.status}:</span>}
         <span>{entry.data.title}</span>
       </h1>
       {entry.data.description && <p>{entry.data.description}</p>}
@@ -66,10 +63,7 @@ const components = getComponents();
         )
       }
     </header>
-    <article
-      class="prosa"
-      style="view-transition-name: page-section;"
-    >
+    <article class="page-article prosa">
       <Content {components} />
     </article>
   </main>
@@ -82,3 +76,27 @@ const components = getComponents();
   toggleDetails();
   externalizeLinks();
 </script>
+
+<style>
+  .page {
+    margin-block: 6em;
+    width: 100%;
+  }
+
+  .page-header {
+    margin-bottom: 0.75em;
+    view-transition-name: page-header;
+
+    &:has(img, p) {
+      margin-bottom: 1.5em;
+    }
+  }
+
+  .page-article {
+    view-transition-name: page-article;
+  }
+
+  .page-status {
+    color: var(--color-accent);
+  }
+</style>

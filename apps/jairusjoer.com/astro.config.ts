@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import tailwindcss from '@tailwindcss/vite';
 import { site } from './src/config';
 
 import markdoc from '@astrojs/markdoc';
@@ -22,10 +21,6 @@ export default defineConfig({
     remarkRehype: {
       footnoteLabelProperties: {},
     },
-  },
-
-  vite: {
-    plugins: [tailwindcss()],
   },
 
   site: site.site,

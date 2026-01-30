@@ -1,7 +1,6 @@
-@import '../fonts/spectral.css';
+/* Rosé Pine Theme - https://rosepinetheme.com */
 
-/* https://tailwindcss.com/docs/theme */
-@theme static {
+:root {
   --color-accent: light-dark(#d7827e, #ebbcba); /* Rose Dawn / Rose Main */
 
   --color-background-subtle: light-dark(#fffaf3, #1f1d2e); /* Surface Dawn / Surface Main */
@@ -19,19 +18,4 @@
   --spacing-default: 60ch;
 
   --text-default: 1rem;
-}
-
-@layer custom {
-  header p:first-child,
-  th,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong {
-    font-family: 'Spectral', var(--font-serif);
-    font-style: inherit;
-  }
 }

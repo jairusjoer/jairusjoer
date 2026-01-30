@@ -8,11 +8,6 @@ export interface Props {
 const { links } = Astro.props;
 
 const active = (path: string) => {
-  // @todo: Temporary override
-  if (Astro.url.pathname.startsWith('/archive/')) {
-    return path === '/writing';
-  }
-
   if (path === '/') {
     return Astro.url.pathname === path;
   } else {
@@ -23,15 +18,12 @@ const active = (path: string) => {
 
 {
   links && (
-    <nav class="print:hidden">
-      <ul class="flex flex-wrap items-center gap-1 font-semibold">
+    <nav class="site-navigation">
+      <ul class="site-navigation-list">
         {links.map((link) => (
           <li>
             <a
-              class:list={[
-                'rounded-default transition-press bg-background-subtle block px-[0.5em]',
-                active(link.href) && 'bg-accent! text-background!',
-              ]}
+              class:list={['site-navigation-anchor transition-press', { active: active(link.href) }]}
               href={link.href}
             >
               {link.title}
@@ -42,3 +34,31 @@ const active = (path: string) => {
     </nav>
   )
 }
+
+<style>
+  .site-navigation {
+    @media print {
+      display: none;
+    }
+  }
+
+  .site-navigation-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+  }
+
+  .site-navigation-anchor {
+    display: block;
+    border-radius: var(--radius-default);
+    background-color: var(--color-background-subtle);
+    padding-inline: 0.5em;
+
+    &.active {
+      background-color: var(--color-accent) !important;
+      color: var(--color-background) !important;
+    }
+  }
+</style>

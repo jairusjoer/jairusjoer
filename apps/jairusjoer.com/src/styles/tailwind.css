@@ -1,9 +1,0 @@
-@import 'tailwindcss';
-@import './tailwind/base.css';
-@import './tailwind/utilities.css';
-@import './tailwind/transitions.css';
-@import './tailwind/prosa.css';
-
-@import './themes/catppuccin.css';
-
-@source inline('sr-only');

@@ -116,3 +116,16 @@
   font-display: swap;
   src: url('/assets/fonts/spectral/Spectral-ExtraBoldItalic.woff2') format('woff2');
 }
+
+blockquote,
+header p:first-child,
+th,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-family: 'Spectral', ui-serif, serif;
+}

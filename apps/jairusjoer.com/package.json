@@ -1,5 +1,5 @@
 {
-  "name": "open.cv",
+  "name": "jairusjoer.com",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -17,10 +17,7 @@
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.1",
-    "@lucide/astro": "^0.555.0",
-    "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.9",
-    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   },
   "prettier": {
@@ -29,8 +26,7 @@
     "singleAttributePerLine": true,
     "singleQuote": true,
     "plugins": [
-      "prettier-plugin-astro",
-      "prettier-plugin-tailwindcss"
+      "prettier-plugin-astro"
     ]
   },
   "devDependencies": {
@@ -47,7 +43,6 @@
     "jiti": "^2.6.1",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.14",
     "sharp": "^0.34.5",
     "typescript-eslint": "^8.53.0"
   }

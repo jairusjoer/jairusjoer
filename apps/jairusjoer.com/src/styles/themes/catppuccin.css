@@ -1,7 +1,6 @@
-@import '../fonts/spectral.css';
+/* Catppuccin Theme - https://catppuccin.com */
 
-/* https://tailwindcss.com/docs/theme */
-@theme static {
+:root {
   --color-accent: light-dark(#8839ef, #cba6f7); /* Latte Mauve / Mocha Mauve */
 
   --color-background-subtle: light-dark(#e6e9ef, #1e1e2e); /* Latte Base / Mocha Base */
@@ -19,19 +18,4 @@
   --spacing-default: 60ch;
 
   --text-default: 1rem;
-}
-
-@layer custom {
-  blockquote,
-  header p:first-child,
-  th,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong {
-    font-family: 'Spectral', var(--font-serif);
-  }
 }

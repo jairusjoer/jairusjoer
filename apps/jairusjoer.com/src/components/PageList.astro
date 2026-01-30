@@ -26,14 +26,14 @@ if (import.meta.env.PROD) {
 }
 ---
 
-<ul>
+<ul class="page-list">
   {
     collection.map((entry) => (
       <li>
         <article>
           <a href={`/${entry.id}`}>
             <strong>
-              {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
+              {entry.data.status && <span class="page-list-status">{entry.data.status}:</span>}
               {entry.data.title}
             </strong>
           </a>
@@ -51,3 +51,9 @@ if (import.meta.env.PROD) {
     ))
   }
 </ul>
+
+<style>
+  .page-list-status {
+    color: var(--color-accent);
+  }
+</style>
