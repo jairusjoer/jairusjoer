@@ -6,7 +6,7 @@ date: 2026-01-07
 
 This post builds on previous thoughts on why the future of the web might be native, an unpublished personal post about cross-platform web applications, and my exploration of the potential of personal software.
 
-My advocacy for the web as a decentralised operating system[^1] influences both my personal projects and my professional aspirations. This continues to have a positive impact on my ambitions and development with regard to what I coin **_personal software_**.
+My advocacy for the web as a decentralised operating system[^1] influences both my personal projects and my professional aspirations. This continues to have a positive impact on my ambitions and development with regard to what I understand as **_personal software_**.
 
 My most recent projects and explorations have reinforced my support for the aforementioned approach[^2] and helped me to develop a clearer personal vision. Today, I would like to share this vision while exploring this philosophical and practical shift.
 
