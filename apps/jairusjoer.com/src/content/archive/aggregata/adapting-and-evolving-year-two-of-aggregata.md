@@ -22,7 +22,7 @@ These features enhance user experience and improve the platform's overall functi
 
 We're updating our content to keep up with the tech curve or stay ahead! Here's what's new:
 
-- Web: As part of an intensified learning curve, we explored [design systems](https://aggregata.de/develop-design-systems-with-accessibility-in-mind/) and their underlying definitions, [accessibility](https://aggregata.de/accessibility-a-necessity-not-an-afterthought/) and its general application on the web, and lastly increased the number of entries in one of our favourite series, [Alpine.js](https://aggregata.de/dynamic-imports-with-alpine/).
+- Web: As part of an intensified learning curve, we explored [design systems](/archive/aggregata/develop-design-systems-with-accessibility-in-mind/) and their underlying definitions, [accessibility](/archive/aggregata/accessibility-a-necessity-not-an-afterthought/) and its general application on the web, and lastly increased the number of entries in one of our favourite series, [Alpine.js](/archive/aggregata/dynamic-imports-with-alpine/).
 - Machine Learning Deep Dive: We explored reinforcement and unsupervised learning, with articles on [Policy Gradient Reinforcement Learning](https://aggregata.de/actor-critic/), [Random Projections](https://aggregata.de/random-projections/), and pre-trained transformers like [Matcha-Quarta](https://aggregata.de/matcha-quarta/).
 
 This means you'll have even more valuable resources to learn about the latest technologies.
@@ -41,6 +41,6 @@ Building on the current success of Aggregata, we can now focus on more complex t
 
 We're also looking to upgrade our content management system (CMS) to meet the increasing demands of both ourselves and our readers. Our new site therefore will run on [Ghost](https://ghost.org/docs/).
 
-> Discover [Why we are moving Aggregata from Astro to Ghost](https://aggregata.de/why-we-are-moving-aggregata-from-astro-to-ghost/)
+> Discover [Why we are moving Aggregata from Astro to Ghost](/archive/aggregata/why-we-are-moving-aggregata-from-astro-to-ghost/)
 
-As for our next article, we plan to build on our [recent article on component libraries](https://aggregata.de/define-a-component-library-for-designers-and-developers/) with Create a Component Library for Designers and Developers. Look out for it in the next two weeks.
+As for our next article, we plan to build on our [recent article on component libraries](/archive/aggregata/define-a-component-library-for-designers-and-developers/) with Create a Component Library for Designers and Developers. Look out for it in the next two weeks.

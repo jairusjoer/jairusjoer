@@ -39,11 +39,11 @@ Unlike last year, this time I will summarise my favourite sessions from each day
 
 ### [Web-Fragments: incremental micro-frontends migration approach for enterprise](https://www.youtube.com/watch?v=WD-KkXAJY_U)
 
-This session helped me to bridge the gaps that I have been exploring in recent weeks regarding monoliths for my article series, '[_Migrating the Monolith_](https://aggregata.de/migrating-the-monolith-i-conceptualization/)', as well as helping me to develop a concept for decoupling frontends and easing migration into new stacks for existing applications.
+This session helped me to bridge the gaps that I have been exploring in recent weeks regarding monoliths for my article series, '[_Migrating the Monolith_](/archive/aggregata/migrating-the-monolith-i-conceptualization/)', as well as helping me to develop a concept for decoupling frontends and easing migration into new stacks for existing applications.
 
 ### [Possibilities with Web Capabilities](https://www.youtube.com/watch?v=MlNccgqSzbQ)
 
-As an [advocate of native web capabilities](https://aggregata.de/the-future-of-the-web-might-be-native/), I found this session particularly enlightening. It broadened my understanding of the offerings available and reaffirmed my belief that it provides a practical and future-proof foundation for developing capable web applications.
+As an [advocate of native web capabilities](/archive/aggregata/the-future-of-the-web-might-be-native/), I found this session particularly enlightening. It broadened my understanding of the offerings available and reaffirmed my belief that it provides a practical and future-proof foundation for developing capable web applications.
 
 ### [ShapeShift: Reinventing Agile for a B2B SaaS Scale-Up](https://www.youtube.com/watch?v=_AI56iglIks)
 
@@ -70,7 +70,7 @@ Recently, I explored various TypeScript-based stack combinations and found some 
 
 ### [Oh S\*\*\*! There's a New Accessibility Law and I'm Not Ready!](https://www.youtube.com/watch?v=h03tv2oTqG4&embeds_referring_origin=https%3A%2F%2Fapp.wearedevelopers.com)
 
-[Accessibility is not an afterthought](https://aggregata.de/accessibility-a-necessity-not-an-afterthought/). That has been my credo for some time now, and this talk has expanded my existing knowledge of testing approaches and tools, providing a more refined and robust foundation for future implementations internally as well as externally.
+[Accessibility is not an afterthought](/archive/aggregata/accessibility-a-necessity-not-an-afterthought/). That has been my credo for some time now, and this talk has expanded my existing knowledge of testing approaches and tools, providing a more refined and robust foundation for future implementations internally as well as externally.
 
 ### [Building Developer Experience - Brick by Brick](https://www.youtube.com/watch?v=QB1gyitYUbI&embeds_referring_origin=https%3A%2F%2Fapp.wearedevelopers.com)
 

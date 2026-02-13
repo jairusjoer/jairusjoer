@@ -14,7 +14,7 @@ WebAIM reports,
 
 The report delves into the details of the current situation and provides positive examples, which we'll highlight in this article.
 
-> Want to learn more about accessible design? Check out our article on [developing design systems with accessibility in mind](https://aggregata.de/develop-design-systems-with-accessibility-in-mind/)
+> Want to learn more about accessible design? Check out our article on [developing design systems with accessibility in mind](/archive/aggregata/develop-design-systems-with-accessibility-in-mind/)
 
 Before we delve into improving these numbers, let's recapture the essence of accessibility on the web. Accessibility as defined by the [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/#guidelines) can be broken down in four overarching principles.
 

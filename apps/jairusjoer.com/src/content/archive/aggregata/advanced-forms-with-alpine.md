@@ -6,7 +6,7 @@ description: 'Visualise validation errors in your backend for input elements wit
 
 ## Visualise validation errors in your backend
 
-If you are not yet familiar with working on forms with Alpine.js, you can refresh your knowledge in our first article on this topic, [Interactive forms with Alpine.js](https://aggregata.de/interactive-forms-with-alpine/).
+If you are not yet familiar with working on forms with Alpine.js, you can refresh your knowledge in our first article on this topic, [Interactive forms with Alpine.js](/archive/aggregata/interactive-forms-with-alpine-js/).
 
 In our first article on interactive forms with Alpine.js, we already indicated that Alpine.js can also be used to influence individual elements in addition to the general display of server-side information in the form.
 
@@ -14,7 +14,7 @@ Due to popular demand, we have decided to take up precisely this topic in this f
 
 ### Setup
 
-For this demonstration, we are using our [Astro Boilerplate](https://github.com/aggregata/astro-boilerplate), which we have already presented in detail in an [earlier article](https://aggregata.de/astro-an-introduction-to-your-next-project/).
+For this demonstration, we are using our [Astro Boilerplate](https://github.com/aggregata/astro-boilerplate), which we have already presented in detail in an [earlier article](/archive/aggregata/astro-an-introduction-to-your-next-project/).
 
 If our boilerplate isn’t right for you, that’s not a problem. The steps for validating form entries work in any project with Alpine.js.
 

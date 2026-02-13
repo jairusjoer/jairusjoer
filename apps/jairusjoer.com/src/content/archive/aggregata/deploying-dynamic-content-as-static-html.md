@@ -12,9 +12,9 @@ You can use self-hosted or third-party applications to provide generic content. 
 
 ### Server Side Rendering (SSR)
 
-The traditional approach is for a CMS such as [Wordpress](https://wordpress.org/?ref=aggregata.de) or CMF such as [ProcessWire](https://processwire.com/?ref=aggregata.de) to manage the content of a page, provide an editorial system and, if necessary, display the content using templates.
+The traditional approach is for a CMS such as [Wordpress](https://wordpress.org/) or CMF such as [ProcessWire](https://processwire.com/) to manage the content of a page, provide an editorial system and, if necessary, display the content using templates.
 
-Modern tech stacks use full-stack frameworks such as [Next.js](https://nextjs.org/?ref=aggregata.de), which take over the templating and retrieve content from the CMS via an interface, such as [Strapi](https://strapi.io/?ref=aggregata.de).
+Modern tech stacks use full-stack frameworks such as [Next.js](https://nextjs.org/), which take over the templating and retrieve content from the CMS via an interface, such as [Strapi](https://strapi.io/).
 
 The server is responsible for preparing the content in the form of a page. Depending on the chosen approach, it also provides the content management system.
 
@@ -26,7 +26,7 @@ In contrast to the traditional approach, client-side rendering makes the user’
 
 The content is prepared when the static files are generated. An interface is required for this, either from the file system or from a CMS.
 
-In smaller projects, it can make sense to manage the content via the file system. [Astro](https://astro.build/?ref=aggregata.de) is a tool that uses this approach to manage content in formats such as Markdown and prepare it using templates. Markdown is a format that remains readable in a text editor.
+In smaller projects, it can make sense to manage the content via the file system. [Astro](https://astro.build/) is a tool that uses this approach to manage content in formats such as Markdown and prepare it using templates. Markdown is a format that remains readable in a text editor.
 
 > We use the same approach to provide the content of Aggregata.
 
@@ -48,7 +48,7 @@ To create a webhook as a deploy hook, we first navigate to the settings of our p
 
 ![View of the menu item Add deploy hook in Cloudflare](./assets/cloudflare.png)
 
-We simply enter a name for the deploy hook and select the branch of our project that is to be used for deployment from an SCM such as [GitHub](https://github.com/?ref=aggregata.de).
+We simply enter a name for the deploy hook and select the branch of our project that is to be used for deployment from an SCM such as [GitHub](https://github.com/).
 
 Cloudflare then provides a URL to trigger the deployment. This URL can now be transferred to Hygraph.
 
@@ -72,7 +72,7 @@ In this use case, the performance of the website is favourable. It is delivered 
 
 However, a large number of content changes can lead to a delay before they become visible on the website. Deployments can be grouped to reduce the number of deployments required.
 
-> Restrictions may apply depending on the provider and plan selected. For example, [Vercel](https://vercel.com/?ref=aggregata.de) limits deployments in the Hobby plan to 100 and in the Pro plan to 600 per day.
+> Restrictions may apply depending on the provider and plan selected. For example, [Vercel](https://vercel.com/) limits deployments in the Hobby plan to 100 and in the Pro plan to 600 per day.
 
 This use case is generally recommended for sites with a low frequency of content changes that do not necessarily rely entirely on real-time data for their content.
 

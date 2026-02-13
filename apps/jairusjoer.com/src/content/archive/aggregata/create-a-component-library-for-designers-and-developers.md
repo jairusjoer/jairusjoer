@@ -6,7 +6,7 @@ date: 2024-10-29
 
 ## Where we left off
 
-In the [previous article](https://aggregata.de/define-a-component-library-for-designers-and-developers/), we explored how to define a component library based on the premise of communication. In this article, we will continue to explore the implementation of a component library for designers and developers alike, incorporating what we have learned so far.
+In the [previous article](/archive/aggregata/define-a-component-library-for-designers-and-developers/), we explored how to define a component library based on the premise of communication. In this article, we will continue to explore the implementation of a component library for designers and developers alike, incorporating what we have learned so far.
 
 ## Requirements
 
@@ -240,7 +240,7 @@ The task of maintenance cuts across all of the previous steps, as it is a shared
 
 Congratulations. You've taken the first steps toward creating a component library for your project or organization. While this article only covers the general approach, the next article will delve into the specifics of how to manage component complexity and keep it maintainable.
 
-To accomplish this, we'll also look back at previous articles such as [Develop design systems with accessibility in mind](https://aggregata.de/develop-design-systems-with-accessibility-in-mind/), and how the patterns presented there can be applied to facilitate component library development.
+To accomplish this, we'll also look back at previous articles such as [Develop design systems with accessibility in mind](/archive/aggregata/develop-design-systems-with-accessibility-in-mind/), and how the patterns presented there can be applied to facilitate component library development.
 
 ## TL;DR
 

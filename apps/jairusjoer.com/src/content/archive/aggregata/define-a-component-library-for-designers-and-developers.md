@@ -4,7 +4,7 @@ description: Delve into the early steps of establishing a component library for 
 date: 2024-09-16
 ---
 
-Once again, we delve into the intersection of design and development - this time expanding on our [previous discussion of design systems](https://aggregata.de/develop-design-systems-with-accessibility-in-mind/). In this article, we will take a first look at component libraries, a crucial yet often debated approach for designers and developers alike.
+Once again, we delve into the intersection of design and development - this time expanding on our [previous discussion of design systems](/archive/aggregata/develop-design-systems-with-accessibility-in-mind/). In this article, we will take a first look at component libraries, a crucial yet often debated approach for designers and developers alike.
 
 Component libraries, like their counterpart, the design system, are the foundation of an organization's design and development process. They provide a (single) source of truth for designers and developers, ensuring consistency and efficiency across the board.
 

@@ -6,7 +6,7 @@ date: 2025-03-03
 
 ## Taking View Transitions to the Next Level
 
-In our article [_Leverage the View Transition API in any Project_](https://aggregata.de/leverage-the-view-transition-api-in-any-project/), we explored the View Transition API within the context of a single document. Now, let’s take this a step further and implement transitions across different documents.
+In our article [_Leverage the View Transition API in any Project_](/archive/aggregata/leverage-the-view-transition-api-in-any-project/), we explored the View Transition API within the context of a single document. Now, let’s take this a step further and implement transitions across different documents.
 
 [Cross-document view transitions](https://developer.chrome.com/docs/web-platform/view-transitions/cross-document) bridge the gap between traditional multi-page applications and single-page applications in terms of user experience. This allows developers to easily access the smooth navigation experience typically associated with single-page applications.
 

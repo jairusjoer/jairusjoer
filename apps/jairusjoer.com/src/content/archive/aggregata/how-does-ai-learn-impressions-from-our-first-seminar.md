@@ -4,7 +4,7 @@ date: 2023-10-02
 description: 'Understanding Artificial Intelligence - In our latest article we give an insight into our first seminar and our experience.'
 ---
 
-In August, we had the opportunity to give colleagues at the communications agency [neuwaerts](https://www.neuwaerts.de/?ref=aggregata.de) a deeper look into the theory behind machine learning and artificial intelligence in general.
+In August, we had the opportunity to give colleagues at the communications agency [neuwaerts](https://www.neuwaerts.de/) a deeper look into the theory behind machine learning and artificial intelligence in general.
 
 ## Contents
 
@@ -49,7 +49,7 @@ After the main topic was completed and time remained, participants were given th
 
 Here, an interest in *Ethics and Bias in Machine Learning* and *Functionality of Generative Models* emerged in particular.
 
-We had already provided reflections on the ethics of artificial intelligence in our [article from May 2, 2022 (_Working with Artificial Intelligence: Risks & Side Effects_)](https://aggregata.de/working-with-artificial-intelligence-risks-and-side-effects/), so we were able to take the opportunity here to delve into the current situation and changes in perception.
+We had already provided reflections on the ethics of artificial intelligence in our [article from May 2, 2022 (_Working with Artificial Intelligence: Risks & Side Effects_)](/archive/aggregata/working-with-artificial-intelligence-risks-and-side-effects/), so we were able to take the opportunity here to delve into the current situation and changes in perception.
 
 The *Functionality of Generative Models* in the context of creative work with generation services such as Midjourney was also explained in more detail with clear graphics and relevant examples from the industry.
 

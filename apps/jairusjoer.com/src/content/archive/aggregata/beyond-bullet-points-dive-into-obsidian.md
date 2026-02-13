@@ -4,7 +4,7 @@ date: 2024-04-01
 description: "Obsidian, a tool for building a 'second brain' - a system for organizing and managing information effectively. Learn how this free, open source platform can help you organize notes, connect ideas and potentially improve workflow efficiency."
 ---
 
-[Obsidian](https://obsidian.md/?ref=aggregata.de) describes itself as ***”… the private and flexible writing app that adapts to the way you think”*** and offers besides a Markdown text editor the capability to build your own knowledge base.
+[Obsidian](https://obsidian.md/) describes itself as ***”… the private and flexible writing app that adapts to the way you think”*** and offers besides a Markdown text editor the capability to build your own knowledge base.
 
 I’ve been using Obsidian personally for a year now, and I’ve grown quite fond of its focused approach to writing and organization. So I thought a dip into Obsidian’s feature pool might be in order.
 
@@ -22,7 +22,7 @@ The look and feel of the interface and editor can be customized using custom fon
 
 ![Subset of available appearance options](./assets/obsidian-appearance.png)
 
-*If the base application does not have a feature you may need, have a look at the available* [_plugins_](https://aggregata.de/en/blog/applications/obsidian-your-personal-knowledge-base/#plugins)_._
+*If the base application does not have a feature you may need, have a look at the available* [_plugins_](#plugins)_._
 
 ## Vaults
 
@@ -30,9 +30,9 @@ Your written pieces are stored in vaults. Vaults are nothing more than directori
 
 You can use multiple vaults to separate concerns, as a single vault can contain multiple directories. In this case, you can use one vault for personal matters and another for work-related files if you wish, or you can rely on the directory structure within a vault.
 
-> Using Obsidian in a commercial context requires you to [obtain a license](https://obsidian.md/pricing?ref=aggregata.de).
+> Using Obsidian in a commercial context requires you to [obtain a license](https://obsidian.md/pricing).
 
-*We’ll dive deeper into storing your vaults to access them across devices in* [_Storage, Sync & Publish_](https://aggregata.de/en/blog/applications/obsidian-your-personal-knowledge-base/#storage-sync--publish)_._
+*We’ll dive deeper into storing your vaults to access them across devices in* [_Storage, Sync & Publish_](#storage-sync--publish)_._
 
 ## Links
 
@@ -47,7 +47,7 @@ Obsidian offers two methods for linking files and attachments together:
 
 Linked or tagged files can be visualized in a graph that can be customised to display your linked files in a way that suits your needs. The floral nature of the patterns that appear has led the community to refer to some of their vaults as *digital gardens*.
 
-Your garden grows with your vault and the knowledge it contains. In extreme cases, this can lead to huge interconnected documents on entire research topics, as is the case with [The Quantum Well](https://publish.obsidian.md/myquantumwell?ref=aggregata.de):
+Your garden grows with your vault and the knowledge it contains. In extreme cases, this can lead to huge interconnected documents on entire research topics, as is the case with [The Quantum Well](https://publish.obsidian.md/myquantumwell):
 
 ![Graph view of The Quantum Well](./assets/the-quantum-well.png)
 
@@ -65,17 +65,17 @@ You can loosely group cards and attachments to iterate on something like a mood 
 
 Obsidian offers core plugins that are pre-installed and ready to use with the base application, as well as community plugins. Neat features like the command palette, canvas and file recovery are enabled by default.
 
-In addition to the core plugins, there are community plugins that give you a huge list of advanced features and completely new feature implementations to choose from. You can choose to use [Excalidraw](https://excalidraw.com/?ref=aggregata.de) instead of the built-in canvas, or use Git within Obsidian to version your files.
+In addition to the core plugins, there are community plugins that give you a huge list of advanced features and completely new feature implementations to choose from. You can choose to use [Excalidraw](https://excalidraw.com/) instead of the built-in canvas, or use Git within Obsidian to version your files.
 
 ![Overview of community plugins](./assets/obsidian-plugins.png)
 
 ## Storage, Sync & Publish
 
-By default, Obsidian stores your [vault](https://aggregata.de/en/blog/applications/obsidian-your-personal-knowledge-base/#vaults) as a directory on your hard drive. From here, there are two preferred methods for sharing and synchronizing your files - one independent of Obsidian and one built into the application.
+By default, Obsidian stores your [vault](#vaults) as a directory on your hard drive. From here, there are two preferred methods for sharing and synchronizing your files - one independent of Obsidian and one built into the application.
 
-**Git** and services like [GitHub](https://github.com/?ref=aggregata.de) are ideal for storing your markdown files and synchronizing versions across devices. They may require you to take care of versioning your files, but they are somewhat independent of proprietary software.
+**Git** and services like [GitHub](https://github.com/) are ideal for storing your markdown files and synchronizing versions across devices. They may require you to take care of versioning your files, but they are somewhat independent of proprietary software.
 
-[Sync](https://obsidian.md/sync?ref=aggregata.de) & [Publish](https://obsidian.md/publish?ref=aggregata.de) are two services offered by Obsidian to automate the synchronization and publishing of your files. Sync automates synchronization across devices, while Publish allows you to publish your vault as a website.
+[Sync](https://obsidian.md/sync) & [Publish](https://obsidian.md/publish) are two services offered by Obsidian to automate the synchronization and publishing of your files. Sync automates synchronization across devices, while Publish allows you to publish your vault as a website.
 
 ---
 

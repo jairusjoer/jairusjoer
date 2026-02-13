@@ -68,7 +68,7 @@ In special cases where complex or specific effects need to be achieved, we fall 
 
 A large part of the interactivity in the client is handled for us by [Alpine.js](https://alpinejs.dev/).
 
-We have already shared our positive experiences with Alpine.js in the past, an introduction to Alpine.js can be found in our first [article on this topic](https://archive.aggregata.de/en/blog/alpinejs/alpine-in-a-production-environment/).
+We have already shared our positive experiences with Alpine.js in the past, an introduction to Alpine.js can be found in our first [article on this topic](/archive/aggregata/include-alpine-js-in-a-production-environment).
 
 ### Cloudflare
 

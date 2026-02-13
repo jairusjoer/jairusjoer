@@ -4,7 +4,7 @@ description: A personal reflection on the pursuit of simplicity; setting boundar
 date: 2025-09-29
 ---
 
-> The second part of ['Migrating the Monolith'](https://aggregata.de/migrating-the-monolith-i-conceptualization/) was scheduled for release, but it has been postponed due to scheduling conflicts. In the meantime, enjoy this article, which focuses on my personal quest for simplicity and how I came to terms with it.
+> The second part of ['Migrating the Monolith'](/archive/aggregata/migrating-the-monolith-i-conceptualization/) was scheduled for release, but it has been postponed due to scheduling conflicts. In the meantime, enjoy this article, which focuses on my personal quest for simplicity and how I came to terms with it.
 
 Recently I somewhat randomly watched [**Behind The Scenes Of Notion's INSANE Design (w. Notion Team)**](https://www.youtube.com/watch?v=b00sgRR_Vc0), a video on [Notion’s](https://www.notion.com/) design psychology and their endless pursuit of simplicity in the user experience of their product, which led me to this week’s topic: the Sisyphean struggle behind it all.
 

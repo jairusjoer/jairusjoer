@@ -26,7 +26,7 @@ Each product is stored as an object in the list and contains the `name` and `pri
 
 To be able to display the data in the frontend, we first need a way to retrieve it. For this, we use a fictitious API in our example, from which we obtain the data structure using the `getOffers()` function and store it in the `offers` object. This is done, as usual, in a specially created context within Alpine, here called `utility`.
 
-> If you want to learn more about how to include Alpine in your environment, we recommend our post: [Including Alpine.js in a production environment](https://aggregata.de/alpine-in-a-production-environment/)
+> If you want to learn more about how to include Alpine in your environment, we recommend our post: [Including Alpine.js in a production environment](/archive/aggregata/include-alpine-js-in-a-production-environment)
 
 ```js
 document.addEventListener('alpine:init', () => {

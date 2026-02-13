@@ -6,7 +6,7 @@ description: 'In October 2022 we published our first article and in October 2023
 
 ## In October 2022 we published our first article
 
-On 2 October 2022, we published our first article - [Include Alpine.js in a production environment](https://aggregata.de/alpine-in-a-production-environment/) - and take this as an opportunity to review Aggregata after one year.
+On 2 October 2022, we published our first article - [Include Alpine.js in a production environment](/archive/aggregata/include-alpine-js-in-a-production-environment) - and take this as an opportunity to review Aggregata after one year.
 
 While we report on our progress, we also want to give an outlook on future projects and what readers can expect from Aggregata in the future.
 
@@ -30,7 +30,7 @@ We have continuously added more modules to our content. An eye-catcher are the *
 
 In the future, we will not only publish articles on Aggregata, but also on [dev.to](https://dev.to/) on the topics of web, applications and artificial intelligence.
 
-Our [experiences from the first seminar](https://aggregata.de/how-does-ai-learn-impressions-from-our-first-seminar/) have led us to expand this format in the future and strive for even more successful knowledge communication.
+Our [experiences from the first seminar](/archive/aggregata/how-does-ai-learn-impressions-from-our-first-seminar/) have led us to expand this format in the future and strive for even more successful knowledge communication.
 
 In the long term, this will also have a positive impact on the website and its content, as we will incorporate the expertise gained into our content and the expansion of the website.
 

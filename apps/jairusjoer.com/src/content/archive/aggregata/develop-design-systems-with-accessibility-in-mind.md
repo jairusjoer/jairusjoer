@@ -4,7 +4,7 @@ description: Don't leave your users behind - Learn how to design accessible user
 date: 2024-05-27
 ---
 
-During my research for the next update of Aggregata, I came across the topics of design systems and the implementation of design tokens. In case you missed it, check out our recent article on [Why we are moving Aggregata from Astro to Ghost](https://aggregata.de/why-we-are-moving-aggregata-from-astro-to-ghost/) for future publishing.
+During my research for the next update of Aggregata, I came across the topics of design systems and the implementation of design tokens. In case you missed it, check out our recent article on [Why we are moving Aggregata from Astro to Ghost](/archive/aggregata/why-we-are-moving-aggregata-from-astro-to-ghost/) for future publishing.
 
 Reading (again) through some amazing design systems documentation from the likes of [IBM](https://www.ibm.com/design/language/), [Nordhealth](https://nordhealth.design/) and [Atlassian](https://atlassian.design/), I was captivated by their commitment to accessibility and how they enable their developers to create inclusive and seamless experiences using design tokens.
 
@@ -173,7 +173,7 @@ How you implement your new set of design tokens depends on many factors and usua
 
 Check out [Awesome CSS Frameworks](https://github.com/troxler/awesome-css-frameworks) by [troxler](https://github.com/troxler) for more options regarding CSS frameworks or define your own strategy for implementing design tokens that suits your specific needs.
 
-For a more practial approach, refer to our [Astro Boilerplate](https://github.com/aggregata/astro-boilerplate) which uses the demonstrated approach of handling tokens in a design system. In our article [Astro - An introduction to your next project](https://aggregata.de/astro-an-introduction-to-your-next-project/) we outline the use of our boilerplate project for you.
+For a more practial approach, refer to our [Astro Boilerplate](https://github.com/aggregata/astro-boilerplate) which uses the demonstrated approach of handling tokens in a design system. In our article [Astro - An introduction to your next project](/archive/aggregata/astro-an-introduction-to-your-next-project/) we outline the use of our boilerplate project for you.
 
 [Download Astro Boilerplate](https://github.com/aggregata/astro-boilerplate/archive/refs/heads/production.zip)
 

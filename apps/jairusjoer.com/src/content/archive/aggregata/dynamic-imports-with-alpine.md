@@ -10,7 +10,7 @@ In this article, we will show you how to implement dynamic imports with Alpine.j
 
 ### Setup
 
-For this demonstration, we are using our [Astro Boilerplate](https://github.com/aggregata/astro-boilerplate), which we have already [discussed in detail in a previous article](https://aggregata.de/astro-an-introduction-to-your-next-project/).
+For this demonstration, we are using our [Astro Boilerplate](https://github.com/aggregata/astro-boilerplate), which we have already [discussed in detail in a previous article](/archive/aggregata/astro-an-introduction-to-your-next-project/).
 
 If our boilerplate isn’t right for you, that’s no problem. The steps for implementing dynamic imports work in any project with Alpine.js.
 

@@ -30,7 +30,7 @@ A simple contact form serves as the starting point for the intended dynamization
 
 ## Integrate Alpine.js into the form
 
-> Alpine.js installation and setup is required for this section. Read more in our post: [Include Alpine.js in a production environment](https://aggregata.de/alpine-in-a-production-environment/).
+> Alpine.js installation and setup is required for this section. Read more in our post: [Include Alpine.js in a production environment](/archive/aggregata/include-alpine-js-in-a-production-environment).
 
 Inside the Alpine script, register the `useForm` context and define the asynchronous `post` function as follows. Note also the offloading of the data formatting to its own `data` function, which allows a more flexible inclusion of the data within the context.
 
@@ -168,7 +168,7 @@ Via `x-show` the element `.form-response` is faded in by the response of the bac
 
 Thus, answers from the backend can be displayed dynamically via Alpine. In a further step, this functionality could also be used to display information for the validation of individual input fields.
 
-> Due to popular demand, we've created a follow-up article on working with advanced forms in Alpine.js. Check out our article on working with [Advanced forms with Alpine.js](https://aggregata.de/advanced-forms-with-alpine/).
+> Due to popular demand, we've created a follow-up article on working with advanced forms in Alpine.js. Check out our article on working with [Advanced forms with Alpine.js](/archive/aggregata/advanced-forms-with-alpine/).
 
 ## TL;DR
 

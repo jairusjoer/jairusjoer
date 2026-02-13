@@ -6,9 +6,9 @@ date: 2024-11-11
 
 ## Where we Left Off
 
-Previous, we learned how to [Create a Component Library for Designers and Developers](https://aggregata.de/create-a-component-library-for-designers-and-developers/) by implementing a fairly simple button component. In this article we'll expand on the previously established foundation and display how to handle more extensive components.
+Previous, we learned how to [Create a Component Library for Designers and Developers](/archive/aggregata/create-a-component-library-for-designers-and-developers/) by implementing a fairly simple button component. In this article we'll expand on the previously established foundation and display how to handle more extensive components.
 
-To facilitate our desired outcome, we'll build on some of the ideas presented in [Develop design systems with accessibility in mind](https://aggregata.de/develop-design-systems-with-accessibility-in-mind/) and implement design tokens to manage the colors and appearance of our components during design and development.
+To facilitate our desired outcome, we'll build on some of the ideas presented in [Develop design systems with accessibility in mind](/archive/aggregata/develop-design-systems-with-accessibility-in-mind/) and implement design tokens to manage the colors and appearance of our components during design and development.
 
 ## New Requirements
 

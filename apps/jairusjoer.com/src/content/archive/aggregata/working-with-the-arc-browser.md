@@ -4,7 +4,7 @@ date: 2024-01-08
 description: 'The Arc Browser brings a breath of fresh air to the browser market and at the same time offers interesting features that could have a lasting impact on the way we browse the Internet. Read more in this article.'
 ---
 
-I’ve been using the [Arc Browser](https://arc.net/?ref=aggregata.de) from *The Browser Company* for a good six months now and have been pleasantly surprised by every major update so far. For this reason, I’d like to introduce you to the browser and its features in more detail today.
+I’ve been using the [Arc Browser](https://arc.net/) from *The Browser Company* for a good six months now and have been pleasantly surprised by every major update so far. For this reason, I’d like to introduce you to the browser and its features in more detail today.
 
 Like any other browser, the Arc Browser initially does exactly what it is supposed to do: browse. However, what makes it stand out from the crowd are the small, detailed interactions and features that expand or change a page in addition to the actual browsing.
 
@@ -18,7 +18,7 @@ Onboarding is as personal as you would expect from a modern application. From im
 
 ## Tabs & Views
 
-Arc divides tabs into two groups: Temporary and permanent tabs. [Temporary tabs](https://aggregata.de/en/blog/applications/working-with-the-arc-browser/#archive) close automatically after 24 hours, unless otherwise specified in the settings, while permanent tabs function like bookmarks and can be organized accordingly via folders.
+Arc divides tabs into two groups: Temporary and permanent tabs. [Temporary tabs](#archive) close automatically after 24 hours, unless otherwise specified in the settings, while permanent tabs function like bookmarks and can be organized accordingly via folders.
 
 ![A screenshot of the split view of tabs](./assets/split-view.png)
 
@@ -42,7 +42,7 @@ Arc Max is Arc’s AI assistant, whose task is to make your own workflow easier 
 
 ![A screenshot of the options for Arc Max](./assets/max.png)
 
-Although no details on the marketing of this feature are currently known, the CEO of Browser Compnay, Josh Miller, has opened a [survey on X](https://twitter.com/joshm/status/1711582180210594215?ref=aggregata.de) on possible pricing models for Arc Max.
+Although no details on the marketing of this feature are currently known, the CEO of Browser Compnay, Josh Miller, has opened a [survey on X](https://twitter.com/joshm/status/1711582180210594215) on possible pricing models for Arc Max.
 
 ### Library
 
@@ -74,7 +74,7 @@ The archive collects closed and temporary tabs so that they are never completely
 
 ---
 
-In addition, Arc offers many predefined [integrations](https://arc.net/integrations?ref=aggregata.de) for various websites such as Outlook or Google Calendar, which provide permanent tabs around intelligent features such as a calendar preview or a list of recently accessed documents in the application.
+In addition, Arc offers many predefined [integrations](https://arc.net/integrations) for various websites such as Outlook or Google Calendar, which provide permanent tabs around intelligent features such as a calendar preview or a list of recently accessed documents in the application.
 
 ## Development tools
 
@@ -88,7 +88,7 @@ Portrait mode presents the page in front of a suitable background or optionally 
 
 **Capture**
 
-Saving page content is also integrated in [Media](https://aggregata.de/en/blog/applications/working-with-the-arc-browser/#media--downloads) and Easels, but also offers its own editing function. The recordings can otherwise be saved or sent via the dialog options.
+Saving page content is also integrated in [Media](#media--downloads) and Easels, but also offers its own editing function. The recordings can otherwise be saved or sent via the dialog options.
 
 ---
 

@@ -6,7 +6,7 @@ date: 2025-02-17
 
 ## Where we left off
 
-In the [previous article](https://aggregata.de/expand-a-component-library-for-designers-and-developers/), we expanded our button component by implementing design tokens and color variants. We established a system of primitive and semantic tokens that allowed us to manage colors consistently across both design and development.
+In the [previous article](/archive/aggregata/expand-a-component-library-for-designers-and-developers/), we expanded our button component by implementing design tokens and color variants. We established a system of primitive and semantic tokens that allowed us to manage colors consistently across both design and development.
 
 In this article we’re going to enhance the button component by adding interaction states. This change will extend our designer requirements and ensure that our component provides a smoother user experience.
 

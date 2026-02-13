@@ -4,7 +4,7 @@ description: This article summarizes my approach to interaction design, with a f
 date: 2025-09-15
 ---
 
-I take delight in modern interactions at both the macro and microscopic scales, and I have already published a [technical demonstration on this subject](https://aggregata.de/crafting-a-detailed-dialog-element-using-microinteractions/). Before you return, feel free to take a detour and briefly explore my implementation of a dialogue using [microinteractions](https://uxdesign.cc/micro-interactions-a-superpower-of-successful-design-ef7706154934).
+I take delight in modern interactions at both the macro and microscopic scales, and I have already published a [technical demonstration on this subject](/archive/aggregata/crafting-a-detailed-dialog-element-using-microinteractions/). Before you return, feel free to take a detour and briefly explore my implementation of a dialogue using [microinteractions](https://uxdesign.cc/micro-interactions-a-superpower-of-successful-design-ef7706154934).
 
 Just this year, I delved deeply into the subject of interaction design and its disciplines in order to enrich the user experience and transform good digital products into great ones. Although this practice has yet to reach many products, rest assured that a vested interest is already forming.
 

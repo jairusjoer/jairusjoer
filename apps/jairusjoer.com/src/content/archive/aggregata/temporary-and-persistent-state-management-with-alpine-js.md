@@ -6,7 +6,7 @@ description: "In this article, you'll learn how to use Alpine.js to manage both 
 
 The texts in this article were partly composed with the help of artificial intelligence and corrected and revised by us.
 
-In our first article on using [Alpine.js in a production environment](https://aggregata.de/en/blog/alpinejs/alpine-in-a-production-environment/), we outlined a scenario where Alpine's contexts can be used to map both local and global scopes over which data can be provided.
+In our first article on using [Alpine.js in a production environment](/archive/aggregata/include-alpine-js-in-a-production-environment/), we outlined a scenario where Alpine's contexts can be used to map both local and global scopes over which data can be provided.
 
 With this article, we would like to revisit and deepen this scenario. In this demonstration, we will implement a compliance solution for external content and store the user's decisions temporarily or persistently.
 
