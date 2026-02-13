@@ -3,8 +3,8 @@
 :root {
   --color-accent: light-dark(#8839ef, #cba6f7); /* Latte Mauve / Mocha Mauve */
 
-  --color-background-subtle: light-dark(#e6e9ef, #1e1e2e); /* Latte Base / Mocha Base */
-  --color-background: light-dark(#eff1f5, #181825); /* Latte Mantle / Mocha Mantle */
+  --color-background-subtle: light-dark(#e6e9ef, #181825); /* Latte Mantle / Mocha Mantle */
+  --color-background: light-dark(#eff1f5, #1e1e2e); /* Latte Base / Mocha Base */
 
   --color-border: light-dark(#ccd0da, #313244); /* Latte Surface0 / Mocha Surface0 */
 

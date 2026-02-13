@@ -14,6 +14,7 @@ export const site: SiteConfig = {
     { title: 'About', href: '/' },
     { title: 'Writing', href: '/writing' },
     { title: 'Reading', href: '/reading' },
+    { title: 'Archive', href: '/archive' },
   ],
   footer: [
     { title: 'Legal', href: '/legal' },

@@ -46,7 +46,7 @@ const components = getComponents();
         )
       }
       <h1>
-        {entry.data.status && <span class="page-status">{entry.data.status}:</span>}
+        {entry.data.status && <span>{entry.data.status}:</span>}
         <span>{entry.data.title}</span>
       </h1>
       {entry.data.description && <p>{entry.data.description}</p>}
@@ -58,7 +58,6 @@ const components = getComponents();
                 <time>{formatDatetime(entry.data.date)}</time>
               </small>
             </p>
-            <hr />
           </>
         )
       }
@@ -87,16 +86,14 @@ const components = getComponents();
     margin-bottom: 0.75em;
     view-transition-name: page-header;
 
-    &:has(img, p) {
-      margin-bottom: 1.5em;
+    &:has(img, p, time) {
+      margin-bottom: 3em;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 3rem;
     }
   }
 
   .page-article {
     view-transition-name: page-article;
-  }
-
-  .page-status {
-    color: var(--color-accent);
   }
 </style>

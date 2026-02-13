@@ -129,3 +129,14 @@ h6,
 strong {
   font-family: 'Spectral', ui-serif, serif;
 }
+
+/* .prosa {
+  a,
+  li:has(a)::marker {
+    color: light-dark(#1e66f5, #89b4fa);
+  }
+
+  blockquote {
+    --color-accent: light-dark(#e64553, #eba0ac);
+  }
+} */

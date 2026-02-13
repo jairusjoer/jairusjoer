@@ -8,7 +8,7 @@ date: 2025-11-11
 
 In the previous article, we discussed how monolithic architectures can hinder innovation and scalability when the scope of teams and products exceeds their original boundaries. We then explored a conceptual approach to refactoring.
 
-[Migrating the Monolith I: Conceptualization](https://jairusjoer.com/migrating-the-monolith-i-conceptualization/)
+[Migrating the Monolith I: Conceptualization](/archive/aggregata/migrating-the-monolith-i-conceptualization)
 
 We identified several challenges, including tightly coupled APIs, diverging product requirements, and a loss of cohesion due to cross-domain entanglement. We also identified ways to address these challenges. This installment focuses on translating that vision into a practical design.
 
