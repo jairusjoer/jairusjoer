@@ -4,19 +4,20 @@ date: 2026-01-30
 status: 'Draft'
 ---
 
-In the winter of 2025, I wrote _[About Personal Software](/writing/about-personal-software)_, exploring how **_taste_**, the trained instinct that elevates work from the merely functional to the exceptional, becomes the key differentiator as artificial intelligence commodifies software creation. That post laid the philosophical groundwork; this one extends it into the technical.
+At the end of 2025, I started writing _[About Personal Software](/writing/about-personal-software)_, exploring the concept of personal software, how human taste and identity dictate quality in an AI-driven landscape, and a personal vision for the future of software development.
+That post laid the philosophical groundwork; this one extends it technically.
 
-Since then, my advocacy for the web as a decentralised operating system has been reinforced through a side project in which I rediscovered [Tauri](https://v2.tauri.app/) and prototyped a cross-platform note-taking application — a single web-first codebase distributed to desktop and mobile through native shells. The experience clarified where the web's primitives already suffice and where they require augmentation.
+Since then, I rediscovered [Tauri](https://v2.tauri.app/) and created cross-platform application prototypes with a single web-first codebase, which is primarily distributed through the web and optionally through native shells. This process clarified the areas where the web’s primitives suffice and those where they require augmentation.
 
-Throughout January, I conducted iterative research and prototyping to gain a clearer perspective on this vision. The outcome is the thesis I wish to share in this post: that **_the future of the web ought to be native_**, that the browser, extended through local-first data ownership and federated protocols, is the kernel of a decentralised operating system for **_personal software_**.
+Throughout January, I conducted research, created prototypes and refined this personal vision to reflect my advocacy: **_the future of the web ought to be native_**. The browser, extended through local-first data and federated protocols, acts as a decentralised operating system for personal software.
 
 ---
 
 ## The Web As A Decentralised Operating System
 
-The browser has matured from a document viewer into something closer to an operating system kernel. With [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) providing offline resilience, [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) enabling local data ownership, and federated protocols like [ActivityPub](https://www.w3.org/TR/activitypub/) and [Matrix](https://matrix.org/) connecting independent nodes, the web already supplies the primitives a decentralised operating system requires — without installation, without vendor lock-in, and accessible to anyone.
+The web already supplies the primitives a decentralised operating system might require to support personal, resilient, and federated software applications, with rich APIs such as [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) for offline resilience, [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) for local data ownership, and peer-to-peer communication via [WebRTC](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API).
 
-What makes this kernel uniquely suited to **_personal software_** is that its native capabilities are also the building blocks of tasteful interfaces. Elements like `<dialog>`, `<details>`, popovers, container queries, and [View Transitions](https://developer.chrome.com/docs/web-platform/view-transitions) allow creators to express identity through progressive enhancement rather than framework abstraction. A static-first approach that layers interactivity where it is needed respects both the user and the medium.
+What makes the web uniquely suited for software is that HTML and CSS — the most ubiquitous interface languages in existence — are also the building blocks of tasteful interfaces. Their growing expressiveness allows creators to articulate identity through progressive enhancement rather than framework abstraction.
 
 This foundation also provides an inherent accessibility baseline. Semantic HTML and browser-native controls carry [WCAG](https://www.w3.org/WAI/standards-guidelines/wcag/) conformance by default, ensuring that the tasteful experience extends to all users without additional effort. The caveat lies in vendor inconsistency — WebKit's dominance on iOS, for example, continues to gate capabilities behind a single implementation — but the trajectory is unmistakably towards convergence.
 
@@ -90,9 +91,12 @@ Layered blueprint for tasteful unification (monorepo + web-first).
 | Layer     | Tech              | Enables Taste                                                                          | Limits                                                                                                    |
 | --------- | ----------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | Runtime   | Browser/PWA/Tauri | Unified UI [docs.powersync](https://docs.powersync.com/resources/local-first-software) | iOS sensors [magicbell](https://www.magicbell.com/blog/pwa-ios-limitations-safari-support-complete-guide) |
+| Logic     | WebAssembly       | Cross-language shared business logic (Rust/Go/C++ → browser + native)                  | Debugging tooling maturity; no direct DOM access                                                          |
 | Local     | IndexedDB/CRDTs   | Ownership                                                                              | Eviction [vinova](https://vinova.sg/navigating-safari-ios-pwa-limitations/)                               |
 | Transport | WebRTC/HTTP       | P2P low-latency                                                                        | Battery                                                                                                   |
 | Network   | ActivityPub       | Federation                                                                             | Abuse [socialhub.activitypub](https://socialhub.activitypub.rocks/c/standards/68)                         |
+
+Note on Wasm: [WebAssembly](https://webassembly.org/) enables a write-once logic core — validation, encryption, CRDT merge functions, and other performance-critical business logic compiled from Rust, Go, or C++ — that runs identically in the browser and inside a Tauri native shell. This eliminates the need to reimplement shared rules per platform and keeps the taste-carrying UI layer (HTML/CSS/JS) cleanly separated from deterministic computation. Tauri's Rust backend and Wasm modules can even share crates, collapsing the web ↔ native logic gap entirely.
 
 Accessibility/expressiveness: Standards + personalization (EAA-compliant). [w3](https://www.w3.org/TR/activitypub/)
 

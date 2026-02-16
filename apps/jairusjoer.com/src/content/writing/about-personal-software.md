@@ -138,7 +138,7 @@ By democratising **_exposure_** to quality through unified collaboration, every 
 
 ### Future
 
-By unifying workspace, championing accessibility, and enabling expressiveness, we're crafting personal software that respects user intent and identity. This is the future of the web as a decentralised operating system — where software is as personal as the thoughts it expresses.
+By unifying workspace, championing accessibility, and enabling expressiveness, personal software can be crafted that respects user intent and identity. This is the future of the web as a decentralised operating system — where software is as personal as the thoughts it expresses.
 The path forward requires diligent guardianship of quality, resisting the urge to settle for the merely functional. By doing so, the work stands out from commoditised applications by offering users distinct, personalised, enduring value.
 
 ---
