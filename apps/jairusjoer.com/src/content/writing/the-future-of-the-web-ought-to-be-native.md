@@ -1,6 +1,6 @@
 ---
-title: The Future Of The Web Ought To Be Native
-description: How a web-native, local-first, federated stack can transform the concept of personal software into a practical reality for certain types of software.
+title: 'The Future of the Web Ought to Be Native'
+description: 'How a web-native, local-first, federated stack can transform the concept of personal software into a practical reality for certain types of software.'
 date: 2026-01-30
 status: Draft
 ---
@@ -9,7 +9,7 @@ At the end of 2025, I wrote _[About Personal Software](/writing/about-personal-s
 
 Since then, I have rediscovered Tauri[^tauri] and used it to iterate on cross-platform prototypes with a single web-native codebase. This process has clarified my vision: web primitives are now sufficient in many areas, making the browser a more democratic home for software than app stores.
 
-Throughout January, I researched and refined this vision into a simple statement: **the future of the web ought to be native**. Not that every app should be a WebView, but that the browser, extended with local‑first data and federated protocols, can serve as a resilient platform for personal and productivity software.
+Throughout January, I researched and refined this vision into a simple statement: **the future of the web ought to be native**. Not that every app should be a WebView, but that the browser, extended with local-first data and federated protocols, can serve as a resilient platform for personal and productivity software.
 
 ---
 
@@ -21,7 +21,7 @@ In _[About Personal Software](/writing/about-personal-software)_, I argued that 
 - Survives connectivity issues and platform changes.
 - Avoids locking people and data into vendor silos.
 
-A web-native codebase treats the browser as a resilient medium. It provides a consistent experience rather than becoming fragmented across native stacks. When deeper integration is required, a native shell such as Tauri or Electron can be used to wrap and offer access to native <abbr title="Application Programming Interfaces">APIs</abbr>, with the core remaining web-native.
+A web-native codebase treats the browser as a resilient medium. It provides a consistent experience rather than becoming fragmented across native stacks. When deeper integration is required, a native shell such as Tauri or Electron[^electron] can be used to wrap and offer access to native <abbr title="Application Programming Interfaces">APIs</abbr>.
 
 This is not a new idea. A decade ago, both Facebook and LinkedIn attempted to develop web codebases for mobile platforms. Facebook labelled its <abbr title="HyperText Markup Language">HTML</abbr> mobile strategy a mistake[^businessinsider], while LinkedIn moved away from HTML clients due to performance issues[^venturebeat]. Their public reversals taught engineers that:
 
@@ -41,7 +41,7 @@ For the browser to serve as the _"kernel"_ for software, designers and engineers
 
 - **Offline resilience** via Service Workers[^mdn-workers], which can cache content and handle requests even when the network might be unavailable.
 - **Local data storage** through technologies like IndexedDB[^mdn-indexeddb], enabling software to keep data on the device instead of on a remote server.
-- **Peer‑to‑peer communication** using WebRTC[^mdn-webrtc], allowing browsers to connect (directly) to each other where network conditions permit.
+- **Peer-to-peer communication** using WebRTC[^mdn-webrtc], allowing browsers to connect (directly) to each other where network conditions permit.
 
 HTML and <abbr title="Cascading Style Sheets">CSS</abbr>, two of the most widely recognised interface languages, have become expressive enough to fulfil the demands of modern software design. Container queries[^mdn-container], modern layout systems[^mdn-grid] and view transitions[^mdn-transitions] enable designers to express complex identity and motion without heavy frameworks.
 
@@ -59,17 +59,17 @@ A realistic vision of the web as a decentralised operating system must acknowled
 
 ---
 
-## Local‑First As An Extension Of Mind
+## Local-First As An Extension Of Mind
 
 In the earlier essay, I described (personal) software as an extension of the mind — tools that fit so well that they become part of one’s thought process. For this to be the case, the software must be trustworthy. It must still be accessible when the network drops out. It should keep a person’s work close at hand.
 
-Researchers at Ink & Switch defined that ideal under the term "local‑first software" in an elaboratice essay, where they outlined the critera of local-first[^inkandswith]. Since then, the local‑first movement[^lofi] has gained traction among developers and users who value:
+Researchers at Ink & Switch, led by Martin Kleppmann et al., defined that ideal under the term "local-first software" in an elaborate essay, where they outlined the criteria of local-first[^inkandswitch]. Since then, the local-first movement[^lofi] has gained traction among developers and people who value:
 
 - **Ownership**: Rather than being locked into a server owned by a third party or vendor, data is stored locally and under the user’s control.
 - **Resilience**: The software remains functional without a network connection and data is not lost if the service is interrupted or discontinued.
 - **Collaboration**: Multiple users can work on the same data independently, merging their changes without conflict even if they are offline at times.
 
-Techniques such as conflict-free replicated data types (CRDTs) enable multiple copies of the same data to evolve independently and converge without conflict upon reconnection, even after extended periods offline, making this final point possible.
+Techniques such as <abbr title="Conflict-Free Replicated Data Types">CRDTs</abbr>[^crdts] enable multiple copies of the same data to evolve independently and converge without conflict upon reconnection, even after extended periods offline. This allows users to collaborate seamlessly without relying on a central server to manage state.
 
 Although the mathematics behind this is subtle, the effect is simple: people can edit their notes, drawings or plans whenever inspiration strikes, without having to wait for a server to acknowledge each change. The system can then reconcile these changes to create a consistent shared state.
 
@@ -77,7 +77,7 @@ When viewing the web through the lens of a decentralised operating system, the c
 
 - IndexedDB and similar APIs keep data structured and close.
 - Service Workers provide offline caching and background synchronisation.
-- Web‑native UI retains the same appearance from desktop to tablet to phone.
+- Web-native UI retains the same appearance from desktop to tablet to phone.
 
 Full local-first collaboration, particularly in partially trusted environments, requires careful design. However, for software such as notes, journals, knowledge bases and small team planners, local-first patterns combined with web technologies provide a robust and seamless experience.
 
@@ -87,39 +87,39 @@ Full local-first collaboration, particularly in partially trusted environments, 
 
 Having resilient software on a single device is only half the story. Software exists within a social and institutional context, sharing data, synchronising across services and contributing to wider discussions about who controls the digital infrastructure. In practice, these discussions have produced new blueprints for a federated web:
 
-- **ActivityPub**, a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, defines a protocol for decentralised social networking where independent servers exchange posts and actions.
+- **ActivityPub**[^activitypub], a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation, defines a protocol for decentralised social networking where independent servers exchange posts and actions.
 - **Matrix** provides "an open network for secure, decentralised communication"[^matrix], used by both communities and public institutions.
-- **Solid**, led by Tim Berners‑Lee, proposes personal data pods that individuals control and grant acces to for software to consume and interact with.
+- **Solid**[^solid], led by Tim Berners-Lee, proposes personal data pods that individuals own and control, granting access to applications on their terms.
 
 These efforts are based on a simple idea: separating the software from the service and the service from the storage. Rather than tying each software to a single provider's backend, federation allows the same data to flow across independently operated services while maintaining ownership with the user:
 
 - A calendar, mail client, or task manager can operate across services instead of being tied to one provider.
-- A note‑taking software can publish selected notes into a federated network without giving up ownership of the underlying data.
+- Note-taking tools can publish selected notes into a federated network without giving up ownership of the underlying data.
 - A collaborative whiteboard can sync state between participants on different servers, with no single point of failure dictating availability.
 
-Politically, Europe’s push for digital sovereignty is contributing to this vision. Regulations such as the Digital Markets Act and the Digital Services Act target anti-competitive behaviour and require systems to be interoperable. Meanwhile, broader policy efforts emphasise open standards, open-source software and portability.
+Politically, Europe’s push for digital sovereignty is helping to realise this vision. Regulations such as the Digital Markets Act[^dma] and the Digital Services Act[^dsa] target anti-competitive behaviour, requiring systems to be interoperable and emphasising open standards, open-source software, and portability.
 
 The web's decentralised nature — URLs, open protocols and interoperability by design — aligns naturally with these goals. Software built on a web-native, federated stack is part of this movement. It is software that individuals own and organisations can self-host, which also interoperates without bilateral contracts.
 
-This does not mean that every system should be federated or self-hosted. Moderation, cost and complexity are all valid concerns. However, when we adopt new infrastructure, opting for the web and open protocols preserves more options for individuals and regions that prioritise digital autonomy.
+This does not mean that every system should be either federated or self-hosted. Moderation, cost and complexity are all valid concerns. However, when adopting new infrastructure, choosing the web and open protocols preserves more options for individuals and regions that prioritise digital autonomy.
 
 ---
 
-## Trade‑Offs and When Native Still Wins
+## Trade-Offs and When Native Still Wins
 
 Advocating for a web-native future for software does not mean dismissing native platforms or assuming that the web is always the better option. Every medium has its strengths, and the most honest approach is to recognise where each one excels. For web-native software, the sweet spot is often found in:
 
 - Tools that are primarily about **content, knowledge, or workflows** rather than heavy utilization of (real-time) rendering or graphics.
-- Products where **reach, cost‑effectiveness, and easy updates** are central: documentation tools, personal organisers, small <abbr title="Customer Relationship Management">CRMs</abbr>, publishing platforms.
-- Scenarios where **data ownership and longevity** matter more than deep integration: note‑taking, journalling, long‑term knowledge management.
+- Products where **reach, cost-effectiveness, and easy updates** are central: documentation tools, personal organisers, small <abbr title="Customer Relationship Management">CRMs</abbr>, publishing platforms.
+- Scenarios where **data ownership and longevity** matter more than deep integration: note-taking, journalling, long-term knowledge management.
 
 Conversely, there are situations in which a native user interface is the better starting point. In these cases, although shared business logic across platforms can reduce duplication, the presentation layer benefits from being built natively rather than being forced to adopt a web-native approach:
 
-- Highly polished, mobile‑first consumer applications where scroll performance, gestures, and micro‑interactions are central to the identity.
-- Software that depend on low‑level access to sensors, system services, or background execution that is not yet comfortable or consistent on the web.
-- Cases where app‑store presence, deep integration, or platform‑specific design patterns are themselves part of the product’s promise.
+- Highly polished, mobile-first consumer applications where scroll performance, gestures, and micro-interactions are central to the identity.
+- Software that depends on low-level access to sensors, system services, or background execution that is not yet comfortable or consistent on the web.
+- Cases where app-store presence, deep integration, or platform-specific design patterns are themselves part of the product’s promise.
 
-Another option is to share business logic via technologies like Kotlin Multiplatform, while building separate native and web front-ends where appropriate. This approach maintains a coherent domain model across platforms without forcing everything into the same technical framework.
+Another option is to share business logic via technologies like Kotlin Multiplatform[^kmp], while building separate native and web front-ends where appropriate. This approach maintains a coherent domain model across platforms without forcing everything into the same technical framework.
 
 When it comes to personal and productivity software, the combination of a web-native UI, locally stored data and optional native shells might strike the right balance: a single, expressive interface that can be used on multiple devices, with the option of deeper integration where real-world constraints demand it.
 
@@ -127,51 +127,65 @@ When it comes to personal and productivity software, the combination of a web-na
 
 ## A Platform for Taste
 
-Returning to the beginning, in _[About Personal Software](/writing/about-personal-software)_, I argued that, as AI reduces the cost and complexity of writing functional code, humans will increasingly act as tastemakers, setting direction, judging quality, and refining experiences. For this change to be significant, these tastemakers need a reslient platform.
+Returning to the beginning, in _[About Personal Software](/writing/about-personal-software)_, I argued that, as AI reduces the cost and complexity of writing functional code, humans will increasingly act as tastemakers, setting direction, judging quality, and refining experiences. For taste to truly shape software, these tastemakers need a resilient platform.
 
 - Open enough to avoid locking their work into one vendor or ecosystem.
 - Resilient enough to survive connectivity issues and platform shifts.
 - Expressive enough to carry identity, nuance, and taste.
 
-For a particular class of software, my answer is a web-native, local-first, federated stack. It treats the browser as the default home for personal and productivity software, uses local databases and background sync for reliability, and relies on open protocols to maintain connectivity without restricting users.
+For a particular class of software, my answer is a web-native, local-first, federated stack. It treats the browser as the default home for personal and productivity software, uses local databases and background sync for reliability, and relies on open protocols to maintain connectivity without restricting people.
 
 Native platforms are not going away, nor should they, as they serve many purposes. However, when it comes to the tools that are closest to our way of thinking — the notebooks, dashboards and workspaces that quietly shape our days — the web already feels like their natural home, and this is likely to continue.
 
 ---
 
-**See you all in the next issue**<br/>
+**Until next time**<br/>
 _Yours truly, Jairus Joer_
 
-[^businessinsider]: Business Insider, “Zuckerberg: This Is ‘The Biggest Strategic Mistake We’ve Ever Made’”, 2012, https://www.businessinsider.com/mark-zuckerberg-html5-mobile-2012-9
+[^activitypub]: W3C, ["ActivityPub"](https://www.w3.org/TR/activitypub/), 2018
 
-[^caniuse-push]: Can I Use, “Push API”, https://caniuse.com/push-api
+[^businessinsider]: Business Insider, ["Zuckerberg: This Is 'The Biggest Strategic Mistake We've Ever Made'"](https://www.businessinsider.com/mark-zuckerberg-html5-mobile-2012-9), 2012
 
-[^mdn-container]: MDN, "Container Queries", https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries
+[^caniuse-push]: Can I use..., ["Push API"](https://caniuse.com/push-api)
 
-[^mdn-grid]: MDN, "CSS Grid Layout", https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+[^chrome]: Chrome for Developers, ["Project Fugu"](https://developer.chrome.com/docs/capabilities)
 
-[^mdn-indexeddb]: MDN, "IndexedDB API", https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+[^crdts]: Shapiro et al., ["A comprehensive study of Convergent and Commutative Replicated Data Types"](https://inria.hal.science/inria-00555588/document), 2011
 
-[^mdn-offline]: MDN, "Offline and background operation", https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Offline_and_background_operation
+[^dma]: European Commission, ["Digital Markets Act"](https://digital-markets-act.ec.europa.eu/index_en), 2022
 
-[^mdn-push]: MDN, "Push API", https://developer.mozilla.org/en-US/docs/Web/API/Push_API
+[^dsa]: European Commission, ["Digital Services Act"](https://digital-strategy.ec.europa.eu/en/policies/digital-services-act), 2022
 
-[^mdn-transitions]: MDN, "View Transitions API", https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
+[^electron]: OpenJS Foundation, ["Electron"](https://www.electronjs.org/)
 
-[^mdn-webrtc]: MDN, "WebRTC API", https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
+[^inkandswitch]: Ink & Switch, ["Local-first software"](https://www.inkandswitch.com/essay/local-first/), 2019
 
-[^mdn-workers]: MDN, "Service Workers API", https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+[^kmp]: Kotlin Foundation, ["Kotlin Multiplatform"](https://kotlinlang.org/docs/multiplatform.html)
 
-[^tauri]: Tauri 2.0, https://v2.tauri.app/
+[^lofi]: LoFi community, ["Local-First Software"](https://lofi.so/)
 
-[^venturebeat]: VentureBeat, “Why LinkedIn dumped HTML5 & went native for its mobile apps”, 2013, https://venturebeat.com/technology/linkedin-mobile-web-breakup/
+[^matrix]: The Matrix.org Foundation, ["Matrix.org"](https://matrix.org/)
 
-[^wcag]: W3C, "WCAG 2 Overview", https://www.w3.org/WAI/standards-guidelines/wcag/
+[^mdn-container]: MDN, ["Container Queries"](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries)
 
-[^chrome]: Chrome for Developers, "Project Fugu", https://developer.chrome.com/docs/capabilities
+[^mdn-grid]: MDN, ["CSS Grid Layout"](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout)
 
-[^lofi]: Local-First Software, https://lofi.so/
+[^mdn-indexeddb]: MDN, ["IndexedDB API"](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
 
-[^inkandswith]: Ink & Switch, "Local-first software", https://www.inkandswitch.com/essay/local-first/
+[^mdn-offline]: MDN, ["Offline and background operation"](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Guides/Offline_and_background_operation)
 
-[^matrix]: Matrix, https://matrix.org/
+[^mdn-push]: MDN, ["Push API"](https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
+
+[^mdn-transitions]: MDN, ["View Transitions API"](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)
+
+[^mdn-webrtc]: MDN, ["WebRTC API"](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API)
+
+[^mdn-workers]: MDN, ["Service Workers API"](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+
+[^solid]: Solid Project, ["Solid"](https://solidproject.org/)
+
+[^tauri]: Tauri Contributors, ["Tauri 2.0"](https://v2.tauri.app/)
+
+[^venturebeat]: VentureBeat, ["Why LinkedIn dumped HTML5 & went native for its mobile apps"](https://venturebeat.com/technology/linkedin-mobile-web-breakup/), 2013
+
+[^wcag]: W3C, ["WCAG 2 Overview"](https://www.w3.org/WAI/standards-guidelines/wcag/)
