@@ -6,19 +6,19 @@ date: 2026-01-07
 
 This post builds on previous thoughts on why the future of the web might be native, an unpublished personal post about cross-platform web applications, and my exploration of the potential of personal software.
 
-My advocacy for the web as a decentralised operating system[^1] influences both my personal projects and my professional aspirations. This continues to have a positive impact on my ambitions and development with regard to what I understand as **_personal software_**.
+My advocacy for the web as a decentralised operating system[^dos] influences both my personal projects and my professional aspirations. This continues to have a positive impact on my ambitions and development with regard to what I understand as **_personal software_**.
 
-My most recent projects and explorations have reinforced my support for the aforementioned approach[^2] and helped me to develop a clearer personal vision. Today, I would like to share this vision while exploring this philosophical and practical shift.
+My most recent projects and explorations have reinforced my support for the aforementioned approach[^web-native] and helped me to develop a clearer personal vision. Today, I would like to share this vision while exploring this philosophical and practical shift.
 
 ---
 
 ## Personal Software
 
-When I speak of personal software, I draw on the work and thoughts of industry titans like Paul Graham and Alan Kay[^4], who have been pioneering, discussing and refining these topics for over 20 years and have made a significant contribution to the modern approach to software creation.
+When I speak of personal software, I draw on the work and thoughts of industry titans like Paul Graham and Alan Kay[^alan-kay], who have been pioneering, discussing and refining these topics for over 20 years and have made a significant contribution to the modern approach to software creation.
 
-Personal software has **_taste_**. It is not a subjective quality, but rather a context-aware attribute that permeates the work and elevates the resulting product from merely competent to exceptional. This concept originates from Paul Graham’s seminal work, _Taste for Makers_[^3].
+Personal software has **_taste_**. It is not a subjective quality, but rather a context-aware attribute that permeates the work and elevates the resulting product from merely competent to exceptional. This concept originates from Paul Graham’s seminal work, _Taste for Makers_[^taste].
 
-Personal software should respect users' **_preferences_** and intentions. Rather than challenging cognitive commonalities for no apparent reason, creators should respect and adhere to the commonplace patterns and expectations users have of software[^5].
+Personal software should respect users' **_preferences_** and intentions. Rather than challenging cognitive commonalities for no apparent reason, creators should respect and adhere to the commonplace patterns and expectations users have of software[^personal-computing].
 
 ### Taste
 
@@ -26,7 +26,7 @@ The commodification of software through artificial intelligence has created an a
 
 Where taste is perceived as personal preference, it ought to be seen as a trained instinct that elevates work through deliberate practice, exposure and reflection, elevates work from the merely functional to the elegant, appropriate and considerate.
 
-When considering taste, think about the standards that apply to humans, cultures and demographics, respectively, which are naturally perceivable as sufficiently common denominators, devoid of subjective preferences[^6].
+When considering taste, think about the standards that apply to humans, cultures and demographics, respectively, which are naturally perceivable as sufficiently common denominators, devoid of subjective preferences[^kowalski].
 
 ### Exposure
 
@@ -34,7 +34,7 @@ To develop a sense of taste, one must be exposed to excellence in their own fiel
 
 Through this process, rationalisation becomes apparent over intuition. Questioning the reasoning behind choices that one considers tasteful transforms a vague aesthetic perception into a comprehensible and teachable insight, which leads to the development of taste.
 
-Rather than offering inflexible, universal solutions, good taste provides an ever-growing set of flexible, contextualised values that can be adopted for different, inherently specific priorities[^7]. By contrast, bad taste stems from insisting on preferred values perceived as universally correct.
+Rather than offering inflexible, universal solutions, good taste provides an ever-growing set of flexible, contextualised values that can be adopted for different, inherently specific priorities[^animations]. By contrast, bad taste stems from insisting on preferred values perceived as universally correct.
 
 ### Scale
 
@@ -108,11 +108,11 @@ Such a system enables technical and non-technical teams alike to use standardise
 
 ### Accessibility
 
-With a strong, standardised foundation in place, the focus can shift towards custom components and user workflows. This is an area that has historically been overlooked, but which now presents opportunities thanks to the recently enacted European Accessibility Act[^8].
+With a strong, standardised foundation in place, the focus can shift towards custom components and user workflows. This is an area that has historically been overlooked, but which now presents opportunities thanks to the recently enacted European Accessibility Act[^eaa].
 
 An accessible product benefits all users by offering more ways to interact with it. This allows users to express themselves and their processes through the software, strengthening their identity and association with the brand.
 
-In my opinion, accessibility is a necessity, not an afterthought[^9]. Without respectful means to interact with software, processes become forced, which leads to users developing a distorted perception of the product.
+In my opinion, accessibility is a necessity, not an afterthought[^a11y]. Without respectful means to interact with software, processes become forced, which leads to users developing a distorted perception of the product.
 
 ### Expressiveness
 
@@ -146,20 +146,20 @@ The path forward requires diligent guardianship of quality, resisting the urge t
 **See you all in the next issue**<br/>
 _Yours truly, Jairus Joer_
 
-[^1]: **Decentralised Operating System**: A platform that is open and flexible, allowing applications to run on different devices without being limited by the restrictions of specific ecosystems.
+[^a11y]: Jairus Joer, ["Accessibility — a Necessity, not an Afterthought"](/archive/aggregata/accessibility-a-necessity-not-an-afterthought/), 2024
 
-[^2]: [The future of the web might be native](/archive/aggregata/the-future-of-the-web-might-be-native/)
+[^alan-kay]: Notion Blog, ["Alan Kay on the Context and Catalysts of Personal Computing"](https://www.notion.com/blog/alan-kay), 2021
 
-[^3]: [Taste for Makers](https://paulgraham.com/taste.html)
+[^animations]: Jairus Joer, ["Delightful Animations IV: Mind the Gap"](/archive/aggregata/delightful-animations-iv-mind-the-gap/), 2025
 
-[^4]: [Alan Kay on the context and catalysts of personal computing](https://www.notion.com/blog/alan-kay)
+[^dos]: **Decentralised Operating System**: A platform that is open and flexible, allowing applications to run on different devices without being limited by the restrictions of specific ecosystems.
 
-[^5]: [The importance of personal computing](https://alexanderobenauer.com/thinking/personalcomputing/)
+[^eaa]: European Commission, ["European Accessibility Act"](https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/union-equality-strategy-rights-persons-disabilities-2021-2030/european-accessibility-act_en)
 
-[^6]: [Emil Kowalski](https://emilkowal.ski/ui/developing-taste)
+[^kowalski]: Emil Kowalski, ["Developing Taste"](https://emilkowal.ski/ui/developing-taste)
 
-[^7]: [Delightful Animations IV: Mind the Gap](/archive/aggregata/delightful-animations-iv-mind-the-gap/)
+[^personal-computing]: Alexander Obenauer, ["The Importance of Personal Computing"](https://alexanderobenauer.com/thinking/personalcomputing/)
 
-[^8]: [European Accessibility Act](https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/union-equality-strategy-rights-persons-disabilities-2021-2030/european-accessibility-act_en)
+[^taste]: Paul Graham, ["Taste for Makers"](https://paulgraham.com/taste.html), 2002
 
-[^9]: [Accessibility - a Necessity, not an Afterthought](/archive/aggregata/accessibility-a-necessity-not-an-afterthought/)
+[^web-native]: Jairus Joer, ["The Future of the Web Might Be Native"](/archive/aggregata/the-future-of-the-web-might-be-native/), 2025
