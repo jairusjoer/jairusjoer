@@ -16,21 +16,23 @@ const formatLink = (url: string) => {
         <ul>
           {entry.data.map((link) => (
             <li>
-              <input
-                class="link-list-input touch-hitbox transition-press"
-                type="checkbox"
-                name="read"
-                title="Toogle reading status"
-                id={link}
-              />
-              <a
-                class="link-list-anchor transition-gentle"
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {formatLink(link)}
-              </a>
+              <span>
+                <input
+                  class="link-list-input touch-hitbox transition-press"
+                  type="checkbox"
+                  name="read"
+                  title="Toogle reading status"
+                  id={link}
+                />
+                <a
+                  class="link-list-anchor transition-gentle"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {formatLink(link)}
+                </a>
+              </span>
             </li>
           ))}
         </ul>

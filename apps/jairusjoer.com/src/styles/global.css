@@ -36,7 +36,8 @@ a[href^='http']::after {
   content: ' ↗';
 }
 
-.sr-only {
+.sr-only,
+#footnote-label {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -48,7 +49,8 @@ a[href^='http']::after {
   border-width: 0;
 }
 
-.touch-hitbox {
+.touch-hitbox,
+[data-footnote-ref]  {
   position: relative;
 
   &::before {

@@ -14,14 +14,6 @@
     &:focus {
       text-decoration: underline;
     }
-
-    &[data-footnote-ref]::before {
-      content: '[';
-    }
-
-    &[data-footnote-ref]::after {
-      content: ']';
-    }
   }
 
   abbr {
