@@ -1,8 +1,7 @@
 ---
 title: 'The Future of the Web Ought to Be Native'
 description: 'How a web-native, local-first, federated stack can transform the concept of personal software into a practical reality for certain types of software.'
-date: 2026-01-30
-status: Unpublished
+date: 2026-02-19
 ---
 
 At the end of 2025, I wrote _[About Personal Software](/writing/about-personal-software)_, in which I explored how human taste and identity dictate quality in an <abbr title="Artificial Intelligence">AI</abbr>-driven landscape and sketched a personal vision for the future of software development. This post builds on the philosophical groundwork laid in that one.
