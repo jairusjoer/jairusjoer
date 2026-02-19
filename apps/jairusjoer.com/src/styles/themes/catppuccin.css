@@ -1,5 +1,4 @@
 /* Catppuccin Theme - https://catppuccin.com */
-
 :root {
   --color-accent: light-dark(#8839ef, #cba6f7); /* Latte Mauve / Mocha Mauve */
 
@@ -12,6 +11,7 @@
   --color-foreground: light-dark(#4c4f69, #cdd6f4); /* Latte Text / Mocha Text */
 
   --font-default: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
 
   --radius-default: 0.125rem;
 

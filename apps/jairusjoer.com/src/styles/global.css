@@ -2,7 +2,6 @@
 @import './prosa.css';
 @import './transitions.css';
 @import './themes/catppuccin.css';
-@import './custom.css';
 
 .astro-code,
 .astro-code span {
