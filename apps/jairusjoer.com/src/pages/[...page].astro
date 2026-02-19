@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   let collection = await getCollection('pages');
 
   if (import.meta.env.PROD) {
-    collection = collection.filter((entry) => entry.data?.status !== 'Draft');
+    collection = collection.filter((entry) => !['Draft'].includes(entry.data?.status ?? ''));
   }
 
   for (const entry of collection) {
@@ -46,7 +46,7 @@ const components = getComponents();
         )
       }
       <h1>
-        {entry.data.status && <span>{entry.data.status}:</span>}
+        {entry.data.status && <span class="page-status">{entry.data.status}:</span>}
         <span>{entry.data.title}</span>
       </h1>
       {entry.data.description && <p>{entry.data.description}</p>}
@@ -91,6 +91,10 @@ const components = getComponents();
       border-bottom: 1px solid var(--color-border);
       padding-bottom: 3rem;
     }
+  }
+
+  .page-status {
+    color: var(--color-accent);
   }
 
   .page-article {

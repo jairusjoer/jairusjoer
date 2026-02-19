@@ -22,7 +22,7 @@ collection = collection.sort((a, b) => {
 });
 
 if (import.meta.env.PROD) {
-  collection = collection.filter((entry) => entry.data?.status !== 'Draft');
+  collection = collection.filter((entry) => !['Draft', 'Unpublished'].includes(entry.data?.status ?? ''));
 }
 ---
 

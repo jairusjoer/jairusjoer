@@ -7,6 +7,7 @@ export interface Metadata {
   description?: string;
   image?: ImageMetadata;
   schema?: Record<string, unknown>;
+  status?: string;
 }
 
 export interface Props {
@@ -115,6 +116,15 @@ const getURL = (path: string) => String(new URL(path, Astro.site));
 />
 
 {/* Platform */}
+{
+  metadata.status === 'Unpublished' && (
+    <meta
+      name="robots"
+      content="noindex"
+    />
+  )
+}
+
 <meta
   property="og:type"
   content="website"

@@ -8,7 +8,7 @@ export const GET: APIRoute = async () => {
   let collection = await getCollection('pages');
 
   if (import.meta.env.PROD) {
-    collection = collection.filter((entry) => entry.data?.status !== 'Draft');
+    collection = collection.filter((entry) => !['Draft', 'Unpublished'].includes(entry.data?.status ?? ''));
   }
 
   const entries = [];
