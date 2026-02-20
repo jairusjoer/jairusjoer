@@ -9,7 +9,7 @@ import tseslint from 'typescript-eslint';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default defineConfig(
-  globalIgnores(['.astro', '.vscode', 'dist', 'package*.json']),
+  globalIgnores(['.astro', '.vscode', 'dist', 'package*.json', 'public']),
   {
     files: ['**/*.astro'],
     plugins: { astro },

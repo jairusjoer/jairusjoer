@@ -30,6 +30,7 @@ const active = (path: string) => {
             </a>
           </li>
         ))}
+        <slot />
       </ul>
     </nav>
   )
@@ -47,18 +48,17 @@ const active = (path: string) => {
     flex-wrap: wrap;
     align-items: center;
     gap: 0.25rem;
-    font-weight: 600;
   }
 
   .site-navigation-anchor {
+    font-weight: 600;
     display: block;
     border-radius: var(--radius-default);
     background-color: var(--color-background-subtle);
     padding-inline: 0.5em;
 
     &.active {
-      background-color: var(--color-accent);
-      color: var(--color-background);
+      color: var(--color-accent);
     }
   }
 </style>

@@ -8,6 +8,11 @@
   margin: unset;
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 a {
   color: inherit;
   display: inline-block;
@@ -24,6 +29,9 @@ button,
 input,
 select,
 textarea {
+  padding: 0 0.5em;
+  border-radius: var(--radius-default);
+  border: unset;
   font: inherit;
 }
 
@@ -53,12 +61,12 @@ html {
   text-wrap: pretty;
 }
 
+input {
+  border: 0.5px solid var(--color-border);
+}
+
 ul,
 ol {
   list-style: none;
   padding-left: unset;
-}
-
-#root {
-  isolation: isolate;
 }

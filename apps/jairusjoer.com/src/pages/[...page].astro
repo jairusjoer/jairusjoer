@@ -32,7 +32,10 @@ const components = getComponents();
 ---
 
 <PageLayout metadata={entry.data}>
-  <main class="page">
+  <main
+    class="page"
+    data-pagefind-body
+  >
     <header class="page-header prosa">
       {
         entry.data.image && (
@@ -88,7 +91,7 @@ const components = getComponents();
 
     &:has(img, p, time) {
       margin-bottom: 3em;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 0.5px solid var(--color-border);
       padding-bottom: 3rem;
     }
   }

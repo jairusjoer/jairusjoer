@@ -18,4 +18,6 @@
   --spacing-default: 60ch;
 
   --text-default: 1rem;
+
+  color-scheme: light dark;
 }

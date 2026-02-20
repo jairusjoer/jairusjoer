@@ -3,6 +3,33 @@
 @import './transitions.css';
 @import './themes/catppuccin.css';
 
+::backdrop {
+  background-color: var(--color-background-subtle);
+  opacity: 0.5;
+}
+
+::selection,
+mark {
+  background-color: var(--color-accent) !important;
+  color: var(--color-background) !important;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+a[href^='http']::after {
+  content: ' ↗';
+}
+
+#root {
+  isolation: isolate;
+}
+
+[id] {
+  scroll-margin-block: 1.5em;
+}
+
 .astro-code,
 .astro-code span {
   background-color: var(--color-background-subtle) !important;
@@ -13,27 +40,6 @@
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
   }
-}
-
-:root {
-  color-scheme: light dark;
-}
-
-::selection {
-  background-color: var(--color-accent);
-  color: var(--color-background);
-}
-
-[id] {
-  scroll-margin-block: 1.5em;
-}
-
-* {
-  border-color: var(--color-border);
-}
-
-a[href^='http']::after {
-  content: ' ↗';
 }
 
 .sr-only,
@@ -50,7 +56,7 @@ a[href^='http']::after {
 }
 
 .touch-hitbox,
-[data-footnote-ref]  {
+[data-footnote-ref] {
   position: relative;
 
   &::before {
