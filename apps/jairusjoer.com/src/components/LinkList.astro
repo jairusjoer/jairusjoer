@@ -15,7 +15,7 @@ const formatLink = (url: string) => {
         <summary>{entry.id}</summary>
         <ul>
           {entry.data.map((link) => (
-            <li>
+            <li class="link-list-item">
               <span>
                 <input
                   class="link-list-input touch-hitbox transition-press"
@@ -46,6 +46,10 @@ const formatLink = (url: string) => {
     display: flex;
     flex-direction: column;
     gap: 0.75em;
+  }
+
+  .link-list-item {
+    list-style: none;
   }
 
   .link-list-input:checked + .link-list-anchor {
