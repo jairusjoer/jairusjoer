@@ -1,3 +1,5 @@
+/* eslint-disable css/no-important */
+
 @import './reset.css';
 @import './prosa.css';
 @import './transitions.css';
@@ -9,8 +11,8 @@
 
 ::selection,
 mark {
-  background-color: var(--color-accent) !important;
-  color: var(--color-background) !important;
+  background-color: var(--color-accent);
+  color: var(--color-background);
 }
 
 * {
@@ -52,6 +54,12 @@ a[href^='http']::after {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.print-hidden {
+  @media print {
+    display: none;
+  }
 }
 
 .touch-hitbox,

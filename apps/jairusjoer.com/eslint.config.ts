@@ -1,5 +1,5 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
-// import css from '@eslint/css';
+import css from '@eslint/css';
 import astro from 'eslint-plugin-astro';
 import globals from 'globals';
 import js from '@eslint/js';
@@ -15,16 +15,17 @@ export default defineConfig(
     plugins: { astro },
     extends: [astro.configs.recommended],
   },
-  // {
-  //   files: ['**/*.css'],
-  //   plugins: { css },
-  //   extends: [css.configs.recommended],
-  //   language: 'css/css',
-  //   rules: {
-  //     'css/no-invalid-at-rules': 0, // Tailwind at-rules
-  //     'css/no-invalid-properties': 0, // Tailwind theme
-  //   },
-  // },
+  {
+    files: ['**/*.css'],
+    plugins: { css },
+    extends: [css.configs.recommended],
+    language: 'css/css',
+    rules: {
+      'css/no-invalid-at-rules': 0, // Progressive enhancements
+      'css/no-invalid-properties': 0, // Imported variables
+      'css/use-baseline': 0, // Progressive enhancements
+    },
+  },
   {
     files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     plugins: { js, jsxA11y },

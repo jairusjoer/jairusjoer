@@ -18,7 +18,7 @@ const active = (path: string) => {
 
 {
   links && (
-    <nav class="site-navigation">
+    <nav class="site-navigation print-hidden">
       <ul class="site-navigation-list">
         <slot />
         {links.map((link) => (
@@ -37,17 +37,11 @@ const active = (path: string) => {
 }
 
 <style>
-  .site-navigation {
-    @media print {
-      display: none;
-    }
-  }
-
   .site-navigation-list {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.25em;
   }
 
   .site-navigation-anchor {
@@ -55,7 +49,7 @@ const active = (path: string) => {
     display: block;
     border-radius: var(--radius-default);
     background-color: var(--color-background-subtle);
-    padding-inline: 0.5em;
+    padding-inline: 0.375em;
 
     &.active {
       color: var(--color-accent);

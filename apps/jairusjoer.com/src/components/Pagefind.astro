@@ -27,12 +27,6 @@
     if (pagefindLoaded) return Promise.resolve();
     pagefindLoaded = true;
 
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/pagefind/pagefind-ui.css';
-
-    document.head.appendChild(link);
-
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = '/pagefind/pagefind-ui.js';
@@ -67,17 +61,6 @@
 </script>
 
 <style is:global>
-  :root {
-    --pagefind-ui-primary: var(--color-accent) !important;
-    --pagefind-ui-text: var(--color-foreground) !important;
-    --pagefind-ui-background: var(--color-background-subtle) !important;
-    --pagefind-ui-border: var(--color-border) !important;
-    --pagefind-ui-tag: var(--color-background-subtle) !important;
-    --pagefind-ui-border-width: 0.5px !important;
-    --pagefind-ui-border-radius: var(--radius-default) !important;
-    --pagefind-ui-image-border-radius: var(--radius-default) !important;
-  }
-
   .pagefind-button {
     background-color: var(--color-accent);
     color: var(--color-background);
@@ -90,25 +73,30 @@
     background: var(--color-background);
     border: 0.5px solid var(--color-border);
     max-height: calc(100dvh - 12em);
-    width: min(calc(100% - 3em), var(--spacing-default));
+    width: min(calc(100% - 3em), calc(var(--spacing-default) + 3em));
     padding: 1.5em;
     inset: 1.5em;
     overscroll-behavior: none;
     color: var(--color-foreground-subtle);
   }
 
-  .pagefind-ui__result-link {
-    color: var(--color-accent) !important;
-  }
-
-  /* .pagefind-ui__form {
+  .pagefind-ui__form {
     display: flex;
     flex-wrap: wrap;
   }
 
   .pagefind-ui__search-input {
+    background: var(--color-background-subtle);
     flex-grow: 1;
-    margin-right: 0.75em;
+  }
+  .pagefind-ui__search-clear {
+    margin-left: 0.25em;
+  }
+  .pagefind-ui__search-clear,
+  .pagefind-ui__button {
+    background: var(--color-accent);
+    color: var(--color-background);
+    font-weight: 600;
   }
 
   .pagefind-ui__drawer {
@@ -131,7 +119,15 @@
     padding-top: 1.5em;
     border-top: 0.5px solid var(--color-border);
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    gap: 1.5em;
+    grid-template-columns: 4.5em auto;
+  }
+
+  .pagefind-ui__result-image {
+    border-radius: var(--radius-default);
+    aspect-ratio: 1;
+    width: 100%;
+    overflow: hidden;
   }
 
   .pagefind-ui__result-title {
@@ -139,8 +135,12 @@
     color: var(--color-foreground);
 
     &:not(.pagefind-ui__result-nested *) {
-      font-size: calc(1em * pow(pow(1.5, 0.2), 1));
+      font-size: calc(1em * var(--headline-scale));
     }
+  }
+
+  .pagefind-ui__result-link {
+    color: var(--color-accent) !important;
   }
 
   .pagefind-ui__result-excerpt {
@@ -149,11 +149,9 @@
 
   .pagefind-ui__result-nested {
     padding-top: 0.75em;
-    padding-left: 1.5em;
-    border-left: 0.5px solid var(--color-border);
   }
 
   .pagefind-ui__button {
     width: 100%;
-  } */
+  }
 </style>

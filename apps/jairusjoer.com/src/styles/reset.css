@@ -29,7 +29,7 @@ button,
 input,
 select,
 textarea {
-  padding: 0 0.5em;
+  padding: 0 0.375em;
   border-radius: var(--radius-default);
   border: unset;
   font: inherit;
@@ -44,6 +44,12 @@ video {
   display: block;
   height: auto;
   max-width: 100%;
+}
+
+img,
+picture,
+video {
+  object-fit: cover;
 }
 
 h1,
@@ -62,6 +68,8 @@ html {
 }
 
 input {
+  background-color: var(--color-background-subtle);
+  color: var(--color-foreground);
   border: 0.5px solid var(--color-border);
 }
 
