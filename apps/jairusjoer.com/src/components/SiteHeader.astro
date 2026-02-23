@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { site } from '../config';
 import SiteNavigation from './SiteNavigation.astro';
+import Pagefind from './Pagefind.astro';
 ---
 
 <header class="site-header">
@@ -28,7 +29,13 @@ import SiteNavigation from './SiteNavigation.astro';
     </div>
   </a>
 
-  {site?.navigation?.length && <SiteNavigation links={site.navigation} />}
+  {
+    site?.navigation?.length && (
+      <SiteNavigation links={site.navigation}>
+        <Pagefind />
+      </SiteNavigation>
+    )
+  }
 </header>
 
 <style>

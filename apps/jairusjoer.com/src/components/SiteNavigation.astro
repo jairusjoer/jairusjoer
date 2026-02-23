@@ -20,6 +20,7 @@ const active = (path: string) => {
   links && (
     <nav class="site-navigation">
       <ul class="site-navigation-list">
+        <slot />
         {links.map((link) => (
           <li>
             <a
@@ -30,7 +31,6 @@ const active = (path: string) => {
             </a>
           </li>
         ))}
-        <slot />
       </ul>
     </nav>
   )

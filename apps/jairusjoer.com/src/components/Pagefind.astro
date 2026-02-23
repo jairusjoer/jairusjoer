@@ -6,35 +6,50 @@
   <button
     class="pagefind-button transition-press"
     popovertarget="pagefind-popover"
-    >Search</button
+    title="Search (Cmd/Ctrl + K)"
   >
+    Search
+  </button>
 
   <div
     id="pagefind-popover"
     popover
   >
     <div id="pagefind-search"></div>
-
-    <link
-      href="/pagefind/pagefind-ui.css"
-      rel="stylesheet"
-    />
-    <script
-      is:inline
-      src="/pagefind/pagefind-ui.js"
-    ></script>
   </div>
 </span>
 
 <script is:inline>
   const pagefindPopover = document.getElementById('pagefind-popover');
-  let pagefindInitialized = false;
+  let pagefindLoaded = false;
 
-  pagefindPopover.addEventListener('toggle', (event) => {
-    if (event.newState === 'open' && !pagefindInitialized) {
-      pagefindInitialized = true;
+  function loadPagefind() {
+    if (pagefindLoaded) return Promise.resolve();
+    pagefindLoaded = true;
 
-      new PagefindUI({ element: '#pagefind-search', showSubResults: true, autofocus: true });
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/pagefind/pagefind-ui.css';
+
+    document.head.appendChild(link);
+
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = '/pagefind/pagefind-ui.js';
+      script.onload = resolve;
+      script.onerror = reject;
+
+      document.head.appendChild(script);
+    });
+  }
+
+  pagefindPopover.addEventListener('toggle', async (event) => {
+    if (event.newState === 'open') {
+      await loadPagefind();
+
+      if (!document.querySelector('.pagefind-ui')) {
+        new PagefindUI({ element: '#pagefind-search', showSubResults: true, autofocus: true });
+      }
     }
   });
 
@@ -74,12 +89,16 @@
     border-radius: var(--radius-default);
     background: var(--color-background);
     border: 0.5px solid var(--color-border);
-    max-height: calc(100dvh - 10.5em);
+    max-height: calc(100dvh - 12em);
     width: min(calc(100% - 3em), var(--spacing-default));
     padding: 1.5em;
     inset: 1.5em;
     overscroll-behavior: none;
     color: var(--color-foreground-subtle);
+  }
+
+  .pagefind-ui__result-link {
+    color: var(--color-accent) !important;
   }
 
   /* .pagefind-ui__form {

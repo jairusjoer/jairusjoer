@@ -4,8 +4,7 @@
 @import './themes/catppuccin.css';
 
 ::backdrop {
-  background-color: var(--color-background-subtle);
-  opacity: 0.5;
+  background-color: color-mix(var(--color-background-subtle), #00000040);
 }
 
 ::selection,

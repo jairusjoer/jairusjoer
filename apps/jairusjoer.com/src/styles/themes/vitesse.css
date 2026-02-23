@@ -1,0 +1,23 @@
+/* Vitesse Theme - https://github.com/antfu/vscode-theme-vitesse */
+:root {
+  --color-accent: light-dark(#1c6b48, #4d9375);
+
+  --color-background: light-dark(#f7f7f7, #181818);
+  --color-background-subtle: light-dark(#ffffff, #121212);
+
+  --color-border: light-dark(#f0f0f0, #191919);
+
+  --color-foreground-subtle: light-dark(#6a737d, #959da5);
+  --color-foreground: light-dark(#393a34, #dbd7ca);
+
+  --font-default: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  --radius-default: 0.125rem;
+
+  --spacing-default: 60ch;
+
+  --text-default: 1rem;
+
+  color-scheme: light dark;
+}
