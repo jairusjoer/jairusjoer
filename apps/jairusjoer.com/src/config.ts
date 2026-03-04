@@ -1,7 +1,7 @@
 import type { SiteConfig } from './types';
 
 export const site: SiteConfig = {
-  site: 'https://jairusjoer.com',
+  url: 'https://jairusjoer.com',
   title: 'Jairus Joer',
   description: 'Senior Developer & Designer',
   locale: 'en-US',

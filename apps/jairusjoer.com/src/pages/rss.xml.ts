@@ -31,7 +31,7 @@ export const GET: APIRoute = async () => {
   return rss({
     title: site.title,
     description: site.description,
-    site: site.site,
+    site: site.url,
     items: entries,
   });
 };

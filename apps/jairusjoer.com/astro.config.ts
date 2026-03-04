@@ -1,15 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
 import { site } from './src/config';
 
-import markdoc from '@astrojs/markdoc';
-
+import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx(), markdoc(), sitemap()],
+  integrations: [mdx(), sitemap()],
 
   markdown: {
     shikiConfig: {
@@ -23,5 +21,5 @@ export default defineConfig({
     },
   },
 
-  site: site.site,
+  site: site.url,
 });

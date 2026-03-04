@@ -26,7 +26,7 @@ export interface SiteConfig {
   image?: ImageMetadata;
 
   /** Base URL of the website. */
-  site: string;
+  url: string;
 
   /** Title of the website. */
   title: string;
