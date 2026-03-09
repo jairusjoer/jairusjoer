@@ -12,8 +12,8 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       themes: {
-        dark: 'vitesse-dark',
-        light: 'vitesse-light',
+        dark: 'catppuccin-mocha',
+        light: 'catppuccin-latte',
       },
     },
     remarkRehype: {

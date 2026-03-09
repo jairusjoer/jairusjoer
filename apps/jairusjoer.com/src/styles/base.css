@@ -1,10 +1,5 @@
 /* eslint-disable css/no-important */
 
-@import './reset.css';
-@import './prosa.css';
-@import './transitions.css';
-@import './themes/catppuccin.css';
-
 ::backdrop {
   background-color: color-mix(var(--color-background-subtle), #00000040);
 }
