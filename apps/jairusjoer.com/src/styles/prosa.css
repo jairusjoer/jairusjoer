@@ -18,6 +18,14 @@
     &:focus {
       text-decoration: underline;
     }
+
+    &[data-footnote-ref] {
+      font-variant-numeric: tabular-nums;
+      margin-inline: 0.125em;
+      padding-inline: 0.25em;
+      border-radius: var(--radius-default);
+      background: var(--color-background-subtle);
+    }
   }
 
   abbr {
