@@ -8,24 +8,24 @@ const formatLink = (url: string) => {
 };
 ---
 
-<div class="link-list">
+<div class="link-list flex flex-col gap-3">
   {
     links.map((entry) => (
       <details>
         <summary>{entry.id}</summary>
         <ul>
           {entry.data.map((link) => (
-            <li class="link-list-item">
+            <li class="list-none">
               <span>
                 <input
-                  class="link-list-input touch-hitbox transition-press"
+                  class="peer touch-hitbox transition-press"
                   type="checkbox"
                   name="read"
                   title="Toogle reading status"
                   id={link}
                 />
                 <a
-                  class="link-list-anchor transition-gentle"
+                  class="transition-gentle peer-checked:line-through peer-checked:opacity-50"
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -40,23 +40,6 @@ const formatLink = (url: string) => {
     ))
   }
 </div>
-
-<style>
-  .link-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75em;
-  }
-
-  .link-list-item {
-    list-style: none;
-  }
-
-  .link-list-input:checked + .link-list-anchor {
-    text-decoration: line-through;
-    opacity: 0.5;
-  }
-</style>
 
 <script>
   const linkList = document.querySelector('.link-list');

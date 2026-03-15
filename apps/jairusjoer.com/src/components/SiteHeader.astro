@@ -2,18 +2,17 @@
 import { Image } from 'astro:assets';
 import { site } from '../config';
 import SiteNavigation from './SiteNavigation.astro';
-import Pagefind from './Pagefind.astro';
 ---
 
-<header class="site-header">
+<header class="flex flex-col gap-6 [view-transition-name:site-header]">
   <a
-    class="site-header-anchor"
+    class="relative flex items-start gap-4"
     href="/"
   >
     {
       site?.image && (
         <Image
-          class="site-header-portrait"
+          class="rounded-default size-12"
           src={site.image}
           alt="Portrait"
           width={160}
@@ -24,43 +23,10 @@ import Pagefind from './Pagefind.astro';
       )
     }
     <div>
-      <p class="site-header-title">{site.title}</p>
+      <p class="text-foreground font-medium">{site.title}</p>
       {site?.description && <p>{site.description}</p>}
     </div>
   </a>
 
-  {
-    site?.navigation?.length && (
-      <SiteNavigation links={site.navigation}>
-        <Pagefind />
-      </SiteNavigation>
-    )
-  }
+  {site?.navigation?.length && <SiteNavigation links={site.navigation} />}
 </header>
-
-<style>
-  .site-header {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    view-transition-name: site-header;
-  }
-
-  .site-header-anchor {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 1em;
-  }
-
-  .site-header-portrait {
-    border-radius: var(--radius-default);
-    width: 3em;
-    height: 3em;
-  }
-
-  .site-header-title {
-    color: var(--color-foreground);
-    font-weight: 600;
-  }
-</style>

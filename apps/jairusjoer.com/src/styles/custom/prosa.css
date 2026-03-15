@@ -1,10 +1,12 @@
-:root {
-  --headline-scale: pow(1.5, 0.2);
+@layer prosa {
+  :root {
+    --headline-scale: pow(1.5, 0.2);
+  }
 }
 
-.prosa {
+@utility prosa {
   > * + * {
-    margin-top: 1.5em;
+    margin-top: 1.5rem;
 
     &:is(h1, h2, h3, h4, h5, h6) {
       margin-top: calc(var(--text-default) * 3);
@@ -21,8 +23,8 @@
 
     &[data-footnote-ref] {
       font-variant-numeric: tabular-nums;
-      margin-inline: 0.125em;
-      padding-inline: 0.25em;
+      margin-inline: 0.125rem;
+      padding-inline: 0.25rem;
       border-radius: var(--radius-default);
       background: var(--color-background-subtle);
     }
@@ -34,8 +36,8 @@
 
   blockquote {
     font-style: italic;
-    border-left: 0.5px solid var(--color-accent);
-    padding-left: calc(1.5em - 1px);
+    border-left: 1px solid var(--color-accent);
+    padding-left: calc(1.5rem - 1px);
   }
 
   code {
@@ -47,21 +49,21 @@
     background-color: var(--color-background-subtle);
     border-radius: var(--radius-default);
     color: var(--color-foreground);
-    padding: 0.1875em;
+    padding: 0.1875rem;
 
     @media print {
-      border: 0.5px solid var(--color-border);
+      border: 1px solid var(--color-border);
     }
   }
 
   details {
     background-color: var(--color-background-subtle);
     border-radius: var(--radius-default);
-    padding: 0.75em;
+    padding: 0.75rem;
     position: relative;
 
     &[open] summary {
-      margin-bottom: 0.75em;
+      margin-bottom: 0.75rem;
     }
 
     &[open] summary::before {
@@ -69,24 +71,24 @@
     }
 
     > * + * {
-      margin-top: 0.75em;
+      margin-top: 0.75rem;
     }
 
     summary {
       color: var(--color-foreground);
       cursor: pointer;
       display: block;
-      font-weight: 600;
-      padding-left: 1.5em;
+      font-weight: 500;
+      padding-left: 1.5rem;
       user-select: none;
 
       &::before {
         color: var(--color-accent);
         content: '▼';
-        width: 1em;
+        width: 1rem;
         text-align: center;
-        left: 0.75em;
-        line-height: 1.5em;
+        left: 0.75rem;
+        line-height: 1.5rem;
         position: absolute;
         rotate: -90deg;
       }
@@ -94,12 +96,12 @@
   }
 
   figcaption {
-    margin-top: 0.75em;
+    margin-top: 0.75rem;
     font-size: smaller;
   }
 
   .footnotes {
-    margin-top: 6em;
+    margin-top: 6rem;
   }
 
   h1,
@@ -109,41 +111,40 @@
   h5,
   h6 {
     color: var(--color-foreground);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1;
 
     & + * {
-      margin-top: 0.75em;
+      margin-top: 0.75rem;
     }
   }
 
   h1 {
-    font-size: calc(1em * pow(var(--headline-scale), 5));
+    font-size: calc(1rem * pow(var(--headline-scale), 5));
   }
 
   h2 {
-    font-size: calc(1em * pow(var(--headline-scale), 4));
+    font-size: calc(1rem * pow(var(--headline-scale), 4));
   }
 
   h3 {
-    font-size: calc(1em * pow(var(--headline-scale), 3));
+    font-size: calc(1rem * pow(var(--headline-scale), 3));
   }
 
   h4 {
-    font-size: calc(1em * pow(var(--headline-scale), 2));
+    font-size: calc(1rem * pow(var(--headline-scale), 2));
   }
 
   h5 {
-    font-size: calc(1em * pow(var(--headline-scale), 1));
+    font-size: calc(1rem * pow(var(--headline-scale), 1));
   }
 
   h6 {
-    font-size: calc(1em * pow(var(--headline-scale), 0));
+    font-size: calc(1rem * pow(var(--headline-scale), 0));
   }
 
   hr {
-    margin-block: 3em;
-    border: 0.5px solid var(--color-border);
+    margin-block: 3rem;
   }
 
   img,
@@ -166,19 +167,19 @@
   ul {
     list-style-type: revert;
     list-style-position: outside;
-    padding-left: 1.5em;
+    padding-left: 1.5rem;
   }
 
   li {
     position: relative;
-    margin-top: 0.75em;
+    margin-top: 0.75rem;
 
     &::marker {
       color: var(--color-accent);
     }
 
     > * + * {
-      margin-top: 0.75em;
+      margin-top: 0.75rem;
     }
   }
 
@@ -186,13 +187,13 @@
     appearance: none;
     background-color: var(--color-background-subtle);
     border-radius: var(--radius-default);
-    border: 0.5px solid var(--color-border);
+    border: 1px solid var(--color-border);
     color: var(--color-background);
-    height: 1em;
-    left: -1.5em;
+    height: 1rem;
+    left: -1.5rem;
     position: absolute;
-    top: 0.25em;
-    width: 1em;
+    top: 0.25rem;
+    width: 1rem;
   }
 
   li input[type='checkbox']:not(:disabled) {
@@ -207,30 +208,30 @@
     content: '✓';
     font-size: smaller;
     inset: 0;
-    line-height: 1em;
+    line-height: 0.875rem;
     position: absolute;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   pre {
     border-radius: var(--radius-default);
-    padding: 0.75em;
+    padding: 0.75rem;
 
     @media print {
-      border: 0.5px solid var(--color-border);
+      border: 1px solid var(--color-border);
       white-space: pre-wrap;
     }
   }
 
   strong {
     color: var(--color-foreground);
-    font-weight: 600;
+    font-weight: 500;
   }
 
   table {
     border-radius: var(--radius-default);
-    border: 0.5px solid var(--color-border);
+    border: 1px solid var(--color-border);
     table-layout: fixed;
     width: 100%;
     border-collapse: separate;
@@ -240,13 +241,13 @@
 
   th,
   td {
-    padding: 0.75em;
+    padding: 0.75rem;
     text-align: left;
   }
 
   th:not(:first-child),
   td:not(:first-child) {
-    border-left: 0.5px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
   }
 
   th {
@@ -255,7 +256,7 @@
   }
 
   td {
-    border-top: 0.5px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
   }
 
   time {

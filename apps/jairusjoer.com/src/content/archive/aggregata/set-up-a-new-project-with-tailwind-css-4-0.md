@@ -102,7 +102,7 @@ npm install -D @tailwindcss/typography
 ```
 
 ```css
-@plugin "@tailwindcss/typography";
+@plugin '@tailwindcss/typography';
 ```
 
 As in the previous steps, once you have installed the plugin, simply add it to your `tailwind.css` file. Since the typography plugin uses CSS variables for its theme, we can easily define our own theme by setting the variables to our custom colors in the [`utilities` CSS layer](https://tailwindcss.com/docs/v4-beta#native-css-cascade-layers).

@@ -1,5 +1,5 @@
 ---
-import '@styles/index.css';
+import '@styles/global.css';
 import SiteMeta from '@components/SiteMeta.astro';
 import type { Metadata as MetadataType } from '@components/SiteMeta.astro';
 import { site } from '../config';
@@ -13,14 +13,20 @@ export interface Props {
 const { metadata } = Astro.props;
 ---
 
-<html lang={site.locale.slice(0, 2)}>
+<html
+  lang={site.locale.slice(0, 2)}
+  class="bg-background text-foreground-subtle scheme-light-dark print:bg-transparent print:scheme-light"
+>
   <head>
     <SiteMeta metadata={{ ...site, ...metadata }} />
     <slot name="head" />
   </head>
   <body>
-    <div id="root">
-      <div class="page-layout-container">
+    <div
+      id="root"
+      class="text-default font-default px-6"
+    >
+      <div class="max-w-default mx-auto flex min-h-dvh w-full flex-col items-start py-24 print:ml-0 print:max-w-none">
         <SiteHeader />
         <slot />
         <SiteFooter links={site.footer} />
@@ -28,37 +34,3 @@ const { metadata } = Astro.props;
     </div>
   </body>
 </html>
-
-<style>
-  html {
-    background-color: var(--color-background);
-    color: var(--color-foreground-subtle);
-
-    @media print {
-      background-color: transparent;
-      color-scheme: light;
-    }
-  }
-
-  #root {
-    font-size: var(--text-default);
-    font-family: var(--font-default);
-    padding-inline: 1.5em;
-  }
-
-  .page-layout-container {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    margin-inline: auto;
-    max-width: var(--spacing-default);
-    min-height: 100dvh;
-    padding-block: 6em;
-    width: 100%;
-
-    @media print {
-      margin-left: 0;
-      max-width: none;
-    }
-  }
-</style>

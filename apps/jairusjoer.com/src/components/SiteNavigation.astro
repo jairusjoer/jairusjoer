@@ -18,16 +18,22 @@ const active = (path: string) => {
 
 {
   links && (
-    <nav class="site-navigation print-hidden">
-      <ul class="site-navigation-list">
+    <nav class="print-hidden">
+      <ul class="flex flex-wrap items-center gap-1">
         <slot />
         {links.map((link) => (
           <li>
             <a
-              class:list={['site-navigation-anchor transition-press', { active: active(link.href) }]}
+              class:list={[
+                'relative rounded-default bg-background-subtle transition-press block px-1.5 font-medium',
+                active(link.href) && 'text-accent rounded-b-none',
+              ]}
               href={link.href}
             >
               {link.title}
+              {active(link.href) && (
+                <hr class="absolute inset-x-0 bottom-0 border-accent [view-transition-name:site-navigation-active]" />
+              )}
             </a>
           </li>
         ))}
@@ -35,24 +41,3 @@ const active = (path: string) => {
     </nav>
   )
 }
-
-<style>
-  .site-navigation-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.25em;
-  }
-
-  .site-navigation-anchor {
-    font-weight: 600;
-    display: block;
-    border-radius: var(--radius-default);
-    background-color: var(--color-background-subtle);
-    padding-inline: 0.375em;
-
-    &.active {
-      color: var(--color-accent);
-    }
-  }
-</style>

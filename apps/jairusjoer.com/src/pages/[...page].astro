@@ -4,6 +4,11 @@ import { getComponents } from '@scripts/getComponents';
 import PageLayout from '@layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import { formatDatetime } from '@scripts/formatDatetime';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'pages'>;
+}
 
 export async function getStaticPaths() {
   const staticPaths = [];
@@ -29,14 +34,21 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 
 const components = getComponents();
+
+const hasExtras = entry.data.image || entry.data.description || entry.data.date;
 ---
 
 <PageLayout metadata={entry.data}>
   <main
-    class="page"
+    class="my-24 w-full"
     data-pagefind-body
   >
-    <header class="page-header prosa">
+    <header
+      class:list={[
+        'prosa [view-transition-name:page-header]',
+        hasExtras ? 'border-border mb-12 border-b pb-12' : 'mb-3',
+      ]}
+    >
       {
         entry.data.image && (
           <Image
@@ -49,7 +61,7 @@ const components = getComponents();
         )
       }
       <h1>
-        {entry.data.status && <span class="page-status">{entry.data.status}:</span>}
+        {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
         <span>{entry.data.title}</span>
       </h1>
       {entry.data.description && <p>{entry.data.description}</p>}
@@ -65,7 +77,7 @@ const components = getComponents();
         )
       }
     </header>
-    <div class="page-article prosa">
+    <div class="prosa [view-transition-name:page-article]">
       <Content {components} />
     </div>
   </main>
@@ -78,29 +90,3 @@ const components = getComponents();
   toggleDetails();
   externalizeLinks();
 </script>
-
-<style>
-  .page {
-    margin-block: 6em;
-    width: 100%;
-  }
-
-  .page-header {
-    margin-bottom: 0.75em;
-    view-transition-name: page-header;
-
-    &:has(img, p, time) {
-      margin-bottom: 3em;
-      border-bottom: 0.5px solid var(--color-border);
-      padding-bottom: 3em;
-    }
-  }
-
-  .page-status {
-    color: var(--color-accent);
-  }
-
-  .page-article {
-    view-transition-name: page-article;
-  }
-</style>

@@ -12,15 +12,8 @@ const { links } = Astro.props;
 
 {
   links && (
-    <footer class="site-footer print-hidden">
+    <footer class="print-hidden mt-auto [view-transition-name:site-footer]">
       <SiteNavigation links={links} />
     </footer>
   )
 }
-
-<style>
-  .site-footer {
-    view-transition-name: site-footer;
-    margin-top: auto;
-  }
-</style>
