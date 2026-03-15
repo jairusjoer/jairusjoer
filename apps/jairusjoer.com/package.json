@@ -13,12 +13,12 @@
     "lint": "eslint --fix --max-warnings 0"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/check": "^0.9.7",
+    "@astrojs/mdx": "^5.0.0",
+    "@astrojs/rss": "^4.0.17",
+    "@astrojs/sitemap": "^3.7.1",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^5.17.2",
+    "astro": "^6.0.4",
     "pagefind": "^1.4.0",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
@@ -34,22 +34,22 @@
     ]
   },
   "devDependencies": {
-    "@eslint/css": "^0.14.1",
-    "@eslint/js": "^9.39.2",
-    "@eslint/json": "^0.14.0",
+    "@eslint/css": "^1.0.0",
+    "@eslint/js": "^10.0.1",
+    "@eslint/json": "^1.1.0",
     "@eslint/markdown": "^7.5.1",
     "@types/eslint-plugin-jsx-a11y": "^6.10.1",
-    "@typescript-eslint/parser": "^8.56.0",
-    "eslint": "^9.39.2",
+    "@typescript-eslint/parser": "^8.57.0",
+    "eslint": "^10.0.3",
     "eslint-plugin-astro": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
-    "globals": "^16.5.0",
+    "globals": "^17.4.0",
     "jiti": "^2.6.1",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "sharp": "^0.34.5",
-    "typescript-eslint": "^8.56.0"
+    "typescript-eslint": "^8.57.0"
   },
   "packageManager": "pnpm@10.29.3+sha512.498e1fb4cca5aa06c1dcf2611e6fafc50972ffe7189998c409e90de74566444298ffe43e6cd2acdc775ba1aa7cc5e092a8b7054c811ba8c5770f84693d33d2dc"
 }
