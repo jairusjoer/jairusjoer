@@ -12,15 +12,15 @@ I am currently spearheading HERO Software's platform modernization through monor
 
 ## Experience
 
-- **Senior Full Stack Engineer at HERO Software**<br/>
+- **Senior Full Stack Engineer at [HERO Software](https://hero-software.de/)**<br/>
   Hanover, Germany · Hybrid<br/>
   Apr 2024 — Present
 
 - **Freelance Developer and Designer**<br/>
-  Hanover, Germany · Remote, Part-time<br/>
+  Hanover, Germany · Hybrid, Part-time<br/>
   Nov 2020 — Present
 
-- **Full Stack Developer at neuwaerts**<br/>
+- **Full Stack Developer at [neuwaerts](https://www.neuwaerts.de/)**<br/>
   Hanover, Germany · Hybrid<br/>
   Jul 2019 — Mar 2024
 

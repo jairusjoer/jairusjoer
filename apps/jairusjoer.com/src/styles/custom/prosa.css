@@ -22,8 +22,7 @@
     }
 
     &[data-footnote-ref] {
-      font-variant-numeric: tabular-nums;
-      margin-inline: 0.125rem;
+      margin-left: 1px;
       padding-inline: 0.25rem;
       border-radius: var(--radius-default);
       background: var(--color-background-subtle);
@@ -113,6 +112,7 @@
     color: var(--color-foreground);
     font-weight: 500;
     line-height: 1;
+    text-wrap: balance;
 
     & + * {
       margin-top: 0.75rem;

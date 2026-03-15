@@ -18,14 +18,14 @@ const formatLink = (url: string) => {
             <li class="list-none">
               <span>
                 <input
-                  class="peer touch-hitbox transition-press"
+                  class="peer touch-hitbox"
                   type="checkbox"
                   name="read"
                   title="Toogle reading status"
                   id={link}
                 />
                 <a
-                  class="transition-gentle peer-checked:line-through peer-checked:opacity-50"
+                  class="transition-opacity peer-checked:line-through peer-checked:opacity-50"
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"

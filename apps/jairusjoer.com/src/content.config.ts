@@ -1,5 +1,6 @@
 import { file, glob } from 'astro/loaders';
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 
 const books = defineCollection({
   loader: file('src/content/reading/books.json'),
@@ -7,7 +8,7 @@ const books = defineCollection({
     z.object({
       author: z.string(),
       cover: image().optional(),
-      source: z.string().url().optional(),
+      source: z.string().optional(),
       status: z.enum(['Unread', 'Reading', 'Completed', 'Dropped']),
       id: z.string(),
     }),
@@ -15,7 +16,7 @@ const books = defineCollection({
 
 const links = defineCollection({
   loader: file('src/content/reading/links.json'),
-  schema: z.array(z.string().url()),
+  schema: z.array(z.string()),
 });
 
 const pages = defineCollection({

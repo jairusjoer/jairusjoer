@@ -4,6 +4,7 @@ import { getComponents } from '@scripts/getComponents';
 import PageLayout from '@layouts/PageLayout.astro';
 import { Image } from 'astro:assets';
 import { formatDatetime } from '@scripts/formatDatetime';
+import { isPublished } from '@scripts/isPublished';
 import type { CollectionEntry } from 'astro:content';
 
 export interface Props {
@@ -11,22 +12,16 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const staticPaths = [];
-
   let collection = await getCollection('pages');
 
   if (import.meta.env.PROD) {
-    collection = collection.filter((entry) => !['Draft'].includes(entry.data?.status ?? ''));
+    collection = collection.filter((entry) => isPublished(entry.data?.status));
   }
 
-  for (const entry of collection) {
-    staticPaths.push({
-      params: { page: entry.id === 'index' ? undefined : entry.id },
-      props: { entry },
-    });
-  }
-
-  return staticPaths;
+  return collection.map((entry) => ({
+    params: { page: entry.id === 'index' ? undefined : entry.id },
+    props: { entry },
+  }));
 }
 
 const { entry } = Astro.props;

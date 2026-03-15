@@ -1,8 +1,9 @@
+/* eslint-disable css/no-important */
 @layer base {
-  /* eslint-disable css/no-important */
-
-  ::backdrop {
-    background-color: color-mix(var(--color-background-subtle), #00000040);
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+      navigation: auto;
+    }
   }
 
   ::selection,
@@ -11,12 +12,12 @@
     color: var(--color-background);
   }
 
-  * {
-    border-color: var(--color-border);
+  :root {
+    scrollbar-gutter: stable;
   }
 
-  a[href^='http']::after {
-    content: ' ↗';
+  * {
+    border-color: var(--color-border);
   }
 
   #root {
@@ -32,6 +33,7 @@
     background-color: var(--color-background-subtle) !important;
 
     @media (prefers-color-scheme: dark) {
+      /* background: var(--shiki-dark-bg) !important; */
       color: var(--shiki-dark) !important;
       font-style: var(--shiki-dark-font-style) !important;
       font-weight: var(--shiki-dark-font-weight) !important;

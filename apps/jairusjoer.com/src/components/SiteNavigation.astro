@@ -17,23 +17,20 @@ const active = (path: string) => {
 ---
 
 {
-  links && (
+  links?.length && (
     <nav class="print-hidden">
-      <ul class="flex flex-wrap items-center gap-1">
+      <ul class="flex flex-wrap items-center gap-1 font-medium">
         <slot />
         {links.map((link) => (
           <li>
             <a
               class:list={[
-                'relative rounded-default bg-background-subtle transition-press block px-1.5 font-medium',
-                active(link.href) && 'text-accent rounded-b-none',
+                'rounded-default bg-background-subtle hover:bg-accent hover:text-background block px-1.5 transition-colors',
+                active(link.href) && 'bg-accent! text-background',
               ]}
               href={link.href}
             >
               {link.title}
-              {active(link.href) && (
-                <hr class="absolute inset-x-0 bottom-0 border-accent [view-transition-name:site-navigation-active]" />
-              )}
             </a>
           </li>
         ))}

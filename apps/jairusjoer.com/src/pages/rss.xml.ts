@@ -2,31 +2,35 @@ import rss from '@astrojs/rss';
 import { site } from '../config';
 import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
-import { formatDatetime } from '@scripts/formatDatetime';
+import { isPublished } from '@scripts/isPublished';
 
 export const GET: APIRoute = async () => {
   let collection = await getCollection('pages');
 
   if (import.meta.env.PROD) {
-    collection = collection.filter((entry) => !['Draft', 'Unpublished'].includes(entry.data?.status ?? ''));
+    collection = collection.filter((entry) => isPublished(entry.data?.status));
   }
 
-  const entries = [];
-
-  for (const entry of collection) {
-    const item = {
+  const entries = collection.map((entry) => {
+    const item: {
+      title: string;
+      description?: string;
+      link: string;
+      content?: string;
+      pubDate?: Date;
+    } = {
       title: entry.data.title,
       description: entry.data.description,
-      link: `/${entry.id}`,
+      link: entry.id === 'index' ? '/' : `/${entry.id}`,
       content: entry.rendered?.html,
     };
 
-    if (entry.data?.date && !Array.isArray(entry.data.date)) {
-      Object.assign(item, { pubDate: formatDatetime(entry.data.date) });
+    if (entry.data.date) {
+      item.pubDate = entry.data.date;
     }
 
-    entries.push(item);
-  }
+    return item;
+  });
 
   return rss({
     title: site.title,
