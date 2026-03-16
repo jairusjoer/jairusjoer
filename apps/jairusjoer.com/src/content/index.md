@@ -48,8 +48,8 @@ I am currently spearheading HERO Software's platform modernization through monor
 
 ## Projects
 
-- **Co-Author and Maintainer**<br/>
-  Aggregata<br/>
+- **Co-Author and Maintainer at [Aggregata](https://aggregata.de/)**<br/>
+  Technical blog reaching 9000+ monthly visitors<br/>
   Aug 2022 — Dec 2025
 
 ---
