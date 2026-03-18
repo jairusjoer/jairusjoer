@@ -15,7 +15,7 @@ const { metadata } = Astro.props;
 
 <html
   lang={site.locale.slice(0, 2)}
-  class="bg-background text-foreground-subtle text-pretty scheme-light-dark print:bg-transparent print:scheme-light"
+  class="bg-background text-foreground-subtle antialiased text-pretty scheme-light-dark print:bg-transparent print:scheme-light"
 >
   <head>
     <SiteMeta metadata={{ ...site, ...metadata }} />
@@ -27,16 +27,16 @@ const { metadata } = Astro.props;
       class="text-default font-default px-6"
     >
       <div
-        class="from-background pointer-events-none fixed inset-x-0 z-10 h-24 bg-linear-to-b to-transparent print:hidden"
+        class="from-background pointer-events-none sticky top-0 z-10 h-24 bg-linear-to-b to-transparent print:hidden [view-transition-name:page-layout-top]"
       >
       </div>
-      <div class="max-w-default mx-auto flex min-h-dvh w-full flex-col items-start py-24 print:ml-0 print:max-w-none">
+      <div class="max-w-default mx-auto flex min-h-dvh w-full flex-col items-start print:ml-0 print:max-w-none">
         <SiteHeader />
         <slot />
         <SiteFooter links={site.footer} />
       </div>
       <div
-        class="from-background pointer-events-none fixed inset-x-0 bottom-0 z-10 h-24 bg-linear-to-t to-transparent print:hidden"
+        class="from-background pointer-events-none sticky bottom-0 z-10 h-24 bg-linear-to-t to-transparent print:hidden [view-transition-name:page-layout-bottom]"
       >
       </div>
     </div>
