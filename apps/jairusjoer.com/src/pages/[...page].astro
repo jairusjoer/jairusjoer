@@ -38,7 +38,7 @@ const hasExtras = entry.data.image || entry.data.description || entry.data.date;
     class="my-24 w-full"
     data-pagefind-body
   >
-    <header class:list={['prosa [view-transition-name:page-header]', { 'mb-3': !hasExtras }]}>
+    <header class:list={['prosa', { 'mb-3': !hasExtras }]}>
       {
         entry.data.image && (
           <Image
@@ -66,9 +66,9 @@ const hasExtras = entry.data.image || entry.data.description || entry.data.date;
           </>
         )
       }
-      {hasExtras && <hr class="[view-transition-name:page-header-divider]" />}
+      {hasExtras && <hr />}
     </header>
-    <div class="prosa [view-transition-name:page-article]">
+    <div class="prosa">
       <Content {components} />
     </div>
   </main>

@@ -27,7 +27,7 @@ const { metadata } = Astro.props;
       class="text-default font-default px-6"
     >
       <div
-        class="from-background pointer-events-none sticky top-0 z-10 h-24 bg-linear-to-b to-transparent print:hidden [view-transition-name:page-layout-top]"
+        class="from-background pointer-events-none sticky top-0 z-10 h-24 bg-linear-to-b to-transparent print:hidden"
       >
       </div>
       <div class="max-w-default mx-auto flex min-h-dvh w-full flex-col items-start print:ml-0 print:max-w-none">
@@ -36,7 +36,7 @@ const { metadata } = Astro.props;
         <SiteFooter links={site.footer} />
       </div>
       <div
-        class="from-background pointer-events-none sticky bottom-0 z-10 h-24 bg-linear-to-t to-transparent print:hidden [view-transition-name:page-layout-bottom]"
+        class="from-background pointer-events-none sticky bottom-0 z-10 h-24 bg-linear-to-t to-transparent print:hidden"
       >
       </div>
     </div>
