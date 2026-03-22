@@ -22,10 +22,15 @@
     }
 
     &[data-footnote-ref] {
+      background: var(--color-background-subtle);
+      border-radius: var(--radius-default);
+      font-family: var(--font-mono);
       margin-left: 1px;
       padding-inline: 0.25rem;
-      border-radius: var(--radius-default);
-      background: var(--color-background-subtle);
+    }
+
+    &[data-footnote-backref] {
+      font-family: var(--font-mono);
     }
   }
 
