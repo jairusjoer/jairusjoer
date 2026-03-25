@@ -1,9 +1,26 @@
-import type { SiteConfig } from './types';
+import avatar from './assets/avatar.jpeg';
+
+export interface SiteConfigLink {
+  title: string;
+  href: string;
+}
+
+export interface SiteConfig {
+  datetime: Intl.DateTimeFormatOptions;
+  description: string;
+  footer?: Array<SiteConfigLink>;
+  image?: ImageMetadata;
+  locale: string;
+  navigation?: Array<SiteConfigLink>;
+  title: string;
+  url: string;
+}
 
 export const site: SiteConfig = {
   url: 'https://jairusjoer.com',
+  image: avatar,
   title: 'Jairus Joer',
-  description: 'Senior Developer & Designer',
+  description: 'Senior Full Stack Engineer & Designer',
   locale: 'en-US',
   datetime: {
     day: 'numeric',

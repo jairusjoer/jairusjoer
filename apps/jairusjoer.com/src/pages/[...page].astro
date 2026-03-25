@@ -52,18 +52,14 @@ const hasExtras = entry.data.image || entry.data.description || entry.data.date;
       }
       <h1>
         {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
-        <span>{entry.data.title}</span>
+        {entry.data.title}
       </h1>
       {entry.data.description && <p>{entry.data.description}</p>}
       {
         entry.data.date && (
-          <>
-            <p>
-              <small>
-                <time>{formatDatetime(entry.data.date)}</time>
-              </small>
-            </p>
-          </>
+          <small class="block">
+            <time>{formatDatetime(entry.data.date)}</time>
+          </small>
         )
       }
       {hasExtras && <hr />}

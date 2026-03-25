@@ -2,11 +2,11 @@
 title: 'About'
 ---
 
-I am a **Senior Full Stack Developer** and **Designer** based in Germany. I take great delight in my specialized work surrounding user experience, design systems, and accessibility, always striving to create intuitive and inclusive digital experiences.
+Hello there! I am Jairus 'JJ' Joer, a Senior Full Stack Engineer and Designer based in Germany. I care deeply about software that feels thoughtful in every layer: clear in its structure, expressive in its interface, respectful of the people who use it, and deliberate in the way it supports real work.
 
-I have delivered measurable impact for tens of thousands of customers: cutting build times by 50%+, growing organic traffic by 120% YoY with a 33% conversion lift, and driving design system adoption across dozens of teams at various companies.
+The work I delight in most sits at the intersection of user experience, accessibility, design systems, and developer experience. I enjoy shaping systems that make taste practical, whether through refining interfaces, building resilient foundations, or creating tools that disappear into the flow of thought.
 
-I am currently spearheading HERO Software's platform modernization through monorepo orchestration and design system adoption. I am committed to design and engineering excellence, sharing these values with my colleagues.
+In recent years, I have helped teams modernise platforms, improve performance, grow reach, and adopt shared systems that raise the quality of everyday work. I currently do this at HERO Software, where I contribute to platform modernisation through monorepo orchestration and design system adoption.
 
 ---
 

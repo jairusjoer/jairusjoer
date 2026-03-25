@@ -143,7 +143,7 @@ The path forward requires diligent guardianship of quality, resisting the urge t
 
 ---
 
-**See you all in the next issue**<br/>
+**Until next time**<br/>
 _Yours truly, Jairus Joer_
 
 [^a11y]: Jairus Joer, ["Accessibility — a Necessity, not an Afterthought"](/archive/aggregata/accessibility-a-necessity-not-an-afterthought/), 2024
