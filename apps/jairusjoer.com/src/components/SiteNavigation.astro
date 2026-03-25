@@ -25,7 +25,7 @@ const active = (path: string) => {
           <li>
             <a
               class:list={[
-                'rounded-default hover:bg-accent hover:text-background block px-1.5 transition-colors',
+                'rounded-default hover:bg-accent hover:text-background block px-1.5 motion-safe:transition-colors',
                 active(link.href) ? 'bg-accent! text-background' : 'bg-background-subtle',
               ]}
               href={link.href}
