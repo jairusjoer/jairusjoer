@@ -34,10 +34,7 @@ const hasExtras = entry.data.image || entry.data.description || entry.data.date;
 ---
 
 <PageLayout metadata={entry.data}>
-  <main
-    class="my-24 w-full"
-    data-pagefind-body
-  >
+  <main class="my-24 w-full">
     <header class:list={['prosa', { 'mb-3': !hasExtras }]}>
       {
         entry.data.image && (

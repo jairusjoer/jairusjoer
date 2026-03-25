@@ -1,10 +1,9 @@
 # Astro
-.astro
-dist
+.astro/
+dist/
 
 # Dependencies
-node_modules
-public/pagefind/
+node_modules/
 
 # Environment
 .env
