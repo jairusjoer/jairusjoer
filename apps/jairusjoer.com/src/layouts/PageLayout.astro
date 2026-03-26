@@ -1,13 +1,13 @@
 ---
 import '@styles/global.css';
 import SiteMeta from '@components/SiteMeta.astro';
-import type { Metadata as MetadataType } from '@components/SiteMeta.astro';
+import type { Metadata } from '@components/SiteMeta.astro';
 import { site } from '../config';
 import SiteHeader from '@components/SiteHeader.astro';
 import SiteFooter from '@components/SiteFooter.astro';
 
 export interface Props {
-  metadata?: Partial<MetadataType>;
+  metadata?: Partial<Metadata>;
 }
 
 const { metadata } = Astro.props;

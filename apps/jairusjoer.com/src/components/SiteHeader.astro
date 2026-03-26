@@ -6,14 +6,14 @@ import SiteNavigation from './SiteNavigation.astro';
 
 <header class="flex flex-col gap-6">
   <a
-    class="relative flex items-start gap-4"
+    class="relative flex items-start gap-3"
     href="/"
   >
     {
-      site?.image && (
+      site?.portrait && (
         <Image
           class="rounded-default size-12"
-          src={site.image}
+          src={site.portrait}
           alt="Portrait"
           width={160}
           height={160}
@@ -24,7 +24,7 @@ import SiteNavigation from './SiteNavigation.astro';
     }
     <div>
       <p class="text-foreground font-semibold">{site.title}</p>
-      {site?.description && <p>{site.description}</p>}
+      <p>{site.description}</p>
     </div>
   </a>
 

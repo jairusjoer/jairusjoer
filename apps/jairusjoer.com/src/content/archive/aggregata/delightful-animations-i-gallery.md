@@ -11,7 +11,7 @@ For this first gallery animation, I revisited a website I designed and developed
 [neuwaerts.de](https://www.neuwaerts.de/)
 
 <video controls>
-  <source src="/assets/media/neuwaerts-gallery.mp4" type="video/mp4" />
+  <source src="/media/neuwaerts-gallery.mp4" type="video/mp4" />
 </video>
 
 ## Installing GSAP and the ScrollTrigger Plugin
@@ -96,7 +96,7 @@ if (gallery) {
 Using the [ScrollTrigger plugin](https://gsap.com/docs/v3/Plugins/ScrollTrigger/), we configure the trigger, [scrub](https://gsap.com/docs/v3/Plugins/ScrollTrigger/#scrub), and [pin](https://gsap.com/docs/v3/Plugins/ScrollTrigger/#pin) behaviors. The Scrub feature links the animation progress to the scroll bar, and the Pin feature sticks the animated element to the screen, similar to a fixed position.
 
 <video controls>
-  <source src="/assets/media/gallery-1.mp4" type="video/mp4" />
+  <source src="/media/gallery-1.mp4" type="video/mp4" />
 </video>
 
 ## **Adding Progressive Image Animations**
@@ -124,7 +124,7 @@ for (const image of images) {
 Although synchronizing animations may seem simple, determining the start and end points of an animation within its new context can be challenging. In this case, consider using the [markers](https://gsap.com/docs/v3/Plugins/ScrollTrigger/#markers) property of the ScrollTrigger plugin to visualize the endpoints.
 
 <video controls>
-  <source src="/assets/media/tile-2.mp4" type="video/mp4" />
+  <source src="/media/tile-2.mp4" type="video/mp4" />
 </video>
 
 And just like that, we implemented the foundation for a delightful, smooth, horizontal gallery scrolling animation using GSAP. From here on out, our animation journey has just begun, as we will delve into more animations and implementation patterns.

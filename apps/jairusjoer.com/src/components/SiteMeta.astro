@@ -1,11 +1,11 @@
 ---
-import type { ImageMetadata } from 'astro';
 import { site } from '../config';
 
 export interface Metadata {
   title: string;
+  id?: string;
   description?: string;
-  image?: ImageMetadata;
+  image?: string;
   schema?: Record<string, unknown>;
   status?: string;
 }
@@ -19,6 +19,8 @@ const { metadata } = Astro.props;
 const titleTemplate = `${metadata.title} • ${site.title}`;
 
 const getURL = (path: string) => String(new URL(path, Astro.site));
+const defaultSocialImage = metadata.id ? `og/${metadata.id}.png` : 'og/index.png';
+const socialImage = getURL(metadata.image ?? defaultSocialImage);
 ---
 
 <meta charset="utf-8" />
@@ -90,20 +92,15 @@ const getURL = (path: string) => String(new URL(path, Astro.site));
 }
 
 {/* Image */}
-{
-  metadata.image && (
-    <>
-      <meta
-        property="og:image"
-        content={metadata.image.src}
-      />
-      <meta
-        property="twitter:image"
-        content={metadata.image.src}
-      />
-    </>
-  )
-}
+
+<meta
+  property="og:image"
+  content={socialImage}
+/>
+<meta
+  property="twitter:image"
+  content={socialImage}
+/>
 
 {/* URL */}
 <meta

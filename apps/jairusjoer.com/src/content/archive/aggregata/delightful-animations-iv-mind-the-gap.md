@@ -35,7 +35,7 @@ I'm usually a quick learner and tend to skim materials rather than study them. T
 I started a personal project to explore and build on what I’ve learned. I made deliberately slow passes over details I had previously neglected. Although it might not be ideal for an early prototype, I want to validate my learning early on.
 
 <video controls>
-  <source src="/assets/media/sidebar.mp4" type="video/mp4" />
+  <source src="/media/sidebar.mp4" type="video/mp4" />
 </video>
 
 I fine-tuned the animation by recording and refining it. I scrolled back and forth through the recording to identify inconsistencies or undesirable side effects. Then, I addressed them and inspected them again and again until they were just right.

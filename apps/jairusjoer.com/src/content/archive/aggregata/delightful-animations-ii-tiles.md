@@ -11,7 +11,7 @@ This issue only scratches the surface of data visualization techniques that I'd 
 Today, we'll craft data tiles. They are small, contained units of information that highlight or contain key metrics or achievements in the presented context. They are a simple yet elegant element that fits nicely into decks and hero sections.
 
 <video controls>
-  <source src="/assets/media/tile-1.mp4" type="video/mp4" />
+  <source src="/media/tile-1.mp4" type="video/mp4" />
 </video>
 
 ## Forming the structure

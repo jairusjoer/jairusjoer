@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import { formatDatetime } from '@scripts/formatDatetime';
 import { isPublished } from '@scripts/isPublished';
 import type { CollectionEntry } from 'astro:content';
+import type { Metadata } from '@components/SiteMeta.astro';
 
 export interface Props {
   entry: CollectionEntry<'pages'>;
@@ -31,9 +32,16 @@ const { Content } = await render(entry);
 const components = getComponents();
 
 const hasExtras = entry.data.image || entry.data.description || entry.data.date;
+const metadata: Partial<Metadata> = {
+  id: entry.id,
+  title: entry.data.title,
+  description: entry.data.description,
+  image: entry.data.image?.src,
+  status: entry.data.status,
+};
 ---
 
-<PageLayout metadata={entry.data}>
+<PageLayout {metadata}>
   <main class="my-24 w-full">
     <header class:list={['prosa', { 'mb-3': !hasExtras }]}>
       {
