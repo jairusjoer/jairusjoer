@@ -17,14 +17,14 @@ const metadata = {
 
 <html
   lang={site.locale.slice(0, 2)}
-  class="text-default bg-background text-foreground-subtle font-(--font-inter) text-pretty antialiased scheme-dark"
+  class="text-default bg-background text-foreground-subtle text-pretty antialiased scheme-dark"
 >
   <head>
     <SiteMeta metadata={{ ...site, ...metadata }} />
     <Font cssVariable="--font-inter" />
   </head>
   <body>
-    <div class="border-accent relative flex h-157.5 w-300 flex-col border-l-24 px-12 py-18">
+    <div class="open-graph border-accent relative flex h-157.5 w-300 flex-col border-l-24 px-12 py-18">
       <div
         class="bg-accent absolute top-0 right-0 h-[50dvh] w-[50dvw] translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[25dvw]"
       >
@@ -63,6 +63,11 @@ const metadata = {
 </script>
 
 <style is:global>
+  :root {
+    scrollbar-gutter: unset;
+    font-family: var(--font-inter);
+  }
+
   astro-dev-toolbar {
     display: none;
   }

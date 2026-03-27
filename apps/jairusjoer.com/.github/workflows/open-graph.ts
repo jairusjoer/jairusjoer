@@ -3,7 +3,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 import { site } from '../../src/config.ts';
 
-const previewOrigin = 'http://127.0.0.1:4321';
+const previewOrigin = 'http://localhost:4321';
 
 const rssUrl = `${previewOrigin}/rss.xml`;
 const rssResponse = await fetch(rssUrl);
@@ -41,12 +41,13 @@ try {
         waitUntil: 'load',
       });
 
+      const openGraphCanvas = page.locator('.open-graph');
       await page.waitForSelector('.open-graph-title:not(:empty)');
 
       const screenshotPath = `public/og/${entry.id}.png`;
 
       await mkdir(path.dirname(screenshotPath), { recursive: true });
-      await page.screenshot({ path: screenshotPath });
+      await openGraphCanvas.screenshot({ path: screenshotPath });
 
       console.log(`[✓]`, entry.id);
     } catch (error) {

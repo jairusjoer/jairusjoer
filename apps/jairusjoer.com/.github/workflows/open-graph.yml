@@ -41,7 +41,7 @@ jobs:
 
       - name: Generate Open Graph images
         run: |
-          pnpm exec astro dev --host 127.0.0.1 --port 4321 &
+          pnpm exec astro dev &
           SERVER_PID=$!
 
           cleanup() {
@@ -53,13 +53,13 @@ jobs:
           trap cleanup EXIT
 
           for i in {1..60}; do
-            if curl --silent --fail http://127.0.0.1:4321/rss.xml > /dev/null; then
+            if curl --silent --fail http://localhost:4321/rss.xml > /dev/null; then
               break
             fi
             sleep 1
           done
 
-          if ! curl --silent --fail http://127.0.0.1:4321/rss.xml > /dev/null; then
+          if ! curl --silent --fail http://localhost:4321/rss.xml > /dev/null; then
             echo "Dev server did not start in time" >&2
             exit 1
           fi
