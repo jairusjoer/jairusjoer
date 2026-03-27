@@ -1,13 +1,14 @@
-import { readFile } from 'node:fs/promises';
+import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
-import { site } from './src/config.ts';
+import { site } from '../../src/config.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const previewOrigin = 'http://127.0.0.1:4321';
 
-const rssPath = path.join(__dirname, 'dist', 'rss.xml');
+const rssPath = path.join(__dirname, '..', '..', 'dist', 'rss.xml');
 const rss = await readFile(rssPath, 'utf-8');
 
 const regex = /<title>\s*(?<title>[^<]+?)\s*<\/title>[\s\S]*?<link>\s*(?<link>[^<]+?)\s*<\/link>/g;
@@ -30,8 +31,16 @@ try {
       },
     });
 
-    await page.goto(`http://localhost:4321/open-graph?title=${encodeURIComponent(entry.title)}`);
-    await page.screenshot({ path: `public/og/${entry.id}.png` });
+    await page.goto(`${previewOrigin}/open-graph?title=${encodeURIComponent(entry.title)}`, {
+      waitUntil: 'load',
+    });
+
+    await page.waitForSelector('.open-graph-title:not(:empty)');
+
+    const screenshotPath = `public/og/${entry.id}.png`;
+
+    await mkdir(path.dirname(screenshotPath), { recursive: true });
+    await page.screenshot({ path: screenshotPath });
     await page.close();
 
     console.log(`[✓]`, entry.id);
