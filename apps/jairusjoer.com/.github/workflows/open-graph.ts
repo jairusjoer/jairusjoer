@@ -1,15 +1,18 @@
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { site } from '../../src/config.ts';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 const previewOrigin = 'http://127.0.0.1:4321';
 
-const rssPath = path.join(__dirname, '..', '..', 'dist', 'rss.xml');
-const rss = await readFile(rssPath, 'utf-8');
+const rssUrl = `${previewOrigin}/rss.xml`;
+const rssResponse = await fetch(rssUrl);
+
+if (!rssResponse.ok) {
+  throw new Error(`Unable to read RSS feed from ${rssUrl}: ${rssResponse.status} ${rssResponse.statusText}`);
+}
+
+const rss = await rssResponse.text();
 
 const regex = /<title>\s*(?<title>[^<]+?)\s*<\/title>[\s\S]*?<link>\s*(?<link>[^<]+?)\s*<\/link>/g;
 
@@ -24,26 +27,35 @@ const browser = await chromium.launch({ headless: true });
 
 try {
   for (const entry of entries) {
-    const page = await browser.newPage({
-      viewport: {
-        width: 1200,
-        height: 630,
-      },
-    });
+    let page;
 
-    await page.goto(`${previewOrigin}/open-graph?title=${encodeURIComponent(entry.title)}`, {
-      waitUntil: 'load',
-    });
+    try {
+      page = await browser.newPage({
+        viewport: {
+          width: 1200,
+          height: 630,
+        },
+      });
 
-    await page.waitForSelector('.open-graph-title:not(:empty)');
+      await page.goto(`${previewOrigin}/open-graph?title=${encodeURIComponent(entry.title)}`, {
+        waitUntil: 'load',
+      });
 
-    const screenshotPath = `public/og/${entry.id}.png`;
+      await page.waitForSelector('.open-graph-title:not(:empty)');
 
-    await mkdir(path.dirname(screenshotPath), { recursive: true });
-    await page.screenshot({ path: screenshotPath });
-    await page.close();
+      const screenshotPath = `public/og/${entry.id}.png`;
 
-    console.log(`[✓]`, entry.id);
+      await mkdir(path.dirname(screenshotPath), { recursive: true });
+      await page.screenshot({ path: screenshotPath });
+
+      console.log(`[✓]`, entry.id);
+    } catch (error) {
+      console.error(`[✗]`, entry.id, error);
+    } finally {
+      if (page) {
+        await page.close();
+      }
+    }
   }
 } finally {
   await browser.close();

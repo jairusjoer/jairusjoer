@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  generate-open-graph:
+  open-graph:
     if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'ci:')
     runs-on: ubuntu-latest
 
@@ -39,28 +39,28 @@ jobs:
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
 
-      - name: Build website
-        run: pnpm run build
-
       - name: Generate Open Graph images
         run: |
-          pnpm run preview --host 127.0.0.1 --port 4321 &
+          pnpm exec astro dev --host 127.0.0.1 --port 4321 &
           SERVER_PID=$!
 
           cleanup() {
-            kill "$SERVER_PID" || true
+            if kill -0 "$SERVER_PID" 2>/dev/null; then
+              kill "$SERVER_PID" || true
+              wait "$SERVER_PID" || true
+            fi
           }
           trap cleanup EXIT
 
           for i in {1..60}; do
-            if curl --silent --fail http://127.0.0.1:4321 > /dev/null; then
+            if curl --silent --fail http://127.0.0.1:4321/rss.xml > /dev/null; then
               break
             fi
             sleep 1
           done
 
-          if ! curl --silent --fail http://127.0.0.1:4321 > /dev/null; then
-            echo "Preview server did not start in time" >&2
+          if ! curl --silent --fail http://127.0.0.1:4321/rss.xml > /dev/null; then
+            echo "Dev server did not start in time" >&2
             exit 1
           fi
 
