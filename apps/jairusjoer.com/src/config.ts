@@ -1,3 +1,5 @@
+import image from './assets/image.png';
+
 export interface SiteConfigLink {
   title: string;
   href: string;
@@ -7,7 +9,7 @@ export interface SiteConfig {
   datetime: Intl.DateTimeFormatOptions;
   description: string;
   footer?: Array<SiteConfigLink>;
-  portrait?: string;
+  image?: ImageMetadata;
   locale: string;
   navigation?: Array<SiteConfigLink>;
   title: string;
@@ -16,7 +18,7 @@ export interface SiteConfig {
 
 export const site: SiteConfig = {
   url: 'https://jairusjoer.com',
-  portrait: '/media/avatar.jpeg',
+  image: image,
   title: 'Jairus Joer',
   description: 'Senior Full Stack Engineer & Designer',
   locale: 'en-US',

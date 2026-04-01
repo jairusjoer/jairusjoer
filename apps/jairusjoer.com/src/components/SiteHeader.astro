@@ -10,13 +10,13 @@ import SiteNavigation from './SiteNavigation.astro';
     href="/"
   >
     {
-      site?.portrait && (
+      site?.image && (
         <Image
           class="rounded-default size-12"
-          src={site.portrait}
-          alt="Portrait"
-          width={160}
-          height={160}
+          src={site.image}
+          alt=""
+          width={144}
+          height={144}
           format="avif"
           loading="eager"
         />

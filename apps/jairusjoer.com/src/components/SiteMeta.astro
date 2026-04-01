@@ -1,4 +1,5 @@
 ---
+import { getImage } from 'astro:assets';
 import { site } from '../config';
 
 export interface Metadata {
@@ -19,8 +20,8 @@ const { metadata } = Astro.props;
 const titleTemplate = `${metadata.title} • ${site.title}`;
 
 const getURL = (path: string) => String(new URL(path, Astro.site));
-const defaultSocialImage = metadata.id ? `og/${metadata.id}.png` : 'og/index.png';
-const socialImage = getURL(metadata.image ?? defaultSocialImage);
+
+const pageImage = getURL(metadata.image ?? `og/${metadata.id ?? 'index'}.png`);
 ---
 
 <meta charset="utf-8" />
@@ -46,15 +47,21 @@ const socialImage = getURL(metadata.image ?? defaultSocialImage);
   href={new URL('rss.xml', Astro.site)}
 />
 
-<link
-  rel="icon"
-  href={getURL('favicon.png')}
-  sizes="32x32"
-/>
-<link
-  rel="apple-touch-icon"
-  href={getURL('apple-touch-icon.png')}
-/>
+{
+  site?.image && (
+    <>
+      <link
+        rel="icon"
+        href={(await getImage({ src: site.image, width: 48, height: 48, format: 'png' })).src}
+        sizes="48x48"
+      />
+      <link
+        rel="apple-touch-icon"
+        href={(await getImage({ src: site.image, width: 180, height: 180, format: 'png' })).src}
+      />
+    </>
+  )
+}
 
 {/* Title */}
 <title>{titleTemplate}</title>
@@ -95,11 +102,11 @@ const socialImage = getURL(metadata.image ?? defaultSocialImage);
 
 <meta
   property="og:image"
-  content={socialImage}
+  content={pageImage}
 />
 <meta
   property="twitter:image"
-  content={socialImage}
+  content={pageImage}
 />
 
 {/* URL */}
