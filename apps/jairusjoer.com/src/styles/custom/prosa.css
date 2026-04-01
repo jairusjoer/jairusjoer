@@ -5,270 +5,272 @@
 }
 
 @utility prosa {
-  > * + * {
-    margin-top: 1.5rem;
-
-    &:is(h1, h2, h3, h4, h5, h6) {
-      margin-top: calc(var(--text-default) * 3);
-    }
-  }
-
-  a {
-    color: var(--color-accent);
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-
-    &[data-footnote-ref] {
-      background: var(--color-background-subtle);
-      border-radius: var(--radius-default);
-      font-family: var(--font-mono);
-      margin-left: 1px;
-      padding-inline: 0.25rem;
-    }
-
-    &[data-footnote-backref] {
-      font-family: var(--font-mono);
-    }
-  }
-
-  abbr {
-    text-decoration-color: var(--color-accent);
-  }
-
-  blockquote {
-    font-style: italic;
-    border-left: 1px solid var(--color-accent);
-    padding-left: calc(1.5rem - 1px);
-  }
-
-  code {
-    font-family: var(--font-mono);
-    font-size: smaller;
-  }
-
-  code:not(pre > code) {
-    background-color: var(--color-background-subtle);
-    border-radius: var(--radius-default);
-    color: var(--color-foreground);
-    padding: 0.1875rem;
-
-    @media print {
-      border: 1px solid var(--color-border);
-    }
-  }
-
-  details {
-    background-color: var(--color-background-subtle);
-    border-radius: var(--radius-default);
-    padding: 0.75rem;
-    position: relative;
-
-    &[open] summary {
-      margin-bottom: 0.75rem;
-    }
-
-    &[open] summary::before {
-      rotate: 0deg;
-    }
-
+  @scope (&) to (.not-prosa) {
     > * + * {
-      margin-top: 0.75rem;
-    }
+      margin-top: 1.5rem;
 
-    summary {
-      color: var(--color-foreground);
-      cursor: pointer;
-      display: block;
-      font-weight: 600;
-      padding-left: 1.5rem;
-      user-select: none;
-
-      &::before {
-        color: var(--color-accent);
-        content: '▼';
-        width: 1rem;
-        text-align: center;
-        left: 0.75rem;
-        line-height: 1.5rem;
-        position: absolute;
-        rotate: -90deg;
+      &:is(h1, h2, h3, h4, h5, h6) {
+        margin-top: calc(var(--text-default) * 3);
       }
     }
-  }
 
-  figcaption {
-    margin-top: 0.75rem;
-    font-size: smaller;
-  }
+    a {
+      color: var(--color-accent);
 
-  .footnotes {
-    margin-top: 6rem;
-  }
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: var(--color-foreground);
-    font-weight: 600;
-    line-height: 1;
-    text-wrap: balance;
+      &[data-footnote-ref] {
+        background: var(--color-background-subtle);
+        border-radius: var(--radius-default);
+        font-family: var(--font-mono);
+        margin-left: 1px;
+        padding-inline: 0.25rem;
+      }
 
-    & + * {
-      margin-top: 0.75rem;
+      &[data-footnote-backref] {
+        font-family: var(--font-mono);
+      }
     }
-  }
 
-  h1 {
-    font-size: calc(1rem * pow(var(--headline-scale), 5));
-  }
+    abbr {
+      text-decoration-color: var(--color-accent);
+    }
 
-  h2 {
-    font-size: calc(1rem * pow(var(--headline-scale), 4));
-  }
+    blockquote {
+      font-style: italic;
+      border-left: 1px solid var(--color-accent);
+      padding-left: calc(1.5rem - 1px);
+    }
 
-  h3 {
-    font-size: calc(1rem * pow(var(--headline-scale), 3));
-  }
+    code {
+      font-family: var(--font-mono);
+      font-size: smaller;
+    }
 
-  h4 {
-    font-size: calc(1rem * pow(var(--headline-scale), 2));
-  }
+    code:not(pre > code) {
+      background-color: var(--color-background-subtle);
+      border-radius: var(--radius-default);
+      color: var(--color-foreground);
+      padding: 0.1875rem;
 
-  h5 {
-    font-size: calc(1rem * pow(var(--headline-scale), 1));
-  }
+      @media print {
+        border: 1px solid var(--color-border);
+      }
+    }
 
-  h6 {
-    font-size: calc(1rem * pow(var(--headline-scale), 0));
-  }
+    details {
+      background-color: var(--color-background-subtle);
+      border-radius: var(--radius-default);
+      padding: 0.75rem;
+      position: relative;
 
-  hr {
-    margin-block: 3rem;
-  }
+      &[open] summary {
+        margin-bottom: 0.75rem;
+      }
 
-  img,
-  picture,
-  video {
-    display: block;
-    border-radius: var(--radius-default);
-  }
+      &[open] summary::before {
+        rotate: 0deg;
+      }
 
-  p:not(:only-child) {
+      > * + * {
+        margin-top: 0.75rem;
+      }
+
+      summary {
+        color: var(--color-foreground);
+        cursor: pointer;
+        display: block;
+        font-weight: 600;
+        padding-left: 1.5rem;
+        user-select: none;
+
+        &::before {
+          color: var(--color-accent);
+          content: '▼';
+          width: 1rem;
+          text-align: center;
+          left: 0.75rem;
+          line-height: 1.5rem;
+          position: absolute;
+          rotate: -90deg;
+        }
+      }
+    }
+
+    figcaption {
+      margin-top: 0.75rem;
+      font-size: smaller;
+    }
+
+    .footnotes {
+      margin-top: 6rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--color-foreground);
+      font-weight: 600;
+      line-height: 1;
+      text-wrap: balance;
+
+      & + * {
+        margin-top: 0.75rem;
+      }
+    }
+
+    h1 {
+      font-size: calc(1rem * pow(var(--headline-scale), 5));
+    }
+
+    h2 {
+      font-size: calc(1rem * pow(var(--headline-scale), 4));
+    }
+
+    h3 {
+      font-size: calc(1rem * pow(var(--headline-scale), 3));
+    }
+
+    h4 {
+      font-size: calc(1rem * pow(var(--headline-scale), 2));
+    }
+
+    h5 {
+      font-size: calc(1rem * pow(var(--headline-scale), 1));
+    }
+
+    h6 {
+      font-size: calc(1rem * pow(var(--headline-scale), 0));
+    }
+
+    hr {
+      margin-block: 3rem;
+    }
+
     img,
     picture,
     video {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  }
-
-  ol,
-  ul {
-    list-style-type: revert;
-    list-style-position: outside;
-    padding-left: 1.5rem;
-  }
-
-  li {
-    position: relative;
-    margin-top: 0.75rem;
-
-    &::marker {
-      color: var(--color-accent);
+      display: block;
+      border-radius: var(--radius-default);
     }
 
-    &:target a:first-child {
-      text-decoration: underline;
+    p:not(:only-child) {
+      img,
+      picture,
+      video {
+        display: inline-block;
+        vertical-align: middle;
+      }
     }
 
-    > * + * {
+    ol,
+    ul {
+      list-style-type: revert;
+      list-style-position: outside;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      position: relative;
       margin-top: 0.75rem;
+
+      &::marker {
+        color: var(--color-accent);
+      }
+
+      &:target a:first-child {
+        text-decoration: underline;
+      }
+
+      > * + * {
+        margin-top: 0.75rem;
+      }
     }
-  }
 
-  li input[type='checkbox'] {
-    appearance: none;
-    background-color: var(--color-background-subtle);
-    border-radius: var(--radius-default);
-    border: 1px solid var(--color-border);
-    color: var(--color-background);
-    height: 1rem;
-    left: -1.5rem;
-    position: absolute;
-    top: 0.25rem;
-    width: 1rem;
-  }
-
-  li input[type='checkbox']:not(:disabled) {
-    cursor: pointer;
-  }
-
-  li input[type='checkbox']:checked {
-    background-color: var(--color-accent);
-  }
-
-  li input[type='checkbox']:checked::after {
-    content: '✓';
-    font-size: smaller;
-    inset: 0;
-    line-height: 0.875rem;
-    position: absolute;
-    text-align: center;
-    font-weight: 600;
-  }
-
-  pre {
-    border-radius: var(--radius-default);
-    padding: 0.75rem;
-
-    @media print {
+    li input[type='checkbox'] {
+      appearance: none;
+      background-color: var(--color-background-subtle);
+      border-radius: var(--radius-default);
       border: 1px solid var(--color-border);
-      white-space: pre-wrap;
+      color: var(--color-background);
+      height: 1rem;
+      left: -1.5rem;
+      position: absolute;
+      top: 0.25rem;
+      width: 1rem;
     }
-  }
 
-  strong {
-    color: var(--color-foreground);
-    font-weight: 600;
-  }
+    li input[type='checkbox']:not(:disabled) {
+      cursor: pointer;
+    }
 
-  table {
-    border-radius: var(--radius-default);
-    border: 1px solid var(--color-border);
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    overflow: hidden;
-  }
+    li input[type='checkbox']:checked {
+      background-color: var(--color-accent);
+    }
 
-  th,
-  td {
-    padding: 0.75rem;
-    text-align: left;
-  }
+    li input[type='checkbox']:checked::after {
+      content: '✓';
+      font-size: smaller;
+      inset: 0;
+      line-height: 0.875rem;
+      position: absolute;
+      text-align: center;
+      font-weight: 600;
+    }
 
-  th:not(:first-child),
-  td:not(:first-child) {
-    border-left: 1px solid var(--color-border);
-  }
+    pre {
+      border-radius: var(--radius-default);
+      padding: 0.75rem;
 
-  th {
-    background-color: var(--color-background-subtle);
-    color: var(--color-foreground);
-  }
+      @media print {
+        border: 1px solid var(--color-border);
+        white-space: pre-wrap;
+      }
+    }
 
-  td {
-    border-top: 1px solid var(--color-border);
-  }
+    strong {
+      color: var(--color-foreground);
+      font-weight: 600;
+    }
 
-  time {
-    font-variant-numeric: tabular-nums;
+    table {
+      border-radius: var(--radius-default);
+      border: 1px solid var(--color-border);
+      table-layout: fixed;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    th:not(:first-child),
+    td:not(:first-child) {
+      border-left: 1px solid var(--color-border);
+    }
+
+    th {
+      background-color: var(--color-background-subtle);
+      color: var(--color-foreground);
+    }
+
+    td {
+      border-top: 1px solid var(--color-border);
+    }
+
+    time {
+      font-variant-numeric: tabular-nums;
+    }
   }
 }
