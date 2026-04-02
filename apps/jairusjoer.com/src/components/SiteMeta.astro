@@ -6,7 +6,7 @@ export interface Metadata {
   title: string;
   id?: string;
   description?: string;
-  image?: string;
+  image?: ImageMetadata;
   schema?: Record<string, unknown>;
   status?: string;
 }
@@ -21,7 +21,7 @@ const titleTemplate = `${metadata.title} • ${site.title}`;
 
 const getURL = (path: string) => String(new URL(path, Astro.site));
 
-const pageImage = getURL(metadata.image ?? `og/${metadata.id ?? 'index'}.png`);
+const pageImage = getURL(metadata?.id ?? `og/${metadata.id ?? 'index'}.png`);
 ---
 
 <meta charset="utf-8" />

@@ -12,6 +12,7 @@ export interface Props {
 const metadata = {
   title: 'Open Graph Image',
   description: 'Dynamically generated Open Graph image for social media sharing.',
+  image: undefined,
 };
 ---
 
@@ -20,7 +21,7 @@ const metadata = {
   class="text-default bg-background text-foreground-subtle text-pretty antialiased scheme-dark"
 >
   <head>
-    <SiteMeta metadata={{ ...site, ...metadata }} />
+    <SiteMeta {metadata} />
     <Font cssVariable="--font-inter" />
   </head>
   <body>
@@ -31,9 +32,9 @@ const metadata = {
       </div>
       <header class="isolate flex gap-4">
         {
-          site?.portrait && (
+          site?.image && (
             <Image
-              src={site.portrait}
+              src={site.image}
               alt={site.title}
               width={72}
               height={72}
