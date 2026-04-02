@@ -1,12 +1,12 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
 import css from '@eslint/css';
-import astro from 'eslint-plugin-astro';
-import globals from 'globals';
 import js from '@eslint/js';
 import json from '@eslint/json';
 import markdown from '@eslint/markdown';
-import tseslint from 'typescript-eslint';
+import astro from 'eslint-plugin-astro';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default defineConfig(
   globalIgnores(['.astro', '.vscode', 'dist', 'package*.json', 'public']),

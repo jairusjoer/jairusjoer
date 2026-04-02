@@ -1,8 +1,8 @@
 import rss from '@astrojs/rss';
-import { site } from '../config';
-import { getCollection } from 'astro:content';
-import type { APIRoute } from 'astro';
 import { isPublished } from '@scripts/isPublished';
+import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
+import { site } from '../config';
 
 export const GET: APIRoute = async () => {
   let collection = await getCollection('pages');

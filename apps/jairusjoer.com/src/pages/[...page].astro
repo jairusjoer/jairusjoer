@@ -1,12 +1,12 @@
 ---
-import { getCollection, render } from 'astro:content';
-import { getComponents } from '@scripts/getComponents';
-import PageLayout from '@layouts/PageLayout.astro';
-import { Image } from 'astro:assets';
-import { formatDatetime } from '@scripts/formatDatetime';
-import { isPublished } from '@scripts/isPublished';
-import type { CollectionEntry } from 'astro:content';
 import type { Metadata } from '@components/SiteMeta.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+import { formatDatetime } from '@scripts/formatDatetime';
+import { getComponents } from '@scripts/getComponents';
+import { isPublished } from '@scripts/isPublished';
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
 export interface Props {
   entry: CollectionEntry<'pages'>;
@@ -76,8 +76,8 @@ const metadata: Partial<Metadata> = {
 </PageLayout>
 
 <script>
-  import { toggleDetails } from '@scripts/toggleDetails';
   import { externalizeLinks } from '@scripts/externalizeLinks';
+  import { toggleDetails } from '@scripts/toggleDetails';
 
   toggleDetails();
   externalizeLinks();

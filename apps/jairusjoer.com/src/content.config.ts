@@ -1,5 +1,5 @@
-import { file, glob } from 'astro/loaders';
 import { defineCollection } from 'astro:content';
+import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const books = defineCollection({

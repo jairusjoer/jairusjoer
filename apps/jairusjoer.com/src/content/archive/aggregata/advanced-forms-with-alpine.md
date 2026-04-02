@@ -112,6 +112,7 @@ In the following step, we create the pages and components we need for the form. 
 ```astro
 ---
 import { capitalize } from '@/scripts/utilities';
+
 const { name, ...props } = Astro.props;
 ---
 
@@ -158,8 +159,9 @@ const { name, ...props } = Astro.props;
 
 ```astro
 ---
-import Root from '@/layouts/root.astro';
 import Input from '@/components/input.astro';
+import Root from '@/layouts/root.astro';
+
 const meta = { title: 'Advanced forms with Alpine.js' };
 ---
 

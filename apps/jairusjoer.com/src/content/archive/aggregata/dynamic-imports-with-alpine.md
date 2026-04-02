@@ -94,8 +94,8 @@ However, before we can reference our method in Alpine, we have to initialize the
 Finally, we add the directive `Alpine.data("chart", chart)` to the EventListener `"alpine:init"`:
 
 ```ts
-import Alpine from 'alpinejs';
 import intersect from '@alpinejs/intersect';
+import Alpine from 'alpinejs';
 import { chart } from './alpine/chart';
 
 Alpine.plugin(intersect);
