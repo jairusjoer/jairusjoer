@@ -20,7 +20,7 @@ export const site: SiteConfig = {
   url: 'https://jairusjoer.com',
   image: image,
   title: 'Jairus Joer',
-  description: 'Senior Full Stack Engineer & Designer',
+  description: 'Senior Full Stack Engineer & Designer based in Germany',
   locale: 'en-US',
   datetime: {
     day: 'numeric',

@@ -12,16 +12,18 @@ export interface Metadata {
 }
 
 export interface Props {
-  metadata: Metadata;
+  metadata?: Partial<Metadata>;
 }
 
 const { metadata } = Astro.props;
 
-const titleTemplate = `${metadata.title} • ${site.title}`;
+const { title = site.title, id, description = site.description, image = site.image, schema, status } = metadata ?? {};
+
+const titleTemplate = title === site.title ? site.title : `${title} • ${site.title}`;
 
 const getURL = (path: string) => String(new URL(path, Astro.site));
 
-const pageImage = getURL(metadata?.id ?? `og/${metadata.id ?? 'index'}.png`);
+const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
 ---
 
 <meta charset="utf-8" />
@@ -80,19 +82,19 @@ const pageImage = getURL(metadata?.id ?? `og/${metadata.id ?? 'index'}.png`);
 
 {/* Description */}
 {
-  metadata.description && (
+  description && (
     <>
       <meta
         name="description"
-        content={metadata.description}
+        content={description}
       />
       <meta
         property="og:description"
-        content={metadata.description}
+        content={description}
       />
       <meta
         property="twitter:description"
-        content={metadata.description}
+        content={description}
       />
     </>
   )
@@ -121,7 +123,7 @@ const pageImage = getURL(metadata?.id ?? `og/${metadata.id ?? 'index'}.png`);
 
 {/* Platform */}
 {
-  metadata.status === 'Unpublished' && (
+  status === 'Unpublished' && (
     <meta
       name="robots"
       content="noindex"
@@ -139,10 +141,10 @@ const pageImage = getURL(metadata?.id ?? `og/${metadata.id ?? 'index'}.png`);
 />
 
 {
-  metadata?.schema && (
+  schema && (
     <script
       is:inline
-      set:html={JSON.stringify(metadata.schema)}
+      set:html={JSON.stringify(schema)}
       type="application/ld+json"
     />
   )

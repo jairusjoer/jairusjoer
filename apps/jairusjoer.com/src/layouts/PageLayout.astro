@@ -7,7 +7,7 @@ import type { Metadata } from '@components/SiteMeta.astro';
 import { site } from '../config';
 
 export interface Props {
-  metadata?: Partial<Metadata>;
+  metadata?: Metadata;
 }
 
 const { metadata } = Astro.props;
@@ -18,7 +18,7 @@ const { metadata } = Astro.props;
   class="bg-background text-foreground-subtle text-pretty antialiased scheme-light-dark print:bg-transparent print:scheme-light"
 >
   <head>
-    <SiteMeta metadata={{ ...site, ...metadata }} />
+    <SiteMeta {metadata} />
     <slot name="head" />
   </head>
   <body>

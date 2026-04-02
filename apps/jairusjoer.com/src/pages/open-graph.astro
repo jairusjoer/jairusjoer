@@ -6,10 +6,10 @@ import { Font, Image } from 'astro:assets';
 import { site } from '../config';
 
 export interface Props {
-  metadata?: Partial<Metadata>;
+  metadata?: Metadata;
 }
 
-const metadata = {
+const metadata: Metadata = {
   title: 'Open Graph Image',
   description: 'Dynamically generated Open Graph image for social media sharing.',
   image: undefined,
@@ -39,7 +39,6 @@ const metadata = {
               width={72}
               height={72}
               class="rounded-default object-cover"
-              loading="eager"
             />
           )
         }
