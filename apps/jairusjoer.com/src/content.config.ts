@@ -8,8 +8,6 @@ const books = defineCollection({
     z.object({
       author: z.string(),
       cover: image().optional(),
-      source: z.string().optional(),
-      status: z.enum(['Unread', 'Reading', 'Completed', 'Dropped']),
       id: z.string(),
     }),
 });

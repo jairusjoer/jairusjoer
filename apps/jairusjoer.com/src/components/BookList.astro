@@ -1,17 +1,31 @@
 ---
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 const books = await getCollection('books');
 ---
 
-<div id="book-list">
-  <ul>
+<div
+  id="book-list"
+  class="not-prosa mt-3"
+>
+  <ul class="space-y-3">
     {
       books.map(({ data: book }) => (
-        <li>
-          <strong>{book.id}</strong>
-          <br />
-          <span>{book.author}</span>
+        <li class="group flex gap-3">
+          {book?.cover && (
+            <Image
+              class="h-12 w-8 shrink-0"
+              src={book.cover}
+              alt={book.id}
+              height={144}
+            />
+          )}
+          <div>
+            <strong class="text-foreground">{book.id}</strong>
+            <br />
+            <span>{book.author}</span>
+          </div>
         </li>
       ))
     }
