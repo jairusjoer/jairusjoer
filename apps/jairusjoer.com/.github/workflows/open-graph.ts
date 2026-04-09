@@ -1,7 +1,6 @@
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
-import { site } from '../../src/config.ts';
 
 const previewOrigin = 'http://localhost:4321';
 
@@ -18,7 +17,7 @@ const regex = /<title>\s*(?<title>[^<]+?)\s*<\/title>[\s\S]*?<link>\s*(?<link>[^
 
 const entries = [...rss.matchAll(regex)].map((item) => {
   const { title, link } = item.groups as { title: string; link: string };
-  const id = link.replace(site.url, '').replace(/^\/|\/$/g, '');
+  const id = new URL(link).pathname.replace(/^\/|\/$/g, '');
 
   return { id: id === '' ? 'index' : id, title, link };
 });
