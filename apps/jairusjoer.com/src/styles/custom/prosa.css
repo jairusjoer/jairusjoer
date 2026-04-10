@@ -5,15 +5,11 @@
 }
 
 @utility prosa {
+  > * + * {
+    margin-top: 1.5rem;
+  }
+
   @scope (&) to (.not-prosa) {
-    > * + * {
-      margin-top: 1.5rem;
-
-      &:is(h1, h2, h3, h4, h5, h6) {
-        margin-top: calc(var(--text-default) * 3);
-      }
-    }
-
     a {
       color: var(--color-accent);
 
@@ -191,6 +187,11 @@
       > * + * {
         margin-top: 0.75rem;
       }
+
+      li {
+        font-size: smaller;
+        margin-top: 0.375rem;
+      }
     }
 
     li input[type='checkbox'] {
@@ -232,6 +233,10 @@
         border: 1px solid var(--color-border);
         white-space: pre-wrap;
       }
+    }
+
+    small {
+      font-size: smaller;
     }
 
     strong {
