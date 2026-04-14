@@ -31,6 +31,7 @@ export const site: SiteConfig = {
     { title: 'About', href: '/' },
     { title: 'Writing', href: '/writing' },
     { title: 'Reading', href: '/reading' },
+    { title: 'Exploring', href: '/exploring' },
   ],
   footer: [
     { title: 'Legal', href: '/legal' },
