@@ -3,7 +3,6 @@ import type { Metadata } from '@components/SiteMeta.astro';
 import PageLayout from '@layouts/PageLayout.astro';
 import { formatDatetime } from '@scripts/formatDatetime';
 import { getComponents } from '@scripts/getComponents';
-import { isPublished } from '@scripts/isPublished';
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
@@ -13,11 +12,7 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  let collection = await getCollection('pages');
-
-  if (import.meta.env.PROD) {
-    collection = collection.filter((entry) => isPublished(entry.data?.status));
-  }
+  const collection = await getCollection('pages');
 
   return collection.map((entry) => ({
     params: { page: entry.id === 'index' ? undefined : entry.id },

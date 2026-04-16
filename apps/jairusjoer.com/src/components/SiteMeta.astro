@@ -123,7 +123,7 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
 
 {/* Platform */}
 {
-  status === 'Unpublished' && (
+  status === 'Draft' && (
     <meta
       name="robots"
       content="noindex"
