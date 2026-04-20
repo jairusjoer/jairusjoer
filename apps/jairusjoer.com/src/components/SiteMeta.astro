@@ -17,7 +17,7 @@ export interface Props {
 
 const { metadata } = Astro.props;
 
-const { title = site.title, id, description = site.description, image = site.image, schema, status } = metadata ?? {};
+const { title = site.title, id, description = site.description, image, schema, status } = metadata ?? {};
 
 const titleTemplate = title === site.title ? site.title : `${title} • ${site.title}`;
 
