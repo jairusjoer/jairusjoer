@@ -1,8 +1,7 @@
 ---
 title: 'Two Years At HERO Software'
 description: 'A reflection on two years at HERO Software, the work that shaped me there, and what I learnt before moving on.'
-date: 2026-04-15
-status: 'Draft'
+date: 2026-03-30
 ---
 
 30 March marked two years at HERO for me and, by coincidence, the beginning of my final month there. That overlap made it difficult not to look backwards. Before moving on, I wanted to understand what those two years had actually amounted to beyond features, milestones, and meetings.
