@@ -86,7 +86,7 @@
         &::before {
           color: var(--color-accent);
           content: '▼';
-          width: 1rem;
+          width: 1.5rem;
           text-align: center;
           left: 0.75rem;
           line-height: 1.5rem;
@@ -201,7 +201,7 @@
       border: 1px solid var(--color-border);
       color: var(--color-background);
       height: 1rem;
-      left: -1.5rem;
+      left: -1.25rem;
       position: absolute;
       top: 0.25rem;
       width: 1rem;
