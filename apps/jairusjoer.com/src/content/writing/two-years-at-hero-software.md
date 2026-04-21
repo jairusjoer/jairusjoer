@@ -4,7 +4,7 @@ description: 'A reflection on two years at HERO Software, the work that shaped m
 date: 2026-03-30
 ---
 
-30 March marked two years at HERO for me and, by coincidence, the beginning of my final month there. That overlap made it difficult not to look backwards. Before moving on, I wanted to understand what those two years had actually amounted to beyond features, milestones, and meetings.
+30 March marked two years at [HERO Software](https://hero-software.de/) for me and, by coincidence, the beginning of my final month there. That overlap made it difficult not to look backwards. Before moving on, I wanted to understand what those two years had actually amounted to beyond features, milestones, and meetings.
 
 Over that time, I had the delight to work with people from across design, engineering, product, and operations. Some of the work was visible immediately. Some of it only mattered because it made later work more coherent, more durable, or more worth doing.
 

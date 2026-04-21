@@ -58,10 +58,8 @@
     }
 
     details {
-      background-color: var(--color-background-subtle);
-      border-radius: var(--radius-default);
-      padding: 0.75rem;
       position: relative;
+      padding-left: 1.5rem;
 
       &[open] summary {
         margin-bottom: 0.75rem;
@@ -76,20 +74,17 @@
       }
 
       summary {
-        color: var(--color-foreground);
         cursor: pointer;
         display: block;
-        font-weight: 600;
-        padding-left: 1.5rem;
-        user-select: none;
 
         &::before {
           color: var(--color-accent);
           content: '▼';
           width: 1.5rem;
           text-align: center;
-          left: 0.75rem;
+          left: 0;
           line-height: 1.5rem;
+          font-size: smaller;
           position: absolute;
           rotate: -90deg;
         }

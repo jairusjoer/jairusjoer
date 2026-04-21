@@ -12,7 +12,9 @@ const formatLink = (url: string) => {
   {
     links.map((entry) => (
       <details>
-        <summary>{entry.id}</summary>
+        <summary>
+          <strong>{entry.id}</strong>
+        </summary>
         <ul>
           {entry.data.map((link) => (
             <li class="list-none">
