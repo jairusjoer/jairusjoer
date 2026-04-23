@@ -1,4 +1,6 @@
 ---
+import Button from './Button.astro';
+
 const { links } = Astro.props;
 ---
 
@@ -6,18 +8,17 @@ const { links } = Astro.props;
   <slot />
   {
     Object.entries(links).length > 0 && (
-      <div class="absolute top-1 right-1 flex gap-1 font-semibold">
+      <small class="absolute top-1 right-1 flex gap-1">
         {Object.entries(links).map(([label, path]) => (
-          <a
+          <Button
             href={`https://github.com/jairusjoer/jairusjoer.com/blob/main/${path}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="rounded-default hover:bg-accent hover:text-background bg-background-subtle px-1.5 motion-safe:transition-colors"
           >
-            <small>{label}</small>
-          </a>
+            {label}
+          </Button>
         ))}
-      </div>
+      </small>
     )
   }
 </div>

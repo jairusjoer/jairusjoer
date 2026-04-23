@@ -3,6 +3,7 @@
   "include": [".astro/types.d.ts", "**/*", ".github/workflows/open-graph.ts"],
   "exclude": ["dist", "eslint.config.ts", "public"],
   "compilerOptions": {
+    "types": ["node"],
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],

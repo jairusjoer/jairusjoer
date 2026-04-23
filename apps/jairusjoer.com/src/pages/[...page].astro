@@ -1,4 +1,5 @@
 ---
+import CrossPost from '@components/CrossPost.astro';
 import type { Metadata } from '@components/SiteMeta.astro';
 import PageLayout from '@layouts/PageLayout.astro';
 import { formatDatetime } from '@scripts/formatDatetime';
@@ -6,6 +7,8 @@ import { getComponents } from '@scripts/getComponents';
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import type { CrosspostMap, CrosspostMapEntry } from '../../.github/workflows/cross-post';
+import contentMap from '../content.map.json';
 
 export interface Props {
   entry: CollectionEntry<'pages'>;
@@ -27,6 +30,7 @@ const { Content } = await render(entry);
 const components = getComponents();
 
 const hasExtras = entry.data.image || entry.data.description || entry.data.date;
+
 const metadata: Metadata = {
   id: entry.id,
   title: entry.data.title,
@@ -34,6 +38,17 @@ const metadata: Metadata = {
   image: entry.data.image,
   status: entry.data.status,
 };
+
+const crossPostLabels = {
+  devtoUrl: 'Dev.to',
+  hashnodeUrl: 'Hashnode',
+} satisfies Partial<CrosspostMapEntry>;
+
+const crossPostLinks = Object.entries(crossPostLabels).flatMap(([key, title]) => {
+  const href = (contentMap as CrosspostMap)[entry.id]?.[key as keyof typeof crossPostLabels];
+
+  return href ? [{ href, title }] : [];
+});
 ---
 
 <PageLayout {metadata}>
@@ -53,11 +68,21 @@ const metadata: Metadata = {
         {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
         {entry.data.title}
       </h1>
+
       {entry.data.description && <p>{entry.data.description}</p>}
+
       {
         entry.data.date && (
           <small class="block">
             <time>{formatDatetime(entry.data.date)}</time>
+          </small>
+        )
+      }
+
+      {
+        crossPostLinks.length > 0 && (
+          <small>
+            <CrossPost links={crossPostLinks} />
           </small>
         )
       }

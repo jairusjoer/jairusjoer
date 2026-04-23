@@ -13,7 +13,7 @@ import SiteNavigation from './SiteNavigation.astro';
       site?.image && (
         <Image
           class="rounded-default size-12"
-          src={site.image}
+          src={await site.image()}
           alt=""
           width={144}
           height={144}

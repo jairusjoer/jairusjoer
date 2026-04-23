@@ -1,0 +1,94 @@
+name: Cross-post to Hashnode and dev.to
+
+on:
+  schedule:
+    - cron: '15 8 * * *'
+  workflow_run:
+    workflows:
+      - Generate Open Graph Images
+    types:
+      - completed
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Run in dry-run mode
+        required: false
+        type: boolean
+        default: false
+      force_update:
+        description: Force-update all already-published articles
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cross-post-${{ github.event.workflow_run.head_branch || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  crosspost:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cross-post writing entries
+        env:
+          DEVTO_TOKEN: ${{ secrets.DEVTO_TOKEN }}
+          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          ARGS=""
+
+          if test "${{ github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true' }}" = "true"; then
+            ARGS="--dry-run"
+          fi
+
+          if test "${{ github.event_name == 'workflow_dispatch' && github.event.inputs.force_update == 'true' }}" = "true"; then
+            ARGS="$ARGS --force-update"
+          fi
+
+          GITHUB_SHA=$(git rev-parse HEAD) node --experimental-strip-types .github/workflows/cross-post.ts $ARGS
+
+      - name: Commit updated mapping
+        run: |
+          if test -z "$(git status --porcelain -- .github/workflows/.cross-post.map.json)"; then
+            echo "No cross-post mapping changes to commit"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .github/workflows/.cross-post.map.json
+
+          if git diff --cached --quiet -- .github/workflows/.cross-post.map.json; then
+            echo "No staged cross-post mapping changes to commit"
+            exit 0
+          fi
+
+          git commit -m "ci: update cross-post mapping"
+          git push origin HEAD:${{ github.event.workflow_run.head_branch || github.ref_name }}

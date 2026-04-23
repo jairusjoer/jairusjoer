@@ -54,12 +54,12 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
     <>
       <link
         rel="icon"
-        href={(await getImage({ src: site.image, width: 48, height: 48, format: 'png' })).src}
+        href={(await getImage({ src: await site.image(), width: 48, height: 48, format: 'png' })).src}
         sizes="48x48"
       />
       <link
         rel="apple-touch-icon"
-        href={(await getImage({ src: site.image, width: 180, height: 180, format: 'png' })).src}
+        href={(await getImage({ src: await site.image(), width: 180, height: 180, format: 'png' })).src}
       />
     </>
   )

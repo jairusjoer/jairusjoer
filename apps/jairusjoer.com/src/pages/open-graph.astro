@@ -34,7 +34,7 @@ const metadata: Metadata = {
         {
           site?.image && (
             <Image
-              src={site.image}
+              src={await site.image()}
               alt={site.title}
               width={72}
               height={72}

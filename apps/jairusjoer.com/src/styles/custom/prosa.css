@@ -9,6 +9,10 @@
     margin-top: 1.5rem;
   }
 
+  hr {
+    margin-block: 3rem;
+  }
+
   @scope (&) to (.not-prosa) {
     a {
       color: var(--color-accent);
@@ -49,8 +53,7 @@
     code:not(pre > code) {
       background-color: var(--color-background-subtle);
       border-radius: var(--radius-default);
-      color: var(--color-foreground);
-      padding: 0.1875rem;
+      padding: 0.1875rem 0.375rem;
 
       @media print {
         border: 1px solid var(--color-border);
@@ -140,10 +143,6 @@
       font-size: calc(1rem * pow(var(--headline-scale), 0));
     }
 
-    hr {
-      margin-block: 3rem;
-    }
-
     img,
     picture,
     video {
@@ -228,10 +227,6 @@
         border: 1px solid var(--color-border);
         white-space: pre-wrap;
       }
-    }
-
-    small {
-      font-size: smaller;
     }
 
     strong {

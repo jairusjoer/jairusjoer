@@ -1,5 +1,6 @@
 ---
 import type { SiteConfigLink } from '../config';
+import Button from './Button.astro';
 
 export interface Props {
   links?: Array<SiteConfigLink>;
@@ -23,15 +24,12 @@ const active = (path: string) => {
         <slot />
         {links.map((link) => (
           <li>
-            <a
-              class:list={[
-                'rounded-default hover:bg-accent hover:text-background block px-1.5 motion-safe:transition-colors',
-                active(link.href) ? 'bg-accent! text-background' : 'bg-background-subtle',
-              ]}
+            <Button
+              class:list={[active(link.href) && 'bg-accent! text-background']}
               href={link.href}
             >
               {link.title}
-            </a>
+            </Button>
           </li>
         ))}
       </ul>

@@ -1,0 +1,20 @@
+---
+export interface Props {
+  as?: string;
+  [key: string]: any;
+}
+
+const { as, class: className, ...rest } = Astro.props;
+
+const Element = as || 'a';
+---
+
+<Element
+  class:list={[
+    'rounded-default hover:bg-accent hover:text-background bg-background-subtle block px-1.5 leading-6 font-semibold motion-safe:transition-colors',
+    className,
+  ]}
+  {...rest}
+>
+  <slot />
+</Element>

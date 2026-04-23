@@ -15,6 +15,10 @@
     border-color: var(--color-border);
   }
 
+  small {
+    font-size: smaller;
+  }
+
   #root {
     isolation: isolate;
   }

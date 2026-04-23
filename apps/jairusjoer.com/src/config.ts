@@ -1,5 +1,3 @@
-import image from './assets/image.png';
-
 export interface SiteConfigLink {
   title: string;
   href: string;
@@ -9,7 +7,7 @@ export interface SiteConfig {
   datetime: Intl.DateTimeFormatOptions;
   description: string;
   footer?: Array<SiteConfigLink>;
-  image?: ImageMetadata;
+  image?: () => Promise<ImageMetadata>;
   locale: string;
   navigation?: Array<SiteConfigLink>;
   title: string;
@@ -18,7 +16,7 @@ export interface SiteConfig {
 
 export const site: SiteConfig = {
   url: 'https://jairusjoer.com',
-  image: image,
+  image: async () => (await import('./assets/image.png')).default,
   title: 'Jairus Joer',
   description: 'Senior Full Stack Engineer & Designer',
   locale: 'en-US',
