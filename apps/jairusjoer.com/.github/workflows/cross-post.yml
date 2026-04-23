@@ -69,11 +69,12 @@ jobs:
             ARGS="$ARGS --force-update"
           fi
 
-          GITHUB_SHA=$(git rev-parse HEAD) node --experimental-strip-types .github/workflows/cross-post.ts $ARGS
+          GITHUB_SHA=$(git rev-parse HEAD) node --experimental-strip-types .github/workflows/cross-post/cross-post.ts $ARGS
 
       - name: Commit updated mapping
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'true'
         run: |
-          if test -z "$(git status --porcelain -- .github/workflows/.cross-post.map.json)"; then
+          if test -z "$(git status --porcelain -- src/content.map.json)"; then
             echo "No cross-post mapping changes to commit"
             exit 0
           fi
@@ -81,9 +82,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add .github/workflows/.cross-post.map.json
+          git add src/content.map.json
 
-          if git diff --cached --quiet -- .github/workflows/.cross-post.map.json; then
+          if git diff --cached --quiet -- src/content.map.json; then
             echo "No staged cross-post mapping changes to commit"
             exit 0
           fi

@@ -7,8 +7,8 @@ import { getComponents } from '@scripts/getComponents';
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import type { CrosspostMap, CrosspostMapEntry } from '../../.github/workflows/cross-post';
 import contentMap from '../content.map.json';
+import type { ContentMap, CrossPostSources } from '../types';
 
 export interface Props {
   entry: CollectionEntry<'pages'>;
@@ -39,16 +39,18 @@ const metadata: Metadata = {
   status: entry.data.status,
 };
 
-const crossPostLabels = {
+const crossPostLabels: Record<keyof CrossPostSources, string> = {
   devtoUrl: 'Dev.to',
   hashnodeUrl: 'Hashnode',
-} satisfies Partial<CrosspostMapEntry>;
+};
 
-const crossPostLinks = Object.entries(crossPostLabels).flatMap(([key, title]) => {
-  const href = (contentMap as CrosspostMap)[entry.id]?.[key as keyof typeof crossPostLabels];
+const crossPostLinks = (Object.entries(crossPostLabels) as Array<[keyof CrossPostSources, string]>).flatMap(
+  ([key, title]) => {
+    const href = (contentMap as ContentMap)[entry.id]?.[key];
 
-  return href ? [{ href, title }] : [];
-});
+    return href ? [{ href, title }] : [];
+  },
+);
 ---
 
 <PageLayout {metadata}>
