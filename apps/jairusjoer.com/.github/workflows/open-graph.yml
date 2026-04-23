@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - src/content/**
+      - src/pages/open-graph.astro
   workflow_dispatch:
 
 permissions:
