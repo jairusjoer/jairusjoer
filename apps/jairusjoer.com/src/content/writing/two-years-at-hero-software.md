@@ -4,47 +4,67 @@ description: 'A reflection on two years at HERO Software, the work that shaped m
 date: 2026-03-30
 ---
 
-30 March marked two years at [HERO Software](https://hero-software.de/) for me and, by coincidence, the beginning of my final month there. That overlap made it difficult not to look backwards. Before moving on, I wanted to understand what those two years had actually amounted to beyond features, milestones, and meetings.
+30 March marks two years at HERO for me, and coincidentally marks the beginning of my final month. I would therefore like to take a moment to reflect on what we shipped, what I learnt and what comes next.
 
-Over that time, I had the delight to work with people from across design, engineering, product, and operations. Some of the work was visible immediately. Some of it only mattered because it made later work more coherent, more durable, or more worth doing.
+Over the last two years, I have had the delight of interacting and working with teams from across the company. This post showcases the results of our collaboration, from design and engineering to product and operations.
 
-This is therefore not a farewell note, nor a catalogue of personal successes. It is a reflection on the work that shaped me most, the moments that made it memorable, and the lessons I want to carry into whatever comes next.
+This is not a farewell note or a list of individual successes, but rather a reflection on what we achieved together in such a short timeframe: the ideas that prevailed and those that did not, and the lessons learned from both.
 
 ---
 
 ## Design Vision
 
-The clearest thread running through my time at HERO was what became known as the Design Vision. I was drawn to it early because it brought together many of the things I care most about: product clarity, technical quality, and the belief that software should feel intentional rather than merely functional.
+Arguably the initiative on which I have had the greatest impact, the Design Vision has had an equal impact on me ever since I started at HERO in April 2024. Initially, I joined the Interface Innovators initiative out of curiosity and a desire for a more forward-looking product.
 
-What began as a cluster of ideas gradually became a broader direction for how parts of HERO could look, feel, and evolve. Along the way, I found myself taking on more responsibility for shaping not only the technical execution, but also the standard to which that work should be held.
+What began as a collection of ideas gradually evolved into independent yet interconnected visions for the future of HERO across departments. I found myself sliding into a leadership role for the engineering initiative, albeit somewhat unwillingly.
 
-The turning point came during HERO's inaugural hackathon in 2024, where we presented an early version of that vision and unexpectedly won. More important than the win itself was what followed: the sense that these ideas were not just speculative, but strong enough to move into the product.
+During HERO's inaugural hackathon in 2024, we conceptualised and presented our vision for the HERO user interface and unexpectedly won the hackathon, capturing the attention of the product and leadership teams. This gave us the confirmation and encouragement we needed.
 
-The first visible expression of that work arrived through the new navigation surfaces. They became an early proof that design ambition and implementation discipline did not have to be in conflict. In a relatively short time, we moved from concept to something customers could actually use, then refined it through iteration and feedback until it felt stable enough to carry a broader rollout.
+### Milestone 1.0
+
+The first few months of 2025 were spent planning the incremental implementation steps for the proposals presented in previous months. The sidebar and top navigation were chosen as the first elements to be rolled out to customers under what would become known as _Design Vision 1.0_.
+
+Together with [Dennis Eming](https://www.linkedin.com/in/denniseming/) and Sofien Scholze, we set out to provide a meaningful first glimpse of HERO's future appearance. In just a few weeks, we’ve not only conceptualised, but also shipped, the first iteration of the new navigation surfaces.
+
+Thanks to an iterative approach to feedback and improvements, enabled by [Sarah Köksal](https://www.linkedin.com/in/dr-sarah-k%C3%B6ksal-4256a3103/)‘s research and feedback collection, we achieved a satisfactory result for customers shortly after the initial launch, maintaining a high degree of polish throughout the broader rollout.
 
 ![*The current iteration of the sidebar and top navigation introduced with milestone 1.0.*](./assets/2025_hero_design.png)
 
-By the time that first milestone had settled, the work had already outgrown its initial scope. It was no longer only about a better interface. It had started to influence how people collaborated, how quality was discussed, and how future work could be grounded in stronger shared foundations. That mattered to me just as much as the visible outcome.
+### Milestone 1.5
+
+By this time, the Design Vision had evolved from a modest UI/UX initiative into a more comprehensive initiative that impacted both external and internal aspects of the product. I’d like to think of it as the catalyst for introducing the workspace with new apps and packages.
+
+With this in mind, the focus of this milestone was to prepare resources for designers and developers to use. During this period, we researched and implemented a new design system, developed new application patterns for future use and introduced specialised packages.
+
+Although the Design Vision 1.5 initiative was ultimately delayed due to ongoing resource constraints, the results achieved up to that point were reliable and useful enough to lay a solid foundation for HERO's technical future.
 
 ---
 
-## Shared Moments
+## Hackathons
 
-Some of my most memorable moments at HERO came from the periods where work became unusually concentrated: hackathons, conferences, workations, and the kind of trips where professional context gives way to shared memory.
+During my time here, I had the honour of collaborating with amazing people on two hackathons. The concepts produced during these events have now been incorporated into the product. These wins were achieved by the 2024 and 2025 teams.
 
-The two hackathons stand out in particular. They compressed weeks of discussion into days of alignment and forced ideas to become legible quickly. In 2024, that meant rethinking some of HERO's most visible surfaces and discovering that the result resonated far beyond the room it was presented in.
+In 2024, I collaborated with Dennis Eming , Fynn Schlegel, and [Jaro Lenz](https://www.linkedin.com/in/jaro-lenz-304245250/) on redesigning the dashboard, sidebar, and top navigation. This ultimately won us first place and laid the conceptual groundwork for the first milestone of the Design Vision.
 
 <video controls>
   <source src="/media/2024_hero_hackathon.mp4" type="video/mp4" />
 </video>
 
-In 2025, the same intensity reappeared in a different form through work on customisation. Winning again was gratifying, but what stayed with me more was the clarity that good collaborative work produces: a small group of people, a shared direction, and just enough momentum to make something convincing.
+In 2025, I collaborated with [Alexis-Rae Jager](https://www.linkedin.com/in/alexis-rae-jager-070bb125a/), Dennis Eming, Fynn Schlegel and Nico Brockel on redefining the theme customization of HERO. This project involved reworking the platform's outdated personalisation options, and it won us first place (again).
 
-Outside those concentrated bursts, there were also quieter moments that gave the work texture. I still think fondly of Groningen, of the heat at WeAreDevelopers, and of Prague. Those trips did not simply punctuate the calendar; they deepened my sense of the people behind the work.
+---
+
+## Trips
+
+I accompanied my colleagues on many occasions, some of which were more turbulent than others. Nevertheless, I cherish every trip, near or far, that I had the pleasure of experiencing, with a special mention for Martin Matthaei, who managed to appear on all of them.
+
+In 2024, I attended the WeAreDevelopers congress for the first time, followed shortly by a workation in Groningen in the Netherlands. While the former was blasted by a heatwave, the latter turned out to be a more tranquil experience.
 
 ![*Groningen, 2024*](./assets/2024_hero_groningen.jpg)
 
 ![*WeAreDevelopers Congress, 2024*](./assets/2024_hero_congress.jpeg)
+
+In 2025, I revisited the WeAreDevelopers Congress with an even larger group, making a notable, colourful appearance at the event. Just two months later, a local Prague citizen guided us to an (literal) underground metal bar, where we had the pleasure of sampling local beverages.
 
 ![*WeAreDevelopers Congress, 2025*](./assets/2025_hero_congress.png)
 
@@ -52,35 +72,65 @@ Outside those concentrated bursts, there were also quieter moments that gave the
 
 ---
 
-## Work As Craft
+## What we shipped
 
-Much of my work over those two years sat at the intersection of design, engineering, and delivery. Some of it was immediately visible. Some of it was quieter and only mattered because it made later work easier, clearer, and more coherent.
+Over the last two years, much of my work has been at the intersection of design, engineering and product delivery. Some of this work was immediately visible, such as the sidebar and top navigation, while much of it occurred deeper within the stack.
 
-The part I remain proudest of is not one specific feature, but a repeated pattern: helping make the product more deliberate while also making it easier for teams to build on. Whether I was working on navigation, customer-facing workflows, or the smaller improvements users never notice directly, the underlying goal stayed more or less the same. Reduce friction. Increase clarity. Leave the system in a better state than I found it.
+This included migrating build tooling, reshaping packages, refining application patterns, and preparing the new architecture for broader adoption. These changes were rarely glamorous, but they made HERO easier to evolve, faster to ship, and considerably more coherent.
 
-Over time, I came to care just as much about the quiet work as the visible work. Better foundations, clearer conventions, and fewer rough edges rarely make for dramatic release notes, yet they compound more reliably than almost anything else. They give teams confidence, and confidence is what allows good product work to keep moving.
+At the same time, I had the opportunity to work on features that were delivered directly to customers. These ranged from stock management and dunning flows to improvements across Wallet and notifications. The goal was to remove friction without compromising maintainability.
 
-That changed how I thought about craft. I began to see foundational work not as support work, but as product work in a stricter sense: the kind of work that determines whether quality can be sustained or only briefly displayed.
+Whether the task involved introducing a new workflow, fixing a long-standing inconsistency, or improving interface clarity, the work only felt worthwhile when it reduced complexity for users and the teams building for them.
+
+A recurring theme throughout was that technical change only matters when it enables better product decisions. The shift towards shared packages, stronger conventions, personalisation and modern navigation was not just about neater code.
+
+It was about providing teams with a more reliable foundation on which to build. The result was a product that felt more intentional, a platform that behaved more predictably, and a codebase that was better prepared for whatever came next.
+
+### Quiet Work
+
+The quieter work behind those milestones mattered just as much. I spent considerable time fixing edge cases, removing brittle patterns, standardising tooling, and untangling areas that had become hard to understand for developers and users alike.
+
+Some of my most meaningful contributions were not new features, but repeated structural improvements. I clarified conventions, optimised build steps, and streamlined developer and user workflows, reducing friction and making collaboration smoother.
+
+I came to view internal work as product work. Every bug that was prevented and every inconsistency that was removed gave future teams more momentum, proving that improving systems was just as important as achieving visible results.
 
 ---
 
-## What It Taught Me
+## What I learnt
 
-From a technical perspective, these two years gave me a much clearer understanding of how architecture evolves over time, and of the judgment required to work with that evolution instead of against it. I became better at recognising when to push for a higher standard, when to compromise, and how to articulate the trade-offs in a way other people could meaningfully act on.
+### Engineering
 
-From a product perspective, I learnt that speed matters most when it shortens the distance between an idea and real feedback. I also learnt, repeatedly, that "good enough" is often the only honest threshold for a first release of something that still needs to be tested in the world rather than in theory.
+From a technical perspective, I have gained a clearer understanding of architecture and how it has evolved over time. I have also learned how to maintain it, when and where to modernise it, and when to stand my ground based on experience.
 
-I also came to terms more honestly with my perfectionist tendencies. In a growing product shaped by many people, perfection is rarely the right target. What matters more is whether the work becomes clearer, more useful, and more respectful of the people who rely on it. I wrote about part of that shift in [The Sisyphean Struggle for Simplicity](https://jairusjoer.com/archive/aggregata/the-sisyphean-struggle-for-simplicity/).
+It has been fascinating to observe and influence the architecture and the increasing speed of its modernisation efforts, especially over the last year as it has been rolled out to more and more teams, producing tangible feedback requiring improvements.
 
-From a team perspective, I left more convinced than ever that trust, clarity, and technical quality reinforce one another. The strongest teams I worked with were not necessarily the loudest or the fastest. They were the ones that could rely on each other, share critique without losing respect, and keep quality high enough to believe in what they were shipping.
+I have also learned to assert myself on topics I am familiar with, as previous approaches were rather unsuccessful. I now feel more confident in articulating the risks and side effects of an approach and in knowing where to find a compromise.
+
+### Product
+
+In terms of products, I’ve learned that closing the loop with users quickly enables iteration through direct feedback. I’ve also learned that 'good enough' can be excellent enough when delivering an initial feature for validation.
+
+It is important to identify and address core issues reported by users through actionable feedback rather than a theoretical approach. Combined with quantitative data from UX research, this approach has enabled me to make more informed and impactful decisions.
+
+I’ve also come to terms with my perfectionist tendencies, which are near impossible to achieve in an ever-growing stack of software that is the product of many. I wrote about this personal development in my article: [The Sisyphean Struggle for Simplicity](https://jairusjoer.com/archive/aggregata/the-sisyphean-struggle-for-simplicity/).
+
+### Team
+
+From my experience of participating in various teams, I have learned that momentum and confidence are built through technically solid foundations shaped by small, high-quality iterations and reinforced transparent communication mechanisms.
+
+The quality of the software code dictates the momentum and confidence a team has in shipping features. Therefore, it became imperative for me to identify not only friction within a team's work, but also across teams, in order to provide a single source of truth.
+
+When it comes to communication, both positive and negative feedback must be shared and heard. This is not always easy, but it is especially important in frustrating moments to properly acknowledge your colleagues' concerns and issues instead of sidelining them.
 
 ---
 
 ## What comes next
 
-Leaving HERO does not feel like closing a chapter neatly so much as setting down work I cared about and trusting that it will continue in capable hands. I am grateful that I had the chance to contribute at all, and even more grateful for the people with whom I got to do it.
+30 March will be my last day at HERO. I have taken great care to ensure that the initiatives most important to me are transferred to trusted teams, and I am confident that they are in good hands for the future of the company and its products.
 
-From May onwards, I will be moving on to a new project related to Germany's digitalisation efforts. I do not yet know exactly what that next chapter will ask of me, but I know that I am taking this period of work, its lessons, and its standards with me.
+For me, this last month has been about making one final impact. I have addressed long-neglected topics and tied up loose ends wherever possible, so that future designers and engineers may appreciate and build upon my work as much as I did.
+
+From May onwards, I will be working on a new project related to Germany’s digitalisation efforts. As far as I can tell, my role will involve supporting the software development for a greenfield project, which I am very excited about.
 
 ---
 

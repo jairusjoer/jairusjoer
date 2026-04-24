@@ -197,7 +197,7 @@
       height: 1rem;
       left: -1.25rem;
       position: absolute;
-      top: 0.25rem;
+      top: calc(1.5em / 2 - 0.5rem);
       width: 1rem;
     }
 

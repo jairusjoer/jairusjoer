@@ -20,8 +20,8 @@ export default defineConfig({
   markdown: {
     shikiConfig: {
       themes: {
-        dark: 'rose-pine-moon',
-        light: 'rose-pine-dawn',
+        dark: 'catppuccin-mocha',
+        light: 'catppuccin-latte',
       },
     },
     remarkRehype: {
