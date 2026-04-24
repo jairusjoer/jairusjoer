@@ -1,6 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*", ".github/workflows/open-graph.ts"],
+  "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist", "eslint.config.ts", "public"],
   "compilerOptions": {
     "types": ["node"],

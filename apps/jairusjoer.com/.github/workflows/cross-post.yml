@@ -69,7 +69,7 @@ jobs:
             ARGS="$ARGS --force-update"
           fi
 
-          GITHUB_SHA=$(git rev-parse HEAD) node --experimental-strip-types .github/workflows/cross-post/cross-post.ts $ARGS
+          GITHUB_SHA=$(git rev-parse HEAD) node --experimental-strip-types actions/cross-post/cross-post.ts $ARGS
 
       - name: Commit updated mapping
         if: github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'true'

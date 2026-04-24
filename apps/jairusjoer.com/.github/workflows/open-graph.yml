@@ -67,7 +67,7 @@ jobs:
             exit 1
           fi
 
-          node --experimental-strip-types .github/workflows/open-graph.ts
+          node --experimental-strip-types actions/open-graph.ts
 
       - name: Commit and push generated images
         run: |
