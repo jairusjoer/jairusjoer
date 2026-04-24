@@ -201,10 +201,6 @@
       width: 1rem;
     }
 
-    li input[type='checkbox']:not(:disabled) {
-      cursor: pointer;
-    }
-
     li input[type='checkbox']:checked {
       background-color: var(--color-accent);
     }

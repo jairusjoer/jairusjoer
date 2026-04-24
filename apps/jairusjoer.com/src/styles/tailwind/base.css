@@ -59,10 +59,12 @@
   }
 
   a,
+  button,
   input[type='checkbox'],
   [data-footnote-ref],
   [data-footnote-backref] {
     position: relative;
+    cursor: pointer;
 
     &::before {
       content: '';
