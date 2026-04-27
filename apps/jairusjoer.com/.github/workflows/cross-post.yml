@@ -2,7 +2,8 @@ name: Cross-post to Hashnode and dev.to
 
 on:
   schedule:
-    - cron: '15 8 * * *'
+    - cron: '0 13 * * *'
+    - cron: '0 14 * * *'
   workflow_run:
     workflows:
       - Generate Open Graph Images
@@ -34,25 +35,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Determine scheduled run window
+        id: scheduled_window
+        if: github.event_name == 'schedule'
+        run: |
+          if test "$(TZ=America/New_York date +%H)" = "09"; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Proceeding with scheduled cross-post at 9 AM ET"
+            exit 0
+          fi
+
+          echo "should_run=false" >> "$GITHUB_OUTPUT"
+          echo "Skipping scheduled cross-post outside 9 AM ET"
+
       - name: Check out repository
+        if: github.event_name != 'schedule' || steps.scheduled_window.outputs.should_run == 'true'
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
           fetch-depth: 0
 
       - name: Set up pnpm
+        if: github.event_name != 'schedule' || steps.scheduled_window.outputs.should_run == 'true'
         uses: pnpm/action-setup@v5
 
       - name: Set up Node.js
+        if: github.event_name != 'schedule' || steps.scheduled_window.outputs.should_run == 'true'
         uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: pnpm
 
       - name: Install dependencies
+        if: github.event_name != 'schedule' || steps.scheduled_window.outputs.should_run == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Cross-post writing entries
+        if: github.event_name != 'schedule' || steps.scheduled_window.outputs.should_run == 'true'
         env:
           DEVTO_TOKEN: ${{ secrets.DEVTO_TOKEN }}
           HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
@@ -72,7 +91,7 @@ jobs:
           GITHUB_SHA=$(git rev-parse HEAD) node --experimental-strip-types actions/cross-post/cross-post.ts $ARGS
 
       - name: Commit updated mapping
-        if: github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'true'
+        if: (github.event_name != 'schedule' || steps.scheduled_window.outputs.should_run == 'true') && (github.event_name != 'workflow_dispatch' || github.event.inputs.dry_run != 'true')
         run: |
           if test -z "$(git status --porcelain -- src/content.map.json)"; then
             echo "No cross-post mapping changes to commit"

@@ -2,7 +2,9 @@ import path from 'node:path';
 
 export const CONTENT_ROOT = path.join('src', 'content');
 export const MAP_FILE = path.join('src', 'content.map.json');
-export const RELEASE_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000;
+export const RELEASE_HOUR = 9;
+export const RELEASE_INTERVAL_DAYS = 7;
+export const RELEASE_TIMEZONE = 'America/New_York';
 export const REQUEST_DELAY_MS = 1000;
 export const CROSSPOST_USER_AGENT = 'jairusjoer.com cross-post workflow';
 

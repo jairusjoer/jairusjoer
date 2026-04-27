@@ -1,6 +1,13 @@
 /// <reference types="node" />
 import fs from 'node:fs';
-import { MAP_FILE, readCrosspostEnvironment, RELEASE_INTERVAL_MS, REQUEST_DELAY_MS } from './config.ts';
+import {
+  MAP_FILE,
+  readCrosspostEnvironment,
+  RELEASE_HOUR,
+  RELEASE_INTERVAL_DAYS,
+  RELEASE_TIMEZONE,
+  REQUEST_DELAY_MS,
+} from './config.ts';
 import { readLocalPosts, type LocalPost } from './content.ts';
 import {
   createDevtoPost,
@@ -46,6 +53,29 @@ interface MatchedPostState {
 }
 
 type SyncAction = 'none' | 'would-create' | 'would-update' | 'created' | 'updated';
+
+interface ReleaseDateParts {
+  day: number;
+  month: number;
+  year: number;
+}
+
+interface ReleaseDateTimeParts extends ReleaseDateParts {
+  hour: number;
+  minute: number;
+  second: number;
+}
+
+const releaseDateTimeFormatter = new Intl.DateTimeFormat('en-US', {
+  day: '2-digit',
+  hour: '2-digit',
+  hourCycle: 'h23',
+  minute: '2-digit',
+  month: '2-digit',
+  second: '2-digit',
+  timeZone: RELEASE_TIMEZONE,
+  year: 'numeric',
+});
 
 function pauseAfterWrite(): Promise<void> {
   if (REQUEST_DELAY_MS <= 0) {
@@ -98,6 +128,87 @@ function parseStoredDate(value: string | undefined): Date | undefined {
   }
 
   return parsed;
+}
+
+function getReleaseDateTimeParts(date: Date): ReleaseDateTimeParts {
+  const values = Object.fromEntries(
+    releaseDateTimeFormatter
+      .formatToParts(date)
+      .filter((part) => part.type !== 'literal')
+      .map((part) => [part.type, Number(part.value)]),
+  ) as Record<string, number>;
+
+  if (
+    [values.year, values.month, values.day, values.hour, values.minute, values.second].some((value) =>
+      Number.isNaN(value),
+    )
+  ) {
+    throw new Error(`Unable to resolve release date in ${RELEASE_TIMEZONE}.`);
+  }
+
+  return {
+    day: values.day,
+    hour: values.hour,
+    minute: values.minute,
+    month: values.month,
+    second: values.second,
+    year: values.year,
+  };
+}
+
+function getReleaseDateParts(date: Date): ReleaseDateParts {
+  const { day, month, year } = getReleaseDateTimeParts(date);
+
+  return { day, month, year };
+}
+
+function toUtcTimestamp(parts: ReleaseDateTimeParts): number {
+  return Date.UTC(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute, parts.second);
+}
+
+function addDaysToReleaseDate(parts: ReleaseDateParts, days: number): ReleaseDateParts {
+  const nextDate = new Date(Date.UTC(parts.year, parts.month - 1, parts.day + days));
+
+  return {
+    day: nextDate.getUTCDate(),
+    month: nextDate.getUTCMonth() + 1,
+    year: nextDate.getUTCFullYear(),
+  };
+}
+
+function buildReleaseDate(parts: ReleaseDateParts): Date {
+  const desiredDateTime: ReleaseDateTimeParts = {
+    ...parts,
+    hour: RELEASE_HOUR,
+    minute: 0,
+    second: 0,
+  };
+  const desiredTimestamp = toUtcTimestamp(desiredDateTime);
+  let candidateTimestamp = desiredTimestamp;
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    const actualTimestamp = toUtcTimestamp(getReleaseDateTimeParts(new Date(candidateTimestamp)));
+    const offset = desiredTimestamp - actualTimestamp;
+
+    if (offset === 0) {
+      return new Date(candidateTimestamp);
+    }
+
+    candidateTimestamp += offset;
+  }
+
+  return new Date(candidateTimestamp);
+}
+
+function getNextReleaseSlot(now: Date): Date {
+  const today = getReleaseDateParts(now);
+  const todayRelease = buildReleaseDate(today);
+
+  if (todayRelease.getTime() >= now.getTime()) {
+    return todayRelease;
+  }
+
+  return buildReleaseDate(addDaysToReleaseDate(today, 1));
 }
 
 function normalizeLookupUrl(value: string | null | undefined): string | undefined {
@@ -202,14 +313,18 @@ function buildReleaseSchedule(posts: MatchedPostState[], now: Date): Map<string,
   }, undefined);
 
   let nextReleaseAt = latestReleasedAt
-    ? new Date(Math.max(now.getTime(), latestReleasedAt.getTime() + RELEASE_INTERVAL_MS))
-    : now;
+    ? buildReleaseDate(addDaysToReleaseDate(getReleaseDateParts(latestReleasedAt), RELEASE_INTERVAL_DAYS))
+    : getNextReleaseSlot(now);
+
+  if (nextReleaseAt.getTime() < now.getTime()) {
+    nextReleaseAt = getNextReleaseSlot(now);
+  }
 
   for (const state of posts
     .filter((entry) => !entry.wasReleasedBeforeRun)
     .sort((left, right) => comparePostsByDate(left.post, right.post))) {
     scheduledFor.set(state.post.id, nextReleaseAt.toISOString());
-    nextReleaseAt = new Date(nextReleaseAt.getTime() + RELEASE_INTERVAL_MS);
+    nextReleaseAt = buildReleaseDate(addDaysToReleaseDate(getReleaseDateParts(nextReleaseAt), RELEASE_INTERVAL_DAYS));
   }
 
   return scheduledFor;
