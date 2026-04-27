@@ -64,7 +64,26 @@ function readCrosspostMap(filePath: string): CrosspostMap {
 }
 
 function writeCrosspostMap(filePath: string, map: CrosspostMap): void {
-  fs.writeFileSync(filePath, JSON.stringify(map, null, 2) + '\n');
+  const sortedMap = Object.fromEntries(
+    Object.entries(map).sort(([leftId, leftEntry], [rightId, rightEntry]) => {
+      const leftTimestamp = Date.parse(leftEntry.scheduledFor ?? '');
+      const rightTimestamp = Date.parse(rightEntry.scheduledFor ?? '');
+      const leftHasScheduledDate = !Number.isNaN(leftTimestamp);
+      const rightHasScheduledDate = !Number.isNaN(rightTimestamp);
+
+      if (leftHasScheduledDate && rightHasScheduledDate && leftTimestamp !== rightTimestamp) {
+        return leftTimestamp - rightTimestamp;
+      }
+
+      if (leftHasScheduledDate !== rightHasScheduledDate) {
+        return leftHasScheduledDate ? -1 : 1;
+      }
+
+      return leftId.localeCompare(rightId);
+    }),
+  );
+
+  fs.writeFileSync(filePath, JSON.stringify(sortedMap, null, 2) + '\n');
 }
 
 function parseStoredDate(value: string | undefined): Date | undefined {
