@@ -8,7 +8,7 @@
 
   :root {
     scrollbar-gutter: stable;
-    scrollbar-color: var(--color-accent) transparent;
+    scrollbar-color: var(--color-border) transparent;
   }
 
   * {

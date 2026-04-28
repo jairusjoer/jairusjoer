@@ -24,14 +24,14 @@ pnpm dev
 
 Available scripts:
 
-| Command            | Description |
-| :----------------- | :---------- |
-| `pnpm dev`         | Start the local development server |
-| `pnpm build`       | Create a production build |
-| `pnpm preview`     | Preview the production build locally |
-| `pnpm check-types` | Run `astro check` for Astro and TypeScript diagnostics |
+| Command            | Description                                                  |
+| :----------------- | :----------------------------------------------------------- |
+| `pnpm dev`         | Start the local development server                           |
+| `pnpm build`       | Create a production build                                    |
+| `pnpm preview`     | Preview the production build locally                         |
+| `pnpm check-types` | Run `astro check` for Astro and TypeScript diagnostics       |
 | `pnpm format`      | Format Astro, CSS, JSON, Markdown, MDX, and TypeScript files |
-| `pnpm lint`        | Run ESLint with autofix enabled |
+| `pnpm lint`        | Run ESLint with autofix enabled                              |
 
 ## Site Configuration
 
