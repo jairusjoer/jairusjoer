@@ -46,11 +46,15 @@ During my time here, I had the honour of collaborating with amazing people on tw
 
 In 2024, I collaborated with Dennis Eming , Fynn Schlegel, and [Jaro Lenz](https://www.linkedin.com/in/jaro-lenz-304245250/) on redesigning the dashboard, sidebar, and top navigation. This ultimately won us first place and laid the conceptual groundwork for the first milestone of the Design Vision.
 
-<video controls>
+<video controls autoplay muted loop>
   <source src="/media/2024_hero_hackathon.mp4" type="video/mp4" />
 </video>
 
 In 2025, I collaborated with [Alexis-Rae Jager](https://www.linkedin.com/in/alexis-rae-jager-070bb125a/), Dennis Eming, Fynn Schlegel and Nico Brockel on redefining the theme customization of HERO. This project involved reworking the platform's outdated personalisation options, and it won us first place (again).
+
+<video controls autoplay muted loop>
+  <source src="/media/2025_hero_customisation.mp4" type="video/mp4" />
+</video>
 
 ---
 
