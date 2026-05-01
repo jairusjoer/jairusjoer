@@ -18,7 +18,7 @@ export const site: SiteConfig = {
   url: 'https://jairusjoer.com',
   image: async () => (await import('./assets/image.png')).default,
   title: 'Jairus Joer',
-  description: 'Senior Full Stack Engineer & Designer',
+  description: 'Senior Software Engineer & Designer',
   locale: 'en-US',
   datetime: {
     day: 'numeric',
