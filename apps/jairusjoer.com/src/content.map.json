@@ -1,6 +1,6 @@
 {
   "archive/aggregata/working-with-artificial-intelligence-risks-and-side-effects": {
-    "contentHash": "15a1745d33fd32cb89f01ab08fd7a41f32f871769bad5b6eec0e296eb6664199",
+    "contentHash": "0a4ee2b8e2dc9a546f01b7469395a5cd1c71d09ac2aaba1debb16f690d3cbf5d",
     "devtoId": 3542458,
     "devtoUrl": "https://dev.to/jairusjoer/working-with-artificial-intelligence-risks-side-effects-10n1",
     "file": "src/content/archive/aggregata/working-with-artificial-intelligence-risks-and-side-effects.md",
@@ -8,278 +8,278 @@
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-working-with-artificial-intelligence-risks-and-side-effects",
     "publishedAt": "2026-04-23T17:21:30.518Z",
     "scheduledFor": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/colophon-how-we-build-aggregata": {
-    "contentHash": "4e504414cd9977597a96b5514c7e02498e2bc5337f873a5a2e772cf5a55460fc",
+    "contentHash": "cef257f726010155649c388f499d6e6aeb0e764b4116b276a1b2e33c2d3e873b",
     "file": "src/content/archive/aggregata/colophon-how-we-build-aggregata.md",
-    "scheduledFor": "2026-05-02T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-05-03T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/one-year-of-aggregata-a-review-and-outlook": {
-    "contentHash": "bf772077286f881c87bd8fae69cb8f66ca6cc81dac1bd3106cbd2c63638260de",
+    "contentHash": "bb8cc50d1440f7e9aa70f125917ad5640b3afbd930fc3c54c44eafd08c2e7756",
     "file": "src/content/archive/aggregata/one-year-of-aggregata-a-review-and-outlook.md",
-    "scheduledFor": "2026-05-09T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-05-10T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/astro-an-introduction-to-your-next-project": {
-    "contentHash": "a45bcff158f32fa96c89419fd657ecb1dec65c4d39fd9670c006d49f39d380a7",
+    "contentHash": "b3b498fc529517443a7bf1e12e41a757b1e6b7e9c19efc9b42106da380faa25b",
     "file": "src/content/archive/aggregata/astro-an-introduction-to-your-next-project.md",
-    "scheduledFor": "2026-05-16T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-05-17T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/deploying-dynamic-content-as-static-html": {
-    "contentHash": "aba5e9b50457d91fcd22de7525d17df31ebec45a4372be22c6464473a2322849",
+    "contentHash": "0959f95aa7b6840bbdbc7c9ac2a57cafe479a8d0209edded032a3f4b28b83f47",
     "file": "src/content/archive/aggregata/deploying-dynamic-content-as-static-html.md",
-    "scheduledFor": "2026-05-23T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-05-24T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/beyond-bullet-points-dive-into-obsidian": {
-    "contentHash": "fe0724085c6f3e38d26b976a77ec3b41af25d991d3d7e6b90e64919d492e62ee",
+    "contentHash": "9d29ac3ed15f9c72a19976bbee0b304aec1de4cb3701587f4a0a1f4f2547fa1f",
     "file": "src/content/archive/aggregata/beyond-bullet-points-dive-into-obsidian.md",
-    "scheduledFor": "2026-05-30T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-05-31T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/why-we-are-moving-aggregata-from-astro-to-ghost": {
-    "contentHash": "189a6b89323532c568b98ab42b4ab945084d468531bf93a4ab8f9ccbf0992d65",
+    "contentHash": "8d6282d3dcc7c7e0ba7e79002382a047c5bd5a8f2649ee91afd9e7e7ff4133c1",
     "file": "src/content/archive/aggregata/why-we-are-moving-aggregata-from-astro-to-ghost.md",
-    "scheduledFor": "2026-06-06T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-06-07T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/develop-design-systems-with-accessibility-in-mind": {
-    "contentHash": "f286b5a0d5455ac1bfee59a5f969f395fdcc73b174e8b34cc3433190d55739a8",
+    "contentHash": "03c83822b84915b9e8dfce53fed27073bf430a2718e1deed84c25046704411ff",
     "file": "src/content/archive/aggregata/develop-design-systems-with-accessibility-in-mind.md",
-    "scheduledFor": "2026-06-13T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-06-14T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/accessibility-a-necessity-not-an-afterthought": {
-    "contentHash": "2df671de9c8cf7b04d89a4111b1cbd5faaa60c990cc31eebc178304605dd7e70",
+    "contentHash": "2579c077948d5981ca2c23aa186eddd3fddc6ee56e5a4f5f6f5a04594a724339",
     "file": "src/content/archive/aggregata/accessibility-a-necessity-not-an-afterthought.md",
-    "scheduledFor": "2026-06-20T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-06-21T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/visiting-the-wearedevelopers-world-congress-2024": {
-    "contentHash": "037bafed9e62a4cd9ab3b973d8a2cda94dcb65d0a1fd45946c0fcf0ba34bd045",
+    "contentHash": "8a8c6e6cc8d549d334f40972bf8a55eb3043d6d1d85c4d4785bc22ed143a9416",
     "file": "src/content/archive/aggregata/visiting-the-wearedevelopers-world-congress-2024.md",
-    "scheduledFor": "2026-06-27T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-06-28T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/crafting-a-detailed-dialog-element-using-microinteractions": {
-    "contentHash": "7cdf2b7cfef5d9ff6660af142f4af36d7374dbbb7b3b1a5b876f1b33097fbfcf",
+    "contentHash": "4893facf304b78ad11027d3d9faea50d5bae0ed1399b37e326246152b11d7e85",
     "file": "src/content/archive/aggregata/crafting-a-detailed-dialog-element-using-microinteractions.md",
-    "scheduledFor": "2026-07-04T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-07-05T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/define-a-component-library-for-designers-and-developers": {
-    "contentHash": "5f001828a8669c4b1427b40f1b0f166b943bdf533f358ea3a7dc8bb50f720bec",
+    "contentHash": "467a67490066d2a02dc236b41ed03ca7d27b912126febeea0723b19058190b42",
     "file": "src/content/archive/aggregata/define-a-component-library-for-designers-and-developers.md",
-    "scheduledFor": "2026-07-11T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-07-12T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/adapting-and-evolving-year-two-of-aggregata": {
-    "contentHash": "d996bc573a155439e5feb48f52b7ac2024e6925becbab887fe221eb52f09dbac",
+    "contentHash": "a7085e05b6e45d0d873ad30638845b0ad101e629bcbff927006a33e36fd92d10",
     "file": "src/content/archive/aggregata/adapting-and-evolving-year-two-of-aggregata.md",
-    "scheduledFor": "2026-07-18T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-07-19T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/create-a-component-library-for-designers-and-developers": {
-    "contentHash": "7d693bda60d8343de180ecf965132ef1ccc0410363d8cfe138ec87fec94b08b5",
+    "contentHash": "fa3751f0f9fb311825e5329c96d4d2f0f96ac9d34063d71aab63b00d4980b99f",
     "file": "src/content/archive/aggregata/create-a-component-library-for-designers-and-developers.md",
-    "scheduledFor": "2026-07-25T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-07-26T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/expand-a-component-library-for-designers-and-developers": {
-    "contentHash": "c00f82d71adbefc71ccae6104d6c22db0d8be59b3c197b40eb8d9bb834922f32",
+    "contentHash": "546cfc97f6484550358266558ed1fd99ba61c02c60581959fe609ab3ab1f37ff",
     "file": "src/content/archive/aggregata/expand-a-component-library-for-designers-and-developers.md",
-    "scheduledFor": "2026-08-01T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-08-02T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/set-up-a-new-project-with-tailwind-css-4-0": {
-    "contentHash": "88fbaa063e33a73d3e9d7700761ca624b57ddd06f6d74f022eed57cb61ad5d4b",
+    "contentHash": "e664f2d0305f0fd1abc6decfa953f4101f77a8085cb9b1e3e42e6659fe041ced",
     "file": "src/content/archive/aggregata/set-up-a-new-project-with-tailwind-css-4-0.md",
-    "scheduledFor": "2026-08-08T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-08-09T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/leverage-the-view-transition-api-in-any-project": {
-    "contentHash": "13a19fb13d981594e099ed6f10a28c78fdb72875346fd7068e46c0a20b8bf2d9",
+    "contentHash": "cee6e97b279d3fffc7f46003bda22dfd9b9c63fa79906e4d96a260379eee041d",
     "file": "src/content/archive/aggregata/leverage-the-view-transition-api-in-any-project.md",
-    "scheduledFor": "2026-08-15T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-08-16T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/improve-a-component-library-for-designers-and-developers": {
-    "contentHash": "3cb4d8788595f367e95149b4f6703f300471995dfd3f9a8201d79c24109ca540",
+    "contentHash": "aa731dd015699edf94b7525c9cb022ec37660b7e116a8709a0a62c9d439c7744",
     "file": "src/content/archive/aggregata/improve-a-component-library-for-designers-and-developers.md",
-    "scheduledFor": "2026-08-22T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-08-23T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/cross-document-view-transitions-for-multi-page-applications": {
-    "contentHash": "cc9002bc8aa73ef49eb6f15d01156ca46c01855bb63a33042d20dfa4cc008814",
+    "contentHash": "4cc8a8fd561881612ef3db46300db781a26442f5230f542c2c65a83529766408",
     "file": "src/content/archive/aggregata/cross-document-view-transitions-for-multi-page-applications.md",
-    "scheduledFor": "2026-08-29T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-08-30T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/goodbye-read-cv": {
-    "contentHash": "669344da865fd3d584bd165e3da3246b8200f3ba29cef60760b7e68002fa7d00",
+    "contentHash": "4e18506be648afae9250f922cacb1d767fdc7509c2f6ee596d03c36247631e77",
     "file": "src/content/archive/aggregata/goodbye-read-cv.md",
-    "scheduledFor": "2026-09-05T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-09-06T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/delightful-animations-i-gallery": {
-    "contentHash": "2dc0eb156b9326cb5ff80865d8d061cf16cc2fdeb92b464877a5444c8cb121a7",
+    "contentHash": "57600a6ea8e617810e6e411a58b863927e003c7202ce57c9bf0a74f71794e7ab",
     "file": "src/content/archive/aggregata/delightful-animations-i-gallery.md",
-    "scheduledFor": "2026-09-12T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-09-13T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/the-future-of-the-web-might-be-native": {
-    "contentHash": "7314f714681c481c54a5b9f2717d52e3a5373c85260a3674c5de927df1c55dec",
+    "contentHash": "0f5f2e2a56bffdf93fc075f4cf40729f419023cfab31d06267fe68e669c71047",
     "file": "src/content/archive/aggregata/the-future-of-the-web-might-be-native.md",
-    "scheduledFor": "2026-09-19T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-09-20T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/migrating-the-monolith-i-conceptualization": {
-    "contentHash": "d5037511c7cadf3765d6bab0ad6f32c142cf571ff230b71a487da1d15579bdb9",
+    "contentHash": "e7cb4aac45172f5ee97b5b87d9fcbffd22440d25958c769233bc2bf84ea002b7",
     "file": "src/content/archive/aggregata/migrating-the-monolith-i-conceptualization.md",
-    "scheduledFor": "2026-09-26T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-09-27T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/visiting-the-wearedevelopers-world-congress-2025": {
-    "contentHash": "8a4efd5c8d7fc8571c90dd42799fd59d51f1244d48b4e92d5d45a58adb3993be",
+    "contentHash": "55ed590aef28750be0923c4ef1cf747923348c491a7bb1c0ea3806aa2cd2bb53",
     "file": "src/content/archive/aggregata/visiting-the-wearedevelopers-world-congress-2025.md",
-    "scheduledFor": "2026-10-03T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-10-04T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/delightful-animations-ii-tiles": {
-    "contentHash": "6bd4730f9cdbbb89c41c890ca1e8153018518eeb3cf7e5a3a4035f70a7fe9a11",
+    "contentHash": "9df464bd0e04ea9c7be7fc735179b2204b06bbfc2a28cfb310f03cdb9c0690d9",
     "file": "src/content/archive/aggregata/delightful-animations-ii-tiles.md",
-    "scheduledFor": "2026-10-10T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-10-11T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/delightful-animations-iii-intricacies-of-interaction-design": {
-    "contentHash": "96b27ead4f918cd2d2f4161fffa3eea375b373c5e85bbde144e79d37c76208f0",
+    "contentHash": "70cad1156087a734b60eddd056d6b88aa7b7600063aac02b9c94a3dc7a2979c1",
     "file": "src/content/archive/aggregata/delightful-animations-iii-intricacies-of-interaction-design.md",
-    "scheduledFor": "2026-10-17T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-10-18T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/the-sisyphean-struggle-for-simplicity": {
-    "contentHash": "1684022abc8fcb4883c9f9e518e61abe6f09aa870abf030d97d9b90bcd540f1f",
+    "contentHash": "053d7e936a4ab90994501170f33c2050e2b23c418ce0d6e9720c116aba2caff9",
     "file": "src/content/archive/aggregata/the-sisyphean-struggle-for-simplicity.md",
-    "scheduledFor": "2026-10-24T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-10-25T13:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/migrating-the-monolith-ii-design": {
-    "contentHash": "8795cbdb9eaa992836b5f6edece75b43a9c2abbe738e25168122c77b90c18d09",
+    "contentHash": "df321ee8b448353c477fc56f12f9fd0466830e9d93c8a2726438e871f12af5b5",
     "file": "src/content/archive/aggregata/migrating-the-monolith-ii-design.md",
-    "scheduledFor": "2026-10-31T13:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-11-01T14:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/delightful-animations-iv-mind-the-gap": {
-    "contentHash": "fa0c215f93c39a28fbc89c3e9e0bb79fb3708a76477df3cbd4ab6934e5f17aa8",
+    "contentHash": "b908276484a85774dc08d738c1f43cda36a6beb2dc574e1abb3498eec16d18ce",
     "file": "src/content/archive/aggregata/delightful-animations-iv-mind-the-gap.md",
-    "scheduledFor": "2026-11-07T14:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-11-08T14:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/were-saying-goodbye": {
-    "contentHash": "32dbf2df9d21ebd2228af34bc205863524f37640f1fbba985faca44fc6725664",
+    "contentHash": "5511c16a85ed5d6796ca03039e78b5fb14ace88a3c3d2646f06ae565ce7c93c7",
     "file": "src/content/archive/aggregata/were-saying-goodbye.md",
-    "scheduledFor": "2026-11-14T14:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-11-15T14:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "writing/about-personal-software": {
-    "contentHash": "dfbfaf326097d2e06ced06127b251f92bd8974bad9dc637e55a7e480d0e50427",
+    "contentHash": "e6fec01d0305da73adcb10e24b483bea902a3930fc7ee60099cc5698e5897974",
     "file": "src/content/writing/about-personal-software.md",
-    "scheduledFor": "2026-11-21T14:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-11-22T14:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "writing/the-future-of-the-web-ought-to-be-native": {
-    "contentHash": "a3a2fb30299fd67a33aa32e5e6b55cf9bf9f2fdcf36a9418efb14e024bc8eecb",
+    "contentHash": "a893ac1cc41bc17f0e58cdbec740ec7d275728dd5693df6658f82203bb56f4f3",
     "file": "src/content/writing/the-future-of-the-web-ought-to-be-native.md",
-    "scheduledFor": "2026-11-28T14:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-11-29T14:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "writing/two-years-at-hero-software": {
-    "contentHash": "b561990d8afb12c24aea0e94c0a0ea25ea6b37433e281fdb73be92a85db427af",
+    "contentHash": "eca313880b8561912c586277a7b74a7ff5eedefffde7569a589ea9b44ad4a554",
     "file": "src/content/writing/two-years-at-hero-software.md",
-    "scheduledFor": "2026-12-05T14:00:00.000Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "scheduledFor": "2026-12-06T14:00:00.000Z",
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/advanced-forms-with-alpine": {
-    "contentHash": "f0a74abe14b3d0aea165613ec69f7418d924745133ffceb555d78fd78350fbcb",
+    "contentHash": "5237c5634ef1745d6d8470c91e62de03ae544ab65bb51042214e3d5d3c1fa8c6",
     "devtoId": 2184850,
     "devtoUrl": "https://dev.to/aggregata/advanced-forms-with-alpinejs-2ea7",
     "file": "src/content/archive/aggregata/advanced-forms-with-alpine.md",
     "hashnodePostId": "69ea551bdc185b88e3dd73ca",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-advanced-forms-with-alpine",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/dynamic-imports-with-alpine": {
-    "contentHash": "3367bcf7479f21beaf27269bb53d8f337a0b0d3b24c53d7a3ebab1a82e777811",
+    "contentHash": "623f62e8938d01814c302916fb955b365c43c45212200d9fea49d8a3314f41d4",
     "devtoId": 1665403,
     "devtoUrl": "https://dev.to/aggregata/dynamic-imports-with-alpinejs-3lp6",
     "file": "src/content/archive/aggregata/dynamic-imports-with-alpine.md",
     "hashnodePostId": "69ea551cdc185b88e3dd73cc",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-dynamic-imports-with-alpine",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/how-does-ai-learn-impressions-from-our-first-seminar": {
-    "contentHash": "1e8266875840b564f8bfe94a918171c829e03f585b0369ba1be5d178d5974413",
+    "contentHash": "d984dc535dd35cc1581ca4716acd570690b8b8b2237aff875eafca002a7a7390",
     "devtoId": 1618389,
     "devtoUrl": "https://dev.to/aggregata/how-does-ai-learn-impressions-from-our-first-seminar-540l",
     "file": "src/content/archive/aggregata/how-does-ai-learn-impressions-from-our-first-seminar.md",
     "hashnodePostId": "69ea551cdc185b88e3dd73ce",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-how-does-ai-learn-impressions-from-our-first-seminar",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/include-alpine-js-in-a-production-environment": {
-    "contentHash": "0c9357f2d0768a9f688b72b218f346b0acf73b4b9da96f69cd3a8431a38f237d",
+    "contentHash": "764ac387421155e1148d82ada1b3c78986c29a3f3237657327eb55b03aef1329",
     "devtoId": 1617291,
     "devtoUrl": "https://dev.to/aggregata/include-alpinejs-in-a-production-environment-5a1m",
     "file": "src/content/archive/aggregata/include-alpine-js-in-a-production-environment.md",
     "hashnodePostId": "69ea551cdc185b88e3dd73d0",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-include-alpine-js-in-a-production-environment",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/interactive-forms-with-alpine-js": {
-    "contentHash": "1b0b7bd8f390a12644d62b93b513acfb9985b943ded447094b1f9ac6cedf082e",
+    "contentHash": "2932b4752d15bfec1045df222a70887363a4099c5e6cfdee9a2b5099cf7d6bcd",
     "devtoId": 1630201,
     "devtoUrl": "https://dev.to/aggregata/interactive-forms-with-alpinejs-3o1h",
     "file": "src/content/archive/aggregata/interactive-forms-with-alpine-js.md",
     "hashnodePostId": "69ea551ddef4cd5adcb182a2",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-interactive-forms-with-alpine-js",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/temporary-and-persistent-state-management-with-alpine-js": {
-    "contentHash": "a630847d7f4647b1fb14ca83626487d01fb1e16dad051c6fcdf30bde127734bc",
+    "contentHash": "02878b423e78bd68e7d2d2ef9f37b3e485a82d083b8ad77c611dbc01e84332e7",
     "devtoId": 1776274,
     "devtoUrl": "https://dev.to/aggregata/temporary-and-persistent-state-management-with-alpinejs-1a79",
     "file": "src/content/archive/aggregata/temporary-and-persistent-state-management-with-alpine-js.md",
     "hashnodePostId": "69ea551ddef4cd5adcb182a4",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-temporary-and-persistent-state-management-with-alpine-js",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/visualize-and-update-products-with-alpine-js": {
-    "contentHash": "a9f85046552bdd8c80c06db3fb42ae9a0165bcd655cb2ddb9e5bad86187c8663",
+    "contentHash": "3ff57bd18a6fd7db9674b0832c7a04fdf9d8d8421163f9e4150bfde54ce70c2f",
     "devtoId": 1701029,
     "devtoUrl": "https://dev.to/aggregata/visualize-and-update-products-with-alpinejs-5ah1",
     "file": "src/content/archive/aggregata/visualize-and-update-products-with-alpine-js.md",
     "hashnodePostId": "69ea551edef4cd5adcb182a6",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-visualize-and-update-products-with-alpine-js",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   },
   "archive/aggregata/working-with-the-arc-browser": {
-    "contentHash": "d94cd49936abf65869f216b329ecfa3a185dea3eab26de439f7d9d8ee3e52b10",
+    "contentHash": "df10316088f661f9abdb309ab24a3ccf275a831488730667482790a672ba6deb",
     "devtoId": 1912437,
     "devtoUrl": "https://dev.to/aggregata/working-with-the-arc-browser-1g40",
     "file": "src/content/archive/aggregata/working-with-the-arc-browser.md",
     "hashnodePostId": "69ea551fdc185b88e3dd73d2",
     "hashnodeUrl": "https://jairusjoer.hashnode.dev/archive-aggregata-working-with-the-arc-browser",
     "publishedAt": "2026-04-23T17:21:30.518Z",
-    "updatedAt": "2026-05-01T22:22:57.318Z"
+    "updatedAt": "2026-05-02T18:29:22.496Z"
   }
 }
