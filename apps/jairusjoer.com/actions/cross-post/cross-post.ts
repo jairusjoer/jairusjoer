@@ -293,27 +293,23 @@ function matchPosts(params: {
 function buildReleaseSchedule(posts: MatchedPostState[], now: Date): Map<string, string> {
   const scheduledFor = new Map<string, string>();
 
-  const latestReleasedAt = posts.reduce<Date | undefined>((latest, state) => {
-    if (!state.wasReleasedBeforeRun) {
-      return latest;
-    }
-
-    const releasedAt =
+  const latestBookedAt = posts.reduce<Date | undefined>((latest, state) => {
+    const bookedAt =
       parseStoredDate(state.previousEntry?.publishedAt) ?? parseStoredDate(state.previousEntry?.scheduledFor);
 
-    if (!releasedAt) {
+    if (!bookedAt) {
       return latest;
     }
 
-    if (!latest || releasedAt.getTime() > latest.getTime()) {
-      return releasedAt;
+    if (!latest || bookedAt.getTime() > latest.getTime()) {
+      return bookedAt;
     }
 
     return latest;
   }, undefined);
 
-  let nextReleaseAt = latestReleasedAt
-    ? buildReleaseDate(addDaysToReleaseDate(getReleaseDateParts(latestReleasedAt), RELEASE_INTERVAL_DAYS))
+  let nextReleaseAt = latestBookedAt
+    ? buildReleaseDate(addDaysToReleaseDate(getReleaseDateParts(latestBookedAt), RELEASE_INTERVAL_DAYS))
     : getNextReleaseSlot(now);
 
   if (nextReleaseAt.getTime() < now.getTime()) {
@@ -321,7 +317,7 @@ function buildReleaseSchedule(posts: MatchedPostState[], now: Date): Map<string,
   }
 
   for (const state of posts
-    .filter((entry) => !entry.wasReleasedBeforeRun)
+    .filter((entry) => !entry.wasReleasedBeforeRun && !entry.previousEntry?.scheduledFor)
     .sort((left, right) => comparePostsByDate(left.post, right.post))) {
     scheduledFor.set(state.post.id, nextReleaseAt.toISOString());
     nextReleaseAt = buildReleaseDate(addDaysToReleaseDate(getReleaseDateParts(nextReleaseAt), RELEASE_INTERVAL_DAYS));
