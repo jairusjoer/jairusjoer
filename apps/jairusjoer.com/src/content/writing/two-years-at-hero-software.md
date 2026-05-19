@@ -130,11 +130,11 @@ When it comes to communication, both positive and negative feedback must be shar
 
 ## What comes next
 
-30 March will be my last day at HERO. I have taken great care to ensure that the initiatives most important to me are transferred to trusted teams, and I am confident that they are in good hands for the future of the company and its products.
+30 April will be my last day at HERO. I have taken great care to ensure that the initiatives most important to me are transferred to trusted teams, and I am confident that they are in good hands for the future of the company and its products.
 
-For me, this last month has been about making one final impact. I have addressed long-neglected topics and tied up loose ends wherever possible, so that future designers and engineers may appreciate and build upon my work as much as I did.
+For me, this last month will be about making one final impact. I will address long-neglected topics and tie up loose ends wherever possible, so that future designers and engineers may appreciate and build upon my work as much as I did.
 
-From May onwards, I will be working on a new project related to Germany’s digitalisation efforts. As far as I can tell, my role will involve supporting the software development for a greenfield project, which I am very excited about.
+From May onwards, I will be working on a new project related to Germany’s digitalisation efforts. As far as I can tell, my role will involve supporting the software development for a rather new project, which I am very excited about.
 
 ---
 
