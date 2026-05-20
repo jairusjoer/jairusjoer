@@ -11,52 +11,46 @@ if (!rssResponse.ok) {
   throw new Error(`Unable to read RSS feed from ${rssUrl}: ${rssResponse.status} ${rssResponse.statusText}`);
 }
 
-const rss = await rssResponse.text();
+const rssFeed = await rssResponse.text();
+const rssRegex = /<title>\s*(?<title>[^<]+?)\s*<\/title>[\s\S]*?<link>\s*(?<link>[^<]+?)\s*<\/link>/g;
 
-const regex = /<title>\s*(?<title>[^<]+?)\s*<\/title>[\s\S]*?<link>\s*(?<link>[^<]+?)\s*<\/link>/g;
-
-const entries = [...rss.matchAll(regex)].map((item) => {
+const entries = [...rssFeed.matchAll(rssRegex)].map((item) => {
   const { title, link } = item.groups as { title: string; link: string };
   const id = new URL(link).pathname.replace(/^\/|\/$/g, '');
 
-  return { id: id === '' ? 'index' : id, title, link };
+  return { id: id === '' ? 'index' : id, title };
 });
 
 const browser = await chromium.launch({ headless: true });
+const context = await browser.newContext({
+  viewport: {
+    width: 1200,
+    height: 630,
+  },
+});
 
-try {
-  for (const entry of entries) {
-    let page;
+for (const entry of entries) {
+  const page = await context.newPage();
 
-    try {
-      page = await browser.newPage({
-        viewport: {
-          width: 1200,
-          height: 630,
-        },
-      });
+  try {
+    await page.goto(`${previewOrigin}/open-graph?title=${encodeURIComponent(entry.title)}`, {
+      waitUntil: 'load',
+    });
 
-      await page.goto(`${previewOrigin}/open-graph?title=${encodeURIComponent(entry.title)}`, {
-        waitUntil: 'load',
-      });
+    const canvas = page.locator('.open-graph');
+    await page.waitForSelector('.open-graph-title:not(:empty)');
 
-      const openGraphCanvas = page.locator('.open-graph');
-      await page.waitForSelector('.open-graph-title:not(:empty)');
+    const screenshot = `public/og/${entry.id}.png`;
 
-      const screenshotPath = `public/og/${entry.id}.png`;
+    await mkdir(path.dirname(screenshot), { recursive: true });
+    await canvas.screenshot({ path: screenshot });
 
-      await mkdir(path.dirname(screenshotPath), { recursive: true });
-      await openGraphCanvas.screenshot({ path: screenshotPath });
-
-      console.log(`[✓]`, entry.id);
-    } catch (error) {
-      console.error(`[✗]`, entry.id, error);
-    } finally {
-      if (page) {
-        await page.close();
-      }
-    }
+    console.log(`✓`, entry.id);
+  } catch (error) {
+    console.error(`✗`, entry.id, error);
+  } finally {
+    await page.close();
   }
-} finally {
-  await browser.close();
 }
+
+await browser.close();
