@@ -18,12 +18,11 @@ const formatLink = (url: string) => {
         <ul>
           {entry.data.map((link) => (
             <li class="list-none">
-              <span>
+              <label>
                 <input
                   type="checkbox"
-                  name="read"
+                  name={link}
                   title="Toogle reading status"
-                  id={link}
                 />
                 <a
                   class="peer-checked:line-through peer-checked:opacity-50 motion-safe:transition-opacity"
@@ -33,7 +32,7 @@ const formatLink = (url: string) => {
                 >
                   {formatLink(link)}
                 </a>
-              </span>
+              </label>
             </li>
           ))}
         </ul>
@@ -43,61 +42,57 @@ const formatLink = (url: string) => {
 </div>
 
 <script>
-  const linkList = document.querySelector('.link-list');
-  const checkboxes = linkList?.querySelectorAll('input[type="checkbox"]');
+  const linkList = document.querySelector('.link-list')!;
+  const checkboxes = linkList.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')!;
 
   const getLinkList = (): Set<string> => {
     try {
-      const stored = localStorage.getItem('linkList');
-      return new Set(stored ? JSON.parse(stored) : []);
+      const storedLinkList = localStorage.getItem('linkList');
+      return new Set(storedLinkList ? JSON.parse(storedLinkList) : []);
     } catch {
       return new Set();
     }
   };
 
-  const updateStorage = (id: string, checked: boolean) => {
-    const current = getLinkList();
+  const updateStorage = (name: string, checked: boolean) => {
+    const storedLinkList = getLinkList();
 
     if (checked) {
-      current.add(id);
+      storedLinkList.add(name);
     } else {
-      current.delete(id);
+      storedLinkList.delete(name);
     }
 
-    localStorage.setItem('linkList', JSON.stringify([...current]));
+    localStorage.setItem('linkList', JSON.stringify([...storedLinkList]));
   };
 
-  if (linkList) {
-    const savedLinks = getLinkList();
+  const storedLinkList = getLinkList();
 
-    checkboxes?.forEach((box) => {
-      if (box instanceof HTMLInputElement && savedLinks.has(box.id)) {
-        box.checked = true;
-      }
-    });
-
-    linkList.addEventListener('change', (e) => {
-      const target = e.target;
-
-      if (target instanceof HTMLInputElement && target.type === 'checkbox') {
-        updateStorage(target.id, target.checked);
-      }
-    });
-
-    linkList.addEventListener('click', (e) => {
-      const target = e.target;
-
-      if (target instanceof HTMLElement) {
-        const anchor = target.closest('a');
-        const checkbox = anchor?.previousElementSibling;
-
-        if (checkbox instanceof HTMLInputElement && checkbox.type === 'checkbox') {
-          if (!checkbox.checked) {
-            checkbox.checked = true;
-            updateStorage(checkbox.id, true);
-          }
-        }
-      }
-    });
+  for (const checkbox of checkboxes) {
+    if (storedLinkList.has(checkbox.name)) {
+      checkbox.checked = true;
+    }
   }
+
+  const details = linkList.querySelectorAll<HTMLDetailsElement>('details:has(input:checked)');
+
+  for (const detail of details) {
+    detail.open = true;
+  }
+
+  linkList.addEventListener('click', (event) => {
+    const target = event.target;
+    let checkbox = event.target as HTMLInputElement;
+
+    if (target instanceof HTMLAnchorElement) {
+      const anchor = target.closest('a');
+
+      checkbox = anchor?.previousElementSibling as HTMLInputElement;
+      checkbox.checked = true;
+    }
+
+    if (checkbox instanceof HTMLInputElement) {
+      updateStorage(checkbox.name, checkbox.checked);
+    }
+  });
 </script>

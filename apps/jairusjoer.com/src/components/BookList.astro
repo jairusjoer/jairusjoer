@@ -12,10 +12,7 @@ const books = (await getCollection('books')).sort((a, b) => {
 });
 ---
 
-<div
-  id="book-list"
-  class="not-prosa mt-3"
->
+<div class="not-prosa mt-3">
   <ul class="space-y-3">
     {
       books.map(({ data: book }) => (
