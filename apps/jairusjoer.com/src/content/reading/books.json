@@ -1,17 +1,37 @@
 [
   {
-    "id": "Broligarchie",
-    "author": "Aya Jaff",
-    "cover": "./assets/broligarchie.jpg"
+    "id": "The Technological Republic",
+    "author": "Alexander Karp, Nicholas Zamiska",
+    "cover": "./assets/the-technological-republic.jpg",
+    "status": "Bought",
+    "date": "2026-05-19"
+  },
+  {
+    "id": "The Hidden Girl and Other Stories",
+    "author": "Ken Liu",
+    "cover": "./assets/the-hidden-girl-and-other-stories.jpg",
+    "status": "Bought",
+    "date": "2026-05-17"
   },
   {
     "id": "If Anyone Builds It, Everyone Dies",
     "author": "Eliezer Yudkowsky, Nate Soares",
-    "cover": "./assets/if-anyone-builds-it-everyone-dies.jpg"
+    "cover": "./assets/if-anyone-builds-it-everyone-dies.jpg",
+    "status": "Bought",
+    "date": "2026-01-28"
+  },
+  {
+    "id": "Broligarchie",
+    "author": "Aya Jaff",
+    "cover": "./assets/broligarchie.jpg",
+    "status": "Reading",
+    "date": "2025-12-22"
   },
   {
     "id": "There Is No Antimemetics Division",
     "author": "qntm",
-    "cover": "./assets/there-is-no-antimemetics-division.jpg"
+    "cover": "./assets/there-is-no-antimemetics-division.jpg",
+    "status": "Finished",
+    "date": "2025-05-07"
   }
 ]

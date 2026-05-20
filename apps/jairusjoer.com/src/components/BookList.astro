@@ -1,8 +1,15 @@
 ---
+import { formatDatetime } from '@scripts/formatDatetime';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import Badge from './Badge.astro';
 
-const books = await getCollection('books');
+const books = (await getCollection('books')).sort((a, b) => {
+  const dateA = new Date(a.data.date).getTime();
+  const dateB = new Date(b.data.date).getTime();
+
+  return dateB - dateA;
+});
 ---
 
 <div
@@ -24,7 +31,9 @@ const books = await getCollection('books');
           <div>
             <strong class="text-foreground">{book.id}</strong>
             <br />
-            <span>{book.author}</span>
+            <small>
+              {book.status} &bull; {book.author}
+            </small>
           </div>
         </li>
       ))
