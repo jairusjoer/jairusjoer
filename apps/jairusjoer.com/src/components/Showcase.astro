@@ -4,7 +4,7 @@ import Button from './Button.astro';
 const { links } = Astro.props;
 ---
 
-<div class="not-prosa rounded-default relative grid place-content-center border p-8">
+<div class="not-prosa relative grid place-content-center rounded-xl border p-8">
   <slot />
   {
     Object.entries(links).length > 0 && (

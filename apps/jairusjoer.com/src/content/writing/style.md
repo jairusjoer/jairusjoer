@@ -309,7 +309,7 @@ You can also use words, to fit your writing style more closely[^note].
 
 Here is a simple footnote[^1].
 
-A footnote can also have multiple lines[^2].
+A footnote can also have multiple references[^1][^2].
 
 You can also use words, to fit your writing style more closely[^note].
 
