@@ -85,7 +85,7 @@ Key content areas in `src/content`:
 - `exploring.mdx`: experiments and interactive showcases
 - `index.mdx`: home/about page
 
-MDX content can use the shared Astro components from `src/components`, including list, badge, showcase, and cross-post UI.
+MDX content can use the shared Astro components from `src/components`, including list, badge, showcase, and more.
 
 ## Generated Output
 
@@ -94,7 +94,6 @@ The repository includes a few generated or automation-backed outputs:
 - `src/pages/rss.xml.ts` builds the site RSS feed from the `pages` collection
 - `src/pages/open-graph.astro` renders the template used for social preview images
 - `actions/open-graph.ts` can capture Open Graph images into `public/og/**` from a local preview environment
-- `src/content.map.json` stores cross-post metadata used to surface alternate publication sources on page routes
 
 ### Open Graph Generation
 
@@ -118,45 +117,6 @@ node --experimental-strip-types actions/open-graph.ts
 
 This will generate or update files in `public/og` for entries discovered via `/rss.xml`.
 
-## Cross-Posting Workflow
-
-The `actions/cross-post` scripts support syndicating selected local content to external platforms, currently Dev.to and Hashnode. The workflow reads local posts, matches them against previously published records, and updates `src/content.map.json` with provider URLs and sync metadata.
-
-This automation is intended for scripted use and is separate from the Astro app itself.
-
-### Cross-Post Setup
-
-The cross-post workflow is defined in `.github/workflows/cross-post.yml`. It runs on a schedule, after successful Open Graph generation, or manually via `workflow_dispatch`.
-
-Required environment variables:
-
-- `DEVTO_TOKEN`
-- `HASHNODE_TOKEN`
-- `HASHNODE_PUBLICATION_ID`
-
-Optional environment variables used to resolve repository-hosted assets during automation:
-
-- `GITHUB_REPOSITORY`
-- `GITHUB_SHA`
-
-The workflow injects those values automatically in GitHub Actions. For local execution, export them yourself and run:
-
-```bash
-DEVTO_TOKEN=...
-HASHNODE_TOKEN=...
-HASHNODE_PUBLICATION_ID=...
-GITHUB_REPOSITORY=jairusjoer/jairusjoer.com
-GITHUB_SHA=$(git rev-parse HEAD)
-node --experimental-strip-types actions/cross-post/cross-post.ts
-```
-
-Supported flags:
-
-- `--dry-run` to preview create and update actions without publishing
-- `--force-update` to push updates even when the content hash has not changed
-
-Cross-posting currently considers content under `src/content/writing` and `src/content/archive`, skips entries marked `Draft`, derives canonical URLs from `https://jairusjoer.com/<entry-id>`, and persists provider mapping data in `src/content.map.json`.
-
 ## Project Layout
 
 ```text
@@ -168,7 +128,6 @@ src/
   scripts/         Small browser/runtime helpers used by pages
   styles/          Global and custom styling
 actions/
-  cross-post/      External publishing workflow scripts
   open-graph.ts    Local Open Graph image generation utility
 public/
   media/           Static media assets

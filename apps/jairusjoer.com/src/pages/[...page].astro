@@ -1,5 +1,4 @@
 ---
-import CrossPost from '@components/CrossPost.astro';
 import type { Metadata } from '@components/SiteMeta.astro';
 import PageLayout from '@layouts/PageLayout.astro';
 import { formatDatetime } from '@scripts/formatDatetime';
@@ -7,8 +6,6 @@ import { getComponents } from '@scripts/getComponents';
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import contentMap from '../content.map.json';
-import type { ContentMap, CrossPostSources } from '../types';
 
 export interface Props {
   entry: CollectionEntry<'pages'>;
@@ -38,19 +35,6 @@ const metadata: Metadata = {
   image: entry.data.image,
   status: entry.data.status,
 };
-
-const crossPostLabels: Record<keyof CrossPostSources, string> = {
-  devtoUrl: 'Dev.to',
-  hashnodeUrl: 'Hashnode',
-};
-
-const crossPostLinks = (Object.entries(crossPostLabels) as Array<[keyof CrossPostSources, string]>).flatMap(
-  ([key, title]) => {
-    const href = (contentMap as ContentMap)[entry.id]?.[key];
-
-    return href ? [{ href, title }] : [];
-  },
-);
 ---
 
 <PageLayout {metadata}>
@@ -81,13 +65,6 @@ const crossPostLinks = (Object.entries(crossPostLabels) as Array<[keyof CrossPos
         )
       }
 
-      {
-        crossPostLinks.length > 0 && (
-          <small>
-            <CrossPost links={crossPostLinks} />
-          </small>
-        )
-      }
       {hasExtras && <hr />}
     </header>
     <div class="prosa">
