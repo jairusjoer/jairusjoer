@@ -1,0 +1,15 @@
+---
+export interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+
+const { default: Element } = await import(`../assets/icons/${name}.svg`);
+---
+
+<Element
+  class:list={['mb-0.5 inline-block h-4 align-middle', className]}
+  aria-hidden
+/>

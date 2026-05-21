@@ -134,7 +134,7 @@ When it comes to communication, both positive and negative feedback must be shar
 
 For me, this last month will be about making one final impact. I will address long-neglected topics and tie up loose ends wherever possible, so that future designers and engineers may appreciate and build upon my work as much as I did.
 
-From May onwards, I will be working on a new project related to Germany’s digitalisation efforts. As far as I can tell, my role will involve supporting the software development for a rather new project, which I am very excited about.
+From May onwards, I will be working on a new project related to Germany’s digitalisation efforts at BWI. As far as I can tell, my role will involve supporting the development of open-source software for various connected codebases, which I am very excited about.
 
 ---
 

@@ -1,0 +1,15 @@
+<svg
+  width="20"
+  height="20"
+  viewBox="0 0 160 160"
+  fill="none"
+  aria-hidden="true"
+>
+  <path
+    d="M130 43.3782C115.291 34.8697 98.2144 30 80 30C61.7856 30 44.7087 34.8697 30 43.3782M130 92.4939C118.597 77.3168 100.445 67.5 80 67.5C59.555 67.5 41.4029 77.3168 30 92.4939M105 130C105 116.193 93.8071 105 80 105C66.1929 105 55 116.193 55 130"
+    stroke="currentColor"
+    stroke-width="16"
+    stroke-linecap="square"
+    stroke-linejoin="round"
+  ></path>
+</svg>
