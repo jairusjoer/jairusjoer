@@ -1,4 +1,4 @@
-import { mkdir } from 'node:fs/promises';
+import { mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
@@ -28,6 +28,8 @@ const context = await browser.newContext({
     height: 630,
   },
 });
+
+await rm('public/og', { recursive: true, force: true });
 
 for (const entry of entries) {
   const page = await context.newPage();
