@@ -4,6 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import { site } from './src/config';
 
+import vue from '@astrojs/vue';
+
 // https://astro.build/config
 export default defineConfig({
   fonts: [
@@ -15,7 +17,7 @@ export default defineConfig({
     },
   ],
 
-  integrations: [mdx(), sitemap()],
+  integrations: [mdx(), sitemap(), vue()],
 
   markdown: {
     shikiConfig: {
