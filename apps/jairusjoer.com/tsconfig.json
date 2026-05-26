@@ -1,40 +1,17 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [
-    ".astro/types.d.ts",
-    "**/*"
-  ],
-  "exclude": [
-    "dist",
-    "eslint.config.ts",
-    "public"
-  ],
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "eslint.config.ts", "public"],
   "compilerOptions": {
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "paths": {
-      "@assets/*": [
-        "./src/assets/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@layouts/*": [
-        "./src/layouts/*"
-      ],
-      "@pages/*": [
-        "./src/pages/*"
-      ],
-      "@scripts/*": [
-        "./src/scripts/*"
-      ],
-      "@sources/*": [
-        "./src/sources/*"
-      ],
-      "@styles/*": [
-        "./src/styles/*"
-      ]
+      "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@scripts/*": ["./src/scripts/*"],
+      "@sources/*": ["./src/sources/*"],
+      "@styles/*": ["./src/styles/*"]
     },
     "jsx": "preserve"
   }

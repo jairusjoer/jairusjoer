@@ -1,8 +1,6 @@
 ---
-import { formatDatetime } from '@scripts/formatDatetime';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import Badge from './Badge.astro';
 
 const books = (await getCollection('books')).sort((a, b) => {
   const dateA = new Date(a.data.date).getTime();
