@@ -56,7 +56,7 @@ function getLightness(index: number, count: number) {
 }
 
 function getColorScale(chroma: number, half: number) {
-  return `calc(c * ${chroma} / ${half})`;
+  return `calc(c * ${chroma.toFixed(3)} / ${half})`;
 }
 
 const cssVariables = computed(() => {
@@ -122,6 +122,9 @@ async function onCopyClick() {
           Copy Palette
         </Button>
       </div>
+      <small class="bg-background block">
+        <pre class="astro-code mt-3 overflow-x-auto rounded-md border p-3"><code>{{ cssVariables }}</code></pre>
+      </small>
     </template>
   </Showcase>
 </template>
