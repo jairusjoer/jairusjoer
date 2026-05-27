@@ -9,8 +9,40 @@ import ThemeColor from '@components/content/ThemeColor.vue';
 import ThemeContrast from '@components/content/ThemeContrast.vue';
 import ThemePalette from '@components/content/ThemePalette.vue';
 
+In previous posts, I wrote about my philosophy on software personalisation, as well as my recent work on the subject at HERO Software. In this post, I will continue this exploration by demonstrating examples of software personalisation on the web in the context of theming.
+
+Theming, in essence, is the extension of an identity into software. Whether that identity is that of a company or an individual is indifferent to the purpose of this extension: association.
+
+In software, associations can be formed through a variety of features. In its simplest form, it may offer the option to upload a custom logo; in its most advanced form, it is designed to respect interconnected user preferences.
+
+Colour is a favourable option for enabling association, from their application in user interfaces to their systematisation in multi-brand design systems. To explore the growing complexity of colour and the associated considerations, choose a colour:
+
 <ThemeColor client:load />
+
+A single colour may not appear particularly complex in isolation, but its complexity becomes apparent when it interacts with the interface. When control of a colour is handed over to the user, the amount of considerations increases in line with the size of the colour palette available.
+
+Contrast must be considered as it is a <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> requirement. In the context of a fixed palette, this can be resolved by providing hardcoded contrast colours. However, this quickly becomes impractical when a colour space is offered through a picker.
+
+Previously, JavaScript libraries were necessary to reliably calculate the optimal contrast colour based on a theme colour. However, in April 2026, the CSS [`contrast-color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/contrast-color) method became widely available and aimes to solve this issue:
 
 <ThemeContrast client:load />
 
+`contrast-color()` ensures minimum contrast in accordance with [WCAG AA standards](https://w3c.github.io/wcag/guidelines/22/#contrast-minimum) and returns an appropriately contrasting colour of either black or white based on the colour provided. In this demonstration, the theme colour picker sets the CSS variable `--color-theme`, which can be applied as follows:
+
+```css
+.example {
+  background: contrast-color(var(--color-theme));
+}
+```
+
+- Sacrificing color choice vs. color stability
+  - Considering the tradeoffs of both approaches in the context of the use case
+  - Color issues to consider with pure black and white, yellow
+- User interfaces must be considered to accomodate for this
+  - This migh require expanding from one color into a palette
+
 <ThemePalette client:load />
+
+- **Theming**: `contrast-color`, `oklch`, `color-mix`
+- **Dark Mode**: `prefers-color-scheme`, `light-dark`
+- **Accessibility**: `prefers-reduced-motion`, `prefers-contrast`

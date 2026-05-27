@@ -15,5 +15,13 @@ import Showcase from '@components/Showcase.vue';
         <span class="text-(--color-theme)">Aa</span>
       </div>
     </div>
+
+    <template #footer>
+      <p class="text-center">
+        <small>
+          <em>Changing the theme colour will automatically apply an appropriate contrast color</em>
+        </small>
+      </p>
+    </template>
   </Showcase>
 </template>
