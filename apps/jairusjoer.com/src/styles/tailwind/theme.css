@@ -1,5 +1,5 @@
 @theme static {
-  --color-accent: light-dark(var(--color-mist-950), var(--color-mist-50));
+  --color-accent: light-dark(var(--color-emerald-600), var(--color-emerald-400));
 
   --color-background-subtle: light-dark(var(--color-mist-100), var(--color-mist-800));
   --color-background: light-dark(var(--color-mist-50), var(--color-mist-900));
