@@ -122,7 +122,7 @@ async function onCopyClick() {
           Copy Palette
         </Button>
       </div>
-      <small class="bg-background block">
+      <small>
         <pre class="astro-code mt-3 overflow-x-auto rounded-md border p-3"><code>{{ cssVariables }}</code></pre>
       </small>
     </template>

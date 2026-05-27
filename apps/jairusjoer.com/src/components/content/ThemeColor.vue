@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
-const color = ref('#10b981');
+const color = ref('#00bc7d');
 
 function onColorInput(value: string = color.value) {
   document.documentElement.style.setProperty('--color-accent-raw', value);
