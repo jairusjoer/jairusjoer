@@ -41,7 +41,7 @@
 
     blockquote {
       font-style: italic;
-      border-left: 1px solid var(--color-border);
+      border-left: 1px solid var(--color-accent);
       padding-left: calc(1.5rem - 1px);
     }
 
@@ -51,13 +51,9 @@
     }
 
     code:not(pre > code) {
+      background: var(--color-background-subtle);
       border-radius: 0.375rem;
       padding: 0.1875rem 0.375rem;
-      border: 1px solid var(--color-border);
-
-      @media print {
-        border: 1px solid var(--color-border);
-      }
     }
 
     details {
@@ -200,7 +196,6 @@
 
     pre {
       border-radius: 0.75rem;
-      border: 1px solid var(--color-border);
       padding: 0.75rem;
 
       @media print {
