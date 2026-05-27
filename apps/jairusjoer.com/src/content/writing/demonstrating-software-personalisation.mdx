@@ -27,17 +27,25 @@ Previously, JavaScript libraries were necessary to reliably calculate the optima
 
 <ThemeContrast client:load />
 
-`contrast-color()` ensures minimum contrast in accordance with [WCAG AA standards](https://w3c.github.io/wcag/guidelines/22/#contrast-minimum) and returns an appropriately contrasting colour of either black or white based on the colour provided. In this demonstration, the theme colour picker sets the CSS variable `--color-theme`, which can be applied as follows:
+`contrast-color()` ensures minimum contrast in accordance with [WCAG AA standards](https://w3c.github.io/wcag/guidelines/22/#contrast-minimum) and returns an appropriately contrasting colour of either black or white based on the colour provided. In this demonstration, the theme colour picker sets the CSS variable `--color-accent`, which can be applied as follows:
 
 ```css
-.example {
-  background: contrast-color(var(--color-theme));
+:root {
+  --color-accent-contrast: contrast-color(var(--color-accent));
 }
 ```
 
 - Sacrificing color choice vs. color stability
   - Considering the tradeoffs of both approaches in the context of the use case
   - Color issues to consider with pure black and white, yellow
+  - Explain page-wide demonstration to retain contrast:
+
+```css
+:root {
+  --color-accent: light-dark(oklch(from var(--color-accent-raw) 0.5 c h), oklch(from var(--color-accent-raw) 0.75 c h));
+}
+```
+
 - User interfaces must be considered to accomodate for this
   - This migh require expanding from one color into a palette
 
@@ -46,3 +54,7 @@ Previously, JavaScript libraries were necessary to reliably calculate the optima
 - **Theming**: `contrast-color`, `oklch`, `color-mix`
 - **Dark Mode**: `prefers-color-scheme`, `light-dark`
 - **Accessibility**: `prefers-reduced-motion`, `prefers-contrast`
+
+```
+
+```

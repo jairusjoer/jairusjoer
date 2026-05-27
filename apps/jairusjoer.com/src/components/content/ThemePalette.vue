@@ -32,12 +32,12 @@ function getBaseTokens(centerIndex: number, isEven: boolean) {
 
 function getSourceToken(token: number, index: number, centerIndex: number, isEven: boolean, baseTokens: number[]) {
   if (baseTokens.includes(token)) {
-    return '--color-theme';
+    return '--color-accent-raw';
   }
 
   const nearestBase = isEven ? (index < centerIndex ? baseTokens[0] : baseTokens[1]) : baseTokens[0];
 
-  return `--color-theme-${nearestBase}`;
+  return `--color-accent-${nearestBase}`;
 }
 
 function getChroma(index: number, centerIndex: number, half: number, isEven: boolean) {
@@ -61,7 +61,7 @@ function getColorScale(chroma: number, half: number) {
 
 const cssVariables = computed(() => {
   return Object.entries(appliedTheme.value)
-    .map(([token, value]) => `--color-theme-${token}: ${value};`)
+    .map(([token, value]) => `--color-accent-${token}: ${value};`)
     .join('\n');
 });
 
@@ -86,7 +86,7 @@ async function onCopyClick() {
     >
       <div
         v-for="(_, key) in appliedTheme"
-        :style="{ background: `var(--color-theme-${key})`, color: `contrast-color(var(--color-theme-${key}))` }"
+        :style="{ background: `var(--color-accent-${key})`, color: `contrast-color(var(--color-accent-${key}))` }"
       >
         <div
           v-if="getBaseTokens((length - 1) / 2, length % 2 === 0).includes(Number(key))"

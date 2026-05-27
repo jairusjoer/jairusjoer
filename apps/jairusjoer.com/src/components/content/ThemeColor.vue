@@ -4,7 +4,14 @@ import { onMounted, ref } from 'vue';
 const color = ref('#10b981');
 
 function onColorInput(value: string = color.value) {
-  document.documentElement.style.setProperty('--color-theme', value);
+  document.documentElement.style.setProperty('--color-accent-raw', value);
+  document.documentElement.style.setProperty(
+    '--color-accent',
+    `light-dark(
+      oklch(from var(--color-accent-raw) 0.5 c h),
+      oklch(from var(--color-accent-raw) 0.75 c h)
+    )`,
+  );
 }
 
 onMounted(() => {

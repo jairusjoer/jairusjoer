@@ -5,14 +5,14 @@ import Showcase from '@components/Showcase.vue';
 <template>
   <Showcase>
     <div class="flex gap-1 text-center leading-12 font-semibold">
-      <div class="w-12 rounded-md border bg-(--color-theme)">
-        <span style="color: contrast-color(var(--color-theme))">Aa</span>
+      <div class="w-12 rounded-md border bg-(--color-accent-raw)">
+        <span style="color: contrast-color(var(--color-accent-raw))">Aa</span>
       </div>
       <div
         class="w-12 rounded-md border"
-        style="background: contrast-color(var(--color-theme))"
+        style="background: contrast-color(var(--color-accent-raw))"
       >
-        <span class="text-(--color-theme)">Aa</span>
+        <span class="text-(--color-accent-raw)">Aa</span>
       </div>
     </div>
 

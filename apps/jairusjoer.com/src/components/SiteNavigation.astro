@@ -25,7 +25,7 @@ const active = (path: string) => {
         {links.map((link) => (
           <li>
             <Button
-              class:list={[active(link.href) && 'bg-accent! text-background']}
+              class:list={[active(link.href) && 'bg-accent! text-accent-contrast']}
               href={link.href}
             >
               {link.title}

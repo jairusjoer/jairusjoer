@@ -11,7 +11,7 @@ const { as = 'a', class: className, ...rest } = defineProps<Props>();
   <component
     :is="as"
     :class="[
-      'hover:bg-accent hover:text-background bg-background-subtle block rounded-md px-1.5 leading-6 font-semibold motion-safe:transition-colors',
+      'hover:bg-accent hover:text-accent-contrast bg-background-subtle block rounded-md px-1.5 leading-6 font-semibold motion-safe:transition-colors',
       className,
     ]"
     v-bind="rest"

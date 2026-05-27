@@ -20,7 +20,7 @@
   @scope (&) to (.not-prosa) {
     a,
     abbr {
-      text-decoration-color: var(--color-foreground-subtle);
+      text-decoration-color: var(--color-border);
       text-decoration-thickness: 1px;
       text-underline-offset: 0.1875rem;
     }
