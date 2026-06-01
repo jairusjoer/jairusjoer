@@ -1,44 +1,32 @@
 <script setup lang="ts">
-import Button from '@components/Button.vue';
 import Showcase from '@components/Showcase.vue';
 import { computed, ref } from 'vue';
+import { $theme } from '@stores/content/themeStore';
+import { useStore } from '@nanostores/vue';
+import Button from '@components/Button.vue';
 
-const length = ref(11);
+const theme = useStore($theme);
+
+const verbose = ref(true);
 
 const appliedTheme = computed(() => {
-  const count = length.value;
-  const isEven = count % 2 === 0;
-  const centerIndex = (count - 1) / 2;
-  const half = count / 2;
-
-  const baseTokens = getBaseTokens(centerIndex, isEven);
+  const isEven = theme.value.tokens % 2 === 0;
+  const centerIndex = (theme.value.tokens - 1) / 2;
+  const half = theme.value.tokens / 2;
 
   return Object.fromEntries(
-    Array.from({ length: count }, (_, index) => {
+    Array.from({ length: theme.value.tokens }, (_, index) => {
       const token = index * 100;
-      const sourceToken = getSourceToken(token, index, centerIndex, isEven, baseTokens);
+
       const chroma = getChroma(index, centerIndex, half, isEven);
 
-      return [token, `oklch(from var(${sourceToken}) ${getLightness(index, count)} ${getColorScale(chroma, half)} h)`];
+      return [
+        token,
+        `oklch(from var(--color-accent-raw) ${getLightness(index, theme.value.tokens)} ${getColorScale(chroma, half)} h)`,
+      ];
     }),
   );
 });
-
-function getBaseTokens(centerIndex: number, isEven: boolean) {
-  const left = Math.floor(centerIndex) * 100;
-
-  return isEven ? [left, left + 100] : [left || 0];
-}
-
-function getSourceToken(token: number, index: number, centerIndex: number, isEven: boolean, baseTokens: number[]) {
-  if (baseTokens.includes(token)) {
-    return '--color-accent-raw';
-  }
-
-  const nearestBase = isEven ? (index < centerIndex ? baseTokens[0] : baseTokens[1]) : baseTokens[0];
-
-  return `--color-accent-${nearestBase}`;
-}
 
 function getChroma(index: number, centerIndex: number, half: number, isEven: boolean) {
   if (isEven) {
@@ -51,12 +39,20 @@ function getChroma(index: number, centerIndex: number, half: number, isEven: boo
   return 1 + (half - 1) * (1 - distance / maxDistance);
 }
 
-function getLightness(index: number, count: number) {
-  return `calc(${count - index} / ${count + 1})`;
+function getLightness(index: number, tokens: number) {
+  if (verbose.value) {
+    return `calc(${tokens - index} / ${tokens})`;
+  }
+
+  return ((tokens - index) / tokens).toFixed(3);
 }
 
 function getColorScale(chroma: number, half: number) {
-  return `calc(c * ${chroma.toFixed(3)} / ${half})`;
+  if (verbose.value) {
+    return `calc(c * ${chroma.toFixed(3)} / ${half})`;
+  }
+
+  return `calc(c * ${(chroma / half).toFixed(3)})`;
 }
 
 const cssVariables = computed(() => {
@@ -72,7 +68,6 @@ async function onCopyClick() {
 
 <template>
   <Showcase
-    ref="theme"
     :links="{
       Code: 'src/components/content/ThemePalette.vue',
     }"
@@ -88,42 +83,24 @@ async function onCopyClick() {
         v-for="(_, key) in appliedTheme"
         :style="{ background: `var(--color-accent-${key})`, color: `contrast-color(var(--color-accent-${key}))` }"
       >
-        <div
-          v-if="getBaseTokens((length - 1) / 2, length % 2 === 0).includes(Number(key))"
-          class="mx-auto -mb-2 size-2 rounded-full bg-current"
-        />
-        <span class="mt-2">{{ key }}</span>
+        {{ key }}
       </div>
     </div>
     <template #footer>
-      <div class="flex justify-between">
-        <label
-          class="text-foreground font-semibold"
-          for="length"
-        >
-          Tokens
+      <div class="bg-background-subtle flex justify-between rounded-md p-1.5">
+        <label class="text-foreground flex gap-1.5 font-semibold">
+          <input
+            class="border"
+            type="checkbox"
+            name="verbose"
+            v-model="verbose"
+          />
+          <span>Verbose</span>
         </label>
-        <small class="font-mono">{{ length }}</small>
+        <Button @click="onCopyClick">Copy</Button>
       </div>
-      <div class="flex gap-3">
-        <input
-          class="accent-accent w-full"
-          type="range"
-          id="length"
-          step="1"
-          min="1"
-          max="24"
-          v-model.number="length"
-        />
-        <Button
-          class="border whitespace-nowrap"
-          @click="onCopyClick"
-        >
-          Copy Palette
-        </Button>
-      </div>
-      <small>
-        <pre class="astro-code mt-3 overflow-x-auto rounded-md border p-3"><code>{{ cssVariables }}</code></pre>
+      <small class="bg-background-subtle block overflow-x-auto rounded-md">
+        <pre class="overflow-x-auto p-1.5"><code>{{ cssVariables }}</code></pre>
       </small>
     </template>
   </Showcase>

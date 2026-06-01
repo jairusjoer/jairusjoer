@@ -17,7 +17,7 @@ import Showcase from '@components/Showcase.vue';
     </div>
 
     <template #footer>
-      <p class="text-center">
+      <p class="bg-background-subtle rounded-md p-1.5 text-center">
         <small>
           <em>Changing the theme colour will automatically apply an appropriate contrast color</em>
         </small>

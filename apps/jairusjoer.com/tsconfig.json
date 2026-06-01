@@ -11,6 +11,7 @@
       "@pages/*": ["./src/pages/*"],
       "@scripts/*": ["./src/scripts/*"],
       "@sources/*": ["./src/sources/*"],
+      "@stores/*": ["./src/stores/*"],
       "@styles/*": ["./src/styles/*"]
     },
     "jsx": "preserve"

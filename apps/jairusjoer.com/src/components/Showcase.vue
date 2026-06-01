@@ -14,6 +14,7 @@ const { links } = defineProps<Props>();
       <small class="flex justify-end gap-1 px-1.5 pt-1.5">
         <Button
           v-for="(path, label) in links"
+          variant="subtle"
           :href="`https://github.com/jairusjoer/jairusjoer.com/blob/main/${path}`"
           target="_blank"
           rel="noopener noreferrer"
@@ -29,7 +30,7 @@ const { links } = defineProps<Props>();
 
     <footer
       v-if="$slots.footer"
-      class="bg-background-subtle border-t p-3"
+      class="space-y-1.5 p-1.5"
     >
       <slot name="footer" />
     </footer>

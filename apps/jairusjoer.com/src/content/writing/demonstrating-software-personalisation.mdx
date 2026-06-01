@@ -1,44 +1,55 @@
 ---
 title: 'Demonstrating Software Personalisation'
-description: 'To Do'
+description: 'How colour, contrast, and palettes turn web theming into personal, accessible software.'
 date: 2026-06-01
 status: 'Draft'
 ---
 
-import ThemeColor from '@components/content/ThemeColor.vue';
 import ThemeContrast from '@components/content/ThemeContrast.vue';
+import ThemeControls from '@components/content/ThemeControls.vue';
 import ThemePalette from '@components/content/ThemePalette.vue';
 
-In previous posts, I wrote about my philosophy on software personalisation, as well as my recent work on the subject at HERO Software. In this post, I will continue this exploration by demonstrating examples of software personalisation on the web in the context of theming.
+In previous posts, I wrote about my [philosophy of personal software](/writing/about-personal-software/) and my [recent work on software personalisation at HERO Software](/writing/two-years-at-hero-software). In this post, I would like to continue this exploration in a more concrete way: by demonstrating what software personalisation can look like on the web through the lens of theming.
 
-Theming, in essence, is the extension of an identity into software. Whether that identity is that of a company or an individual is indifferent to the purpose of this extension: association.
+Theming, in essence, is the extension of an identity into software. Whether that identity belongs to a company or an individual is secondary to the goal of this extension: association.
 
-In software, associations can be formed through a variety of features. In its simplest form, it may offer the option to upload a custom logo; in its most advanced form, it is designed to respect interconnected user preferences.
+In software, associations are formed through a variety of features. At the simple end, there might be an option to upload a custom logo. At the complex end, the product is designed from the outset to respect interconnected user preferences and the realities of multi-tenant brands.
 
-Colour is a favourable option for enabling association, from their application in user interfaces to their systematisation in multi-brand design systems. To explore the growing complexity of colour and the associated considerations, choose a colour:
+Colour is a particularly effective tool for enabling association, from its application in user interfaces to its role in multi-brand design systems. To explore the growing complexity of colour — and the considerations that follow from it — choose a colour:
 
-<ThemeColor client:load />
+<ThemeControls client:load />
 
-A single colour may not appear particularly complex in isolation, but its complexity becomes apparent when it interacts with the interface. When control of a colour is handed over to the user, the amount of considerations increases in line with the size of the colour palette available.
+A single colour may not appear complex in isolation, but complexity emerges as soon as it interacts with an interface. Once control of a colour is handed over to the user, the number of considerations grows with the size and freedom of the available palette.
 
-Contrast must be considered as it is a <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> requirement. In the context of a fixed palette, this can be resolved by providing hardcoded contrast colours. However, this quickly becomes impractical when a colour space is offered through a picker.
+## Contrast
 
-Previously, JavaScript libraries were necessary to reliably calculate the optimal contrast colour based on a theme colour. However, in April 2026, the CSS [`contrast-color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/contrast-color) method became widely available and aimes to solve this issue:
+Contrast is not just a matter of taste; it is a requirement defined by the Web Content Accessibility Guidelines (<abbr title="Web Content Accessibility Guidelines">WCAG</abbr>). In a fixed palette, it is often sufficient to provide hardcoded contrast colours that have been pre-validated. As soon as a colour space is exposed through a picker, this approach no longer scales.
+
+Previously, JavaScript libraries were required to reliably calculate the optimal contrast colour based on a theme colour. In April 2026, the <abbr title="Cascading Style Sheets">CSS</abbr> [`contrast-color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/contrast-color) function became widely available and aims to address this problem head-on.
 
 <ThemeContrast client:load />
 
-`contrast-color()` ensures minimum contrast in accordance with [WCAG AA standards](https://w3c.github.io/wcag/guidelines/22/#contrast-minimum) and returns an appropriately contrasting colour of either black or white based on the colour provided. In this demonstration, the theme colour picker sets the CSS variable `--color-accent`, which can be applied as follows:
+`contrast-color()` ensures minimum contrast in accordance with WCAG AA[^wcag] and returns either black or white based on the provided input. In this demonstration, the theme colour picker sets the CSS variable `--color-accent-raw`, which can then be used to derive a contrasting foreground colour:
 
 ```css
 :root {
-  --color-accent-contrast: contrast-color(var(--color-accent));
+  --color-accent-contrast: light-dark(white, black);
+
+  @supports (color: contrast-color(red)) {
+    --color-accent-contrast: contrast-color(var(--color-accent-raw));
+  }
 }
 ```
 
-- Sacrificing color choice vs. color stability
-  - Considering the tradeoffs of both approaches in the context of the use case
-  - Color issues to consider with pure black and white, yellow
-  - Explain page-wide demonstration to retain contrast:
+Given the relative recency of `contrast-color()` in the baseline, it should be treated as progressive enhancement. The default implementation should remain widely accessible, with the new function being opted into when the browser supports it correctly.
+
+Experimenting with the theme colour on this page, it becomes noticeable that links and interactive elements change, but not necessarily to the full intensity of the chosen colour. This behaviour is intentional, and it leads directly to the next consideration: stability.
+
+## Stability
+
+A theme colour should not only be legible; it should also be recognisable. If a colour shifts too much between light and dark mode, the sense of identity it carries begins to erode. One approach to stabilising this is to derive a usable accent colour from the raw input while constraining its behaviour across modes.
+
+Below is a minimal example of how the page theme colour is stabilised to preserve its intended appearance across light and dark mode using [`oklch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/oklch) and [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark). It is just one of many possible approaches to working with and manipulating colour using CSS:
 
 ```css
 :root {
@@ -46,12 +57,45 @@ Previously, JavaScript libraries were necessary to reliably calculate the optima
 }
 ```
 
-- User interfaces must be considered to accomodate for this
-  - This migh require expanding from one color into a palette
+When implementing theming in software, design and product teams must consciously choose a position along the spectrum between freedom and predictability. Too much freedom, and user-chosen colours can start to overwrite the intended identity of the software. Too much rigidity, and the sense of ownership and preference disappears.
+
+There is no universal answer here. In my experience, the most satisfying outcomes emerge when design and product teams are given enough time to think through these trade-offs together, and when implementation respects both the constraints of accessibility and the aspirations of the brand.
+
+## Palettes
+
+At some point in this process, the request for a full palette almost always appears: a range of shades derived from a single colour that can be applied to buttons, backgrounds, borders, and states.
 
 <ThemePalette client:load />
 
-- **Theming**: `contrast-color`, `oklch`, `color-mix`
-- **Dark Mode**: `prefers-color-scheme`, `light-dark`
-  - `light-dark` is no subsitute for hand-picked colors at scale
-- **Accessibility**: `prefers-reduced-motion`, `prefers-contrast`
+Constructing such a palette deterministically from a single input colour must account for all the previous considerations — and introduces additional ones. Colours like black and white cannot be used as inputs for a midtone-oriented palette without altering the output logic. Yellows tend to darken faster than other hues as lightness decreases, requiring special treatment in that range.
+
+A palette generator that avoids manual labour and creeping complexity will inevitably make compromises. Those compromises might take the form of reduced freedom in favour of stability, or of ranges that are “good enough” for most situations but not perfectly calibrated for every possible hue.
+
+A practical way forward is often to start from an existing, well-designed scale and adapt it. Libraries such as Radix[^radix] or Tailwind CSS[^tailwind-css] provide robust defaults that have been tested across a variety of use cases. From there, a custom theme can refine the mapping between user-provided inputs and the chosen scale.
+
+The key question remains: which approach best supports the software and its components? For some products, a small, opinionated palette is the right answer. For others, a more flexible, user-driven palette better supports the product's identity and use cases.
+
+## Beyond
+
+Colour is only one axis of personalisation, but it is tightly intertwined with others. The CSS `light-dark()` function, used earlier, bridges light and dark mode differences by providing mode-specific variations of a single conceptual colour.
+
+Alongside it, media features such as [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-contrast) express the user’s preference for higher contrast. Browsers often provide sensible defaults here, but those defaults can and should be adjusted to match a brand's colour scheme without sacrificing accessibility.
+
+Taken together, these capabilities hint at a broader direction. Personalisation is not just “letting users pick a colour”; it is about respecting their preferences, intentions, and constraints, while maintaining a coherent identity and a high standard of accessibility.
+
+Thinking about theming in this way shifts it from a superficial afterthought to a design and engineering concern that sits close to the core of the product. It shapes how users see themselves in the software — and how they recognise the software as something that belongs with them.
+
+---
+
+> While putting the finishing touches to this post, I came across a post by Rails Designer on [building user-customisable themes with Tailwind CSS](https://railsdesigner.com/building-customizable-tailwind-themes/). They arrived at a similar conclusion: setting the hue while constraining lightness and chroma.
+
+---
+
+**Until next time**<br />
+_Yours truly, Jairus Joer_
+
+[^radix]: Radix, [Radix Colors](https://www.radix-ui.com/colors).
+
+[^tailwind-css]: Tailwind CSS, [Colors — Core concepts](https://tailwindcss.com/docs/colors).
+
+[^wcag]: W3C, [Web Content Accessibility Guidelines (WCAG) 2.2](https://w3c.github.io/wcag/guidelines/22/#contrast-minimum), 2026.
