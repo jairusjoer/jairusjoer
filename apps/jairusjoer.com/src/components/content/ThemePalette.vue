@@ -3,56 +3,43 @@ import Showcase from '@components/Showcase.vue';
 import { computed, ref } from 'vue';
 import { $theme } from '@stores/content/themeStore';
 import { useStore } from '@nanostores/vue';
-import Button from '@components/Button.vue';
 
 const theme = useStore($theme);
 
-const verbose = ref(true);
-
 const appliedTheme = computed(() => {
-  const isEven = theme.value.tokens % 2 === 0;
   const centerIndex = (theme.value.tokens - 1) / 2;
-  const half = theme.value.tokens / 2;
 
   return Object.fromEntries(
     Array.from({ length: theme.value.tokens }, (_, index) => {
       const token = index * 100;
 
-      const chroma = getChroma(index, centerIndex, half, isEven);
+      const chroma = getChroma(index, centerIndex, theme.value.tokens);
 
       return [
         token,
-        `oklch(from var(--color-accent-raw) ${getLightness(index, theme.value.tokens)} ${getColorScale(chroma, half)} h)`,
+        `oklch(from var(--color-accent-raw) ${getLightness(index, theme.value.tokens)} ${getColorScale(chroma, theme.value.tokens)} h)`,
       ];
     }),
   );
 });
 
-function getChroma(index: number, centerIndex: number, half: number, isEven: boolean) {
-  if (isEven) {
-    return half - Math.abs(index - centerIndex) + 0.5;
-  }
-
+function getChroma(index: number, centerIndex: number, tokens: number) {
   const distance = Math.abs(index - centerIndex);
   const maxDistance = Math.max(1, centerIndex);
 
-  return 1 + (half - 1) * (1 - distance / maxDistance);
+  if (theme.value.tokens % 2 === 0) {
+    return 1 + tokens * (1 - distance / maxDistance);
+  }
+
+  return 1 + (tokens - 1) * (1 - distance / maxDistance);
 }
 
 function getLightness(index: number, tokens: number) {
-  if (verbose.value) {
-    return `calc(${tokens - index} / ${tokens})`;
-  }
-
-  return ((tokens - index) / tokens).toFixed(3);
+  return ((tokens - index) / tokens).toFixed(2);
 }
 
-function getColorScale(chroma: number, half: number) {
-  if (verbose.value) {
-    return `calc(c * ${chroma.toFixed(3)} / ${half})`;
-  }
-
-  return `calc(c * ${(chroma / half).toFixed(3)})`;
+function getColorScale(chroma: number, tokens: number) {
+  return `calc(c * ${(chroma / tokens).toFixed(2)})`;
 }
 
 const cssVariables = computed(() => {
@@ -87,18 +74,6 @@ async function onCopyClick() {
       </div>
     </div>
     <template #footer>
-      <div class="bg-background-subtle flex justify-between rounded-md p-1.5">
-        <label class="text-foreground flex gap-1.5 font-semibold">
-          <input
-            class="border"
-            type="checkbox"
-            name="verbose"
-            v-model="verbose"
-          />
-          <span>Verbose</span>
-        </label>
-        <Button @click="onCopyClick">Copy</Button>
-      </div>
       <small class="bg-background-subtle block overflow-x-auto rounded-md">
         <pre class="overflow-x-auto p-1.5"><code>{{ cssVariables }}</code></pre>
       </small>

@@ -1,8 +1,7 @@
 ---
 title: 'Demonstrating Software Personalisation'
 description: 'How colour, contrast, and palettes turn web theming into personal, accessible software.'
-date: 2026-06-01
-status: 'Draft'
+date: 2026-06-02
 ---
 
 import ThemeContrast from '@components/content/ThemeContrast.vue';
@@ -15,15 +14,19 @@ Theming, in essence, is the extension of an identity into software. Whether that
 
 In software, associations are formed through a variety of features. At the simple end, there might be an option to upload a custom logo. At the complex end, the product is designed from the outset to respect interconnected user preferences and the realities of multi-tenant brands.
 
-Colour is a particularly effective tool for enabling association, from its application in user interfaces to its role in multi-brand design systems. To explore the growing complexity of colour — and the considerations that follow from it — choose a colour:
+Colour is a particularly effective tool for enabling association, from its application in user interfaces to its role in multi-brand design systems. To explore the growing complexity of colour, and the considerations that follow from it, choose a colour:
 
 <ThemeControls client:load />
 
-A single colour may not appear complex in isolation, but complexity emerges as soon as it interacts with an interface. Once control of a colour is handed over to the user, the number of considerations grows with the size and freedom of the available palette.
+A single colour may not appear complex in isolation, but complexity emerges as soon as it interacts with an interface. The moment control of a colour is handed to the user, the number of considerations grows with the available palette.
+
+The following sections explore this complexity in depth, breaking it down into its constituent parts: contrast, stability, palettes and beyond. This provides the knowledge necessary for implementation.
 
 ## Contrast
 
-Contrast is not just a matter of taste; it is a requirement defined by the Web Content Accessibility Guidelines (<abbr title="Web Content Accessibility Guidelines">WCAG</abbr>). In a fixed palette, it is often sufficient to provide hardcoded contrast colours that have been pre-validated. As soon as a colour space is exposed through a picker, this approach no longer scales.
+Contrast is not just a matter of taste; it is a requirement defined by the Web Content Accessibility Guidelines (<abbr>WCAG</abbr>). In a fixed palette, it is often sufficient to provide hardcoded contrast colours that have been pre-validated against known backgrounds.
+
+However, as soon as a colour space is exposed through a picker, this approach becomes impractical; there are too many possible inputs to validate them all in advance.
 
 Previously, JavaScript libraries were required to reliably calculate the optimal contrast colour based on a theme colour. In April 2026, the <abbr title="Cascading Style Sheets">CSS</abbr> [`contrast-color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/contrast-color) function became widely available and aims to address this problem head-on.
 
@@ -43,13 +46,17 @@ Previously, JavaScript libraries were required to reliably calculate the optimal
 
 Given the relative recency of `contrast-color()` in the baseline, it should be treated as progressive enhancement. The default implementation should remain widely accessible, with the new function being opted into when the browser supports it correctly.
 
-Experimenting with the theme colour on this page, it becomes noticeable that links and interactive elements change, but not necessarily to the full intensity of the chosen colour. This behaviour is intentional, and it leads directly to the next consideration: stability.
+Framing it this way also sets the team's expectations correctly: this is not a polyfill that will be replaced later, but the start of a layered approach, whereby each browser receives the version that it can support best.
+
+Experimenting with the theme colour on this page, it becomes noticeable that links and interactive elements change, but not necessarily to the full intensity of the chosen colour. This behaviour is intentional, and it leads directly to the next layer of complexity: stability.
 
 ## Stability
 
-A theme colour should not only be legible; it should also be recognisable. If a colour shifts too much between light and dark mode, the sense of identity it carries begins to erode. One approach to stabilising this is to derive a usable accent colour from the raw input while constraining its behaviour across modes.
+A theme colour should not only be legible; it should also be recognisable. If a colour shifts too much between light and dark mode, the sense of identity it carries begins to erode.
 
-Below is a minimal example of how the page theme colour is stabilised to preserve its intended appearance across light and dark mode using [`oklch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/oklch) and [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark). It is just one of many possible approaches to working with and manipulating colour using CSS:
+A vivid indigo that reads as bold and intentional in dark mode can appear muted and arbitrary in light mode; and the user, who chose it to mean something, notices the difference even when they cannot name it.
+
+One approach to stabilising this is to derive a usable theme colour from the raw input while constraining its perceptual lightness across modes. Below is a minimal example of how the page theme colour is stabilised using [`oklch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/oklch) and [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark):
 
 ```css
 :root {
@@ -57,7 +64,15 @@ Below is a minimal example of how the page theme colour is stabilised to preserv
 }
 ```
 
-When implementing theming in software, design and product teams must consciously choose a position along the spectrum between freedom and predictability. Too much freedom, and user-chosen colours can start to overwrite the intended identity of the software. Too much rigidity, and the sense of ownership and preference disappears.
+In the OKLCH colour space, the values `0.5` and `0.75` are the perceptual lightness targets, where 0 is black and 1 is white. In light mode, setting lightness to `0.5` ensures the theme sits in the midrange; dark enough to be readable against white text, but light enough not to overpower the surrounding area.
+
+In dark mode, setting lightness to `0.75` lifts the colour towards the lighter end of the spectrum, where it remains visible without washing out. The chroma `c` and hue `h` are passed through unchanged, preserving the original colour's character across modes.
+
+When implementing theming in software, design and product teams must consciously choose a position along the spectrum between freedom and predictability.
+
+Too much freedom can result in user-chosen colours overwriting the intended identity of the software. Too much rigidity, however, and the sense of ownership disappears.
+
+Neon yellow chosen by a user with high-contrast needs and muted sage chosen for calm focus should both remain functional, which requires the system to perform tasks that the designer cannot anticipate in advance.
 
 There is no universal answer here. In my experience, the most satisfying outcomes emerge when design and product teams are given enough time to think through these trade-offs together, and when implementation respects both the constraints of accessibility and the aspirations of the brand.
 
@@ -67,23 +82,37 @@ At some point in this process, the request for a full palette almost always appe
 
 <ThemePalette client:load />
 
-Constructing such a palette deterministically from a single input colour must account for all the previous considerations — and introduces additional ones. Colours like black and white cannot be used as inputs for a midtone-oriented palette without altering the output logic. Yellows tend to darken faster than other hues as lightness decreases, requiring special treatment in that range.
+Constructing such a palette deterministically from a single input colour must account for all the previous considerations; and introduces several new ones in the realm of colour space.
 
-A palette generator that avoids manual labour and creeping complexity will inevitably make compromises. Those compromises might take the form of reduced freedom in favour of stability, or of ranges that are “good enough” for most situations but not perfectly calibrated for every possible hue.
+Colours close to black or white cannot produce useful midtones using a simple lightness ramp. The available range collapses at the extremes and the generated shades either become indistinguishable from each other, or they lose their relationship to the original colour completely.
 
-A practical way forward is often to start from an existing, well-designed scale and adapt it. Libraries such as Radix[^radix] or Tailwind CSS[^tailwind-css] provide robust defaults that have been tested across a variety of use cases. From there, a custom theme can refine the mapping between user-provided inputs and the chosen scale.
+Yellows present a different problem: because yellow is an inherently high-lightness hue, its darker shades darken faster than those of other hues at the same lightness step. This means that a naive ramp will produce muddy shades of olive green where the user expects dark amber.
 
-The key question remains: which approach best supports the software and its components? For some products, a small, opinionated palette is the right answer. For others, a more flexible, user-driven palette better supports the product's identity and use cases.
+Any palette generator that avoids manual labour and creeping complexity will inevitably involve compromises. These compromises may include reduced freedom in favour of stability or ranges that are 'good enough' for most situations, but not perfectly calibrated for every possible hue. Consciously accepting a compromise is very different from discovering it during production.
+
+One practical approach is to start from an existing, well-designed scale and adapt it. Libraries such as Radix[^radix] and Tailwind CSS[^tailwind-css] provide robust defaults that have been tested across a wide variety of inputs and use cases. Radix, in particular, exposes its generation logic and documents its hue-specific corrections, making it a useful reference even when the goal is to build something custom.
+
+From there, a theme can refine the mapping between user-provided inputs and the chosen scale, replacing parts that do not fit rather than building everything from scratch. The key question is not which palette library to use, but what guarantees the system provides.
+
+For some products, a small, opinionated palette is the right answer; fewer shades mean fewer failure modes. For others, a more expressive palette better supports the product’s identity and the diversity of its users. Either way, this decision should be made explicitly rather than by default.
 
 ## Beyond
 
-Colour is only one axis of personalisation, but it is tightly intertwined with others. The CSS `light-dark()` function, used earlier, bridges light and dark mode differences by providing mode-specific variations of a single conceptual colour.
+Although colour is only one axis of personalisation, it is closely linked to the others in ways that are easy to underestimate. The CSS `light-dark()` function, which is used throughout this post, handles more than just two colour values.
 
-Alongside it, media features such as [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-contrast) express the user’s preference for higher contrast. Browsers often provide sensible defaults here, but those defaults can and should be adjusted to match a brand's colour scheme without sacrificing accessibility.
+It links the theme colour directly to the user's preference for light or dark mode, a form of personalisation that predates theming and has significant implications for legibility and comfort.
 
-Taken together, these capabilities hint at a broader direction. Personalisation is not just “letting users pick a colour”; it is about respecting their preferences, intentions, and constraints, while maintaining a coherent identity and a high standard of accessibility.
+Alongside this, media features such as [`prefers-contrast`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-contrast) express the user's preference for higher contrast. While browsers provide sensible defaults, these can be adjusted to match a brand's colour scheme without compromising the user's preferences.
 
-Thinking about theming in this way shifts it from a superficial afterthought to a design and engineering concern that sits close to the core of the product. It shapes how users see themselves in the software — and how they recognise the software as something that belongs with them.
+A user who has enabled high contrast in their operating system is making a clear statement about their needs. Software that ignores this preference, even in the name of brand consistency, prioritises itself over its users.
+
+Taken together, these capabilities point towards a broader shift in how we can think about theming. Personalisation is not simply "letting users pick a colour"; it involves making decisions about which preferences the software should defer to and when.
+
+A brand that provides a colour picker but disregards the user's system contrast preference has created something that resembles personalisation without fully embracing it.
+
+In contrast, a product that handles colour, contrast, motion and density preferences as a coherent system, with considered fallbacks at every level, demonstrates a different approach: the software belongs to the person using it in a real sense.
+
+This shift, from theming as a surface feature to a product commitment, is what I find most interesting about this area. It shifts the focus from 'What should the picker look like?' to 'What do we owe users who configure their tools?' The answer to this question is not purely technical, yet it is rarely asked early enough.
 
 ---
 
