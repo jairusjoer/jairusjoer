@@ -1,6 +1,6 @@
 import { map } from 'nanostores';
 
 export const $theme = map({
-  color: '#00bc7d',
+  color: '#8b5cf6',
   tokens: 11,
 });
