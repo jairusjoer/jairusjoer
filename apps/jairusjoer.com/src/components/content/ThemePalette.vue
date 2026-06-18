@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Showcase from '@components/Showcase.vue';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { $theme } from '@stores/content/themeStore';
 import { useStore } from '@nanostores/vue';
 
@@ -47,10 +47,6 @@ const cssVariables = computed(() => {
     .map(([token, value]) => `--color-accent-${token}: ${value};`)
     .join('\n');
 });
-
-async function onCopyClick() {
-  await navigator.clipboard.writeText(cssVariables.value);
-}
 </script>
 
 <template>
