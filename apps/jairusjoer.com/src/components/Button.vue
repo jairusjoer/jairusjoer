@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { useAttrs } from 'vue';
+
 export interface Props {
   as?: string;
   href?: string;
   variant?: keyof typeof variants;
 }
 
-const { as = 'a', variant = 'accent' } = defineProps<Props>();
+const { as = 'a', variant = 'accent', ...props } = defineProps<Props>();
 
 const variants = {
   accent: 'bg-accent text-accent-contrast',
@@ -23,6 +25,7 @@ const variants = {
       'block rounded-md px-1.5 leading-6 font-semibold whitespace-nowrap motion-safe:transition-colors',
       variants[variant],
     ]"
+    v-bind="props"
   >
     <slot />
   </component>
