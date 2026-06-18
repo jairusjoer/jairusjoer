@@ -1,12 +1,16 @@
-const contentComponents = import.meta.glob<{ default: object }>('/src/components/**/*', { eager: true });
+const contentComponents = import.meta.glob('/src/components/**/*.{astro,vue}', { eager: true });
 
-const mapped = Object.fromEntries(
-  Object.entries(contentComponents).map(([path, component]) => {
+type AstroComponent = () => unknown;
+
+type Components = Record<string, AstroComponent>;
+
+const mapped: Components = Object.fromEntries(
+  Object.entries(contentComponents).map(([path, mod]) => {
     const name = path.split('/').pop()?.split('.')[0];
     const capitalizedName = name && name.charAt(0).toUpperCase() + name.slice(1);
 
-    return [capitalizedName, component.default];
+    return [capitalizedName, (mod as { default: AstroComponent }).default];
   }),
 );
 
-export const getComponents = () => mapped;
+export const getComponents = (): Components => mapped;
