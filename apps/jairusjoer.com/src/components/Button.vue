@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useAttrs } from 'vue';
-
 export interface Props {
   as?: string;
   href?: string;
@@ -13,8 +11,8 @@ const variants = {
   accent: 'bg-accent text-accent-contrast',
   bold: 'bg-foreground text-background',
   subtle: 'bg-background-subtle text-foreground',
-  outline: 'border',
-  ghost: '',
+  outline: 'text-foreground border',
+  ghost: 'text-foreground',
 };
 </script>
 

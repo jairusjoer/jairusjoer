@@ -11,7 +11,7 @@ const { links } = defineProps<Props>();
 <template>
   <section class="not-prosa relative overflow-hidden rounded-xl border">
     <header v-if="links && Object.entries(links).length > 0">
-      <small class="flex justify-end gap-1 px-1.5 pt-1.5">
+      <small class="flex justify-end gap-1.5 px-1.5 pt-1.5">
         <Button
           v-for="(path, label) in links"
           variant="subtle"
