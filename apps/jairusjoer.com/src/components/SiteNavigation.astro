@@ -25,7 +25,7 @@ const active = (path: string) => {
         {links.map((link) => (
           <li>
             <Button
-              variant={active(link.href) ? 'accent' : 'subtle'}
+              variant={active(link.href) ? 'bold' : 'ghost'}
               href={link.href}
             >
               {link.title}

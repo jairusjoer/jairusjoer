@@ -75,18 +75,10 @@
 
       summary {
         cursor: pointer;
-        display: block;
+        list-style-position: outside;
 
-        &::before {
+        &::marker {
           color: var(--color-accent);
-          content: '▼';
-          width: 1.5rem;
-          text-align: center;
-          left: 0;
-          line-height: 1.5rem;
-          font-size: smaller;
-          position: absolute;
-          rotate: -90deg;
         }
       }
     }

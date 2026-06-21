@@ -5,14 +5,13 @@ export interface Props {
   variant?: keyof typeof variants;
 }
 
-const { as = 'a', variant = 'accent', ...props } = defineProps<Props>();
+const { as = 'a', variant = 'bold', ...props } = defineProps<Props>();
 
 const variants = {
-  accent: 'bg-accent text-accent-contrast',
-  bold: 'bg-foreground text-background',
-  subtle: 'bg-background-subtle text-foreground',
-  outline: 'text-foreground border',
-  ghost: 'text-foreground',
+  bold: 'bg-accent text-accent-contrast',
+  subtle: 'bg-accent-subtle text-accent',
+  outline: 'text-accent border',
+  ghost: 'text-accent',
 };
 </script>
 

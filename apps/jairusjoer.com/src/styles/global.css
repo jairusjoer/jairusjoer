@@ -1,4 +1,6 @@
 @import 'tailwindcss';
 @import './tailwind/theme.css';
 @import './tailwind/base.css';
+
+@import './custom/fonts.css';
 @import './custom/prosa.css';
