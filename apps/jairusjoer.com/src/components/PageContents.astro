@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+const { headings } = await render(entry);
+---
+
+<section>
+  <details>
+    <summary><strong>Contents</strong></summary>
+    <ul>
+      {
+        headings.map(({ depth, slug, text }) => (
+          <li style={{ marginLeft: `${Math.max(0, depth - 2) * 1.5}rem` }}>
+            <a href={`#${slug}`}>{text}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </details>
+</section>

@@ -1,0 +1,42 @@
+---
+import { formatDatetime } from '@scripts/formatDatetime';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+
+const hasExtras = entry.data.image || entry.data.description || entry.data.date;
+---
+
+<header class:list={['prosa', { 'mb-3': !hasExtras }]}>
+  {
+    entry.data.image && (
+      <Image
+        src={entry.data.image}
+        alt=""
+        width={864}
+        height={486}
+      />
+    )
+  }
+  <h1>
+    {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
+    {entry.data.title}
+  </h1>
+
+  {entry.data.description && <p>{entry.data.description}</p>}
+
+  {
+    entry.data.date && (
+      <small class="block">
+        <time>{formatDatetime(entry.data.date)}</time>
+      </small>
+    )
+  }
+
+  {hasExtras && <hr />}
+</header>

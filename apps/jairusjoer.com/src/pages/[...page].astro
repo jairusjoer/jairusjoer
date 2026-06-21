@@ -1,9 +1,8 @@
 ---
+import PageHeader from '@components/PageHeader.astro';
 import type { Metadata } from '@components/SiteMeta.astro';
 import PageLayout from '@layouts/PageLayout.astro';
-import { formatDatetime } from '@scripts/formatDatetime';
 import { getComponents } from '@scripts/getComponents';
-import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -26,8 +25,6 @@ const { Content } = await render(entry);
 
 const components = getComponents();
 
-const hasExtras = entry.data.image || entry.data.description || entry.data.date;
-
 const metadata: Metadata = {
   id: entry.id,
   title: entry.data.title,
@@ -39,34 +36,7 @@ const metadata: Metadata = {
 
 <PageLayout {metadata}>
   <main class="my-24 w-full">
-    <header class:list={['prosa', { 'mb-3': !hasExtras }]}>
-      {
-        entry.data.image && (
-          <Image
-            src={entry.data.image}
-            alt=""
-            width={864}
-            height={486}
-          />
-        )
-      }
-      <h1>
-        {entry.data.status && <span class="text-accent">{entry.data.status}:</span>}
-        {entry.data.title}
-      </h1>
-
-      {entry.data.description && <p>{entry.data.description}</p>}
-
-      {
-        entry.data.date && (
-          <small class="block">
-            <time>{formatDatetime(entry.data.date)}</time>
-          </small>
-        )
-      }
-
-      {hasExtras && <hr />}
-    </header>
+    <PageHeader {entry} />
     <div class="prosa">
       <Content {components} />
     </div>
