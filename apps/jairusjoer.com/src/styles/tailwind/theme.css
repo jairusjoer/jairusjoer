@@ -14,7 +14,7 @@
   --font-default: 'Geist', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-  --spacing-default: max(36rem, 60ch);
+  --spacing-default: 36rem;
 
   --text-default: 1rem;
 }
