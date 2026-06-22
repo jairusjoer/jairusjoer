@@ -9,7 +9,7 @@ const { as = 'a', variant = 'bold', ...props } = defineProps<Props>();
 
 const variants = {
   bold: 'bg-accent text-accent-contrast',
-  subtle: 'bg-accent-subtle text-accent',
+  subtle: 'bg-accent/10 text-accent',
   outline: 'text-accent border',
   ghost: 'text-accent',
 };
