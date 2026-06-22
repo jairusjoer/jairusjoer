@@ -25,9 +25,6 @@ export default defineConfig({
         light: 'github-light-high-contrast',
       },
     },
-    remarkRehype: {
-      footnoteLabelProperties: {},
-    },
   },
 
   site: site.url,

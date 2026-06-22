@@ -178,6 +178,11 @@
       }
     }
 
+    :is(details, ol, ul) + details,
+    details + :is(details, ol, ul) {
+      margin-top: 0.75rem;
+    }
+
     li input[type='checkbox'] {
       height: 1rem;
       left: -1.25rem;
