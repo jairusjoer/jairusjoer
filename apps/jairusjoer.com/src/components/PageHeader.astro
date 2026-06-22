@@ -1,4 +1,5 @@
 ---
+import PageContents from '@components/PageContents.astro';
 import { formatDatetime } from '@scripts/formatDatetime';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
@@ -10,9 +11,10 @@ export interface Props {
 const { entry } = Astro.props;
 
 const hasExtras = entry.data.image || entry.data.description || entry.data.date;
+const isWriting = entry.id.startsWith('writing/');
 ---
 
-<header class:list={['prosa', { 'mb-3': !hasExtras }]}>
+<header class="space-y-6">
   {
     entry.data.image && (
       <Image
@@ -37,6 +39,6 @@ const hasExtras = entry.data.image || entry.data.description || entry.data.date;
       </small>
     )
   }
-
+  {isWriting && <PageContents {entry} />}
   {hasExtras && <hr />}
 </header>

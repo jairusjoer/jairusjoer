@@ -118,13 +118,13 @@ Inline-style: ![alt text](https://picsum.photos/40/40 'Logo Title Text 1')
 Reference-style:
 ![alt text][logo]
 
-[logo]: https://picsum.photos/600/400 'Logo Title Text 2'
+[logo]: /og/writing/style.png 'Logo Title Text 2'
 
 `<picture>` element appearance (if supported by the renderer):
 
 <picture>
   <img
-    src="https://picsum.photos/600/400"
+    src="/og/writing/style.png"
     alt="A random image from picsum.photos"
   />
 </picture>
@@ -133,7 +133,7 @@ Reference-style:
 
 <figure>
   <img
-    src="https://picsum.photos/600/400"
+    src="/og/writing/style.png"
     alt="A random image from picsum.photos"
   />
   <figcaption>Figure 1: A random image from picsum.photos</figcaption>
