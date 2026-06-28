@@ -5,6 +5,14 @@ status: 'Draft'
 date: 2026-07-01
 ---
 
+As the strategic competition over AI continues, the future of software is increasingly being built on borrowed land through centralised providers and centralised dependencies, which can both be controlled or poisoned.
+
+Just this June, the US government issued an export control directive to suspend access to Anthropoc's Fable 5 and Mythos 5, while requesting that OpenAI grant access to GPT-5.6 via a case-by-case approval process.
+
+In the same month, the software supply chain ecosystem around Python and JavaScript faced a series of at least four currently known critical attacks, driven by the Mini Shai-Hulud[^mini] worm and its variants.
+
+[^mini]: Mini Shai-Hulud is a self-replicating worm that hijacks automated software build systems to steal credentials and automatically infect other packages.
+
 ## Resilience
 
 ## Sustainability
