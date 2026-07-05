@@ -31,7 +31,7 @@
 
       &[data-footnote-ref] {
         font-family: var(--font-mono);
-        padding-inline: 0.1875rem;
+        padding-left: 0.1875rem;
       }
 
       &[data-footnote-backref] {

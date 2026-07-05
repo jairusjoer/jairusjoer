@@ -2,24 +2,34 @@
 title: 'Thoughts on Resilience, Sustainability and Sovereignty'
 description: 'The uncertainty of digital supply chains and AI economics points to an upheaval in resilience and sustainability, requiring new and sovereign approaches.'
 status: 'Draft'
-date: 2026-07-01
+date: 2026-07-13
 ---
 
 As the strategic competition over AI continues, the future of software is increasingly being built on borrowed land through centralised providers and centralised dependencies, which can both be controlled or poisoned.
 
-Just this June, the US government issued an export control directive suspending foreign nationals' access to Anthropic's Fable 5 and Mythos 5, while OpenAI limited its GPT-5.6 preview to trusted partners.
+Just this June, the US government issued an export control directive suspending foreign nationals' access to Anthropic's Fable 5 and Mythos 5[^reuters], while OpenAI limited its GPT-5.6 preview to trusted partners[^techcrunch].
 
-Around the same time, the software supply chain ecosystems around Python and JavaScript faced severe compromises, driven by the Mini Shai-Hulud[^mini] worm and its exploitation of trusted publishing pipelines.
+[^reuters]: Reuters, ["Anthropic disables top-tier AI models after US order limiting foreign access"](https://www.reuters.com/technology/us-blocks-foreign-access-anthropics-most-advanced-ai-models-axios-reports-2026-06-13/), 2026
 
-[^mini]: Mini Shai-Hulud is a self-replicating supply-chain worm that hijacks automated GitHub Actions CI/CD workflows and trusted OIDC pipelines to steal credentials and automatically infect other packages.
+[^techcrunch]: TechCrunch, ["OpenAI limits GPT-5.6 rollout after government request, says restrictions shouldn’t be the norm"](https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/), 2026
+
+Around the same time, the software supply chain ecosystems around Python and JavaScript faced severe compromises, driven by the Mini Shai-Hulud worm and its exploitation of trusted publishing pipelines[^picus-security].
+
+[^picus-security]: Picus Security, ["Mini Shai-Hulud: The npm Supply Chain Worm Explained"](https://www.picussecurity.com/resource/blog/mini-shai-hulud-the-npm-supply-chain-worm-explained), 2026
 
 ## Resilience
 
 In light of the aforementioned issues, it has become imperative to reconsider the resilience of software, trust and economics, and to explore options and alternatives that could foster a more resilient environment.
 
-Although platforms such as PyPI and npm are moving towards enforcing <abbr title="Two Factor Authentication">2FA</abbr> and trusted publishing via <abbr title="OpenID Connect">OIDC</abbr>, the Mini Shai-Hulud attacks prove that abusing these exact pipelines keeps centralised platforms a potent target.
+Although platforms such as PyPI and GitHub are moving towards enforcing <abbr title="Two Factor Authentication">2FA</abbr> and trusted publishing via <abbr title="OpenID Connect">OIDC</abbr>[^pypi][^github], the Mini Shai-Hulud attacks prove that abusing these exact pipelines keeps centralised platforms a potent target.
 
-Similarly, as token prices fall and enterprise dependency on frontier models deepens, the ability of global customers to rely on single-vendor solutions becomes precarious in light of abrupt geopolitical security directives.
+[^pypi]: PyPI, ["PyPI and Shai-Hulud: Staying Secure Amid Emerging Threats"](https://blog.pypi.org/posts/2025-11-26-pypi-and-shai-hulud/), 2026
+
+[^github]: GitHub, ["Securing the open source supply chain across GitHub"](https://github.blog/security/supply-chain-security/securing-the-open-source-supply-chain-across-github/), 2026
+
+Similarly, as token prices fall and enterprise dependency on frontier models deepens[^infoworld], the ability of global customers to rely on single-vendor solutions becomes precarious in light of abrupt geopolitical security directives.
+
+[^infoworld]: InfoWorld, ["Anthropic’s Claude Opus 4.5 pricing cut signals a shift in the enterprise AI market"](https://www.infoworld.com/article/4095894/anthropics-claude-opus-4-5-pricing-cut-signals-a-shift-in-the-enterprise-ai-market.html), 2026
 
 ## Sustainability
 
