@@ -20,7 +20,7 @@
   @scope (&) to (.not-prosa) {
     a,
     abbr {
-      text-decoration-color: color-mix(var(--color-accent), transparent);
+      text-decoration-color: var(--color-accent);
       text-decoration-thickness: 1px;
       text-underline-offset: 0.1875rem;
     }
@@ -37,6 +37,11 @@
       &[data-footnote-backref] {
         font-family: var(--font-mono);
       }
+    }
+
+    abbr {
+      color: var(--color-foreground);
+      cursor: help;
     }
 
     blockquote {

@@ -7,21 +7,42 @@ date: 2026-07-01
 
 As the strategic competition over AI continues, the future of software is increasingly being built on borrowed land through centralised providers and centralised dependencies, which can both be controlled or poisoned.
 
-Just this June, the US government issued an export control directive to suspend access to Anthropoc's Fable 5 and Mythos 5, while requesting that OpenAI grant access to GPT-5.6 via a case-by-case approval process.
+Just this June, the US government issued an export control directive suspending foreign nationals' access to Anthropic's Fable 5 and Mythos 5, while OpenAI voluntarily limited access to GPT-5.6 on a case-by-case basis.
 
-In the same month, the software supply chain ecosystem around Python and JavaScript faced a series of at least four currently known critical attacks, driven by the Mini Shai-Hulud[^mini] worm and its variants.
+In the same month, the software supply chain ecosystems around Python and JavaScript faced a series of at least four currently known critical attacks, driven by the Mini Shai-Hulud[^mini] worm and its variants.
 
 [^mini]: Mini Shai-Hulud is a self-replicating worm that hijacks automated software build systems to steal credentials and automatically infect other packages.
 
 ## Resilience
 
+In light of the aforementioned issues, it has become imperative to reconsider the resilience of software, trust and economics, and to explore options and alternatives that could foster a more resilient environment.
+
+Although platforms such as PyPI and npm are moving towards enforcing <abbr title="Two Factor Authentication">2FA</abbr> and trusted publishing via <abbr title="OpenID Connect">OIDC</abbr>, the centralised nature of these platforms will continue to make them a potent target for malicious actors.
+
+Similarly, as token prices fall and the amount spent on tokens rises, the ability of foreign allies and customers to access capable models becomes uncertain in light of growing security and advantage interests.
+
 ## Sustainability
+
+Reliance on centralized software distribution in the areas of resilience and security may become increasingly difficult to sustain without governance processes that help preserve integrity in these areas over time.
+
+There may be a need for a shift toward open, verifiable, and sovereignty-aware providers built on cryptographic trust, both for software packages and for models, to help address current issues and improve secure access to software in the future.
+
+This may not be a question of missing software, but of incentives. Recent and future precedents may continue to reinforce this view and encourage a more independent approach to software.
 
 ## Sovereignty
 
 ---
 
 ## Outline
+
+What package managers do to today to mitigate (example pnpm)
+
+- Minimum Release Age
+- Block Exotic Subdependencies
+- Strict Build Script Control
+- Trust Policy: The trustPolicy
+- Version Pinning & Lockfile Security
+- Environment Isolation
 
 ### The Third Pillar: Sovereign Infrastructure (The Local-First Ecosystem)
 
