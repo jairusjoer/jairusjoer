@@ -15,7 +15,7 @@ const { headings } = await render(entry);
     <summary>
       <strong>Contents</strong>
     </summary>
-    <ul class="pl-0">
+    <ul class="pl-0!">
       {
         headings.map(({ depth, slug, text }) => (
           <li style={{ marginLeft: `${Math.max(0, depth - 2) * 1.5}rem` }}>
