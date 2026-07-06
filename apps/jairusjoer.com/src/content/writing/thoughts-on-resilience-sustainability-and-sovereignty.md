@@ -19,7 +19,7 @@ Around the same time, the software supply chain ecosystems around Python and Jav
 
 ## Resilience
 
-In light of the aforementioned issues, it has become imperative to reconsider the resilience of software, trust and economics, and to explore options and alternatives that could foster a more resilient environment.
+In light of the aforementioned differentiable issues, it has become imperative to reconsider the resilience of software, trust and economics, and to explore options and alternatives that could foster a more resilient environment.
 
 Although platforms such as PyPI and GitHub are moving towards enforcing <abbr title="Two Factor Authentication">2FA</abbr> and trusted publishing via <abbr title="OpenID Connect">OIDC</abbr>[^pypi][^github], the Mini Shai-Hulud attacks prove that abusing these exact pipelines keeps centralised platforms a potent target.
 
