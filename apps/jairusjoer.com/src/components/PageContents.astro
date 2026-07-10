@@ -10,19 +10,21 @@ const { entry } = Astro.props;
 const { headings } = await render(entry);
 ---
 
-<section>
-  <details class="open:bg-background-subtle border-background outline-border rounded-xl border-6 py-1.5 outline">
-    <summary>
-      <strong>Contents</strong>
-    </summary>
-    <ul class="pl-0!">
-      {
-        headings.map(({ depth, slug, text }) => (
-          <li style={{ marginLeft: `${Math.max(0, depth - 2) * 1.5}rem` }}>
-            <a href={`#${slug}`}>{text}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </details>
-</section>
+{
+  headings.length > 0 && (
+    <section>
+      <details class="open:bg-background-subtle border-background outline-border rounded-xl border-6 py-1.5 outline">
+        <summary>
+          <strong>Contents</strong>
+        </summary>
+        <ul class="pl-0!">
+          {headings.map(({ depth, slug, text }) => (
+            <li style={{ marginLeft: `${Math.max(0, depth - 2) * 1.5}rem` }}>
+              <a href={`#${slug}`}>{text}</a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </section>
+  )
+}
