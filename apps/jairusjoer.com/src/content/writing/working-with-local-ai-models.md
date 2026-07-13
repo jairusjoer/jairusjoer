@@ -31,22 +31,88 @@ On the other hand, is a model completely unfamiliar to me. Enter Alibaba’s [`q
 
 ### Qwen 3.6 35B A3B
 
-`qwen/qwen3.6-35b-a3b` has been my primary choice of model since this exploration began in May. It's running on MLX with 4bit quantisation and averages above 80 tok/sec ouput, hitting high 90s on a good day.
+`qwen/qwen3.6-35b-a3b` has been my primary choice of model since this exploration began in May. It's running on **MLX** with **4bit** quantisation and averages above **85+ tok/sec** ouput, hitting high 90s on a good day.
 
-I’ve mostly been using it for agentic engineering tasks, including writing and fixing tests, maintaining documentation and performing governance tasks, as well as simple to medium-complex code-related grunt work.
+I’ve mostly been using it for agentic engineering tasks, such as writing and debugging tests, maintaining and carrying out governance tasks, as well as simple to medium-complex, code-related menial work.
+
+I’ve also used this model to adjust load parameters, deciding on a context length of **131,072** and a repeat penalty of **1.1** to solve repetition issues. In addition, I opted for **'thinking'** and **'preserved thinking'**.
 
 ### Gemma 4 26B A4B QAT
 
-#### Other
+`google/gemma-4-26b-a4b-qat` is my second choice of model. Using the same quantisation and load parameters, its token outpout performance matches that of `qwen/qwen3.6-35b-a3b`.
 
-- `ornith-1.0-35b`
-- `ornith-1.0-35b-mtplx`
-- `google/gemma-4-e2b`
-- `qwen/qwen3-coder-30b`
-- `qwen2.5-coder-1.5b-instruct-mlx`
-- `qwen/qwen3.6-27b`
+I’ve been using it for work similar to that mentioned above, but primarily for research- and documentation-focused tasks. While this is purely subjective, I _felt_ that Gemma responded better to this type of work.
+
+It has also proven useful for projects and workloads that require more RAM, as it is approximately 5 GB smaller than the Qwen model, providing some additional capacity before memory begins to overflow.
 
 ## Harnesses
 
-- OpenCode
-- GitHub Copilot
+To interact with my chosen models in an agentic manner, I use GitHub Copilot in Visual Studio Code and OpenCode via the terminal to provide me with capable Plan and Build agents.
+
+Both harnesses established themselves in continued use cases against contenders such as Claude Code and Pi 
+
+### GitHub Copilot
+
+Even before I switched to local modals, GitHub Copilot was already my primary agentic driver, thanks to its extensive and reliable integration capabilities and its ability to interact with extensions.
+
+GitHub Copilot uses a [custom endpoint](https://code.visualstudio.com/docs/agent-customization/language-models#_add-a-custom-endpoint-model) to connect to LM Studio, with manual entries for each model. Language model extensions are also available for popular providers and handle local model discovery automatically.
+
+The only issue I’ve had with GitHub Copilot so far is that it can't suggest code completions based on local models. I tried using the Continue extension to resolve this, but there were ongoing problems with tool calls.
+
+```json
+[
+  {
+    "name": "LM Studio",
+    "vendor": "customendpoint",
+    "models": [
+      {
+        "id": "qwen/qwen3.6-35b-a3b",
+        "name": "Qwen 3.6 35B A3B",
+        "url": "http://localhost:1234/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "maxInputTokens": 65536,
+        "maxOutputTokens": 65536
+      },
+      {
+        "id": "google/gemma-4-26b-a4b-qat",
+        "name": "Gemma 4 26B A4B QAT",
+        "url": "http://localhost:1234/v1/chat/completions",
+        "toolCalling": true,
+        "vision": true,
+        "maxInputTokens": 65536,
+        "maxOutputTokens": 65536
+      }
+    ]
+  }
+]
+```
+
+### OpenCode
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [],
+  "lsp": true,
+  "formatter": true,
+  "provider": {
+    "lmstudio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LM Studio",
+      "options": {
+        "baseURL": "http://localhost:1234/v1"
+      },
+      "models": {
+        "qwen/qwen3.6-35b-a3b": {
+          "name": "Qwen 3.6 35B A3B"
+        },
+        "google/gemma-4-26b-a4b-qat": {
+          "name": "Gemma 4 26B A4B QAT"
+        }
+      }
+    }
+  },
+  "shell": "fish"
+}
+```
