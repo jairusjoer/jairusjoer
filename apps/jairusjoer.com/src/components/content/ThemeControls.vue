@@ -32,7 +32,7 @@ onMounted(() => onColorInput());
 </script>
 
 <template>
-  <form class="not-prosa bg-background sticky top-6 z-10 flex gap-1.5 rounded-xl border p-1.5">
+  <form class="not-prose bg-background sticky top-6 z-10 flex gap-1.5 rounded-xl border p-1.5">
     <div class="bg-background-subtle flex gap-1.5 rounded-md p-1.5">
       <input
         type="color"

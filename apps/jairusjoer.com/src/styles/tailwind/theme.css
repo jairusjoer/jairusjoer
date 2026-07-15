@@ -20,8 +20,4 @@
 
 :root {
   font-feature-settings: 'ss01', 'ss03', 'tnum';
-
-  @supports (color: contrast-color(var(--color-accent))) {
-    --color-accent-contrast: contrast-color(var(--color-accent));
-  }
 }

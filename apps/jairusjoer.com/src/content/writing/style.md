@@ -4,448 +4,237 @@ date: 2026-01-01
 status: 'Draft'
 ---
 
-> This reference is based on [Adam Pritchard's Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/markdown-cheatsheet)
-
-This is intended as a quick reference and showcase. For more complete info, see [John Gruber's original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
+A reference document demonstrating every element styled by the `.prose` CSS layer, plus the common inline text options not explicitly covered by it (sup, sub, s, del, ins, u, and friends).
 
 ---
 
-## Table of Contents
+## Headings
 
-- [Headers](#headers)
-- [Emphasis](#emphasis)
-- [Lists](#lists)
-- [Links](#links)
-- [Images](#images)
-- [Code and Syntax Highlighting](#code-and-syntax-highlighting)
-- [Footnotes](#footnotes)
-- [Tables](#tables)
-- [Blockquotes](#blockquotes)
-- [Inline HTML](#inline-html)
-- [Horizontal Rule](#horizontal-rule)
-- [Line Breaks](#line-breaks)
-- [YouTube Videos](#youtube-videos)
-- [Details Element](#details-element)
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
 
 ---
 
-## Headers
+## Paragraphs & Links
 
-# H1
+This is a standard paragraph. It exists to show the default text color, font family, size, and line height applied by `.prose`, along with the block-start spacing (`--prose-flow`) that separates it from whatever came before.
 
-## H2
-
-### H3
-
-#### H4
-
-##### H5
-
-###### H6
+Here's a second paragraph so you can see that rhythm repeat. It also contains a [regular link](https://example.com) and, right after it in the same sentence, [another link](https://example.com) — links are colored with the accent color and underlined, with the underline solidifying on hover.
 
 ---
 
-## Emphasis
+## Inline Semantics
 
-Emphasis, aka italics, with *asterisks* or *underscores*.
+**Bold text** uses `strong`/`b` at weight 600.
 
-Strong emphasis, aka bold, with **asterisks** or **underscores**.
+_Italic text_ uses standard emphasis.
 
-Combined emphasis with **asterisks and *underscores***.
+<mark>Highlighted text</mark> uses a tinted accent-color background.
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+An abbreviation with a tooltip: <abbr title="Cascading Style Sheets">CSS</abbr> — dotted underline, help cursor on hover.
 
-Marked text uses the HTML mark tag. <mark>marked text</mark>
+### Common options not explicitly styled by this CSS (inherit browser defaults)
+
+- Superscript: E = mc<sup>2</sup>
+- Subscript: H<sub>2</sub>O
+- Strikethrough (`~~`): ~~this text is struck through~~
+- Deleted text (`<del>`): <del>this text was removed</del>
+- Inserted text (`<ins>`): <ins>this text was added</ins>
+- Underline (`<u>`): <u>this text is underlined</u>
+- Small print (`<small>`): <small>this text is small</small>
+- Citation (`<cite>`): <cite>The Great Gatsby</cite>
+- Inline quote (`<q>`): <q>this is a short inline quotation</q>
+- Variable (`<var>`): <var>x</var> = <var>y</var> + 2
+- Sample output (`<samp>`): <samp>Segmentation fault (core dumped)</samp>
 
 ---
 
 ## Lists
 
-1. First ordered list item
-2. Another item
-   - Unordered sub-list.
+### Unordered (disc → circle → square)
 
-3. Actual numbers don't matter, just that it's a number
-   1. Ordered sub-list
+- Level one item
+  - Level two item
+    - Level three item
+- Another level one item
 
-4. And another item.
+### Ordered (decimal)
 
-   You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
+1. First step
+2. Second step
+3. Third step
 
-   To have a line break without a paragraph, you will need to use two trailing spaces.
-   Note that this line is separate, but within the same paragraph.
-   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+### Ordered with `type` attributes
 
-- Unordered list item
-- Another item
-  - Unordered sub-list.
-- And another item
+<ol type="a">
+<li>Lower-alpha item</li>
+<li>Another lower-alpha item</li>
+</ol>
 
-- [ ] Task list item
-- [x] Completed task list item
-  - [x] Completed task child list item
+<ol type="i">
+<li>Lower-roman item</li>
+<li>Another lower-roman item</li>
+</ol>
 
----
+<ol type="A">
+<li>Upper-alpha item</li>
+<li>Another upper-alpha item</li>
+</ol>
 
-## Links
+<ol type="I">
+<li>Upper-roman item</li>
+<li>Another upper-roman item</li>
+</ol>
 
-There are two ways to create links.
+### GFM task list
 
-[I'm an inline-style link](https://www.google.com/)
-
-[I'm an inline-style link with title](https://www.google.com/ "Google's Homepage")
-
-[I'm a reference-style link](https://www.mozilla.org/)
-
-[I'm a relative reference to a repository file](https://github.com/adam-p/markdown-here/blob/master/LICENSE)
-
-[You can use numbers for reference-style link definitions](https://slashdot.org/)
-
-Or leave it empty and use the [link text itself](https://www.reddit.com/).
-
-URLs and URLs in angle brackets will automatically get turned into links. [https://www.example.com](https://www.example.com/) or [https://www.example.com](https://www.example.com/) and sometimes example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
+- [x] Ship the prose stylesheet
+  - [x] Write the style guide
+- [ ] Another design sign-off done
 
 ---
 
-## Images
+## Disclosures
 
-Here's our logo (hover to see the title text):
+<details>
+<summary>Click to expand</summary>
 
-Inline-style: ![alt text](https://picsum.photos/40/40 'Logo Title Text 1')
+Hidden content revealed on toggle. The `summary` marker inherits the muted foreground color used for list markers.
 
-Reference-style:
-![alt text][logo]
-
-[logo]: /og/writing/style.png 'Logo Title Text 2'
-
-`<picture>` element appearance (if supported by the renderer):
-
-<picture>
-  <img
-    src="/og/writing/style.png"
-    alt="A random image from picsum.photos"
-  />
-</picture>
-
-`figure` and `figcaption` appearance:
-
-<figure>
-  <img
-    src="/og/writing/style.png"
-    alt="A random image from picsum.photos"
-  />
-  <figcaption>Figure 1: A random image from picsum.photos</figcaption>
-</figure>
+</details>
 
 ---
 
-## Code and Syntax Highlighting
+## Keyboard Keys
 
-Code blocks are part of the Markdown spec, but syntax highlighting isn't. However, many renderers -- like Github's and *Markdown Here* -- support syntax highlighting. Which languages are supported and how those language names should be written will vary from renderer to renderer. *Markdown Here* supports highlighting for dozens of languages (and not-really-languages, like diffs and HTTP headers); to see the complete list, and how to write the language names, see the [highlight.js demo page](https://highlightjs.org/demo).
+Save the file with <kbd>Ctrl</kbd> + <kbd>S</kbd>, or force quit with <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>Esc</kbd>.
 
-Inline `code` has `back-ticks around` it.
+---
 
-Blocks of code are either fenced by lines with three back-ticks ` ``` `, or are indented with four spaces. I recommend only using the fenced code blocks -- they're easier and only they support syntax highlighting.
+## Definition List
+
+<dl>
+  <dt>Specificity</dt>
+  <dd>A measure of which CSS rule wins when several rules apply to the same element.</dd>
+  <dt>Cascade</dt>
+  <dt>Cascading</dt>
+  <dd>The order in which conflicting declarations are resolved.</dd>
+</dl>
+
+---
+
+## Code
+
+Inline code, like `const x = 1;`, sits on a muted background with a monospace font.
+
+A fenced code block:
 
 ```js
-// --- Demonstration of imports ---
-
-// Importing named exports and the default export
-import defaultAnimal, { add, person } from './module.js';
-// Importing everything from the module as an alias
-import * as Module from './module.js';
-
-// --- Demonstration of exports ---
-
-// Named exports
-export const person = { name: 'Alice', age: 30 };
-
-export function add(x, y = 0) {
-  return x + y;
+function greet(name) {
+  return `Hello, ${name}!`;
 }
 
-// Default export
-const defaultAnimal = { name: 'Default Animal' };
-export default defaultAnimal;
-
-// Generator function
-export function* idGenerator() {
-  let id = 0;
-  while (true) {
-    yield id++;
-  }
-}
-
-// Using typeof for runtime type checks
-console.log(typeof person); // object
-console.log(add(2, 3)); // 5
-console.log(defaultAnimal); // { name: "Default Animal" }
-
-// Emulating 'satisfies' behavior using runtime checks
-function createAnimal(animal) {
-  if (typeof animal.name === 'string') {
-    return animal; // Ensures the animal has a 'name' property
-  }
-  throw new Error('Animal must have a name');
-}
-
-const dog = createAnimal({ name: 'Buddy', breed: 'Golden Retriever' });
-console.log(dog); // { name: 'Buddy', breed: 'Golden Retriever' }
-
-// Generator usage
-const generator = Module.idGenerator();
-console.log(generator.next().value); // 0
-console.log(generator.next().value); // 1
-console.log(generator.next().value); // 2
-
-// Handling a generic-like behavior by allowing any type and runtime checks
-function identity(arg) {
-  return arg;
-}
-
-let str = identity('Hello');
-let num = identity(42);
-console.log(str, num); // "Hello", 42
-
-// Emulating default generics by using default parameters
-function wrapInArray(value = '') {
-  return [value];
-}
-
-const stringArray = wrapInArray(); // Default is empty string
-const numberArray = wrapInArray(42); // Passes 42 explicitly
-console.log(stringArray, numberArray); // [""] , [42]
-
-// --- for-of and for-in loops ---
-
-// for-of: Iterates over iterable objects like arrays, strings, maps, etc.
-const fruits = ['apple', 'banana', 'cherry'];
-for (const fruit of fruits) {
-  console.log(fruit); // Outputs: apple, banana, cherry
-}
-
-// for-in: Iterates over enumerable properties of an object
-const car = { make: 'Tesla', model: 'Model S', year: 2021 };
-for (const key in car) {
-  if (car.hasOwnProperty(key)) {
-    console.log(`${key}: ${car[key]}`); // Outputs key-value pairs of car object
-  }
-}
-
-// --- IIFE (Immediately Invoked Function Expression) ---
-
-(function () {
-  console.log("This IIFE runs immediately after it's defined.");
-  const privateVar = "I'm private inside the IIFE!";
-  console.log(privateVar); // Accessing the private variable inside the IIFE
-})();
-
-// --- Using a generator to loop indefinitely ---
-function* infiniteGenerator() {
-  let i = 0;
-  while (true) {
-    yield i++;
-  }
-}
-
-const gen = infiniteGenerator();
-console.log(gen.next().value); // 0
-console.log(gen.next().value); // 1
-
-// --- Async and Await ---
-
-async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('There has been a problem with your fetch operation:', error);
-  }
-}
-
-// Example usage of async function
-fetchData('https://jsonplaceholder.typicode.com/todos/1')
-  .then((data) => console.log(data)) // Outputs fetched data
-  .catch((error) => console.error(error));
-
-// JSDoc type annotations
-/**
- * @typedef {Object} Task
- * @property {string} title
- * @property {boolean} completed
- */
-
-/**
- * Create a task
- * @param {Task} task
- * @returns {Task}
- */
-function createTask(task) {
-  return task;
-}
-
-const myTask = createTask({
-  title: 'Learn JavaScript',
-  completed: false,
-});
-console.log(myTask);
-
-// Importing everything as a namespace (simulated for demonstration)
-console.log(Module.person); // { name: "Alice", age: 30 }
-console.log(Module.add(10, 20)); // 30
+console.log(greet('World'));
 ```
 
-```python
-s = "Python syntax highlighting"
-print s
-```
+---
 
-```md
-No language indicated, so no syntax highlighting in Markdown Here (varies on Github).
-But let's throw in a <b>tag</b>.
-```
+## Blockquote
+
+> Design is not just what it looks like and feels like. Design is how it works.
+>
+> A second paragraph inside the same blockquote, indented with the left rule.
+
+---
+
+## Divider
+
+Some content above the rule.
+
+---
+
+Some content below the rule.
 
 ---
 
 ## Footnotes
 
-Footnotes aren't part of the core Markdown spec, but they're [supported by GFM](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#footnotes).
+Here's a claim that needs backing up[^1], and another one right after it[^2].
 
-Here is a simple footnote[^1].
+[^1]: This is the first footnote's content.
 
-A footnote can also have multiple references[^1][^2].
+[^2]: This is the second footnote's content.
 
-You can also use words, to fit your writing style more closely[^note].
+---
 
-[^1]: My reference.
+<!--
+## Math
 
-[^2]:
-    Every new line should be prefixed with 2 spaces.
-    This allows you to have a footnote with multiple lines.
+Inline math: <math>$E = mc^2$</math> appears within a sentence.
 
-[^note]:
-    Named footnotes will still render with numbers instead of the text but allow easier identification and linking.
-    This footnote also has been made with a different syntax using 4 spaces for new lines.
+Block math:
+
+<math display="block">
+$$
+\int_{a}^{b} f(x)\, dx = F(b) - F(a)
+$$
+</math>
+
+---
+-->
+
+## Media
+
+An image (scales to container width, rounded corners):
+
+![Placeholder image](https://placehold.co/600x300)
+
+A figure with a caption:
+
+<figure>
+  <img src="https://placehold.co/600x300" alt="Placeholder figure image">
+  <figcaption>Figure 1 — captions are centered, smaller, and muted.</figcaption>
+</figure>
 
 ---
 
 ## Tables
 
-Tables aren't part of the core Markdown spec, but they are part of GFM and *Markdown Here* supports them. They are an easy way of adding tables to your email -- a task that would otherwise require copy-pasting from another application.
+| Plan       | Storage | Price/mo | Popular |
+| ---------- | :-----: | -------: | :-----: |
+| Free       |  5 GB   |       $0 |         |
+| Pro        | 100 GB  |      $12 |    ✓    |
+| Enterprise |  1 TB   |   Custom |         |
 
-There must be at least 3 dashes separating each header cell. The outer pipes (|) are optional, and you don't need to make the raw Markdown line up prettily. You can also use inline Markdown.
+For wide tables, wrap in a `.prose-scroll` container so the table scrolls horizontally instead of compressing:
 
-| Markdown | Less      | Pretty     |
-| -------- | --------- | ---------- |
-| _Still_  | `renders` | **nicely** |
-| 1        | 2         | 3          |
+<div class="prose-scroll">
 
----
+| Metric  | Jan  | Feb  | Mar  | Apr  | May  | Jun  | Jul  | Aug  | Sep  | Oct  | Nov  | Dec  |
+| ------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Visits  | 1.2k | 1.4k | 1.1k | 1.6k | 1.8k | 2.0k | 2.1k | 1.9k | 1.7k | 1.5k | 1.3k | 1.6k |
+| Signups | 80   | 95   | 70   | 110  | 130  | 150  | 160  | 140  | 120  | 100  | 90   | 115  |
 
-## Blockquotes
-
-> Blockquotes are very handy in email to emulate reply text. This line is part of the same quote.
-
-Quote break.
-
-> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+</div>
 
 ---
 
-## Inline HTML
+## Nested Content Rhythm
 
-You can also use raw HTML in your Markdown, and it'll mostly work pretty well.
+Blocks inside list items use a tighter margin than top-level blocks:
 
-```html
-<dl>
-  <dt>Definition list</dt>
-  <dd>Is something people use sometimes.</dd>
-
-  <dt>Markdown in HTML</dt>
-  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
-</dl>
-```
-
-Definition list
-
-Is something people use sometimes.
-
-Markdown in HTML
-
-Does _not_ work **very** well. Use HTML *tags*.
-
----
-
-## Horizontal Rule
-
-Three or more of `-`…
-
----
-
-… will generate a horizonal rule.
-
----
-
-## Line Breaks
-
-My basic recommendation for learning how line breaks work is to experiment and discover -- hit <Enter> once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens. You'll soon learn to get what you want. "Markdown Toggle" is your friend.
-
-Here are some things to try out:
-
-Here's a line for us to start with.
-
-This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
-
-This line is also begins a separate paragraph, but...
-This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
-
-(Technical note: *Markdown Here* uses GFM line breaks, so there's no need to use MD's two-space line breaks.)
-
----
-
-## YouTube Videos
-
-They can't be added directly but you can add an image with a link to the video like this:
-
-```html
-<a
-  href="https://www.youtube.com/watch?feature=player_embedded&v=dQw4w9WgXcQ"
-  target="_blank"
->
-  <img
-    src="https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg"
-    alt="Rick Roll"
-    width="240"
-    height="180"
-    border="10"
-  />
-</a>
-```
-
-Or, in pure Markdown, but losing the image sizing and border:
-
-```md
-[![Rick Roll](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-```
-
-Referencing a bug by #bugID in your git commit links it to the issue. For example #1.
-
----
-
-## Details Element
-
-You can use the HTML `<details>` element to create collapsible sections.
-
-<details>
-  <summary>Click to expand!</summary>
-  My basic recommendation for learning how line breaks work is to experiment and discover -- hit [Enter] once (i.e., insert one newline), then hit it twice (i.e., insert two newlines), see what happens.
-
-You'll soon learn to get what you want. "Markdown Toggle" is your friend.
-
-</details>
+- A list item with a nested blockquote:
+  > Nested quotes sit closer to their parent item than a top-level blockquote would.
+- A list item with a nested code block:
+  ```bash
+  echo "tighter spacing here too"
+  ```

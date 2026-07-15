@@ -9,7 +9,7 @@ const { links } = defineProps<Props>();
 </script>
 
 <template>
-  <section class="not-prosa relative overflow-hidden rounded-xl border">
+  <section class="not-prose relative overflow-hidden rounded-xl border">
     <header v-if="links && Object.entries(links).length > 0">
       <small class="flex justify-end gap-1.5 px-1.5 pt-1.5">
         <Button

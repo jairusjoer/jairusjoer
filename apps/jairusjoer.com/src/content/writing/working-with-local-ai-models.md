@@ -49,7 +49,7 @@ It has also proven useful for projects and workloads that require more RAM, as i
 
 To interact with my chosen models in an agentic manner, I use GitHub Copilot in Visual Studio Code and OpenCode via the terminal to provide me with capable Plan and Build agents.
 
-Both harnesses established themselves in continued use cases against contenders such as Claude Code and Pi 
+Both harnesses established themselves in continued use cases against contenders such as Claude Code and Pi
 
 ### GitHub Copilot
 

@@ -1,0 +1,341 @@
+@layer components {
+  :root {
+    --prose-flow: 1.5rem;
+    --prose-leading: 1.5;
+    --prose-headline-scale: pow(2, 0.2);
+  }
+
+  .prose {
+    font-size: var(--text-default);
+    line-height: var(--prose-leading);
+    margin-trim: block-start;
+    overflow-wrap: break-word;
+  }
+
+  .prose {
+    & *:where(.not-prose) {
+      margin-block-start: var(--prose-flow);
+    }
+
+    & *:not(:where(.not-prose, .not-prose *)) {
+      &:where(astro-island > *) {
+        margin-block-start: var(--prose-flow);
+      }
+
+      /* Paragraphs. */
+      &:where(p) {
+        margin-block-start: var(--prose-flow);
+      }
+
+      /* Headings. */
+      &:where(h1, h2, h3, h4, h5, h6) {
+        color: var(--color-foreground);
+        font-weight: 600;
+        margin-block-start: var(--prose-flow);
+        line-height: 1.125;
+      }
+      &:where(h1) {
+        font-size: calc(var(--text-default) * pow(var(--prose-headline-scale), 5));
+      }
+      &:where(h2) {
+        font-size: calc(var(--text-default) * pow(var(--prose-headline-scale), 4));
+      }
+      &:where(h3) {
+        font-size: calc(var(--text-default) * pow(var(--prose-headline-scale), 3));
+      }
+      &:where(h4) {
+        font-size: calc(var(--text-default) * pow(var(--prose-headline-scale), 2));
+      }
+      &:where(h5) {
+        font-size: calc(var(--text-default) * pow(var(--prose-headline-scale), 1));
+      }
+      &:where(h6) {
+        font-size: calc(var(--text-default) * pow(var(--prose-headline-scale), 0));
+      }
+
+      /* Anchors. */
+      &:where([id]) {
+        scroll-margin-block-start: var(--prose-flow);
+      }
+
+      /* Links. */
+      &:where(a) {
+        color: var(--color-accent);
+        text-decoration-color: color-mix(currentColor, transparent);
+        text-decoration-line: underline;
+      }
+      &:where(a:hover) {
+        text-decoration-color: currentColor;
+      }
+      &:where(:not(h1, h2, h3, h4, h5, h6)) a {
+        font-weight: 500;
+      }
+
+      /* Inline semantics. */
+      &:where(strong, b) {
+        color: var(--color-foreground);
+        font-weight: 600;
+      }
+      &:where(mark) {
+        background-color: color-mix(var(--color-accent), transparent);
+        color: var(--color-foreground);
+        padding-inline: 0.375rem;
+        border-radius: 0.375rem;
+      }
+      &:where(abbr[title]) {
+        cursor: help;
+        color: var(--color-foreground);
+        text-decoration-color: var(--color-accent);
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+      }
+
+      /* Task lists. */
+      &:where(li:has([type='checkbox'])) {
+        position: relative;
+      }
+      &:where(li [type='checkbox']) {
+        position: absolute;
+        left: -1.25em;
+        height: 1em;
+        width: 1em;
+        top: calc((var(--prose-leading) * 1em - 1em) / 2);
+        accent-color: var(--color-accent);
+      }
+
+      /* Disclosures. */
+      &:where(details) {
+        margin-block-start: var(--prose-flow);
+        padding-inline-start: 1.25em;
+      }
+      &:where(summary) {
+        list-style-position: outside;
+        cursor: pointer;
+      }
+      &:where(summary)::marker {
+        color: var(--color-foreground-subtle);
+      }
+
+      /* Keyboard keys. */
+      &:where(kbd) {
+        font-family: inherit;
+        font-size: smaller;
+        font-weight: 500;
+        border: 1px solid var(--color-border);
+        border-block-end-width: 2px;
+        border-radius: 0.375rem;
+        padding-inline: 0.375rem;
+      }
+
+      /* Definition lists. */
+      &:where(dl) {
+        margin-block-start: var(--prose-flow);
+      }
+      &:where(dt) {
+        font-weight: 500;
+        margin-block-start: calc(var(--prose-flow) / 3);
+      }
+      &:where(dt + dt) {
+        margin-block-start: 0;
+      }
+      &:where(dd) {
+        margin-block-start: calc(var(--prose-flow) / 3);
+        padding-inline-start: var(--prose-flow);
+        color: var(--color-foreground-subtle);
+      }
+
+      /* Inline code. */
+      &:where(:not(pre) > code) {
+        background-color: var(--color-background-subtle);
+        font-family: var(--font-mono);
+        font-size: smaller;
+        border-radius: 0.375rem;
+        padding-inline: 0.375rem;
+      }
+
+      /* Code blocks. */
+      &:where(pre) {
+        background-color: var(--color-background-subtle);
+        font-family: var(--font-mono);
+        font-size: smaller;
+        tab-size: 2;
+        direction: ltr;
+        border-radius: 0.375rem;
+        padding: calc(var(--prose-flow) / 2);
+        overflow-x: auto;
+        margin-block-start: var(--prose-flow);
+      }
+
+      /* Blockquote. */
+      &:where(blockquote) {
+        border-inline-start: 2px solid var(--color-border);
+        padding-inline-start: var(--prose-flow);
+        margin-block-start: var(--prose-flow);
+      }
+
+      /* Dividers. */
+      &:where(hr) {
+        border: 0;
+        border-block-start: 1px solid var(--color-border);
+        margin-block: calc(var(--prose-flow) * 2);
+      }
+
+      /* Footnotes. */
+      &:where(.footnotes, [data-footnotes]) {
+        margin-block-start: calc(var(--prose-flow) * 2);
+        border-block-start: 1px solid var(--color-border);
+        padding-block-start: var(--prose-flow);
+        font-size: smaller;
+        color: var(--color-foreground-subtle);
+      }
+
+      /* Math. */
+      /* &:where(math[display='block']) {
+      margin-block-start: var(--prose-flow);
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-block: 0.25em;
+    } */
+
+      /* Media. */
+      &:where(img, video) {
+        max-width: 100%;
+        height: auto;
+        margin-block-start: var(--prose-flow);
+      }
+      &:where(p img) {
+        margin-block-start: 0;
+      }
+      &:where(figure) {
+        margin-block-start: var(--prose-flow);
+        margin-inline: 0;
+      }
+      &:where(figcaption, caption) {
+        color: var(--color-foreground-subtle);
+        text-align: center;
+        margin-block-start: calc(var(--prose-flow) / 3);
+        font-size: smaller;
+      }
+      &:where(caption) {
+        caption-side: bottom;
+      }
+
+      /* Tables. */
+      &:where(table) {
+        width: 100%;
+        font-variant-numeric: tabular-nums;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-block-end: 1px solid var(--color-border);
+        margin-block-start: var(--prose-flow);
+      }
+      &:where(.prose-scroll) {
+        overflow-x: auto;
+        margin-block-start: var(--prose-flow);
+        padding: 1px;
+      }
+      &:where(.prose-scroll > *) {
+        margin-block-start: 0;
+      }
+      &:where(.prose-scroll table) {
+        width: max-content;
+        max-width: none;
+      }
+      &:where(th) {
+        color: var(--color-foreground);
+        font-weight: 600;
+        text-align: start;
+        white-space: nowrap;
+        padding: calc(var(--prose-flow) / 2);
+        background: var(--color-background-subtle);
+      }
+      &:where(th:first-child) {
+        border-radius: 0.375rem 0 0 0.375rem;
+      }
+      &:where(th:last-child) {
+        border-radius: 0 0.375rem 0.375rem 0;
+      }
+      &:where(:is(tbody, tfoot) :is(td, th)) {
+        padding: calc(var(--prose-flow) / 2);
+        text-align: start;
+        vertical-align: top;
+      }
+      &:where(tr:not(:first-child) td) {
+        border-block-start: 1px solid var(--color-border);
+      }
+      &:where(th[align='center'], td[align='center']) {
+        text-align: center;
+      }
+      &:where(th[align='right'], td[align='right']) {
+        text-align: end;
+      }
+
+      /* Lists. */
+      &:where(ul, ol) {
+        margin-block-start: var(--prose-flow);
+        padding-inline-start: 1.25em;
+      }
+      &:where(:is(ul, ol) > li::marker) {
+        color: var(--color-foreground-subtle);
+      }
+      &:where(ul) {
+        list-style-type: disc;
+      }
+      &:where(ul ul) {
+        list-style-type: circle;
+      }
+      &:where(ul ul ul) {
+        list-style-type: square;
+      }
+      &:where(ol) {
+        list-style-type: decimal;
+      }
+      &:where(ol[type='a' i]) {
+        list-style-type: lower-alpha;
+      }
+      &:where(ol[type='i' i]) {
+        list-style-type: lower-roman;
+      }
+      &:where(ol[type='A' s]) {
+        list-style-type: upper-alpha;
+      }
+      &:where(ol[type='I' s]) {
+        list-style-type: upper-roman;
+      }
+
+      /* Media queries. */
+      @media print {
+        &:where(pre, table, blockquote, figure) {
+          break-inside: avoid;
+        }
+        &:where(h1, h2, h3, h4) {
+          break-after: avoid;
+        }
+      }
+
+      @media (forced-colors: active) {
+        &:where(:not(pre) > code) {
+          border: 1px solid;
+        }
+      }
+
+      /* Spacing adjustments. */
+      &:where(:is(blockquote, details, summary) > :first-child) {
+        margin-block-start: 0;
+      }
+      &:where(li),
+      &:where(:is(li, details) > *:not(summary, [type='checkbox'])),
+      &:where(:is(details, ol, ul) + details),
+      &:where(details + :is(details, ol, ul)) {
+        margin-block-start: calc(var(--prose-flow) / 3);
+      }
+
+      /* Custom border style. */
+      &:where(img, video, pre:has(code), table) {
+        outline: 1px solid var(--color-border);
+        border-radius: 0.75rem;
+        border: 0.375rem solid var(--color-background);
+      }
+    }
+  }
+}

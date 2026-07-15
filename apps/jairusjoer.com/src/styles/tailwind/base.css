@@ -1,11 +1,5 @@
 /* eslint-disable css/no-important */
 @layer base {
-  ::selection,
-  mark {
-    background-color: var(--color-accent);
-    color: var(--color-background);
-  }
-
   :root {
     scrollbar-gutter: stable;
     scrollbar-color: var(--color-border) transparent;
@@ -21,10 +15,6 @@
 
   #root {
     isolation: isolate;
-  }
-
-  [id] {
-    scroll-margin-block: 1.5rem;
   }
 
   .astro-code,
@@ -79,30 +69,6 @@
       min-width: 24px;
       z-index: 999;
     }
-  }
-
-  input[type='checkbox'] {
-    appearance: none;
-    background-color: var(--color-background-subtle);
-    border-radius: 0.375rem;
-    border: 1px solid var(--color-border);
-    color: var(--color-background);
-    height: 1.5rem;
-    width: 1.5rem;
-    line-height: calc(1.5rem - 2px);
-  }
-
-  input[type='checkbox']:checked {
-    background-color: var(--color-accent);
-  }
-
-  input[type='checkbox']:checked::after {
-    content: '✓';
-    font-size: smaller;
-    inset: 0;
-    position: absolute;
-    text-align: center;
-    font-weight: 600;
   }
 
   input[type='color'] {
