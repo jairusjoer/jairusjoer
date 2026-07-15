@@ -79,7 +79,7 @@
       &:where(mark) {
         background-color: color-mix(var(--color-accent), transparent);
         color: var(--color-foreground);
-        padding-inline: 0.375rem;
+        padding-inline: 0.375em;
         border-radius: 0.375rem;
       }
       &:where(abbr[title]) {
@@ -124,7 +124,7 @@
         border: 1px solid var(--color-border);
         border-block-end-width: 2px;
         border-radius: 0.375rem;
-        padding-inline: 0.375rem;
+        padding-inline: 0.375em;
       }
 
       /* Definition lists. */
@@ -150,7 +150,7 @@
         font-family: var(--font-mono);
         font-size: smaller;
         border-radius: 0.375rem;
-        padding-inline: 0.375rem;
+        padding-inline: 0.375em;
       }
 
       /* Code blocks. */
@@ -181,6 +181,9 @@
       }
 
       /* Footnotes. */
+      &:where([data-footnote-ref]) {
+        margin-inline-start: 0.375em;
+      }
       &:where(.footnotes, [data-footnotes]) {
         margin-block-start: calc(var(--prose-flow) * 2);
         border-block-start: 1px solid var(--color-border);
@@ -194,7 +197,7 @@
       margin-block-start: var(--prose-flow);
       overflow-x: auto;
       overflow-y: hidden;
-      padding-block: 0.25em;
+      padding-block: 0.375em;
     } */
 
       /* Media. */
@@ -243,7 +246,7 @@
       }
       &:where(th) {
         color: var(--color-foreground);
-        font-weight: 600;
+        font-weight: 500;
         text-align: start;
         white-space: nowrap;
         padding: calc(var(--prose-flow) / 2);

@@ -19,7 +19,7 @@ const variants = {
   <component
     :is="as"
     :class="[
-      'block rounded-md px-1.5 leading-6 font-semibold whitespace-nowrap motion-safe:transition-colors',
+      'block rounded-md px-1.5 leading-6 font-medium whitespace-nowrap motion-safe:transition-colors',
       variants[variant],
     ]"
     v-bind="props"

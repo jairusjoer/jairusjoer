@@ -41,13 +41,13 @@ onMounted(() => onColorInput());
         @input="onColorInput"
       />
       <label for="color">
-        <span class="text-foreground font-semibold">Colour:</span>{{ ' ' }}
+        <span class="text-foreground font-medium">Colour:</span>{{ ' ' }}
         <small class="ml-auto font-mono">{{ theme.color }}</small>
       </label>
     </div>
     <div class="bg-background-subtle flex grow gap-1.5 rounded-md p-1.5">
       <label for="tokens">
-        <span class="text-foreground font-semibold">Tokens:</span>{{ ' ' }}
+        <span class="text-foreground font-medium">Tokens:</span>{{ ' ' }}
         <small class="ml-auto inline-block min-w-6 text-center font-mono">{{ theme.tokens }}</small>
       </label>
       <input

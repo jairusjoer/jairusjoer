@@ -57,7 +57,7 @@ const cssVariables = computed(() => {
   >
     <div
       :class="[
-        'flex flex-wrap overflow-hidden rounded-md border text-center text-xs font-semibold tabular-nums',
+        'flex flex-wrap overflow-hidden rounded-md border text-center text-xs font-medium tabular-nums',
         '*:grid *:size-12 *:grow *:place-content-center *:px-1.5',
       ]"
       :style="cssVariables"

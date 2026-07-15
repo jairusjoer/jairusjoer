@@ -4,7 +4,7 @@ import Showcase from '@components/Showcase.vue';
 
 <template>
   <Showcase>
-    <div class="flex gap-1.5 text-center leading-12 font-semibold">
+    <div class="flex gap-1.5 text-center leading-12 font-medium">
       <div class="w-12 rounded-md border bg-(--color-accent-raw)">
         <span style="color: contrast-color(var(--color-accent-raw))">Aa</span>
       </div>
