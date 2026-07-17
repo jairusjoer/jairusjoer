@@ -1,6 +1,6 @@
 ---
 title: 'Working with local AI models'
-description: 'To Do'
+description: 'Over the course of three months, I experimented with local AI models on a MacBook. This covered everything from selecting the provider and choosing the models to quantisation, parameter tuning and harnesses.'
 status: 'Draft'
 date: 2026-08-01
 ---
@@ -133,7 +133,7 @@ Configuration for OpenCode is placed in `~/.config/opencode/opencode.jsonc`. For
 
 ---
 
-While writing this post, I have continued to experiment with new models such as `prism-ml/Bonsai-27B-AWQ-4bit` and Pi harnesses, as well as extensions for my existing harnesses and parameter fine-tuning.
+While writing this post, I have continued to experiment with new models such as `prism-ml/Bonsai-27B-AWQ-4bit` and Pi as a harness, as well as extensions for my existing harnesses and parameter fine-tuning.
 
 Should this ongoing experimentation yield reportable results, I will be delighted to provide a follow-up post on this particular matter. In the meantime, the current setup should suffice for most people to get started.
 
