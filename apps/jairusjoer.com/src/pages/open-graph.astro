@@ -2,7 +2,7 @@
 import '@styles/global.css';
 import SiteMeta from '@components/SiteMeta.astro';
 import type { Metadata } from '@components/SiteMeta.astro';
-import { Font, Image } from 'astro:assets';
+import { Image } from 'astro:assets';
 import { site } from '../config';
 
 export interface Props {
@@ -22,7 +22,6 @@ const metadata: Metadata = {
 >
   <head>
     <SiteMeta {metadata} />
-    <Font cssVariable="--font-inter" />
   </head>
   <body>
     <div class="open-graph border-accent relative flex h-157.5 w-300 flex-col border-l-24 px-12 py-18">
@@ -43,11 +42,12 @@ const metadata: Metadata = {
           )
         }
         <div class="text-2xl leading-normal">
-          <p class="text-foreground font-medium">{site.title}</p>
+          <p class="text-foreground font-semibold">{site.title}</p>
           <p>{site.description}</p>
         </div>
       </header>
-      <h1 class="open-graph-title text-foreground isolate mt-auto text-7xl font-medium text-balance"></h1>
+      <h1 class="open-graph-title text-foreground isolate mt-auto text-7xl leading-[1.125] font-semibold text-balance">
+      </h1>
     </div>
   </body>
 </html>
@@ -65,7 +65,6 @@ const metadata: Metadata = {
 <style is:global>
   :root {
     scrollbar-gutter: unset;
-    font-family: var(--font-inter);
   }
 
   astro-dev-toolbar {
