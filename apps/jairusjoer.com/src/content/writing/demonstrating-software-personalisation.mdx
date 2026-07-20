@@ -37,6 +37,8 @@ Previously, JavaScript libraries were required to reliably calculate the optimal
 
 `contrast-color()` ensures minimum contrast in accordance with WCAG AA[^wcag] and returns either black or white based on the provided input. In this demonstration, the theme colour picker sets the CSS variable `--color-accent-raw`, which can then be used to derive a contrasting foreground colour:
 
+<figure>
+
 ```css
 :root {
   --color-accent-contrast: light-dark(white, black);
@@ -46,6 +48,9 @@ Previously, JavaScript libraries were required to reliably calculate the optimal
   }
 }
 ```
+
+<figcaption>Derive `contrast-colour()` from the raw accent, with a widely supported fallback.</figcaption>
+</figure>
 
 Given the relative recency of `contrast-color()` in the baseline, it should be treated as progressive enhancement. The default implementation should remain widely accessible, with the new function being opted into when the browser supports it correctly.
 
@@ -61,11 +66,16 @@ A vivid indigo that reads as bold and intentional in dark mode can appear muted 
 
 One approach to stabilising this is to derive a usable theme colour from the raw input while constraining its perceptual lightness across modes. Below is a minimal example of how the page theme colour is stabilised using [`oklch()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/oklch) and [`light-dark()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark):
 
+<figure>
+
 ```css
 :root {
   --color-accent: light-dark(oklch(from var(--color-accent-raw) 0.5 c h), oklch(from var(--color-accent-raw) 0.75 c h));
 }
 ```
+
+<figcaption>Stabilise perceptual lightness across light and dark modes using <code>oklch()</code>.</figcaption>
+</figure>
 
 In the OKLCH colour space, the values `0.5` and `0.75` are the perceptual lightness targets, where 0 is black and 1 is white. In light mode, setting lightness to `0.5` ensures the theme sits in the midrange; dark enough to be readable against white text, but light enough not to overpower the surrounding area.
 

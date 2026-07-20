@@ -28,7 +28,11 @@ Together with [Dennis Eming](https://www.linkedin.com/in/denniseming/) and Sofie
 
 Thanks to an iterative approach to feedback and improvements, enabled by [Sarah Köksal](https://www.linkedin.com/in/dr-sarah-k%C3%B6ksal-4256a3103/)‘s research and feedback collection, we achieved a satisfactory result for customers shortly after the initial launch, maintaining a high degree of polish throughout the broader rollout.
 
-![*The current iteration of the sidebar and top navigation introduced with milestone 1.0.*](./assets/2025_hero_design.png)
+<figure>
+  
+  ![Sidebar and top navigation introduced with milestone 1.0](./assets/2025_hero_design.png)
+  <figcaption>Sidebar and top navigation introduced with milestone 1.0</figcaption>
+</figure>
 
 ### Milestone 1.5
 
@@ -46,15 +50,21 @@ During my time here, I had the honour of collaborating with amazing people on tw
 
 In 2024, I collaborated with Dennis Eming , Fynn Schlegel, and [Jaro Lenz](https://www.linkedin.com/in/jaro-lenz-304245250/) on redesigning the dashboard, sidebar, and top navigation. This ultimately won us first place and laid the conceptual groundwork for the first milestone of the Design Vision.
 
-<video controls autoplay muted loop>
-  <source src="/media/2024_hero_hackathon.mp4" type="video/mp4" />
-</video>
+<figure>
+  <video controls autoplay muted loop>
+    <source src="/media/2024_hero_hackathon.mp4" type="video/mp4" />
+  </video>
+  <figcaption>2024 HERO hackathon demo of the modular dashboard</figcaption>
+</figure>
 
 In 2025, I collaborated with [Alexis-Rae Jager](https://www.linkedin.com/in/alexis-rae-jager-070bb125a/), Dennis Eming, Fynn Schlegel and Nico Brockel on redefining the theme customization of HERO. This project involved reworking the platform's outdated personalisation options, and it won us first place (again).
 
-<video controls autoplay muted loop>
-  <source src="/media/2025_hero_customisation.mp4" type="video/mp4" />
-</video>
+<figure>
+  <video controls autoplay muted loop>
+    <source src="/media/2025_hero_customisation.mp4" type="video/mp4" />
+  </video>
+  <figcaption>2025 HERO hackathon demo of the theme customisation</figcaption>
+</figure>
 
 ---
 
@@ -64,15 +74,31 @@ I accompanied my colleagues on many occasions, some of which were more turbulent
 
 In 2024, I attended the WeAreDevelopers congress for the first time, followed shortly by a workation in Groningen in the Netherlands. While the former was blasted by a heatwave, the latter turned out to be a more tranquil experience.
 
-![*Groningen, 2024*](./assets/2024_hero_groningen.jpg)
+<figure>
+  
+  ![Groningen Workation, 2024](./assets/2024_hero_groningen.jpg)
+  <figcaption>Groningen Workation, 2024</figcaption>
+</figure>
 
-![*WeAreDevelopers Congress, 2024*](./assets/2024_hero_congress.jpeg)
+<figure>
+  
+  ![WeAreDevelopers Congress, 2024](./assets/2024_hero_congress.jpeg)
+  <figcaption>WeAreDevelopers Congress, 2024</figcaption>
+</figure>
 
 In 2025, I revisited the WeAreDevelopers Congress with an even larger group, making a notable, colourful appearance at the event. Just two months later, a local Prague citizen guided us to an (literal) underground metal bar, where we had the pleasure of sampling local beverages.
 
-![*WeAreDevelopers Congress, 2025*](./assets/2025_hero_congress.png)
+<figure>
+  
+  ![WeAreDevelopers Congress, 2025](./assets/2025_hero_congress.png)
+  <figcaption>WeAreDevelopers Congress, 2025</figcaption>
+</figure>
 
-![*Prague, 2025*](./assets/2025_hero_prague.png)
+<figure>
+  
+  ![Prague Workation, 2025](./assets/2025_hero_prague.png)
+  <figcaption>Prague Workation, 2025</figcaption>
+</figure>
 
 ---
 

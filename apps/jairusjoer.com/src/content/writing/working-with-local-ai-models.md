@@ -21,7 +21,11 @@ I experimented with [Ollama](https://ollama.com/) in a previous attempt, and whi
 
 From the onboarding process to running my first model locally, I only needed to click through the model discovery. At the time, I had no knowledge of different quantisation approaches, such as MLX and GGUF.
 
-![Screenshot of the model discovery modal of LM Studio](./assets/2026_lm_studio.png)
+<figure>
+  
+  ![Model discovery modal inside of LM Studio](./assets/2026_lm_studio.png)
+  <figcaption>Model discovery modal inside of LM Studio</figcaption>
+</figure>
 
 ---
 
@@ -53,9 +57,9 @@ It has also proven useful for projects and workloads that require more RAM, as i
 
 ## Harnesses
 
-To interact with my chosen models in an agentic manner, I use GitHub Copilot in Visual Studio Code and OpenCode via the terminal to provide me with capable Plan and Build agents to work with.
+To interact with my chosen models in an agentic manner, I use [GitHub Copilot](https://github.com/features/copilot) in Visual Studio Code and [OpenCode](https://opencode.ai/) via the terminal to provide me with capable Plan and Build agents to work with.
 
-Both harnesses have proven their worth in ongoing use cases against competitors such as Continue, Claude Code and [Pi](https://pi.dev/). While the others didn’t prevail, I have decided to give Pi another try.
+Both harnesses have proven their worth in ongoing use cases against competitors such as [Continue](https://www.continue.dev/), [Claude Code](https://claude.com/product/claude-code) and [Pi](https://pi.dev/). While the others didn't prevail, I have decided to give Pi another try.
 
 I won’t discuss Pi in detail in this post, as I haven’t yet reached a conclusive stage in my experiments with it. Instead, I’ll focus on GitHub Copilot and OpenCode. Perhaps I will cover Pi in a future post.
 
@@ -65,9 +69,15 @@ Even before I switched to local models, GitHub Copilot was my primary agentic dr
 
 The only issue I’ve had with GitHub Copilot so far is that it won't suggest code completions based on local models. I tried using the Continue extension to resolve this, but there were ongoing problems with consistency.
 
-GitHub Copilot requires a [custom endpoint](https://code.visualstudio.com/docs/agent-customization/language-models#_add-a-custom-endpoint-model) to connect to LM Studio, with manual entries for each model. Language model extensions are also available for popular providers and handle local model discovery automatically.
+GitHub Copilot requires a custom endpoint to connect to LM Studio, with manual entries for each model. Language model extensions are also available for popular providers and handle local model discovery automatically.
 
-![Screenshot of GitHub Copilot in Visual Studio Code](./assets/2026_vs_code.png)
+<figure>
+  
+  ![GitHub Copilot session inside of Visual Studio Code](./assets/2026_vs_code.png)
+  <figcaption>GitHub Copilot session inside of Visual Studio Code</figcaption>
+</figure>
+
+<figure>
 
 ```json
 [
@@ -81,8 +91,8 @@ GitHub Copilot requires a [custom endpoint](https://code.visualstudio.com/docs/a
         "url": "http://localhost:1234/v1/chat/completions",
         "toolCalling": true,
         "vision": true,
-        "maxInputTokens": 65536,
-        "maxOutputTokens": 65536
+        "maxInputTokens": 49152,
+        "maxOutputTokens": 49152
       },
       {
         "id": "google/gemma-4-26b-a4b-qat",
@@ -90,13 +100,16 @@ GitHub Copilot requires a [custom endpoint](https://code.visualstudio.com/docs/a
         "url": "http://localhost:1234/v1/chat/completions",
         "toolCalling": true,
         "vision": true,
-        "maxInputTokens": 65536,
-        "maxOutputTokens": 65536
+        "maxInputTokens": 49152,
+        "maxOutputTokens": 49152
       }
     ]
   }
 ]
 ```
+
+<figcaption>My <a href="https://code.visualstudio.com/docs/agent-customization/language-models#_add-a-custom-endpoint-model">custom endpoint</a>, configurable via the command <b>Chat: Open Language Models (JSON)</b></figcaption>
+</figure>
 
 ### OpenCode
 
@@ -106,7 +119,14 @@ I haven’t encountered any ongoing issues with OpenCode that haven't resolved t
 
 Configuration for OpenCode is placed in `~/.config/opencode/opencode.jsonc`. For convenience when working with strongly typed and styled code, I’ve opted for **LSP** and **Formatting**, as well as my shell of choice, [fish](https://fishshell.com/).
 
-![Screenshot of a session of OpenCode in a terminal](./assets/2026_opencode.png)
+<figure>
+
+![OpenCode session inside of Ghostty terminal](./assets/2026_opencode.png)
+
+  <figcaption>OpenCode session inside of <a href="https://ghostty.org/">Ghostty</a> terminal</figcaption>
+</figure>
+
+<figure>
 
 ```json
 {
@@ -134,6 +154,17 @@ Configuration for OpenCode is placed in `~/.config/opencode/opencode.jsonc`. For
   }
 }
 ```
+
+<figcaption>My <a href="https://opencode.ai/docs/config/">OpenCode configuration</a>, located at <code>~/.config/opencode/opencode.jsonc</code></figcaption>
+</figure>
+
+---
+
+## Experience
+
+---
+
+## Conclusion
 
 ---
 
