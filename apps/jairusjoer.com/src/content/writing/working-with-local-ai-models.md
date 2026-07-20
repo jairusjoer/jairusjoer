@@ -21,7 +21,7 @@ I experimented with [Ollama](https://ollama.com/) in a previous attempt, and whi
 
 From the onboarding process to running my first model locally, I only needed to click through the model discovery. At the time, I had no knowledge of different quantisation approaches, such as MLX and GGUF.
 
-![View of the model discovery modal of LM Studio](./assets/2026_lm_studio.png)
+![Screenshot of the model discovery modal of LM Studio](./assets/2026_lm_studio.png)
 
 ---
 
@@ -67,6 +67,8 @@ The only issue I’ve had with GitHub Copilot so far is that it won't suggest co
 
 GitHub Copilot requires a [custom endpoint](https://code.visualstudio.com/docs/agent-customization/language-models#_add-a-custom-endpoint-model) to connect to LM Studio, with manual entries for each model. Language model extensions are also available for popular providers and handle local model discovery automatically.
 
+![Screenshot of GitHub Copilot in Visual Studio Code](./assets/2026_vs_code.png)
+
 ```json
 [
   {
@@ -103,6 +105,8 @@ OpenCode has established itself as my primary harness of choice and delivers a s
 I haven’t encountered any ongoing issues with OpenCode that haven't resolved themselves. I did encounter some minor issues with subagents and tool calls during the initial sessions, but it has been consistently reliable since then.
 
 Configuration for OpenCode is placed in `~/.config/opencode/opencode.jsonc`. For convenience when working with strongly typed and styled code, I’ve opted for **LSP** and **Formatting**, as well as my shell of choice, [fish](https://fishshell.com/).
+
+![Screenshot of a session of OpenCode in a terminal](./assets/2026_opencode.png)
 
 ```json
 {
