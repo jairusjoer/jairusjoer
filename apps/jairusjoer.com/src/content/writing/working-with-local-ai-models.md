@@ -162,17 +162,21 @@ Configuration for OpenCode is placed in `~/.config/opencode/opencode.jsonc`. For
 
 ## Experience
 
+After three months of daily use, I have seen both the potential and limitations of local AI models. Latency is negligible, privacy is absolute and the speed of iteration is much faster than waiting for cloud or usage queues.
+
+Qwen has reliably handled my primary agentic work, while Gemma has quietly proven its worth for research and documentation. Neither model is a match for the frontier labs, but both remain more than capable for daily engineering tasks.
+
+The harnesses themselves required most of my patience. Tool calling, subagents and context handling have all improved, as have I, though rough edges remain when pushing either model beyond its memory or comfort zone.
+
 ---
 
 ## Conclusion
 
----
+This setup has served me well over the past three months and would be a good place to start for anyone interested in running capable models locally without any external dependencies for compute.
 
-While writing this post, I have continued to experiment with new models such as `prism-ml/Bonsai-27B-AWQ-4bit` and Pi as a harness, as well as extensions for my existing harnesses and parameter fine-tuning.
+However, my experimentation doesn't stop here. I’m currently trialling new models such as `prism-ml/Bonsai-27B-AWQ-4bit`, using Pi as a harness and continuing to refine the parameters. A follow-up post may well follow.
 
-Should this ongoing experimentation yield reportable results, I will be delighted to provide a follow-up post on this particular matter. In the meantime, the current setup should suffice for most people to get started.
-
-I am excited about the future capabilities of local AI models, both in terms of self-hosting and agentic engineering and in terms of how on-device or system models will integrate with future software.
+I am genuinely excited about the future of local AI, particularly in terms of self-hosting, agentic engineering and the eventual integration of on-device models into everyday software.
 
 ---
 
