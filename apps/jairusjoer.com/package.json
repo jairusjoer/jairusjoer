@@ -10,7 +10,8 @@
     "check-types": "astro check",
     "format": "prettier --write '**/*.{astro,css,json,md,mdx,ts}'",
     "lint": "eslint --fix --max-warnings 0",
-    "open-graph": "node actions/open-graph.ts"
+    "open-graph": "node actions/open-graph.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
@@ -52,6 +53,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^17.6.0",
     "gray-matter": "^4.0.3",
+    "husky": "^9.1.7",
     "jiti": "^2.7.0",
     "playwright": "^1.61.0",
     "prettier": "^3.8.4",
