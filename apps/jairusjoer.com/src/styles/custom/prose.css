@@ -308,11 +308,9 @@
 
       /* Media queries. */
       @media print {
-        &:where(pre, table, blockquote, figure) {
+        &:where(pre, table, blockquote, figure, img),
+        &:where(h1, h2, h3, h4, li) {
           break-inside: avoid;
-        }
-        &:where(h1, h2, h3, h4) {
-          break-after: avoid;
         }
       }
 
