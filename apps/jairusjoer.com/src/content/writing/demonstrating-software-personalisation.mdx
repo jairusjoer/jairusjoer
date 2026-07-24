@@ -35,21 +35,21 @@ Previously, JavaScript libraries were required to reliably calculate the optimal
 
 <ThemeContrast client:load />
 
-`contrast-color()` ensures minimum contrast in accordance with WCAG AA[^wcag] and returns either black or white based on the provided input. In this demonstration, the theme colour picker sets the CSS variable `--color-accent-raw`, which can then be used to derive a contrasting foreground colour:
+`contrast-color()` ensures minimum contrast in accordance with WCAG AA[^wcag] and returns either black or white based on the provided input. In this demonstration, the theme colour picker sets the CSS variable `--color-theme-raw`, which can then be used to derive a contrasting foreground colour:
 
 <figure>
 
 ```css
 :root {
-  --color-accent-contrast: light-dark(white, black);
+  --color-theme-contrast: light-dark(white, black);
 
   @supports (color: contrast-color(red)) {
-    --color-accent-contrast: contrast-color(var(--color-accent-raw));
+    --color-theme-contrast: contrast-color(var(--color-theme));
   }
 }
 ```
 
-<figcaption>Derive `contrast-colour()` from the raw accent, with a widely supported fallback.</figcaption>
+<figcaption>Derive `contrast-colour()` from the theme, with a widely supported fallback.</figcaption>
 </figure>
 
 Given the relative recency of `contrast-color()` in the baseline, it should be treated as progressive enhancement. The default implementation should remain widely accessible, with the new function being opted into when the browser supports it correctly.
@@ -70,7 +70,7 @@ One approach to stabilising this is to derive a usable theme colour from the raw
 
 ```css
 :root {
-  --color-accent: light-dark(oklch(from var(--color-accent-raw) 0.5 c h), oklch(from var(--color-accent-raw) 0.75 c h));
+  --color-theme: light-dark(oklch(from var(--color-theme-raw) 0.5 c h), oklch(from var(--color-theme-raw) 0.75 c h));
 }
 ```
 

@@ -17,7 +17,7 @@ const appliedTheme = computed(() => {
 
       return [
         token,
-        `oklch(from var(--color-accent-raw) ${getLightness(index, theme.value.tokens)} ${getColorScale(chroma, theme.value.tokens)} h)`,
+        `oklch(from var(--color-theme-raw) ${getLightness(index, theme.value.tokens)} ${getColorScale(chroma, theme.value.tokens)} h)`,
       ];
     }),
   );
@@ -44,7 +44,7 @@ function getColorScale(chroma: number, tokens: number) {
 
 const cssVariables = computed(() => {
   return Object.entries(appliedTheme.value)
-    .map(([token, value]) => `--color-accent-${token}: ${value};`)
+    .map(([token, value]) => `--color-theme-${token}: ${value};`)
     .join('\n');
 });
 </script>
@@ -64,7 +64,7 @@ const cssVariables = computed(() => {
     >
       <div
         v-for="(_, key) in appliedTheme"
-        :style="{ background: `var(--color-accent-${key})`, color: `contrast-color(var(--color-accent-${key}))` }"
+        :style="{ background: `var(--color-theme-${key})`, color: `contrast-color(var(--color-theme-${key}))` }"
       >
         {{ key }}
       </div>

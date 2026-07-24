@@ -12,12 +12,12 @@ function onColorInput(event?: InputEvent) {
     $theme.setKey('color', value);
   }
 
-  document.documentElement.style.setProperty('--color-accent-raw', theme.value.color);
+  document.documentElement.style.setProperty('--color-theme-raw', theme.value.color);
   document.documentElement.style.setProperty(
-    '--color-accent',
+    '--color-theme',
     `light-dark(
-      oklch(from var(--color-accent-raw) 0.5 c h),
-      oklch(from var(--color-accent-raw) 0.75 c h)
+      oklch(from var(--color-theme-raw) 0.5 c h),
+      oklch(from var(--color-theme-raw) 0.75 c h)
     )`,
   );
 }
@@ -51,7 +51,7 @@ onMounted(() => onColorInput());
         <small class="ml-auto inline-block min-w-6 text-center font-mono">{{ theme.tokens }}</small>
       </label>
       <input
-        class="accent-accent grow"
+        class="accent-(--color-theme) grow"
         type="range"
         name="tokens"
         step="1"
