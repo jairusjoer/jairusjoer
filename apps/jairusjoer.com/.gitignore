@@ -20,3 +20,6 @@ pnpm-debug.log*
 
 # System
 .DS_Store
+
+# Tests
+test-results/

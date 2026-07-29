@@ -4,6 +4,7 @@ import json from '@eslint/json';
 import markdown from '@eslint/markdown';
 import astro from 'eslint-plugin-astro';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
+import * as mdx from 'eslint-plugin-mdx';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -13,7 +14,7 @@ export default defineConfig(
   {
     files: ['**/*.astro'],
     plugins: { astro },
-    extends: [astro.configs.recommended],
+    extends: [astro.configs['flat/jsx-a11y-recommended']],
   },
   {
     files: ['**/*.css'],
@@ -28,8 +29,8 @@ export default defineConfig(
   },
   {
     files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
-    plugins: { js, jsxA11y },
-    extends: [js.configs.recommended, tseslint.configs.recommended],
+    plugins: { jsxA11y },
+    extends: [js.configs.recommended, tseslint.configs.recommended, jsxA11y.flatConfigs.recommended],
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
       parserOptions: { ecmaFeatures: { jsx: true }, tsconfigRootDir: import.meta.dirname },
@@ -46,5 +47,10 @@ export default defineConfig(
     plugins: { markdown },
     extends: [markdown.configs.recommended],
     language: 'markdown/gfm',
+  },
+  {
+    files: ['**/*.mdx'],
+    plugins: { jsxA11y },
+    extends: [mdx.configs.flat, mdx.configs.flatCodeBlocks, jsxA11y.flatConfigs.recommended],
   },
 );
