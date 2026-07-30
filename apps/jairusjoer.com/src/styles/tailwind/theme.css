@@ -10,8 +10,8 @@
   --color-foreground-subtle: light-dark(#5c5f77, #a6adc8); /* latte subtext1 / mocha subtext0 */
   --color-foreground: light-dark(#4c4f69, #cdd6f4); /* latte text / mocha text */
 
-  --font-default: 'Geist', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
+  --font-default: var(--font-geist, sans-serif);
+  --font-mono: var(--font-geist-mono, monospace);
 
   --spacing-default: 40rem;
 

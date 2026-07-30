@@ -4,6 +4,7 @@ import SiteFooter from '@components/SiteFooter.astro';
 import SiteHeader from '@components/SiteHeader.astro';
 import SiteMeta from '@components/SiteMeta.astro';
 import type { Metadata } from '@components/SiteMeta.astro';
+import { Font } from 'astro:assets';
 import { site } from '../config';
 
 export interface Props {
@@ -19,6 +20,8 @@ const { metadata } = Astro.props;
 >
   <head>
     <SiteMeta {metadata} />
+    <Font cssVariable="--font-geist" />
+    <Font cssVariable="--font-geist-mono" />
     <slot name="head" />
   </head>
   <body>

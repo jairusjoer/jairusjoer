@@ -2,7 +2,7 @@
 import '@styles/global.css';
 import SiteMeta from '@components/SiteMeta.astro';
 import type { Metadata } from '@components/SiteMeta.astro';
-import { Image } from 'astro:assets';
+import { Font, Image } from 'astro:assets';
 import { site } from '../config';
 
 export interface Props {
@@ -22,6 +22,8 @@ const metadata: Metadata = {
 >
   <head>
     <SiteMeta {metadata} />
+    <Font cssVariable="--font-geist" />
+    <Font cssVariable="--font-geist-mono" />
   </head>
   <body>
     <div class="open-graph border-accent relative flex h-157.5 w-300 flex-col border-l-24 px-12 py-18">
