@@ -1,7 +1,6 @@
 ---
 title: 'Working with local AI models'
 description: 'Over the course of three months, I experimented with local AI models on a MacBook. This covered everything from selecting the provider and choosing the models to quantisation, parameter tuning and harnesses.'
-status: 'Draft'
 date: 2026-08-01
 ---
 
