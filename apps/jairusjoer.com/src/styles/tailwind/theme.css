@@ -10,14 +10,7 @@
   --color-foreground-subtle: light-dark(#5c5f77, #a6adc8); /* latte subtext1 / mocha subtext0 */
   --color-foreground: light-dark(#4c4f69, #cdd6f4); /* latte text / mocha text */
 
-  --font-default: var(--font-geist, sans-serif);
-  --font-mono: var(--font-geist-mono, monospace);
-
   --spacing-default: 40rem;
 
   --text-default: 1rem;
-}
-
-:root {
-  font-feature-settings: 'ss01', 'ss03', 'tnum';
 }

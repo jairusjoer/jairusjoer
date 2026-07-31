@@ -10,15 +10,17 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: 'Geist',
-      cssVariable: '--font-geist',
-      weights: ['400', '500', '600'],
+      name: 'Inter',
+      cssVariable: '--font-sans',
+      weights: [400, 500, 600],
+      fallbacks: ['sans-serif'],
     },
     {
       provider: fontProviders.fontsource(),
-      name: 'Geist Mono',
-      cssVariable: '--font-geist-mono',
-      weights: ['400', '500', '600'],
+      name: 'JetBrains Mono',
+      cssVariable: '--font-mono',
+      weights: [400, 500, 600],
+      fallbacks: ['monospace'],
     },
   ],
 

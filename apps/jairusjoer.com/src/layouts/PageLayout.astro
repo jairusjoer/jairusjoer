@@ -20,14 +20,14 @@ const { metadata } = Astro.props;
 >
   <head>
     <SiteMeta {metadata} />
-    <Font cssVariable="--font-geist" />
-    <Font cssVariable="--font-geist-mono" />
+    <Font cssVariable="--font-sans" />
+    <Font cssVariable="--font-mono" />
     <slot name="head" />
   </head>
   <body>
     <div
       id="root"
-      class="text-default font-default px-6 py-24"
+      class="text-default px-6 py-24 font-sans"
     >
       <div class="max-w-default mx-auto flex min-h-dvh w-full flex-col items-start print:ml-0 print:max-w-none">
         <SiteHeader />
