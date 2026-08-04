@@ -57,8 +57,8 @@ const cssVariables = computed(() => {
   >
     <div
       :class="[
-        'flex flex-wrap gap-1.5 text-center text-xs font-medium tabular-nums',
-        '*:grid *:size-12 *:grow *:border *:rounded-md *:place-content-center *:px-1.5',
+        'flex flex-wrap gap-1 text-center text-xs font-medium tabular-nums',
+        '*:border-border/50 *:grid *:size-12 *:grow *:place-content-center *:rounded-xl *:border',
       ]"
       :style="cssVariables"
     >
@@ -70,8 +70,8 @@ const cssVariables = computed(() => {
       </div>
     </div>
     <template #footer>
-      <small class="bg-background-subtle block overflow-x-auto rounded-md">
-        <pre class="overflow-x-auto p-1.5"><code>{{ cssVariables }}</code></pre>
+      <small>
+        <pre class="overflow-x-auto p-2"><code>{{ cssVariables }}</code></pre>
       </small>
     </template>
   </Showcase>

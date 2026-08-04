@@ -3,10 +3,11 @@ import type { SiteConfigLink } from '../config';
 import Button from './Button.vue';
 
 export interface Props {
+  class?: string;
   links?: Array<SiteConfigLink>;
 }
 
-const { links } = Astro.props;
+const { class: className, links } = Astro.props;
 
 const active = (path: string) => {
   if (path === '/') {
@@ -19,8 +20,8 @@ const active = (path: string) => {
 
 {
   links?.length && (
-    <nav class="print-hidden">
-      <ul class="flex flex-wrap items-center gap-1.5 font-medium">
+    <nav class:list={['print-hidden w-full', className]}>
+      <ul class="flex flex-wrap items-center gap-1 font-medium">
         <slot />
         {links.map((link) => (
           <li>

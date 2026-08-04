@@ -9,9 +9,9 @@ const { links } = defineProps<Props>();
 </script>
 
 <template>
-  <section class="not-prose relative overflow-hidden rounded-xl border">
+  <section class="not-prose relative overflow-hidden rounded-lg border">
     <header v-if="links && Object.entries(links).length > 0">
-      <small class="flex justify-end gap-1.5 px-1.5 pt-1.5">
+      <small class="flex justify-end gap-1 px-1 pt-1">
         <Button
           v-for="(path, label) in links"
           variant="subtle"
@@ -24,13 +24,13 @@ const { links } = defineProps<Props>();
       </small>
     </header>
 
-    <div class="grid place-content-center overflow-hidden px-3 py-12">
+    <div class="grid place-content-center overflow-hidden px-1 py-12">
       <slot />
     </div>
 
     <footer
       v-if="$slots.footer"
-      class="space-y-1.5 p-1.5"
+      class="bg-background-subtle m-1 space-y-1 rounded-sm"
     >
       <slot name="footer" />
     </footer>

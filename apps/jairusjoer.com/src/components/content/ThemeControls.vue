@@ -32,8 +32,8 @@ onMounted(() => onColorInput());
 </script>
 
 <template>
-  <form class="not-prose bg-background flex gap-1.5 rounded-xl border p-1.5">
-    <div class="bg-background-subtle flex gap-1.5 rounded-md p-1.5">
+  <form class="not-prose bg-background flex gap-1 rounded-lg border p-1">
+    <div class="bg-background-subtle flex gap-1 rounded-sm p-2">
       <input
         type="color"
         id="color"
@@ -45,13 +45,13 @@ onMounted(() => onColorInput());
         <small class="ml-auto font-mono">{{ theme.color }}</small>
       </label>
     </div>
-    <div class="bg-background-subtle flex grow gap-1.5 rounded-md p-1.5">
+    <div class="bg-background-subtle flex grow gap-1 rounded-sm p-2">
       <label for="tokens">
         <span class="text-foreground font-medium">Tokens:</span>{{ ' ' }}
         <small class="ml-auto inline-block min-w-6 text-center font-mono">{{ theme.tokens }}</small>
       </label>
       <input
-        class="accent-(--color-theme) grow"
+        class="grow accent-(--color-theme)"
         type="range"
         name="tokens"
         step="1"

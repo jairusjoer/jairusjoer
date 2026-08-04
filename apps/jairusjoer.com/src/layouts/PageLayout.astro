@@ -5,6 +5,7 @@ import SiteHeader from '@components/SiteHeader.astro';
 import SiteMeta from '@components/SiteMeta.astro';
 import type { Metadata } from '@components/SiteMeta.astro';
 import { Font } from 'astro:assets';
+import SiteNavigation from '../components/SiteNavigation.astro';
 import { site } from '../config';
 
 export interface Props {
@@ -31,6 +32,10 @@ const { metadata } = Astro.props;
     >
       <div class="max-w-default mx-auto flex min-h-dvh w-full flex-col items-start print:ml-0 print:max-w-none">
         <SiteHeader />
+        <SiteNavigation
+          class="mt-6"
+          links={site.navigation}
+        />
         <slot />
         <SiteFooter links={site.footer} />
       </div>

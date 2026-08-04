@@ -4,12 +4,12 @@ import Showcase from '@components/Showcase.vue';
 
 <template>
   <Showcase>
-    <div class="flex gap-1.5 text-center leading-12 font-medium">
-      <div class="w-12 rounded-md border bg-(--color-theme-raw)">
+    <div class="flex gap-1 text-center leading-12 font-medium">
+      <div class="border-border/50 w-12 rounded-xl border bg-(--color-theme-raw)">
         <span style="color: contrast-color(var(--color-theme-raw))">Aa</span>
       </div>
       <div
-        class="w-12 rounded-md border"
+        class="border-border/50 w-12 rounded-xl border"
         style="background: contrast-color(var(--color-theme-raw))"
       >
         <span class="text-(--color-theme-raw)">Aa</span>
@@ -17,7 +17,7 @@ import Showcase from '@components/Showcase.vue';
     </div>
 
     <template #footer>
-      <p class="bg-background-subtle rounded-md p-1.5 text-center">
+      <p class="p-2 text-center">
         <small>
           <em>Changing the theme colour will automatically apply an appropriate contrast color</em>
         </small>
