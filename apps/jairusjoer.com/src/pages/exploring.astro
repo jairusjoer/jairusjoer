@@ -1,47 +1,66 @@
 ---
-title: 'Exploring'
-description: 'Experiments and other curiosities'
+import DotMatrix from '@components/content/DotMatrix.astro';
+import ThemeContrast from '@components/content/ThemeContrast';
+import ThemeControls from '@components/content/ThemeControls';
+import ThemePalette from '@components/content/ThemePalette';
+import type { Metadata } from '@components/PageMeta.astro';
+import Showcase from '@components/Showcase';
+import PageLayout from '@layouts/PageLayout.astro';
+
+const metadata: Metadata = {
+  title: 'Exploring',
+  description: 'Experiments and other curiosities',
+};
 ---
 
-## Theme Contrast & Palette
+<PageLayout {metadata}>
+  <h1 class="text-heading">{metadata.title}</h1>
+  <p>{metadata.description}</p>
 
-While writing the post [Demonstrating Software Personalisation](/writing/demonstrating-software-personalisation), I built these interactive theme components to offer a more interactive and explorable approach to the topic.
+  <hr class="my-6" />
 
-import ThemeControls from '@components/content/ThemeControls.vue';
+  <h2 class="text-heading">Theme Contrast & Palette</h2>
+  <div class="prose">
+    <p>
+      While writing the post <a href="/writing/demonstrating-software-personalisation"
+        >Demonstrating Software Personalisation</a
+      >, I built these theme components to offer a more interactive and explorable approach to the topic.
+    </p>
 
-<ThemeControls client:load />
+    <ThemeControls client:idle />
 
-import ThemeContrast from '@components/content/ThemeContrast.vue';
+    <ThemeContrast client:idle />
 
-<ThemeContrast client:load />
+    <ThemePalette client:idle />
+  </div>
 
-import ThemePalette from '@components/content/ThemePalette.vue';
+  <hr class="my-12" />
 
-<ThemePalette client:load />
+  <h2 class="text-heading">Dot Matrix</h2>
+  <div class="prose">
+    <p>
+      I've come to like Bungie's Marathon and its art style, which was surely assisted by the involvement of <a
+        href="https://www.kurppahosk.com/work/bungie">Kurppa Hosk</a
+      >, a design favourite of mine. What you see here is a customisable approximation of the game's loading animation.
+    </p>
 
----
-
-## Dot Matrix
-
-I've come to like Bungie's Marathon and its art style, which was surely assisted by the involvement of [Kurppa Hosk](https://www.kurppahosk.com/work/bungie), a design favourite of mine. What you see here is a customisable approximation of the game's loading animation.
-
-<Showcase
-  links={{
-    Usage: 'src/content/exploring.mdx?plain=1#L10-L86',
-    Code: 'src/components/explorations/DotMatrix.astro',
-  }}
->
-  <DotMatrix
-    config={{
-      grid: {
-        columns: 17,
-        rows: 17,
-        width: 224,
-        height: 224,
-        gap: 1,
-      },
-      patterns: [
-        `
+    <Showcase
+      links={{
+        Usage: 'src/pages/exploring.astro',
+        Code: 'src/components/content/DotMatrix.astro',
+      }}
+    >
+      <DotMatrix
+        config={{
+          grid: {
+            columns: 17,
+            rows: 17,
+            width: 224,
+            height: 224,
+            gap: 1,
+          },
+          patterns: [
+            `
           □□□□□□□□□□□□□□□□□
           □□□□□□□□□□□□□□□□□
           □□□□□□□■■■□□□□□□□
@@ -60,7 +79,7 @@ I've come to like Bungie's Marathon and its art style, which was surely assisted
           □□□□□□□□□□□□□□□□□
           □□□□□□□□□□□□□□□□□
           `,
-        `
+            `
           □□□□□□□□□□□□□□□□□
           □□□□□□□■■■□□□□□□□
           □□□□□□□■□■□□□□□□□
@@ -79,7 +98,7 @@ I've come to like Bungie's Marathon and its art style, which was surely assisted
           □□□□□□□■■■□□□□□□□
           □□□□□□□□□□□□□□□□□
           `,
-        `
+            `
           □□□□□□■□□□■□□□□□□
           □□□□□□■□□□■□□□□□□
           ■□□■■□□■□■□□■■□□■
@@ -98,7 +117,9 @@ I've come to like Bungie's Marathon and its art style, which was surely assisted
           □□□□■□□□□□□□■□□□□
           □□□□■□□□□□□□■□□□□
           `,
-      ],
-    }}
-  />
-</Showcase>
+          ],
+        }}
+      />
+    </Showcase>
+  </div>
+</PageLayout>

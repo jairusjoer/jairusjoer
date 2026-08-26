@@ -4,9 +4,9 @@ description: 'How colour, contrast, and palettes turn web theming into personal,
 date: 2026-06-02
 ---
 
-import ThemeContrast from '@components/content/ThemeContrast.vue';
-import ThemeControls from '@components/content/ThemeControls.vue';
-import ThemePalette from '@components/content/ThemePalette.vue';
+import ThemeContrast from '@components/content/ThemeContrast';
+import ThemeControls from '@components/content/ThemeControls';
+import ThemePalette from '@components/content/ThemePalette';
 
 In previous posts, I wrote about my [philosophy of personal software](/writing/about-personal-software/) and my [recent work on software personalisation at HERO Software](/writing/two-years-at-hero-software). In this post, I would like to continue this exploration in a more concrete way: by demonstrating what software personalisation can look like on the web through the lens of theming.
 
@@ -17,8 +17,8 @@ In software, associations are formed through a variety of features. At the simpl
 Colour is a particularly effective tool for enabling association, from its application in user interfaces to its role in multi-brand design systems. To explore the growing complexity of colour, and the considerations that follow from it, choose a colour:
 
 <ThemeControls
-  client:load
-  class="sticky top-6 z-10"
+  client:idle
+  className="sticky top-6 z-10"
 />
 
 A single colour may not appear complex in isolation, but complexity emerges as soon as it interacts with an interface. The moment control of a colour is handed to the user, the number of considerations grows with the available palette.
@@ -33,7 +33,7 @@ However, as soon as a colour space is exposed through a picker, this approach be
 
 Previously, JavaScript libraries were required to reliably calculate the optimal contrast colour based on a theme colour. In April 2026, the <abbr title="Cascading Style Sheets">CSS</abbr> [`contrast-color()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/contrast-color) function became widely available and aims to address this problem head-on.
 
-<ThemeContrast client:load />
+<ThemeContrast client:idle />
 
 `contrast-color()` ensures minimum contrast in accordance with WCAG AA[^wcag] and returns either black or white based on the provided input. In this demonstration, the theme colour picker sets the CSS variable `--color-theme-raw`, which can then be used to derive a contrasting foreground colour:
 
@@ -93,7 +93,7 @@ There is no universal answer here. In my experience, the most satisfying outcome
 
 At some point in this process, the request for a full palette almost always appears: a range of shades derived from a single colour that can be applied to buttons, backgrounds, borders, and states.
 
-<ThemePalette client:load />
+<ThemePalette client:idle />
 
 Constructing such a palette deterministically from a single input colour must account for all the previous considerations; and introduces several new ones in the realm of colour space.
 

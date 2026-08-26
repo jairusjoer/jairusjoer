@@ -1,25 +1,34 @@
-import { mkdir, rm } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
+import { page as site } from '../src/config.ts';
 
 const previewOrigin = 'http://localhost:4321';
 
-const rssUrl = `${previewOrigin}/rss.xml`;
-const rssResponse = await fetch(rssUrl);
+const distFiles = await readdir('dist', { recursive: true, withFileTypes: true });
 
-if (!rssResponse.ok) {
-  throw new Error(`Unable to read RSS feed from ${rssUrl}: ${rssResponse.status} ${rssResponse.statusText}`);
-}
+const entries = (
+  await Promise.all(
+    distFiles
+      .filter((entry) => entry.isFile() && entry.name.endsWith('.html'))
+      .map(async (entry) => {
+        const file = path.relative('dist', path.join(entry.parentPath, entry.name));
+        const id = file === 'index.html' ? 'index' : file.replace(/\/index\.html$/, '').replace(/\.html$/, '');
 
-const rssFeed = await rssResponse.text();
-const rssRegex = /<title>\s*(?<title>[^<]+?)\s*<\/title>[\s\S]*?<link>\s*(?<link>[^<]+?)\s*<\/link>/g;
+        if (['404', 'open-graph'].includes(id)) return null;
 
-const entries = [...rssFeed.matchAll(rssRegex)].map((item) => {
-  const { title, link } = item.groups as { title: string; link: string };
-  const id = new URL(link).pathname.replace(/^\/|\/$/g, '');
+        const html = await readFile(path.join(entry.parentPath, entry.name), 'utf-8');
+        const title = html
+          .match(/<title>(.*?)<\/title>/s)?.[1]
+          ?.replace(` • ${site.title}`, '')
+          .trim();
 
-  return { id: id === '' ? 'index' : id, title };
-});
+        if (!title) return null;
+
+        return { id, title };
+      }),
+  )
+).filter((entry) => entry !== null);
 
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({

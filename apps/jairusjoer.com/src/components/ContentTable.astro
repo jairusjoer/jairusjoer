@@ -1,0 +1,31 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+export interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+{
+  headings.length > 0 && (
+    <details>
+      <summary>Contents</summary>
+
+      <ol>
+        {headings.map(({ depth, slug, text }) => (
+          <li style={`--toc-level: ${Math.max(0, depth - 2)}`}>
+            <a href={`#${slug}`}>{text}</a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
+
+<style>
+  ol li {
+    margin-inline-start: calc(var(--toc-level, 0) * var(--prose-flow));
+  }
+</style>

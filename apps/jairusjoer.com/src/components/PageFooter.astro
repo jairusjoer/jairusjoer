@@ -1,0 +1,19 @@
+---
+import { page } from '@config';
+import PageNavigation from './PageNavigation.astro';
+---
+
+{
+  page.footer && (
+    <footer class="mt-auto w-full space-y-6 print:hidden">
+      <PageNavigation
+        class="mt-6"
+        links={page.footer?.top}
+      />
+
+      <hr />
+
+      <PageNavigation links={page.footer?.bottom} />
+    </footer>
+  )
+}

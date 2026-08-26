@@ -1,0 +1,26 @@
+---
+import BookList from '@components/BookList.astro';
+import LinkList from '@components/LinkList.astro';
+import type { Metadata } from '@components/PageMeta.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+
+const metadata: Metadata = {
+  title: 'Reading',
+  description: 'Evergrowing list of physical and digital materials',
+};
+---
+
+<PageLayout {metadata}>
+  <h1 class="text-heading">{metadata.title}</h1>
+  <p>{metadata.description}</p>
+
+  <hr class="my-6" />
+
+  <BookList />
+
+  <h2 class="text-heading mt-24">Links</h2>
+
+  <hr class="my-6" />
+
+  <LinkList />
+</PageLayout>

@@ -1,16 +1,32 @@
 @theme static {
-  --color-accent-contrast: light-dark(#eff1f5, #11111b); /* latte base / mocha crust */
-  --color-accent: light-dark(#8839ef, #cba6f7); /* latte mauve / mocha mauve */
+  --warm-gray-100: #171414;
+  --warm-gray-90: #272525;
+  --warm-gray-80: #3c3838;
+  --warm-gray-70: #565151;
+  --warm-gray-60: #726e6e;
+  --warm-gray-50: #8f8b8b;
+  --warm-gray-40: #ada8a8;
+  --warm-gray-30: #cac5c4;
+  --warm-gray-20: #e5e0df;
+  --warm-gray-10: #f7f3f2;
 
-  --color-background-subtle: light-dark(#e6e9ef, #181825); /* latte mantle / mocha mantle */
-  --color-background: light-dark(#eff1f5, #1e1e2e); /* latte base / mocha base */
+  --color-accent-contrast: light-dark(var(--warm-gray-10), var(--warm-gray-100));
+  --color-accent: light-dark(var(--warm-gray-100), var(--warm-gray-10));
 
-  --color-border: light-dark(#ccd0da, #585b70); /* latte surface0 / mocha surface2 */
+  --color-background-subtle: light-dark(var(--warm-gray-20), var(--warm-gray-90));
+  --color-background: light-dark(var(--warm-gray-10), var(--warm-gray-100));
 
-  --color-foreground-subtle: light-dark(#5c5f77, #a6adc8); /* latte subtext1 / mocha subtext0 */
-  --color-foreground: light-dark(#4c4f69, #cdd6f4); /* latte text / mocha text */
+  --color-border: light-dark(var(--warm-gray-30), var(--warm-gray-80));
 
-  --spacing-default: 40rem;
+  --color-foreground-subtle: light-dark(var(--warm-gray-70), var(--warm-gray-50));
+  --color-foreground: light-dark(var(--warm-gray-100), var(--warm-gray-10));
 
-  --text-default: 1rem;
+  --radius-inner: var(--spacing);
+  --radius-outer: calc(var(--radius-inner) + (var(--spacing) * 1.5));
+
+  --max-width-prose: 36rem;
+
+  --spacing: 3.75px;
+
+  --text-default: calc(var(--spacing) * 4);
 }

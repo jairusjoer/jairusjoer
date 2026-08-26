@@ -1,41 +1,23 @@
 import rss from '@astrojs/rss';
-import { isPublished } from '@scripts/isPublished';
+import { page } from '@config';
+import { getPublishedPages } from '@scripts/getPublishedPages';
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
-import { site } from '../config';
 
 export const GET: APIRoute = async () => {
-  let collection = await getCollection('pages');
+  const collection = await getPublishedPages();
 
-  if (import.meta.env.PROD) {
-    collection = collection.filter((entry) => isPublished(entry.data?.status));
-  }
-
-  const entries = collection.map((entry) => {
-    const item: {
-      title: string;
-      description?: string;
-      link: string;
-      content?: string;
-      pubDate?: Date;
-    } = {
-      title: entry.data.title,
-      description: entry.data.description,
-      link: entry.id === 'index' ? '/' : `/${entry.id}`,
-      content: entry.rendered?.html,
-    };
-
-    if (entry.data.date) {
-      item.pubDate = entry.data.date;
-    }
-
-    return item;
-  });
+  const entries = collection.map((entry) => ({
+    title: entry.data.title,
+    description: entry.data.description,
+    link: `/${entry.id}`,
+    pubDate: entry.data.date,
+    content: entry.rendered?.html,
+  }));
 
   return rss({
-    title: site.title,
-    description: site.description,
-    site: site.url,
+    title: page.title,
+    description: page.description,
+    site: page.url,
     items: entries,
   });
 };

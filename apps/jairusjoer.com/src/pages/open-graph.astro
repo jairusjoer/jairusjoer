@@ -1,9 +1,8 @@
 ---
 import '@styles/global.css';
-import SiteMeta from '@components/SiteMeta.astro';
-import type { Metadata } from '@components/SiteMeta.astro';
+import PageMeta, { type Metadata } from '@components/PageMeta.astro';
+import { page } from '@config';
 import { Font, Image } from 'astro:assets';
-import { site } from '../config';
 
 export interface Props {
   metadata?: Metadata;
@@ -12,16 +11,15 @@ export interface Props {
 const metadata: Metadata = {
   title: 'Open Graph Image',
   description: 'Dynamically generated Open Graph image for social media sharing.',
-  image: undefined,
 };
 ---
 
 <html
-  lang={site.locale.slice(0, 2)}
+  lang={page.locale.slice(0, 2)}
   class="text-default bg-background text-foreground-subtle overflow-hidden text-pretty antialiased scheme-dark"
 >
   <head>
-    <SiteMeta {metadata} />
+    <PageMeta {metadata} />
     <Font cssVariable="--font-sans" />
     <Font cssVariable="--font-mono" />
   </head>
@@ -33,10 +31,10 @@ const metadata: Metadata = {
       </div>
       <header class="isolate flex gap-4">
         {
-          site?.image && (
+          page?.image && (
             <Image
-              src={await site.image()}
-              alt={site.title}
+              src={await page.image()}
+              alt={page.title}
               width={72}
               height={72}
               class="object-cover"
@@ -44,11 +42,12 @@ const metadata: Metadata = {
           )
         }
         <div class="text-2xl leading-normal">
-          <p class="text-foreground font-semibold">{site.title}</p>
-          <p>{site.description}</p>
+          <p class="text-heading">{page.title}</p>
+          <p>{page.description}</p>
         </div>
       </header>
-      <h1 class="open-graph-title text-foreground isolate mt-auto text-7xl leading-[1.125] font-semibold text-balance">
+      <h1 class="open-graph-title text-heading isolate mt-auto text-7xl leading-[1.125] text-balance">
+        {page.title}
       </h1>
     </div>
   </body>
@@ -60,7 +59,7 @@ const metadata: Metadata = {
 
   if (paramsTitle) {
     const openGraphTitle = document.querySelector('.open-graph-title')!;
-    openGraphTitle.innerHTML = paramsTitle;
+    openGraphTitle.textContent = paramsTitle;
   }
 </script>
 

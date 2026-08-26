@@ -1,6 +1,6 @@
 @layer components {
   :root {
-    --prose-flow: 1.5rem;
+    --prose-flow: calc(var(--spacing) * 6);
     --prose-leading: 1.5;
     --prose-headline-scale: pow(2, 0.2);
   }
@@ -10,23 +10,13 @@
     line-height: var(--prose-leading);
     margin-trim: block-start;
     overflow-wrap: break-word;
-  }
 
-  .prose {
-    & *:where(.not-prose) {
+    :where(& > :not(:first-child)),
+    :where(& > astro-island > :first-child) {
       margin-block-start: var(--prose-flow);
     }
 
     & *:not(:where(.not-prose, .not-prose *)) {
-      &:where(astro-island > *) {
-        margin-block-start: var(--prose-flow);
-      }
-
-      /* Paragraphs. */
-      &:where(p) {
-        margin-block-start: var(--prose-flow);
-      }
-
       /* Headings. */
       &:where(h1, h2, h3, h4, h5, h6) {
         color: var(--color-foreground);
@@ -81,8 +71,8 @@
       &:where(mark) {
         background-color: var(--color-accent);
         color: var(--color-accent-contrast);
-        padding-inline: 0.25em;
-        border-radius: 0.25rem;
+        padding-inline: var(--spacing);
+        border-radius: var(--radius-inner);
       }
       &:where(abbr[title]) {
         cursor: help;
@@ -98,21 +88,29 @@
       }
       &:where(li [type='checkbox']) {
         position: absolute;
-        left: -1.25em;
-        height: 1em;
-        width: 1em;
-        top: calc((var(--prose-leading) * 1em - 1em) / 2);
+        left: calc(var(--spacing) * -5);
+        height: calc(var(--spacing) * 4);
+        width: calc(var(--spacing) * 4);
+        top: calc((var(--prose-leading) * var(--text-default) / 2) - var(--spacing) * 2);
         accent-color: var(--color-accent);
       }
 
       /* Disclosures. */
       &:where(details) {
-        margin-block-start: var(--prose-flow);
-        padding-inline-start: 1.25em;
+        border-radius: var(--radius-inner);
+        padding-block: calc(var(--spacing) * 3);
+        padding-inline: calc(var(--spacing) * 8) calc(var(--spacing) * 3);
+        background: var(--color-background-subtle);
+      }
+      &:where(details + details) {
+        margin-block-start: calc(var(--prose-flow) * 0.25);
       }
       &:where(summary) {
         list-style-position: outside;
         cursor: pointer;
+        user-select: none;
+        font-weight: 500;
+        color: var(--color-foreground);
       }
       &:where(summary)::marker {
         color: var(--color-foreground-subtle);
@@ -121,58 +119,48 @@
       /* Keyboard keys. */
       &:where(kbd) {
         font-family: inherit;
-        font-size: smaller;
         font-weight: 500;
         border: 1px solid var(--color-border);
         border-block-end-width: 2px;
-        border-radius: 0.25rem;
-        padding-inline: 0.25em;
+        border-radius: var(--radius-inner);
+        padding-inline: var(--spacing);
       }
 
       /* Definition lists. */
-      &:where(dl) {
-        margin-block-start: var(--prose-flow);
+      &:where(dl > * + *) {
+        margin-block-start: calc(var(--prose-flow) * 0.25);
       }
       &:where(dt) {
         font-weight: 500;
-        margin-block-start: calc(var(--prose-flow) / 3);
-      }
-      &:where(dt + dt) {
-        margin-block-start: 0;
+        color: var(--color-foreground);
       }
       &:where(dd) {
-        margin-block-start: calc(var(--prose-flow) / 3);
         padding-inline-start: var(--prose-flow);
-        color: var(--color-foreground-subtle);
       }
 
       /* Inline code. */
       &:where(:not(pre) > code) {
         background-color: var(--color-background-subtle);
         font-family: var(--font-mono);
-        font-size: smaller;
-        border-radius: 0.25rem;
-        padding-inline: 0.25em;
+        border-radius: var(--radius-inner);
+        padding-inline: var(--spacing);
       }
 
       /* Code blocks. */
       &:where(pre) {
         background-color: var(--color-background-subtle);
         font-family: var(--font-mono);
-        font-size: smaller;
         tab-size: 2;
         direction: ltr;
-        border-radius: 0.25rem;
-        padding: calc(var(--prose-flow) / 3);
+        border-radius: var(--radius-inner);
+        padding: calc(var(--prose-flow) * 0.5);
         overflow-x: auto;
-        margin-block-start: var(--prose-flow);
       }
 
       /* Blockquote. */
       &:where(blockquote) {
         border-inline-start: 2px solid var(--color-border);
         padding-inline-start: var(--prose-flow);
-        margin-block-start: var(--prose-flow);
       }
 
       /* Dividers. */
@@ -184,42 +172,29 @@
 
       /* Footnotes. */
       &:where([data-footnote-ref]) {
-        margin-inline-start: 0.25em;
+        margin-inline-start: var(--spacing);
       }
       &:where(.footnotes, [data-footnotes]) {
-        margin-block-start: calc(var(--prose-flow) * 2);
         border-block-start: 1px solid var(--color-border);
         padding-block-start: var(--prose-flow);
-        font-size: smaller;
+
         color: var(--color-foreground-subtle);
       }
-
-      /* Math. */
-      /* &:where(math[display='block']) {
-      margin-block-start: var(--prose-flow);
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding-block: 0.25em;
-    } */
 
       /* Media. */
       &:where(img, video) {
         max-width: 100%;
         height: auto;
-        margin-block-start: var(--prose-flow);
-      }
-      &:where(p img) {
-        margin-block-start: 0;
+
+        border-radius: var(--radius-inner);
       }
       &:where(figure) {
-        margin-block-start: var(--prose-flow);
         margin-inline: 0;
       }
       &:where(figcaption, caption) {
+        margin-block-start: calc(var(--prose-flow) * 0.5);
         color: var(--color-foreground-subtle);
         text-align: center;
-        margin-block-start: calc(var(--prose-flow) / 3);
-        font-size: smaller;
       }
       &:where(caption) {
         caption-side: bottom;
@@ -232,15 +207,11 @@
         border-collapse: separate;
         border-spacing: 0;
         border-block-end: 1px solid var(--color-border);
-        margin-block-start: var(--prose-flow);
       }
       &:where(.prose-scroll) {
         overflow-x: auto;
-        margin-block-start: var(--prose-flow);
+
         padding: 1px;
-      }
-      &:where(.prose-scroll > *) {
-        margin-block-start: 0;
       }
       &:where(.prose-scroll table) {
         width: max-content;
@@ -251,17 +222,17 @@
         font-weight: 500;
         text-align: start;
         white-space: nowrap;
-        padding: calc(var(--prose-flow) / 2);
+        padding: calc(var(--prose-flow) * 0.5);
         background: var(--color-background-subtle);
       }
       &:where(th:first-child) {
-        border-radius: 0.25rem 0 0 0.25rem;
+        border-radius: var(--radius-inner) 0 0 var(--radius-inner);
       }
       &:where(th:last-child) {
-        border-radius: 0 0.25rem 0.25rem 0;
+        border-radius: 0 var(--radius-inner) var(--radius-inner) 0;
       }
       &:where(:is(tbody, tfoot) :is(td, th)) {
-        padding: calc(var(--prose-flow) / 2);
+        padding: calc(var(--prose-flow) * 0.5);
         text-align: start;
         vertical-align: top;
       }
@@ -277,8 +248,7 @@
 
       /* Lists. */
       &:where(ul, ol) {
-        margin-block-start: var(--prose-flow);
-        padding-inline-start: 1.25em;
+        padding-inline-start: calc(var(--spacing) * 5);
       }
       &:where(:is(ul, ol) > li::marker) {
         color: var(--color-foreground-subtle);
@@ -307,6 +277,9 @@
       &:where(ol[type='I' s]) {
         list-style-type: upper-roman;
       }
+      &:where(li, li > *:not([type='checkbox'])) {
+        margin-block-start: calc(var(--prose-flow) * 0.25);
+      }
 
       /* Media queries. */
       @media print {
@@ -320,24 +293,6 @@
         &:where(:not(pre) > code) {
           border: 1px solid;
         }
-      }
-
-      /* Spacing adjustments. */
-      &:where(:is(blockquote, details, summary) > :first-child) {
-        margin-block-start: 0;
-      }
-      &:where(li),
-      &:where(:is(li, details) > *:not(summary, [type='checkbox'])),
-      &:where(:is(details, ol, ul) + details),
-      &:where(details + :is(details, ol, ul)) {
-        margin-block-start: calc(var(--prose-flow) / 3);
-      }
-
-      /* Custom border style. */
-      &:where(img, video, pre:has(code), table) {
-        outline: 1px solid var(--color-border);
-        border-radius: 0.5rem;
-        border: 0.25rem solid var(--color-background);
       }
     }
   }

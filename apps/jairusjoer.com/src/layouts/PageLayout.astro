@@ -1,12 +1,11 @@
 ---
 import '@styles/global.css';
-import SiteFooter from '@components/SiteFooter.astro';
-import SiteHeader from '@components/SiteHeader.astro';
-import SiteMeta from '@components/SiteMeta.astro';
-import type { Metadata } from '@components/SiteMeta.astro';
+import PageFooter from '@components/PageFooter.astro';
+import PageHeader from '@components/PageHeader.astro';
+import PageMeta, { type Metadata } from '@components/PageMeta.astro';
+import PageNavigation from '@components/PageNavigation.astro';
+import { page } from '@config';
 import { Font } from 'astro:assets';
-import SiteNavigation from '../components/SiteNavigation.astro';
-import { site } from '../config';
 
 export interface Props {
   metadata?: Metadata;
@@ -16,29 +15,49 @@ const { metadata } = Astro.props;
 ---
 
 <html
-  lang={site.locale.slice(0, 2)}
-  class="bg-background text-foreground-subtle text-pretty antialiased scheme-light-dark print:bg-transparent print:scheme-light"
+  lang={page.locale.slice(0, 2)}
+  class="bg-background text-default text-foreground-subtle text-pretty antialiased scheme-light-dark print:bg-transparent print:scheme-light"
 >
   <head>
-    <SiteMeta {metadata} />
-    <Font cssVariable="--font-sans" />
+    <PageMeta {metadata} />
+    <Font
+      cssVariable="--font-sans"
+      preload
+    />
     <Font cssVariable="--font-mono" />
     <slot name="head" />
   </head>
   <body>
     <div
       id="root"
-      class="text-default px-6 py-24 font-sans"
+      class="isolate px-6 font-sans"
     >
-      <div class="max-w-default mx-auto flex min-h-dvh w-full flex-col items-start print:ml-0 print:max-w-none">
-        <SiteHeader />
-        <SiteNavigation
-          class="mt-6"
-          links={site.navigation}
-        />
-        <slot />
-        <SiteFooter links={site.footer} />
+      <div
+        class="mx-auto flex min-h-dvh w-full max-w-prose flex-col items-start py-24 print:ml-0 print:max-w-none print:py-0"
+      >
+        <header>
+          <PageHeader />
+          <PageNavigation
+            class="mt-6"
+            links={page.navigation}
+          />
+        </header>
+        <main class="my-24 w-full">
+          <slot />
+        </main>
+        <PageFooter />
       </div>
     </div>
   </body>
 </html>
+
+<script>
+  import { externalizeLinks } from '@scripts/externalizeLinks';
+  import { toggleDetails } from '@scripts/toggleDetails';
+
+  externalizeLinks();
+
+  if (document.querySelector('details')) {
+    toggleDetails();
+  }
+</script>

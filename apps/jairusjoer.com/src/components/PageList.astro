@@ -1,53 +1,27 @@
 ---
-import { formatDatetime } from '@scripts/formatDatetime';
-import { isPublished } from '@scripts/isPublished';
-import { getCollection } from 'astro:content';
+import { formatDateTime } from '@scripts/formatDateTime';
+import { getPublishedPages } from '@scripts/getPublishedPages';
+import PageItem from './PageItem.astro';
 
 export interface Props {
+  class?: string;
   filter?: string;
 }
 
-const { filter } = Astro.props;
+const { class: className, filter } = Astro.props;
 
-let collection = await getCollection('pages', ({ id }) => {
-  if (id.endsWith('index')) return false;
-
-  return filter ? id.startsWith(filter.toLowerCase()) : true;
-});
-
-collection = collection.sort((a, b) => {
-  const dateA = a.data.date?.getTime() ?? 0;
-  const dateB = b.data.date?.getTime() ?? 0;
-
-  return dateB - dateA;
-});
-
-if (import.meta.env.PROD) {
-  collection = collection.filter((entry) => isPublished(entry.data?.status));
-}
+const collection = await getPublishedPages(filter);
 ---
 
-<ul>
+<ul class:list={['not-prose space-y-3', className]}>
   {
     collection.map((entry) => (
       <li>
-        <article>
-          <strong>
-            <a href={`/${entry.id}`}>
-              {entry.data.status && <span>{entry.data.status}: </span>}
-              {entry.data.title}
-            </a>
-          </strong>
-
-          {entry.data.date && (
-            <>
-              <br />
-              <small>
-                <time>{formatDatetime(entry.data.date)}</time>
-              </small>
-            </>
-          )}
-        </article>
+        <PageItem
+          href={`/${entry.id}`}
+          title={entry.data.title}
+          meta={entry.data.date ? formatDateTime(entry.data.date) : undefined}
+        />
       </li>
     ))
   }

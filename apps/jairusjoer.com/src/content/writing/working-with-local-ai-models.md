@@ -22,7 +22,7 @@ From the onboarding process to running my first model locally, I only needed to 
 
 <figure>
   
-  ![Model discovery modal inside of LM Studio](./assets/2026_lm_studio.png)
+  ![Model discovery modal inside of LM Studio](./assets/2026-lm-studio.png)
   <figcaption>Model discovery modal inside of LM Studio</figcaption>
 </figure>
 
@@ -72,7 +72,7 @@ GitHub Copilot requires a custom endpoint to connect to LM Studio, with manual e
 
 <figure>
   
-  ![GitHub Copilot session inside of Visual Studio Code](./assets/2026_vs_code.png)
+  ![GitHub Copilot session inside of Visual Studio Code](./assets/2026-vs-code.png)
   <figcaption>GitHub Copilot session inside of Visual Studio Code</figcaption>
 </figure>
 
@@ -120,7 +120,7 @@ Configuration for OpenCode is placed in `~/.config/opencode/opencode.jsonc`. For
 
 <figure>
 
-![OpenCode session inside of Ghostty terminal](./assets/2026_opencode.png)
+![OpenCode session inside of Ghostty terminal](./assets/2026-opencode.png)
 
   <figcaption>OpenCode session inside of <a href="https://ghostty.org/">Ghostty</a> terminal</figcaption>
 </figure>

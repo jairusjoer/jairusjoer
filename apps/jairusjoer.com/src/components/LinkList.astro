@@ -8,24 +8,23 @@ const formatLink = (url: string) => {
 };
 ---
 
-<div class="link-list">
+<div class="link-list prose">
   {
     links.map((entry) => (
       <details>
-        <summary>
-          <strong>{entry.id}</strong>
-        </summary>
+        <summary>{entry.id}</summary>
         <ul>
           {entry.data.map((link) => (
             <li>
               <label>
                 <input
                   type="checkbox"
+                  class="peer"
                   name={link}
-                  title="Toogle reading status"
+                  title="Toggle read status"
                 />
                 <a
-                  class="peer-checked:line-through peer-checked:opacity-50 motion-safe:transition-opacity"
+                  class="peer-checked:line-through peer-checked:opacity-50"
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"

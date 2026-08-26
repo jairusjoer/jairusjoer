@@ -1,8 +1,9 @@
 ---
-import PageHeader from '@components/PageHeader.astro';
-import type { Metadata } from '@components/SiteMeta.astro';
+import ContentHeader from '@components/ContentHeader.astro';
+import ContentTable from '@components/ContentTable.astro';
+import type { Metadata } from '@components/PageMeta.astro';
 import PageLayout from '@layouts/PageLayout.astro';
-import { getComponents } from '@scripts/getComponents';
+import { isPublished } from '@scripts/isPublished';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
@@ -11,19 +12,21 @@ export interface Props {
 }
 
 export async function getStaticPaths() {
-  const collection = await getCollection('pages');
+  let collection = await getCollection('pages');
+
+  if (import.meta.env.PROD) {
+    collection = collection.filter((entry) => isPublished(entry.data.status));
+  }
 
   return collection.map((entry) => ({
-    params: { page: entry.id === 'index' ? undefined : entry.id },
+    params: { page: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
 
-const { Content } = await render(entry);
-
-const components = getComponents();
+const { Content, headings } = await render(entry);
 
 const metadata: Metadata = {
   id: entry.id,
@@ -35,16 +38,10 @@ const metadata: Metadata = {
 ---
 
 <PageLayout {metadata}>
-  <main class="prose my-24 w-full">
-    <PageHeader {entry} />
-    <Content {components} />
-  </main>
+  <ContentHeader {entry} />
+  <hr class="my-6" />
+  <div class="prose">
+    <ContentTable {headings} />
+    <Content />
+  </div>
 </PageLayout>
-
-<script>
-  import { externalizeLinks } from '@scripts/externalizeLinks';
-  import { toggleDetails } from '@scripts/toggleDetails';
-
-  toggleDetails();
-  externalizeLinks();
-</script>

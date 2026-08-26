@@ -1,9 +1,10 @@
 import mdx from '@astrojs/mdx';
+import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import vue from '@astrojs/vue';
+import { ensureCodeContrast } from '@scripts/ensureCodeContrast';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
-import { site } from './src/config';
+import { page } from './src/config';
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,18 +25,23 @@ export default defineConfig({
     },
   ],
 
-  integrations: [mdx(), sitemap(), vue()],
+  integrations: [mdx(), sitemap(), react()],
 
   markdown: {
     shikiConfig: {
       themes: {
-        dark: 'catppuccin-mocha',
-        light: 'catppuccin-latte',
+        dark: 'vitesse-dark',
+        light: 'vitesse-light',
       },
+      transformers: [ensureCodeContrast],
     },
   },
 
-  site: site.url,
+  prefetch: {
+    prefetchAll: true,
+  },
+
+  site: page.url,
 
   vite: {
     plugins: [tailwindcss()],

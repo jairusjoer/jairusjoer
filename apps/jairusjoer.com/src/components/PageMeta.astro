@@ -1,25 +1,22 @@
 ---
+import { page } from '@config';
 import { getImage } from 'astro:assets';
-import { site } from '../config';
 
 export interface Metadata {
   title: string;
-  id?: string;
   description?: string;
+  id?: string;
   image?: ImageMetadata;
-  schema?: Record<string, unknown>;
   status?: string;
 }
 
 export interface Props {
-  metadata?: Partial<Metadata>;
+  metadata?: Metadata;
 }
 
-const { metadata } = Astro.props;
+const { title, description = page.description, id, image, status } = Astro.props.metadata ?? {};
 
-const { title = site.title, id, description = site.description, image, schema, status } = metadata ?? {};
-
-const titleTemplate = title === site.title ? site.title : `${title} • ${site.title}`;
+const titleTemplate = title === page.title ? page.title : `${title} • ${page.title}`;
 
 const getURL = (path: string) => String(new URL(path, Astro.site));
 
@@ -45,27 +42,26 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
 <link
   rel="alternate"
   type="application/rss+xml"
-  title={site.title}
+  title={page.title}
   href={new URL('rss.xml', Astro.site)}
 />
 
 {
-  site?.image && (
+  page?.image && (
     <>
       <link
         rel="icon"
-        href={(await getImage({ src: await site.image(), width: 48, height: 48, format: 'png' })).src}
+        href={(await getImage({ src: await page.image(), width: 48, height: 48, format: 'png' })).src}
         sizes="48x48"
       />
       <link
         rel="apple-touch-icon"
-        href={(await getImage({ src: await site.image(), width: 180, height: 180, format: 'png' })).src}
+        href={(await getImage({ src: await page.image(), width: 180, height: 180, format: 'png' })).src}
       />
     </>
   )
 }
 
-{/* Title */}
 <title>{titleTemplate}</title>
 <meta
   name="title"
@@ -76,11 +72,10 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
   content={titleTemplate}
 />
 <meta
-  property="twitter:title"
+  name="twitter:title"
   content={titleTemplate}
 />
 
-{/* Description */}
 {
   description && (
     <>
@@ -93,35 +88,31 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
         content={description}
       />
       <meta
-        property="twitter:description"
+        name="twitter:description"
         content={description}
       />
     </>
   )
 }
 
-{/* Image */}
-
 <meta
   property="og:image"
   content={pageImage}
 />
 <meta
-  property="twitter:image"
+  name="twitter:image"
   content={pageImage}
 />
 
-{/* URL */}
 <meta
   property="og:url"
   content={getURL(Astro.url.pathname)}
 />
 <meta
-  property="twitter:url"
+  name="twitter:url"
   content={getURL(Astro.url.pathname)}
 />
 
-{/* Platform */}
 {
   status === 'Draft' && (
     <meta
@@ -136,18 +127,21 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
   content="website"
 />
 <meta
-  property="twitter:card"
+  property="og:site_name"
+  content={page.title}
+/>
+<meta
+  property="og:locale"
+  content={page.locale}
+/>
+<meta
+  name="twitter:card"
   content="summary_large_image"
 />
 
-{
-  schema && (
-    <script
-      is:inline
-      set:html={JSON.stringify(schema)}
-      type="application/ld+json"
-    />
-  )
-}
+<link
+  rel="canonical"
+  href={getURL(Astro.url.pathname)}
+/>
 
 <slot />

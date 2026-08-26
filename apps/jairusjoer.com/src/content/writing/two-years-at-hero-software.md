@@ -30,7 +30,7 @@ Thanks to an iterative approach to feedback and improvements, enabled by [Sarah 
 
 <figure>
   
-  ![Sidebar and top navigation introduced with milestone 1.0](./assets/2025_hero_design.png)
+  ![Sidebar and top navigation introduced with milestone 1.0](./assets/2025-hero-design.png)
   <figcaption>Sidebar and top navigation introduced with milestone 1.0</figcaption>
 </figure>
 
@@ -52,7 +52,7 @@ In 2024, I collaborated with Dennis Eming , Fynn Schlegel, and [Jaro Lenz](https
 
 <figure>
   <video controls autoplay muted loop>
-    <source src="/media/2024_hero_hackathon.mp4" type="video/mp4" />
+    <source src="/assets/2024-hero-hackathon.mp4" type="video/mp4" />
   </video>
   <figcaption>2024 HERO hackathon demo of the modular dashboard</figcaption>
 </figure>
@@ -61,7 +61,7 @@ In 2025, I collaborated with [Alexis-Rae Jager](https://www.linkedin.com/in/alex
 
 <figure>
   <video controls autoplay muted loop>
-    <source src="/media/2025_hero_customisation.mp4" type="video/mp4" />
+    <source src="/assets/2025-hero-customisation.mp4" type="video/mp4" />
   </video>
   <figcaption>2025 HERO hackathon demo of the theme customisation</figcaption>
 </figure>
@@ -76,13 +76,13 @@ In 2024, I attended the WeAreDevelopers congress for the first time, followed sh
 
 <figure>
   
-  ![Groningen Workation, 2024](./assets/2024_hero_groningen.jpg)
+  ![Groningen Workation, 2024](./assets/2024-hero-groningen.jpg)
   <figcaption>Groningen Workation, 2024</figcaption>
 </figure>
 
 <figure>
   
-  ![WeAreDevelopers Congress, 2024](./assets/2024_hero_congress.jpeg)
+  ![WeAreDevelopers Congress, 2024](./assets/2024-hero-congress.jpeg)
   <figcaption>WeAreDevelopers Congress, 2024</figcaption>
 </figure>
 
@@ -90,13 +90,13 @@ In 2025, I revisited the WeAreDevelopers Congress with an even larger group, mak
 
 <figure>
   
-  ![WeAreDevelopers Congress, 2025](./assets/2025_hero_congress.png)
+  ![WeAreDevelopers Congress, 2025](./assets/2025-hero-congress.png)
   <figcaption>WeAreDevelopers Congress, 2025</figcaption>
 </figure>
 
 <figure>
   
-  ![Prague Workation, 2025](./assets/2025_hero_prague.png)
+  ![Prague Workation, 2025](./assets/2025-hero-prague.png)
   <figcaption>Prague Workation, 2025</figcaption>
 </figure>
 

@@ -1,17 +1,19 @@
 # jairusjoer.com
 
-Source for [jairusjoer.com](https://jairusjoer.com), a personal site built with [Astro](https://astro.build/), MDX, and Tailwind CSS.
+Source for [jairusjoer.com](https://jairusjoer.com), a personal site built with [Astro](https://astro.build/), MDX, React islands, and Tailwind CSS.
 
-The site is content-first and statically generated. It combines a small set of reusable Astro components with document-driven pages for writing, reading, exploration, and legal content.
+The site is content-first and statically generated. It combines a small set of reusable components with document-driven pages for writing, reading, exploration, and legal content.
 
 ## Stack
 
-- Astro 6
-- TypeScript
+- Astro 7
+- TypeScript (strict)
 - MDX via `@astrojs/mdx`
-- Tailwind CSS via `@tailwindcss/vite`
+- React 19 islands with `nanostores` for shared client state
+- Tailwind CSS 4 via `@tailwindcss/vite`
+- Self-hosted fonts via the Astro Fonts API (`Inter`, `JetBrains Mono`)
 - RSS and sitemap generation via `@astrojs/rss` and `@astrojs/sitemap`
-- Playwright for local utility scripting
+- Playwright for accessibility testing and utility scripting
 
 ## Local Development
 
@@ -24,47 +26,55 @@ pnpm dev
 
 Available scripts:
 
-| Command            | Description                                                  |
-| :----------------- | :----------------------------------------------------------- |
-| `pnpm dev`         | Start the local development server                           |
-| `pnpm build`       | Create a production build                                    |
-| `pnpm preview`     | Preview the production build locally                         |
-| `pnpm check-types` | Run `astro check` for Astro and TypeScript diagnostics       |
-| `pnpm format`      | Format Astro, CSS, JSON, Markdown, MDX, and TypeScript files |
-| `pnpm lint`        | Run ESLint with autofix enabled                              |
+| Command            | Description                                                         |
+| :----------------- | :------------------------------------------------------------------ |
+| `pnpm dev`         | Start the local development server                                  |
+| `pnpm build`       | Create a production build                                           |
+| `pnpm preview`     | Preview the production build locally                                |
+| `pnpm open-graph`  | Generate Open Graph images from a running dev server                |
+| `pnpm a11y`        | Run Playwright axe-core checks against the production build         |
+| `pnpm lint-staged` | Run `astro check`, ESLint, and Prettier on staged files (via Husky) |
+
+Formatting and linting use Prettier (with the Astro, Tailwind, and import-sorting plugins) and ESLint (with Astro, jsxA11y, Markdown, JSON, and CSS configs).
 
 ## Site Configuration
 
-Primary site metadata lives in `src/config.ts`. That file defines the public URL, site title, description, locale, navigation, footer links, and the shared site image used for icons and social previews.
+Primary site metadata lives in `src/config.ts`. That file defines the public URL, site title, description, locale, date format, navigation, footer links, and the shared site image used for icons and social previews.
 
 Astro configuration lives in `astro.config.ts`, including:
 
-- MDX support
-- sitemap generation
+- font providers and weights
+- MDX, React, and sitemap integrations
 - Shiki syntax highlighting themes
+- prefetch behaviour
 - the `site` URL used for canonical output
-- Tailwind CSS integration
+- the Tailwind CSS Vite plugin
+
+Design tokens (colour scale, radii, spacing, prose width) live in `src/styles/tailwind/theme.css`; typography utilities live in `src/styles/tailwind/utility.css`; long-form styling lives in `src/styles/custom/prose.css`.
+
+Path aliases (`@components`, `@config`, `@data`, `@layouts`, `@scripts`, `@styles`, …) are defined in `tsconfig.json`.
 
 ## Content Model
 
 The site uses Astro content collections defined in `src/content.config.ts`:
 
-- `pages`: Markdown, MDX, and Markdoc files from `src/content/**`
-- `books`: structured reading data from `src/content/reading/books.json`
-- `links`: structured link data from `src/content/reading/links.json`
+- `pages`: Markdown and MDX files from `src/content/**`
+- `books`: structured reading data from `src/content/books/index.json`
+- `links`: structured link data from `src/content/links/index.json`
 
-All entries in the `pages` collection are routed through `src/pages/[...page].astro`. This means content files become pages automatically, including section landing pages such as:
+Content entries are routed through `src/pages/[...page].astro`, so every file in the `pages` collection becomes a page automatically — for example `/writing/about-personal-software` or `/legal`.
 
-- `/` from `src/content/index.mdx`
-- `/writing` from `src/content/writing.mdx`
-- `/reading` from `src/content/reading.mdx`
-- `/exploring` from `src/content/exploring.mdx`
-- `/legal` from `src/content/legal.md`
+Section landing pages are dedicated routes instead of content files:
+
+- `/` from `src/pages/index.astro`
+- `/writing` from `src/pages/writing.astro`
+- `/reading` from `src/pages/reading.astro`
+- `/exploring` from `src/pages/exploring.astro`
 
 Frontmatter for `pages` currently supports:
 
 ```ts
-{
+interface Frontmatter {
   title: string;
   description?: string;
   date?: Date;
@@ -73,7 +83,7 @@ Frontmatter for `pages` currently supports:
 }
 ```
 
-Pages marked as `Draft` are treated as unpublished. They receive a `noindex` robots tag and are excluded from the production RSS feed.
+Pages marked as `Draft` are treated as unpublished. In production they receive a `noindex` robots tag and are excluded from the static build, the RSS feed, and all lists. The development server still renders them for preview.
 
 ## Content Structure
 
@@ -81,11 +91,11 @@ Key content areas in `src/content`:
 
 - `writing/`: first-party essays and posts
 - `archive/aggregata/`: archived writing from Aggregata
-- `reading/`: books and links rendered from JSON-backed collections
-- `exploring.mdx`: experiments and interactive showcases
-- `index.mdx`: home/about page
+- `books/`: books rendered from a JSON-backed collection
+- `links/`: link lists rendered from a JSON-backed collection
+- `legal.md`: legal notice
 
-MDX content can use the shared Astro components from `src/components`, including list, badge, showcase, and more.
+MDX content can use the shared components from `src/components`, including the theme showcase components in `src/components/content`.
 
 ## Generated Output
 
@@ -93,7 +103,7 @@ The repository includes a few generated or automation-backed outputs:
 
 - `src/pages/rss.xml.ts` builds the site RSS feed from the `pages` collection
 - `src/pages/open-graph.astro` renders the template used for social preview images
-- `actions/open-graph.ts` can capture Open Graph images into `public/og/**` from a local preview environment
+- `actions/open-graph.ts` captures Open Graph images into `public/og/**` from a local server environment
 
 ### Open Graph Generation
 
@@ -106,34 +116,37 @@ To run it locally, use the same flow as the workflow:
 ```bash
 pnpm install
 pnpm exec playwright install chromium
-pnpm dev
 ```
 
-With the dev server running on `http://localhost:4321`, execute:
+Start the dev server, then with it running on `http://localhost:4321`, execute:
 
 ```bash
-node --experimental-strip-types actions/open-graph.ts
+pnpm open-graph
 ```
 
-This will generate or update files in `public/og` for entries discovered via `/rss.xml`.
+This will generate or update files in `public/og` for entries discovered via `/rss.xml`. Drafts are excluded because the production RSS feed omits them.
 
 ## Project Layout
 
 ```text
 src/
-  components/      Shared Astro components
-  content/         Markdown, MDX, Markdoc, and JSON content
+  assets/          Images and icons
+  components/      Shared Astro and React components
+  config.ts        Site metadata and navigation
+  content/         Markdown, MDX, and JSON content collections
+  data/            Structured data used by components
   layouts/         Page layout wrappers
   pages/           Astro routes, including RSS and Open Graph endpoints
   scripts/         Small browser/runtime helpers used by pages
-  styles/          Global and custom styling
+  stores/          Client-side state (nanostores)
+  styles/          Global, token, and prose styling
+tests/
+  a11y.test.ts     Playwright axe-core checks
 actions/
   open-graph.ts    Local Open Graph image generation utility
 public/
-  media/           Static media assets
+  assets/          Static media assets
   og/              Generated Open Graph images
-cv/
-  Resume-related assets and source material
 ```
 
 ## Notes

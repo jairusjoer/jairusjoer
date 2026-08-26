@@ -1,0 +1,23 @@
+---
+export interface Props {
+  class?: string;
+  title: string;
+  href?: string;
+  meta?: Date | string;
+  wrap?: boolean;
+}
+
+const { class: className, title, href, meta, wrap = true } = Astro.props;
+const Container = href ? 'a' : 'div';
+---
+
+<Container
+  class:list={['rounded-inner not-prose w-full', { 'flex gap-x-3 max-sm:flex-col sm:items-center': wrap }, className]}
+  {href}
+>
+  <p class:list={['mr-auto truncate font-medium', href ? 'text-accent' : 'text-foreground']}>
+    {title}
+  </p>
+
+  {meta && <p class="whitespace-nowrap tabular-nums">{meta}</p>}
+</Container>

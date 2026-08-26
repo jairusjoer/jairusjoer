@@ -1,0 +1,52 @@
+---
+import ExperienceList from '@components/ExperienceList.astro';
+import PageItem from '@components/PageItem.astro';
+import type { Metadata } from '@components/PageMeta.astro';
+import PageLayout from '@layouts/PageLayout.astro';
+
+const metadata: Metadata = {
+  title: 'About',
+};
+
+const careerStart = 2018;
+const yearsOfExperience = new Date().getFullYear() - careerStart;
+---
+
+<PageLayout {metadata}>
+  <h1 class="text-heading">{metadata.title}</h1>
+
+  <hr class="my-6" />
+
+  <div class="prose">
+    <p>
+      Hello there! I am Jairus Joer, a Senior Software Engineer and Designer based in Germany with {yearsOfExperience}+
+      years of experience. I care deeply about software that feels thoughtful in every layer: clear in its structure,
+      expressive in its interface, respectful of the people who use it, and deliberate in the way it supports real work.
+    </p>
+    <p>
+      The work I delight in most sits at the intersection of user experience, accessibility, design systems, and
+      developer experience. I enjoy shaping systems that make taste practical, whether through refining interfaces,
+      building resilient foundations, or creating tools that disappear into the flow of thought.
+    </p>
+    <p>
+      Previously at HERO Software, I led the adoption of design systems, monorepo orchestration and platform
+      modernisation across multiple engineering teams. Currently at BWI, I am supporting Germany’s digitalisation
+      efforts by developing open-source software for various connected codebases.
+    </p>
+  </div>
+  <div class="mt-6 space-y-1.5">
+    <PageItem
+      class="bg-background-subtle p-3"
+      href="https://www.linkedin.com/in/jairusjoer"
+      title="View my full resume"
+      meta="LinkedIn"
+    />
+    <PageItem
+      class="bg-background-subtle p-3"
+      href="mailto:hello@jairusjoer.com"
+      title="Get in touch"
+      meta="hello@jairusjoer.com"
+    />
+  </div>
+  <ExperienceList class="mt-24" />
+</PageLayout>

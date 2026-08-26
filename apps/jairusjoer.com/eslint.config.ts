@@ -35,6 +35,9 @@ export default defineConfig(
       globals: { ...globals.browser, ...globals.node },
       parserOptions: { ecmaFeatures: { jsx: true }, tsconfigRootDir: import.meta.dirname },
     },
+    rules: {
+      'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['tabpanel', 'region'] }],
+    },
   },
   {
     files: ['**/*.json'],

@@ -2,14 +2,14 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { AxeBuilder } from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { site } from '../src/config';
+import { page } from '../src/config';
 
 const sitemapPath = resolve(process.cwd(), 'dist/sitemap-0.xml');
 const sitemapContent = readFileSync(sitemapPath, 'utf-8');
 
 const urlRegex = /<loc>(https?:\/\/[^<]+)<\/loc>/g;
 const urls = [...sitemapContent.matchAll(urlRegex)].map((url) => {
-  return url[1].replace(site.url, '');
+  return url[1].replace(page.url, '');
 });
 
 test.describe('light', () => {
