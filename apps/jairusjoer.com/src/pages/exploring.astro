@@ -1,5 +1,6 @@
 ---
 import DotMatrix from '@components/content/DotMatrix.astro';
+import SuperMono from '@components/content/SuperMono.astro';
 import ThemeContrast from '@components/content/ThemeContrast';
 import ThemeControls from '@components/content/ThemeControls';
 import ThemePalette from '@components/content/ThemePalette';
@@ -19,6 +20,25 @@ const metadata: Metadata = {
 
   <hr class="my-6" />
 
+  <!--
+  <h2 class="text-heading">Super Mono</h2>
+  <div class="prose">
+    <p>
+      I am currently exploring <em>another</em> update to this website that embraces the spirit of <a
+        href="https://owickstrom.github.io/the-monospace-web/">The Monospace Web</a
+      > and <a href="https://poolsuite.net/">Poolsuite</a>. I'd like it to focus more on micro-interactions while using
+      a reduced surface.
+    </p>
+  </div>
+  <div class="prose">
+    <Showcase>
+      <SuperMono />
+    </Showcase>
+  </div>
+
+  <hr class="my-12" />
+  -->
+
   <h2 class="text-heading">Theme Contrast & Palette</h2>
   <div class="prose">
     <p>
@@ -26,7 +46,6 @@ const metadata: Metadata = {
         >Demonstrating Software Personalisation</a
       >, I built these theme components to offer a more interactive and explorable approach to the topic.
     </p>
-
     <ThemeControls client:idle />
 
     <ThemeContrast client:idle />
