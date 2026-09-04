@@ -10,7 +10,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig(
-  globalIgnores(['.astro', '.vscode', 'dist', 'package*.json', 'public']),
+  globalIgnores(['**/.astro', '**/.vscode', '**/dist', '**/public', '.agents', '.nx', 'packages']),
   {
     files: ['**/*.astro'],
     plugins: { astro },
@@ -19,8 +19,8 @@ export default defineConfig(
   {
     files: ['**/*.css'],
     plugins: { css },
-    extends: [css.configs.recommended],
     language: 'css/css',
+    extends: [css.configs.recommended],
     rules: {
       'css/no-invalid-at-rules': 0, // Progressive enhancements
       'css/no-invalid-properties': 0, // Imported variables
@@ -28,12 +28,15 @@ export default defineConfig(
     },
   },
   {
-    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    files: ['**/*.{cjs,js,jsx,mjs,mjsx,mtsx,ts,tsx}'],
     plugins: { jsxA11y },
     extends: [js.configs.recommended, tseslint.configs.recommended, jsxA11y.flatConfigs.recommended],
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
-      parserOptions: { ecmaFeatures: { jsx: true }, tsconfigRootDir: import.meta.dirname },
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+        tsconfigRootDir: process.cwd(),
+      },
     },
     rules: {
       'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['tabpanel', 'region'] }],
@@ -48,8 +51,8 @@ export default defineConfig(
   {
     files: ['**/*.md'],
     plugins: { markdown },
-    extends: [markdown.configs.recommended],
     language: 'markdown/gfm',
+    extends: [markdown.configs.recommended],
   },
   {
     files: ['**/*.mdx'],

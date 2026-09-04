@@ -1,9 +1,10 @@
+import { relative } from 'node:path';
 import { type Configuration } from 'lint-staged';
 
 export default {
-  'apps/jairusjoer.com/**/*.{astro,css,json,md,mdx,ts}': [
-    'pnpm --filter jairusjoer.com exec astro check',
-    'pnpm --filter jairusjoer.com exec eslint --fix',
+  '*': [
+    (files) => `nx affected -t check-types --files="${files.map((file) => relative(process.cwd(), file)).join(',')}"`,
+    'prettier --write --ignore-unknown',
+    'eslint --fix',
   ],
-  '*': ['prettier --write --ignore-unknown'],
 } satisfies Configuration;
