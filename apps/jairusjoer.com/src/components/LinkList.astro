@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+
+const links = await getCollection('links');
+
+const formatLink = (url: string) => {
+  return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+};
+---
+
+<div class="link-list prose">
+  {
+    links.map((entry) => (
+      <details>
+        <summary>{entry.id}</summary>
+        <ul>
+          {entry.data.map((link) => (
+            <li>
+              <label>
+                <input
+                  type="checkbox"
+                  class="peer"
+                  name={link}
+                  title="Toggle read status"
+                />
+                <a
+                  class="peer-checked:line-through peer-checked:opacity-50"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {formatLink(link)}
+                </a>
+              </label>
+            </li>
+          ))}
+        </ul>
+      </details>
+    ))
+  }
+</div>
+
+<script>
+  const linkList = document.querySelector('.link-list')!;
+  const checkboxes = linkList.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')!;
+
+  const getLinkList = (): Set<string> => {
+    try {
+      const storedLinkList = localStorage.getItem('linkList');
+      return new Set(storedLinkList ? JSON.parse(storedLinkList) : []);
+    } catch {
+      return new Set();
+    }
+  };
+
+  const updateStorage = (name: string, checked: boolean) => {
+    const storedLinkList = getLinkList();
+
+    if (checked) {
+      storedLinkList.add(name);
+    } else {
+      storedLinkList.delete(name);
+    }
+
+    localStorage.setItem('linkList', JSON.stringify([...storedLinkList]));
+  };
+
+  const storedLinkList = getLinkList();
+
+  for (const checkbox of checkboxes) {
+    if (storedLinkList.has(checkbox.name)) {
+      checkbox.checked = true;
+    }
+  }
+
+  const details = linkList.querySelectorAll<HTMLDetailsElement>('details:has(input:checked)');
+
+  for (const detail of details) {
+    detail.open = true;
+  }
+
+  linkList.addEventListener('click', (event) => {
+    const target = event.target;
+    let checkbox = event.target as HTMLInputElement;
+
+    if (target instanceof HTMLAnchorElement) {
+      const anchor = target.closest('a');
+
+      checkbox = anchor?.previousElementSibling as HTMLInputElement;
+      checkbox.checked = true;
+    }
+
+    if (checkbox instanceof HTMLInputElement) {
+      updateStorage(checkbox.name, checkbox.checked);
+    }
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+import { formatDateTime } from '@scripts/formatDateTime';
+import { getPublishedPages } from '@scripts/getPublishedPages';
+import PageItem from './PageItem.astro';
+
+export interface Props {
+  class?: string;
+  filter?: string;
+}
+
+const { class: className, filter } = Astro.props;
+
+const collection = await getPublishedPages(filter);
+---
+
+<ul class:list={['not-prose space-y-3', className]}>
+  {
+    collection.map((entry) => (
+      <li>
+        <PageItem
+          href={`/${entry.id}`}
+          title={entry.data.title}
+          meta={entry.data.date ? formatDateTime(entry.data.date) : undefined}
+        />
+      </li>
+    ))
+  }
+</ul>

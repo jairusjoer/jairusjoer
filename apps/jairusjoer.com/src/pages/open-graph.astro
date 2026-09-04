@@ -1,0 +1,74 @@
+---
+import '@styles/global.css';
+import PageMeta, { type Metadata } from '@components/PageMeta.astro';
+import { page } from '@config';
+import { Font, Image } from 'astro:assets';
+
+export interface Props {
+  metadata?: Metadata;
+}
+
+const metadata: Metadata = {
+  title: 'Open Graph Image',
+  description: 'Dynamically generated Open Graph image for social media sharing.',
+};
+---
+
+<html
+  lang={page.locale.slice(0, 2)}
+  class="text-default bg-background text-foreground-subtle overflow-hidden text-pretty antialiased scheme-dark"
+>
+  <head>
+    <PageMeta {metadata} />
+    <Font cssVariable="--font-sans" />
+    <Font cssVariable="--font-mono" />
+  </head>
+  <body>
+    <div class="open-graph border-accent relative flex h-157.5 w-300 flex-col border-l-24 px-12 py-18">
+      <div
+        class="bg-accent absolute top-0 right-0 h-[50dvh] w-[50dvw] translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-[25dvw]"
+      >
+      </div>
+      <header class="isolate flex gap-4">
+        {
+          page?.image && (
+            <Image
+              src={await page.image()}
+              alt={page.title}
+              width={72}
+              height={72}
+              class="object-cover"
+            />
+          )
+        }
+        <div class="text-2xl leading-normal">
+          <p class="text-heading">{page.title}</p>
+          <p>{page.description}</p>
+        </div>
+      </header>
+      <h1 class="open-graph-title text-heading isolate mt-auto text-7xl leading-[1.125] text-balance">
+        {page.title}
+      </h1>
+    </div>
+  </body>
+</html>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const paramsTitle = params.get('title');
+
+  if (paramsTitle) {
+    const openGraphTitle = document.querySelector('.open-graph-title')!;
+    openGraphTitle.textContent = paramsTitle;
+  }
+</script>
+
+<style is:global>
+  :root {
+    scrollbar-gutter: unset;
+  }
+
+  astro-dev-toolbar {
+    display: none;
+  }
+</style>

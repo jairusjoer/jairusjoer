@@ -1,0 +1,144 @@
+---
+import DotMatrix from '@components/content/DotMatrix.astro';
+import SuperMono from '@components/content/SuperMono.astro';
+import ThemeContrast from '@components/content/ThemeContrast';
+import ThemeControls from '@components/content/ThemeControls';
+import ThemePalette from '@components/content/ThemePalette';
+import type { Metadata } from '@components/PageMeta.astro';
+import Showcase from '@components/Showcase';
+import PageLayout from '@layouts/PageLayout.astro';
+
+const metadata: Metadata = {
+  title: 'Exploring',
+  description: 'Experiments and other curiosities',
+};
+---
+
+<PageLayout {metadata}>
+  <h1 class="text-heading">{metadata.title}</h1>
+  <p>{metadata.description}</p>
+
+  <hr class="my-6" />
+
+  <!--
+  <h2 class="text-heading">Super Mono</h2>
+  <div class="prose">
+    <p>
+      I am currently exploring <em>another</em> update to this website that embraces the spirit of <a
+        href="https://owickstrom.github.io/the-monospace-web/">The Monospace Web</a
+      > and <a href="https://poolsuite.net/">Poolsuite</a>. I'd like it to focus more on micro-interactions while using
+      a reduced surface.
+    </p>
+  </div>
+  <div class="prose">
+    <Showcase>
+      <SuperMono />
+    </Showcase>
+  </div>
+
+  <hr class="my-12" />
+  -->
+
+  <h2 class="text-heading">Theme Contrast & Palette</h2>
+  <div class="prose">
+    <p>
+      While writing the post <a href="/writing/demonstrating-software-personalisation"
+        >Demonstrating Software Personalisation</a
+      >, I built these theme components to offer a more interactive and explorable approach to the topic.
+    </p>
+    <ThemeControls client:idle />
+
+    <ThemeContrast client:idle />
+
+    <ThemePalette client:idle />
+  </div>
+
+  <hr class="my-12" />
+
+  <h2 class="text-heading">Dot Matrix</h2>
+  <div class="prose">
+    <p>
+      I've come to like Bungie's Marathon and its art style, which was surely assisted by the involvement of <a
+        href="https://www.kurppahosk.com/work/bungie">Kurppa Hosk</a
+      >, a design favourite of mine. What you see here is a customisable approximation of the game's loading animation.
+    </p>
+
+    <Showcase
+      links={{
+        Usage: 'src/pages/exploring.astro',
+        Code: 'src/components/content/DotMatrix.astro',
+      }}
+    >
+      <DotMatrix
+        config={{
+          grid: {
+            columns: 17,
+            rows: 17,
+            width: 224,
+            height: 224,
+            gap: 1,
+          },
+          patterns: [
+            `
+          □□□□□□□□□□□□□□□□□
+          □□□□□□□□□□□□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□□■□■□□□□□□□
+          □□□□□□■■■■■□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□■□■□■□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□■□■□■□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□■□■□■□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□■□■□■□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□□□□□□□□□□□□
+          □□□□□□□□□□□□□□□□□
+          `,
+            `
+          □□□□□□□□□□□□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□□■□■□□□□□□□
+          □□■□□□□■■■□□□□■□□
+          □□□■■□■□■□■□■■□□□
+          □□□□■□■■□■■□■□□□□
+          □□□■□■□■■■□■□■□□□
+          □□□□□■■□■□■■□□□□□
+          □□□□□□■■□■■□□□□□□
+          □□□□□■□■■■□■□□□□□
+          □□□□□□■□■□■□□□□□□
+          □□□□□□■■□■■□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□■□■□■□□□□□□
+          □□□□□□□■□■□□□□□□□
+          □□□□□□□■■■□□□□□□□
+          □□□□□□□□□□□□□□□□□
+          `,
+            `
+          □□□□□□■□□□■□□□□□□
+          □□□□□□■□□□■□□□□□□
+          ■□□■■□□■□■□□■■□□■
+          □■■■■■□□■□□■■■■■□
+          □■□□□□■□■□■□□□□■□
+          □■□■■■■■□■■■■■□■□
+          □□■□□■■□■□■■□□■□□
+          □□□■■■□□■□□■■■□□□
+          □□□□□■■■■■■■□□□□□
+          □■■■■□■■■■■□■■■■□
+          □■□■■□□■■■□□■■□■□
+          ■□■□■□■□■□■□■□■□■
+          □□■■■■□□■□□■■■■□□
+          □□□■■□■□■□■□■■□□□
+          □□□□■□□□□□□□■□□□□
+          □□□□■□□□□□□□■□□□□
+          □□□□■□□□□□□□■□□□□
+          `,
+          ],
+        }}
+      />
+    </Showcase>
+  </div>
+</PageLayout>

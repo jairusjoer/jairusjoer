@@ -1,0 +1,203 @@
+---
+export interface Props {
+  config: {
+    grid: {
+      columns: number;
+      rows: number;
+      width: number;
+      height: number;
+      gap?: number;
+    };
+    patterns: string[];
+  };
+}
+
+const { config } = Astro.props;
+
+const createFrame = (pattern: string) => {
+  return pattern
+    .trim()
+    .split('\n')
+    .flatMap((row) => [...row.trim()].map((cell) => (cell === '■' ? 1 : 0)));
+};
+
+const frames = config.patterns.map(createFrame);
+---
+
+<svg
+  class="dot-matrix block shrink-0"
+  width={config.grid.width}
+  height={config.grid.height}
+  viewBox={`0 0 ${config.grid.width} ${config.grid.height}`}
+  preserveAspectRatio="xMidYMid meet"
+  shape-rendering="crispEdges"
+  aria-hidden="true"
+  data-frames={JSON.stringify(frames)}
+  data-grid={JSON.stringify(config.grid)}
+></svg>
+
+<style is:global>
+  .dot-matrix__dot {
+    fill: var(--color-border);
+    opacity: 0;
+    animation-name: var(--dot-animation-name, none);
+    animation-duration: 300ms;
+    animation-delay: var(--dot-animation-delay, 0ms);
+    animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    animation-fill-mode: both;
+  }
+
+  .dot-matrix__dot[data-active='true'] {
+    opacity: 1;
+  }
+
+  @keyframes dot-matrix-enter {
+    0% {
+      fill: var(--color-accent);
+      opacity: 0;
+    }
+
+    50% {
+      fill: var(--color-accent);
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes dot-matrix-exit {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  const svgNamespace = 'http://www.w3.org/2000/svg';
+  const transitionDuration = 300;
+  const pauseDuration = 1000;
+  const delayStep = 75;
+  const dotClassName = 'dot-matrix__dot';
+
+  const setDotAnimation = (dot: SVGRectElement, animationName: string) => {
+    dot.style.setProperty('--dot-animation-name', animationName);
+  };
+
+  const initializeDotMatrix = (dotMatrix: SVGSVGElement) => {
+    if (dotMatrix.dataset.initialized === 'true') {
+      return;
+    }
+
+    const frames = JSON.parse(dotMatrix.dataset.frames ?? '[]') as number[][];
+    const {
+      columns,
+      rows,
+      width,
+      height,
+      gap = 1,
+    } = JSON.parse(dotMatrix.dataset.grid ?? '{}') as {
+      columns: number;
+      rows: number;
+      width: number;
+      height: number;
+      gap?: number;
+    };
+
+    if (!frames.length || !columns || !rows || !width || !height) {
+      return;
+    }
+
+    const cellWidth = (width - gap * (columns - 1)) / columns;
+    const cellHeight = (height - gap * (rows - 1)) / rows;
+
+    if (cellWidth <= 0 || cellHeight <= 0) {
+      return;
+    }
+
+    const centerX = (columns - 1) / 2;
+    const centerY = (rows - 1) / 2;
+    const delays = Array.from({ length: columns * rows }, (_value, index) => {
+      const x = index % columns;
+      const y = Math.floor(index / columns);
+
+      return Math.round(Math.hypot(x - centerX, y - centerY) * delayStep);
+    });
+    const maxDelay = Math.max(...delays, 0);
+    const dots = Array.from({ length: columns * rows }, (_value, index) => {
+      const dot = document.createElementNS(svgNamespace, 'rect');
+      const x = index % columns;
+      const y = Math.floor(index / columns);
+
+      dot.dataset.active = 'false';
+      dot.setAttribute('class', dotClassName);
+      dot.setAttribute('x', `${x * (cellWidth + gap)}`);
+      dot.setAttribute('y', `${y * (cellHeight + gap)}`);
+      dot.setAttribute('width', `${cellWidth}`);
+      dot.setAttribute('height', `${cellHeight}`);
+      dot.style.setProperty('--dot-animation-delay', `${delays[index]}ms`);
+
+      return dot;
+    });
+
+    dotMatrix.replaceChildren(...dots);
+    dotMatrix.dataset.initialized = 'true';
+
+    const renderFrame = (frame: number[]) => {
+      dots.forEach((dot, index) => {
+        dot.dataset.active = frame[index] ? 'true' : 'false';
+        setDotAnimation(dot, 'none');
+      });
+    };
+
+    const animateFrame = (currentFrame: number[], nextFrame: number[]) => {
+      dots.forEach((dot, index) => {
+        const isActive = Boolean(currentFrame[index]);
+        const willBeActive = Boolean(nextFrame[index]);
+
+        dot.dataset.active = willBeActive ? 'true' : 'false';
+
+        if (!isActive && willBeActive) {
+          setDotAnimation(dot, 'dot-matrix-enter');
+          return;
+        }
+
+        if (isActive && !willBeActive) {
+          setDotAnimation(dot, 'dot-matrix-exit');
+          return;
+        }
+
+        setDotAnimation(dot, 'none');
+      });
+    };
+
+    renderFrame(frames[0]);
+
+    if (frames.length === 1 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    let frameIndex = 0;
+
+    const transitionToNextFrame = () => {
+      const currentFrame = frames[frameIndex];
+      const nextFrameIndex = (frameIndex + 1) % frames.length;
+      const nextFrame = frames[nextFrameIndex];
+
+      animateFrame(currentFrame, nextFrame);
+
+      window.setTimeout(() => {
+        frameIndex = nextFrameIndex;
+        window.setTimeout(transitionToNextFrame, pauseDuration);
+      }, transitionDuration + maxDelay);
+    };
+
+    window.setTimeout(transitionToNextFrame, pauseDuration);
+  };
+
+  document.querySelectorAll<SVGSVGElement>('.dot-matrix').forEach(initializeDotMatrix);
+</script>

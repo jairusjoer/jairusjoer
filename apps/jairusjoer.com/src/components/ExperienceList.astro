@@ -1,0 +1,36 @@
+---
+import experiences from '@data/experiences';
+import PageItem from './PageItem.astro';
+
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['space-y-24', className]}>
+  {
+    Object.entries(experiences).map(([sectionTitle, sectionData]) => (
+      <section class="space-y-6">
+        <h2 class="text-heading">{sectionTitle}</h2>
+        <hr />
+        <ul class="space-y-3">
+          {Object.entries(sectionData).map(([entryTitle, entryData]) => (
+            <li>
+              <PageItem title={entryTitle} />
+              <ul>
+                {Object.entries(entryData).map(([itemTitle, itemMeta]) => (
+                  <li class="flex justify-between max-sm:flex-col">
+                    <span>{itemTitle}</span>
+                    <span class="tabular-nums">{itemMeta}</span>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</div>

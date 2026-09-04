@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import PageItem from './PageItem.astro';
+
+const collection = (await getCollection('books')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<div class="not-prose">
+  <ul class="space-y-3">
+    {
+      collection.map(({ data: book }) => (
+        <li class="flex gap-3">
+          {book.image && (
+            <Image
+              class="h-12 w-auto shrink-0"
+              src={book.image}
+              alt={book.id}
+              height={144}
+            />
+          )}
+          <PageItem
+            wrap={false}
+            title={book.id}
+            meta={`${book.status} • ${book.author}`}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</div>

@@ -1,2 +1,5 @@
 packages:
   - 'packages/*'
+  - apps/jairusjoer.com
+allowBuilds:
+  esbuild: set this to true or false

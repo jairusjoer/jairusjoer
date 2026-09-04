@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jairusjoer.com/sitemap-index.xml

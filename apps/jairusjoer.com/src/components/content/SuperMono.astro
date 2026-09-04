@@ -1,0 +1,64 @@
+---
+
+---
+
+<a
+  class="super-mono flex"
+  href="/writing/working-with-local-ai-models"
+>
+  <span class="super-mono-arrow w-[2ch]">→</span>
+  <div class="super-mono-text grid">
+    <p>Working with local AI models</p>
+    <time class="text-foreground-subtle">Aug 01, 2026</time>
+  </div>
+</a>
+
+<style>
+  @font-face {
+    font-family: 'Departure Mono';
+    src: url('../../assets/fonts/DepartureMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .super-mono {
+    color: var(--color-foreground);
+    font-family: 'Departure Mono', monospace;
+  }
+</style>
+
+<script>
+  import { animate, splitText, stagger, steps, type JSAnimation } from 'animejs';
+
+  const superMono = document.querySelector('.super-mono')!;
+  const superMonoText = superMono.querySelector('.super-mono-text')!;
+
+  const [title, time] = Array.from(superMonoText.children).map((item) => splitText(item, { chars: true }));
+
+  const duration = 300;
+  const delay = duration / title.chars.length;
+
+  let animation: JSAnimation;
+
+  superMono.addEventListener('mouseenter', () => {
+    console.log('hover');
+    if (animation?.completed === false) return;
+
+    animation = animate(title.chars, {
+      y: ['0%', '50%', '0%', '-50%', '0%'],
+      opacity: [1, 0.5, 1, 0.5, 1],
+      duration: duration,
+      delay: stagger(delay),
+      ease: steps(3),
+    });
+
+    animate(time.chars, {
+      y: ['0%', '50%', '0%', '-50%', '0%'],
+      opacity: [1, 0.5, 1, 0.5, 1],
+      duration: duration,
+      delay: stagger(delay),
+      ease: steps(3),
+    });
+  });
+</script>

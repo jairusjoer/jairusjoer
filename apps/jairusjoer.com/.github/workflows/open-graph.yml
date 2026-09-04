@@ -1,0 +1,126 @@
+name: Generate Open Graph Images
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/content/**
+      - src/pages/open-graph.astro
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: open-graph-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'ci:')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site
+        run: pnpm build
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  open-graph:
+    needs: build
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'ci:')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Generate Open Graph images
+        run: |
+          pnpm exec astro dev &
+          SERVER_PID=$!
+
+          cleanup() {
+            if kill -0 "$SERVER_PID" 2>/dev/null; then
+              kill "$SERVER_PID" || true
+              wait "$SERVER_PID" || true
+            fi
+          }
+          trap cleanup EXIT
+
+          for i in {1..60}; do
+            if curl --silent --fail http://localhost:4321/rss.xml > /dev/null; then
+              break
+            fi
+            sleep 1
+          done
+
+          if ! curl --silent --fail http://localhost:4321/rss.xml > /dev/null; then
+            echo "Dev server did not start in time" >&2
+            exit 1
+          fi
+
+          node actions/open-graph.ts
+
+      - name: Commit and push generated images
+        run: |
+          if test -z "$(git status --porcelain -- public/og)"; then
+            echo "No Open Graph image changes to commit"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add public/og
+
+          if git diff --cached --quiet -- public/og; then
+            echo "No staged Open Graph image changes to commit"
+            exit 0
+          fi
+
+          git commit -m "ci: Update open graph images"
+          git push origin HEAD:${{ github.ref_name }}

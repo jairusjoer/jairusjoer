@@ -1,0 +1,63 @@
+---
+import '@styles/global.css';
+import PageFooter from '@components/PageFooter.astro';
+import PageHeader from '@components/PageHeader.astro';
+import PageMeta, { type Metadata } from '@components/PageMeta.astro';
+import PageNavigation from '@components/PageNavigation.astro';
+import { page } from '@config';
+import { Font } from 'astro:assets';
+
+export interface Props {
+  metadata?: Metadata;
+}
+
+const { metadata } = Astro.props;
+---
+
+<html
+  lang={page.locale.slice(0, 2)}
+  class="bg-background text-default text-foreground-subtle text-pretty antialiased scheme-light-dark print:bg-transparent print:scheme-light"
+>
+  <head>
+    <PageMeta {metadata} />
+    <Font
+      cssVariable="--font-sans"
+      preload
+    />
+    <Font cssVariable="--font-mono" />
+    <slot name="head" />
+  </head>
+  <body>
+    <div
+      id="root"
+      class="isolate px-6 font-sans"
+    >
+      <div
+        class="mx-auto flex min-h-dvh w-full max-w-prose flex-col items-start py-24 print:ml-0 print:max-w-none print:py-0"
+      >
+        <header>
+          <PageHeader />
+          <PageNavigation
+            class="mt-6"
+            links={page.navigation}
+          />
+        </header>
+        <main class="my-24 w-full">
+          <slot />
+        </main>
+        <PageFooter />
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  import { externalizeLinks } from '@scripts/externalizeLinks';
+  import { toggleDetails } from '@scripts/toggleDetails';
+
+  externalizeLinks();
+
+  if (document.querySelector('details')) {
+    toggleDetails();
+  }
+</script>

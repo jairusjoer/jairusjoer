@@ -1,0 +1,21 @@
+---
+import { formatDateTime } from '@scripts/formatDateTime';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+---
+
+<header class="not-prose space-y-1.5">
+  <h1 class="text-heading">
+    {entry.data.status && <span class="text-accent">{entry.data.status}: </span>}
+    {entry.data.title}
+  </h1>
+
+  {entry.data.description && <p>{entry.data.description}</p>}
+
+  {entry.data.date && <time class="tabular-nums">{formatDateTime(entry.data.date)}</time>}
+</header>
