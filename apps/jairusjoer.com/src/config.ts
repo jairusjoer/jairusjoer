@@ -39,7 +39,7 @@ export const page: PageConfig = {
       Legal: '/legal',
       Privacy: 'https://www.iubenda.com/privacy-policy/41205652',
       Cookies: 'https://www.iubenda.com/privacy-policy/41205652/cookie-policy',
-      Source: 'https://github.com/jairusjoer/jairusjoer.com',
+      Source: 'https://github.com/jairusjoer/jairusjoer/tree/main/apps/jairusjoer.com',
     },
   },
 };
