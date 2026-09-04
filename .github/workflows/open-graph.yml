@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - src/content/**
-      - src/pages/open-graph.astro
+      - apps/jairusjoer.com/src/content/**
+      - apps/jairusjoer.com/src/pages/open-graph.astro
   workflow_dispatch:
 
 permissions:
@@ -38,13 +38,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build site
-        run: pnpm build
+        run: pnpm nx run jairusjoer.com:build
 
       - name: Upload dist artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist
+          path: apps/jairusjoer.com/dist
 
   open-graph:
     needs: build
@@ -65,20 +65,22 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Install Playwright Chromium
-        run: pnpm exec playwright install --with-deps chromium
+        run: pnpm --filter jairusjoer.com exec playwright install --with-deps chromium
 
       - name: Download dist artifact
         uses: actions/download-artifact@v4
         with:
           name: dist
-          path: dist
+          path: apps/jairusjoer.com/dist
 
       - name: Generate Open Graph images
+        working-directory: apps/jairusjoer.com
         run: |
           pnpm exec astro dev &
           SERVER_PID=$!
@@ -107,7 +109,7 @@ jobs:
 
       - name: Commit and push generated images
         run: |
-          if test -z "$(git status --porcelain -- public/og)"; then
+          if test -z "$(git status --porcelain -- apps/jairusjoer.com/public/og)"; then
             echo "No Open Graph image changes to commit"
             exit 0
           fi
@@ -115,9 +117,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add public/og
+          git add apps/jairusjoer.com/public/og
 
-          if git diff --cached --quiet -- public/og; then
+          if git diff --cached --quiet -- apps/jairusjoer.com/public/og; then
             echo "No staged Open Graph image changes to commit"
             exit 0
           fi

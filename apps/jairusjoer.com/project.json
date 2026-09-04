@@ -1,0 +1,14 @@
+{
+  "name": "jairusjoer.com",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/jairusjoer.com",
+        "command": "astro check"
+      },
+      "cache": true
+    }
+  }
+}

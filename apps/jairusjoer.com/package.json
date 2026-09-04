@@ -2,15 +2,15 @@
   "name": "jairusjoer.com",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "eslint .",
     "open-graph": "node actions/open-graph.ts",
-    "prepare": "husky",
-    "a11y": "playwright test tests/a11y.test.ts",
-    "lint-staged": "lint-staged"
+    "a11y": "playwright test tests/a11y.test.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
@@ -45,9 +45,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-mdx": "^3.8.1",
     "globals": "^17.6.0",
-    "husky": "^9.1.7",
     "jiti": "^2.7.0",
-    "lint-staged": "^17.2.0",
     "playwright": "^1.62.0",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
@@ -55,6 +53,5 @@
     "sharp": "^0.35.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.61.1"
-  },
-  "packageManager": "pnpm@11.1.3+sha512.c85357fe17ca12dd23dd7071822666dfd7e3cb76fe214e3370b5ea2fb34f2a231185509b63e717f3cd0acb38dd3f8d82bcd5e8172400ae678b70ea4fbed0896d"
+  }
 }
