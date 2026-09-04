@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "nx": "nx"
+    "nx": "nx",
+    "prepare": "husky"
   },
   "private": true,
   "devDependencies": {
@@ -13,6 +14,9 @@
     "@swc/core": "1.15.8",
     "@swc/helpers": "0.5.18",
     "@types/node": "^24.0.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.7.0",
+    "lint-staged": "^17.4.1",
     "nx": "23.2.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",

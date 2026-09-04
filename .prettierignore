@@ -1,6 +1,9 @@
-# Add files here to ignore them from prettier formatting
-/dist
-/coverage
-/.nx/cache
-/.nx/workspace-data
-.nx/self-healing
+# Formatting handled by the generators / package manager
+pnpm-lock.yaml
+
+# Nx caches
+.nx/
+
+# Generated files
+apps/jairusjoer.com/.astro/
+apps/jairusjoer.com/dist/
