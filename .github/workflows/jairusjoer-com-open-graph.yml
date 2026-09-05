@@ -1,0 +1,84 @@
+name: jairusjoer.com — Open Graph Image Generation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - apps/jairusjoer.com/src/content/**
+      - apps/jairusjoer.com/src/pages/open-graph.astro
+      - apps/jairusjoer.com/actions/**
+      - .github/workflows/jairusjoer-com-open-graph.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jairusjoer-com-open-graph-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'ci:')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Build site
+        run: pnpm nx run jairusjoer.com:build
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jairusjoer-com-dist
+          path: apps/jairusjoer.com/dist
+
+  open-graph:
+    needs: build
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'ci:')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Restore Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install Playwright browsers
+        run: pnpm nx run jairusjoer.com:install-browsers
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: jairusjoer-com-dist
+          path: apps/jairusjoer.com/dist
+
+      - name: Generate Open Graph images
+        run: pnpm nx run jairusjoer.com:open-graph
+
+      - name: Commit and push generated images
+        run: |
+          if test -z "$(git status --porcelain -- apps/jairusjoer.com/public/og)"; then
+            echo "No Open Graph image changes to commit"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add apps/jairusjoer.com/public/og
+
+          if git diff --cached --quiet -- apps/jairusjoer.com/public/og; then
+            echo "No staged Open Graph image changes to commit"
+            exit 0
+          fi
+
+          git commit -m "ci: Update open graph images"
+          git push origin HEAD:${{ github.ref_name }}

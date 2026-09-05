@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify (lint, typecheck, build)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Derive appropriate SHAs for `nx affected` commands
+        uses: nrwl/nx-set-shas@v5
+
+      - name: Check formatting
+        run: pnpm exec prettier --check .
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Type check root configs
+        run: pnpm exec tsc -p tsconfig.root.json
+
+      - name: Type check affected projects
+        run: pnpm exec nx affected -t typecheck
+
+      - name: Build affected projects
+        run: pnpm exec nx affected -t build
+
+  a11y:
+    name: Accessibility
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Derive appropriate SHAs for `nx affected` commands
+        uses: nrwl/nx-set-shas@v5
+
+      - name: Restore Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install Playwright browsers for affected projects
+        run: pnpm exec nx affected -t install-browsers
+
+      - name: Run accessibility tests for affected projects
+        run: pnpm exec nx affected -t a11y
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            apps/**/playwright-report
+            apps/**/test-results
+          if-no-files-found: ignore
+          retention-days: 7

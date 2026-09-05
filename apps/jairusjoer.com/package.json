@@ -7,10 +7,18 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check-types": "astro check",
+    "typecheck": "astro check",
+    "install-browsers": "playwright install --with-deps chromium",
     "astro": "astro",
-    "open-graph": "node actions/open-graph.ts",
+    "open-graph": "bash actions/open-graph.sh",
     "a11y": "playwright test tests/a11y.test.ts"
+  },
+  "nx": {
+    "targets": {
+      "typecheck": {
+        "cache": true
+      }
+    }
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

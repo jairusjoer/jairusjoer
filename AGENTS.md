@@ -21,3 +21,16 @@
 - The `nx-generate` skill handles generator discovery internally - don't call nx_docs just to look up generator syntax
 
 <!-- nx configuration end-->
+
+## CI Conventions (GitHub Actions)
+
+How to handle CI files for apps in this monorepo:
+
+- **One generic verify workflow.** `.github/workflows/ci.yml` is the only PR/push verification workflow (formatting, lint, typecheck, build, a11y). It must stay project-agnostic: workspace-level checks run at the root, everything app-specific runs via `pnpm exec nx affected -t <task>`. It must not hardcode project names or app paths. Adding a new app requires zero edits to `ci.yml`.
+- **Apps opt into CI through Nx targets.** Standard target names consumed by `ci.yml`: `typecheck`, `build`, `a11y` (Playwright projects also provide `install-browsers`). If CI needs to do anything to an app, it must be reproducible locally as `pnpm nx run <project>:<target>` — put the logic in an app target, package script, or script file inside the app (see `apps/jairusjoer.com/actions/open-graph.sh`).
+- **Shared setup is a composite action.** Every workflow starts with `./.github/actions/workspace-setup` (checkout + pnpm + Node + frozen install). Don't repeat those steps inline.
+- **App-owned automation gets its own file**, named `<app-slug>-<concern>.yml` where `<app-slug>` is the Nx project name in lowercase with non-alphanumeric runs collapsed to `-` (e.g. `jairusjoer-com-open-graph.yml`). Deploy/generation/publishing pipelines live there, never in `ci.yml`. Such a workflow may reference its own project by name (unlike `ci.yml`).
+- **Triggers stay narrow.** App workflows use `paths:` filters covering the app directory, its inputs (e.g. scripts/actions), and the workflow file itself, plus `workflow_dispatch` for manual runs. Commit-pushing workflows must guard against self-triggering (see the `ci:` commit-message check in `jairusjoer-com-open-graph.yml`).
+- **Caching:** Nx's local task cache covers task outputs (Nx Cloud stays disabled via `neverConnectToCloud`); Actions caches are only for tool binaries such as Playwright browsers, keyed on `hashFiles('pnpm-lock.yaml')`.
+- **Artifacts and secrets:** failure artifacts use workspace-wide globs (e.g. `apps/**/playwright-report`), not per-project paths. Secrets are named with the uppercased app slug prefix, e.g. `JAIRUSJOER_COM_*`.
+- **Housekeeping:** every workflow declares least-privilege `permissions` and a `concurrency` group named after the workflow file; workflows using `nx affected` must check out with `fetch-depth: 0` (the setup action default) and run `nrwl/nx-set-shas@v5`.

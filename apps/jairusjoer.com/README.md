@@ -31,11 +31,31 @@ Available scripts:
 | `pnpm dev`         | Start the local development server                                  |
 | `pnpm build`       | Create a production build                                           |
 | `pnpm preview`     | Preview the production build locally                                |
-| `pnpm open-graph`  | Generate Open Graph images from a running dev server                |
+| `pnpm open-graph`  | Generate Open Graph images (starts and stops its own dev server)    |
 | `pnpm a11y`        | Run Playwright axe-core checks against the production build         |
 | `pnpm lint-staged` | Run `astro check`, ESLint, and Prettier on staged files (via Husky) |
 
 Formatting and linting use Prettier (with the Astro, Tailwind, and import-sorting plugins) and ESLint (with Astro, jsxA11y, Markdown, JSON, and CSS configs).
+
+## Continuous Integration
+
+GitHub Actions runs the checks defined in `.github/workflows/ci.yml` on pushes to `main` and on pull requests:
+
+- **Verify** — Prettier format check, ESLint, root config type checking, and `nx affected` typecheck and build for the changed projects.
+- **Accessibility** — `nx affected` Playwright axe-core checks against a production build (Chromium, cached between runs).
+
+Affected detection uses [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only projects changed since the last successful run on `main` are verified. The workspace runs without Nx Cloud (`neverConnectToCloud`), so everything is computed on the runner.
+
+This app plugs into CI through its Nx targets (`typecheck`, `build`, `a11y`, `install-browsers`), and its app-owned automation lives in `.github/workflows/jairusjoer-com-*.yml`. See the CI conventions in the repository root `AGENTS.md` for the full rules.
+
+To run the same checks locally:
+
+```bash
+pnpm exec prettier --check .
+pnpm lint
+pnpm typecheck
+pnpm nx affected -t typecheck build a11y
+```
 
 ## Site Configuration
 
@@ -104,27 +124,24 @@ The repository includes a few generated or automation-backed outputs:
 - `src/pages/rss.xml.ts` builds the site RSS feed from the `pages` collection
 - `src/pages/open-graph.astro` renders the template used for social preview images
 - `actions/open-graph.ts` captures Open Graph images into `public/og/**` from a local server environment
+- `actions/open-graph.sh` orchestrates the full generation: starts the dev server, waits for it, then runs the script above
 
 ### Open Graph Generation
 
 Open Graph images are generated from the local Astro app, not from static templates alone. The script reads the RSS feed, opens the Open Graph route for each entry, and writes screenshots to `public/og`.
 
-The automated path is defined in `.github/workflows/open-graph.yml` and runs on pushes to `main` when content or the Open Graph template changes.
+The automated path is defined in `.github/workflows/jairusjoer-com-open-graph.yml` and runs on pushes to `main` when content or the Open Graph template changes.
 
 To run it locally, use the same flow as the workflow:
 
 ```bash
 pnpm install
+pnpm build
 pnpm exec playwright install chromium
-```
-
-Start the dev server, then with it running on `http://localhost:4321`, execute:
-
-```bash
 pnpm open-graph
 ```
 
-This will generate or update files in `public/og` for entries discovered via `/rss.xml`. Drafts are excluded because the production RSS feed omits them.
+`pnpm open-graph` starts the dev server itself and shuts it down afterwards; port `4321` must be free. This will generate or update files in `public/og` for entries discovered via `/rss.xml`. Drafts are excluded because the production RSS feed omits them.
 
 ## Project Layout
 
@@ -144,6 +161,7 @@ tests/
   a11y.test.ts     Playwright axe-core checks
 actions/
   open-graph.ts    Local Open Graph image generation utility
+  open-graph.sh    Dev-server orchestration wrapper for the generator
 public/
   assets/          Static media assets
   og/              Generated Open Graph images
