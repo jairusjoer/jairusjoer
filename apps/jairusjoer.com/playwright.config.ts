@@ -8,7 +8,7 @@ export default defineConfig({
     baseURL: 'http://localhost:4321',
   },
   webServer: {
-    command: 'pnpm build && pnpm preview',
+    command: 'pnpm preview',
     reuseExistingServer: !process.env.CI,
     url: 'http://localhost:4321',
   },

@@ -7,9 +7,9 @@
   "scripts": {
     "nx": "nx",
     "prepare": "husky",
-    "lint": "eslint .",
-    "typecheck": "tsc -p tsconfig.root.json && pnpm nx run-many -t typecheck",
-    "check": "pnpm lint && pnpm typecheck"
+    "format": "prettier --write --ignore-unknown",
+    "lint": "eslint --fix --no-warn-ignored",
+    "typecheck": "tsc -p tsconfig.root.json && pnpm nx run-many -t typecheck"
   },
   "private": true,
   "devDependencies": {

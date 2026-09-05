@@ -1,27 +1,19 @@
 name: Workspace Setup
 description: >-
-  Check out the monorepo, set up pnpm and Node.js, and install the workspace
-  with a frozen lockfile. Every workflow in this repository starts with this action.
+  Set up pnpm and Node.js and install the workspace with a frozen lockfile.
+  Callers must run actions/checkout before this action, since local actions
+  are resolved from the (initially empty) runner workspace.
 
 inputs:
   node-version:
     description: Node.js version to set up.
     required: false
     default: '24'
-  fetch-depth:
-    description: Git fetch depth. Use 0 (full history) for `nx affected` and `nx-set-shas`.
-    required: false
-    default: '0'
 
 runs:
   using: composite
 
   steps:
-    - name: Check out repository
-      uses: actions/checkout@v5
-      with:
-        fetch-depth: ${{ inputs.fetch-depth }}
-
     - name: Set up pnpm
       uses: pnpm/action-setup@v5
 
