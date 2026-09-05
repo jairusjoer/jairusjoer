@@ -15,6 +15,11 @@ export default defineConfig(
     files: ['**/*.astro'],
     plugins: { astro },
     extends: [astro.configs['flat/jsx-a11y-recommended']],
+    languageOptions: {
+      parserOptions: {
+        parser: tseslint.parser,
+      },
+    },
   },
   {
     files: ['**/*.css'],
@@ -39,7 +44,7 @@ export default defineConfig(
       },
     },
     rules: {
-      'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['tabpanel', 'region'] }],
+      'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['tabpanel', 'region'] }], // Astro code blocks
     },
   },
   {
