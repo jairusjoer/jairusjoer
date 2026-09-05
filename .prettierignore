@@ -4,6 +4,9 @@ pnpm-lock.yaml
 # Nx caches
 .nx/
 
+# Vendored Nx agent skills
+.agents/
+
 # Generated files
 apps/jairusjoer.com/.astro/
 apps/jairusjoer.com/dist/
