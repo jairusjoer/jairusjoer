@@ -17,6 +17,14 @@
     "targets": {
       "typecheck": {
         "cache": true
+      },
+      "build": {
+        "cache": true
+      },
+      "a11y": {
+        "dependsOn": [
+          "build"
+        ]
       }
     }
   },

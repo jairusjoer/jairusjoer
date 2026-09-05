@@ -37,14 +37,15 @@ Available scripts:
 
 Formatting and linting use Prettier (with the Astro, Tailwind, and import-sorting plugins) and ESLint (with Astro, jsxA11y, Markdown, JSON, and CSS configs).
 
+The `a11y` script expects a production build to exist (the Playwright server only previews it). Run it through Nx — `pnpm exec nx run jairusjoer.com:a11y` — to build first automatically.
+
 ## Continuous Integration
 
 GitHub Actions runs the checks defined in `.github/workflows/ci.yml` on pushes to `main` and on pull requests:
 
-- **Verify** — Prettier format check, ESLint, root config type checking, and `nx affected` typecheck and build for the changed projects.
-- **Accessibility** — `nx affected` Playwright axe-core checks against a production build (Chromium, cached between runs).
+- **Verify** — Prettier format check, ESLint, root config type checking, and `nx affected` typecheck, build, and Playwright axe-core accessibility checks (Chromium, cached between runs) for the changed projects.
 
-Affected detection uses [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only projects changed since the last successful run on `main` are verified. The workspace runs without Nx Cloud (`neverConnectToCloud`), so everything is computed on the runner.
+Affected detection uses [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only projects changed since the last successful run on `main` are verified. The workspace runs without Nx Cloud (`neverConnectToCloud`), so everything is computed on the runner. All checks share one job because Nx's local task cache is per-machine: the `a11y` target depends on `build`, so the site is built once and replayed from cache on the same runner.
 
 This app plugs into CI through its Nx targets (`typecheck`, `build`, `a11y`, `install-browsers`), and its app-owned automation lives in `.github/workflows/jairusjoer-com-*.yml`. See the CI conventions in the repository root `AGENTS.md` for the full rules.
 
