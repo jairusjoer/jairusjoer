@@ -31,7 +31,7 @@ In addition, the following related content has been added as optional content an
 
 ## Procedure
 
-The aim of the seminar was to familiarize A.I. users with the processes and technology behind these *new* technologies and services and, above all, to clear the fog around how these topics work and the risks involved.
+The aim of the seminar was to familiarize A.I. users with the processes and technology behind these _new_ technologies and services and, above all, to clear the fog around how these topics work and the risks involved.
 
 The seminar started with an introduction of the seminar leader Henrik Bartsch, who gave a short insight into himself and his motivation for this seminar.
 
@@ -47,11 +47,11 @@ Memes, in particular, were used to present various issues in an entertaining but
 
 After the main topic was completed and time remained, participants were given the opportunity to vote on the optional topics.
 
-Here, an interest in *Ethics and Bias in Machine Learning* and *Functionality of Generative Models* emerged in particular.
+Here, an interest in _Ethics and Bias in Machine Learning_ and _Functionality of Generative Models_ emerged in particular.
 
 We had already provided reflections on the ethics of artificial intelligence in our [article from May 2, 2022 (_Working with Artificial Intelligence: Risks & Side Effects_)](/archive/aggregata/working-with-artificial-intelligence-risks-and-side-effects/), so we were able to take the opportunity here to delve into the current situation and changes in perception.
 
-The *Functionality of Generative Models* in the context of creative work with generation services such as Midjourney was also explained in more detail with clear graphics and relevant examples from the industry.
+The _Functionality of Generative Models_ in the context of creative work with generation services such as Midjourney was also explained in more detail with clear graphics and relevant examples from the industry.
 
 ![A slide from the seminar explaining the generator and discriminator of a generative model](./assets/slide-93.png)
 

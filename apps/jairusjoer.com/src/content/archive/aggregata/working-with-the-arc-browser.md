@@ -4,7 +4,7 @@ date: 2024-01-08
 description: 'The Arc Browser brings a breath of fresh air to the browser market and at the same time offers interesting features that could have a lasting impact on the way we browse the Internet. Read more in this article.'
 ---
 
-I’ve been using the [Arc Browser](https://arc.net/) from *The Browser Company* for a good six months now and have been pleasantly surprised by every major update so far. For this reason, I’d like to introduce you to the browser and its features in more detail today.
+I’ve been using the [Arc Browser](https://arc.net/) from _The Browser Company_ for a good six months now and have been pleasantly surprised by every major update so far. For this reason, I’d like to introduce you to the browser and its features in more detail today.
 
 Like any other browser, the Arc Browser initially does exactly what it is supposed to do: browse. However, what makes it stand out from the crowd are the small, detailed interactions and features that expand or change a page in addition to the actual browsing.
 

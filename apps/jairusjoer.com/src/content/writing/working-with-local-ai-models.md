@@ -21,8 +21,8 @@ I experimented with [Ollama](https://ollama.com/) in a previous attempt, and whi
 From the onboarding process to running my first model locally, I only needed to click through the model discovery. At the time, I had no knowledge of different quantisation approaches, such as MLX and GGUF.
 
 <figure>
-  
-  ![Model discovery modal inside of LM Studio](./assets/2026-lm-studio.png)
+
+![Model discovery modal inside of LM Studio](./assets/2026-lm-studio.png)
   <figcaption>Model discovery modal inside of LM Studio</figcaption>
 </figure>
 
@@ -71,8 +71,8 @@ The only issue I’ve had with GitHub Copilot so far is that it won't suggest co
 GitHub Copilot requires a custom endpoint to connect to LM Studio, with manual entries for each model. Language model extensions are also available for popular providers and handle local model discovery automatically.
 
 <figure>
-  
-  ![GitHub Copilot session inside of Visual Studio Code](./assets/2026-vs-code.png)
+
+![GitHub Copilot session inside of Visual Studio Code](./assets/2026-vs-code.png)
   <figcaption>GitHub Copilot session inside of Visual Studio Code</figcaption>
 </figure>
 

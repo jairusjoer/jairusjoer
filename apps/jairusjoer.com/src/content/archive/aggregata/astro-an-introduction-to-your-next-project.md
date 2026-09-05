@@ -146,9 +146,9 @@ interface Props {
 The boilerplate comes with some handy components to get you started:
 
 - `<Footer />` - \*Empty component for binding your own footer.
-- `<Meta>` - *Represents common metadata. Allows expansion with* [_`<slot />`_](https://docs.astro.build/en/core-concepts/astro-components/#slots).
-- `<Navigation>` - *Empty component for binding custom navigation*.
-- `<Welcome />` - *Example component reflecting the changes made to the project*.
+- `<Meta>` - _Represents common metadata. Allows expansion with_ [_`<slot />`_](https://docs.astro.build/en/core-concepts/astro-components/#slots).
+- `<Navigation>` - _Empty component for binding custom navigation_.
+- `<Welcome />` - _Example component reflecting the changes made to the project_.
 
 ### Layouts
 
@@ -168,7 +168,7 @@ For more sophisticated applications, we recommend the solutions integrated by [
 
 Based on our configuration, the following two frameworks and components are particularly suited for use in our boilerplate:
 
-- [**Pines**](https://devdojo.com/pines) - *a UI library based on Alpine and Tailwind*.
+- [**Pines**](https://devdojo.com/pines) - _a UI library based on Alpine and Tailwind_.
 - [**shadcn/ui**](https://ui.shadcn.com/) -_a UI library based on React, Radix and Tailwind_.
 
 > When using shadcn/ui, follow Astro’s rules for [hydrating components](https://docs.astro.build/en/core-concepts/framework-components/#can-i-hydrate-astro-components).

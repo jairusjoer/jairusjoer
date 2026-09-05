@@ -39,8 +39,8 @@ Now that we’ve established a simple method to pick up our DOM manipulations, w
 
 In this case, we use CSS to target our elements and use animations and transitions to create a more engaging experience. The View Transition API provides several pseudo-elements that can be targeted to apply styles. For this demonstration, we’ll use the following:
 
-- `::view-transition-old()`: *Captured snapshot of the old view.*
-- `::view-transition-new()`: *Live represntation of the new view.*
+- `::view-transition-old()`: _Captured snapshot of the old view._
+- `::view-transition-new()`: _Live represntation of the new view._
 
 ```css
 ::view-transition-old(root) {

@@ -12,10 +12,10 @@ In this article we’re going to enhance the button component by adding interact
 
 ### New Requirement: States
 
-- `:hover`: *Visual feedback when hovering over the button*
-- `:focus`: *Clear indication when the button is focused*
-- `:active`: *Visual feedback when the button is clicked*
-- `:disabled`: *Distinct appearance when the button is disabled*
+- `:hover`: _Visual feedback when hovering over the button_
+- `:focus`: _Clear indication when the button is focused_
+- `:active`: _Visual feedback when the button is clicked_
+- `:disabled`: _Distinct appearance when the button is disabled_
 
 ## Extending the Button Component
 

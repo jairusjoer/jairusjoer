@@ -29,8 +29,8 @@ Together with [Dennis Eming](https://www.linkedin.com/in/denniseming/) and Sofie
 Thanks to an iterative approach to feedback and improvements, enabled by [Sarah Köksal](https://www.linkedin.com/in/dr-sarah-k%C3%B6ksal-4256a3103/)‘s research and feedback collection, we achieved a satisfactory result for customers shortly after the initial launch, maintaining a high degree of polish throughout the broader rollout.
 
 <figure>
-  
-  ![Sidebar and top navigation introduced with milestone 1.0](./assets/2025-hero-design.png)
+
+![Sidebar and top navigation introduced with milestone 1.0](./assets/2025-hero-design.png)
   <figcaption>Sidebar and top navigation introduced with milestone 1.0</figcaption>
 </figure>
 
@@ -75,28 +75,28 @@ I accompanied my colleagues on many occasions, some of which were more turbulent
 In 2024, I attended the WeAreDevelopers congress for the first time, followed shortly by a workation in Groningen in the Netherlands. While the former was blasted by a heatwave, the latter turned out to be a more tranquil experience.
 
 <figure>
-  
-  ![Groningen Workation, 2024](./assets/2024-hero-groningen.jpg)
+
+![Groningen Workation, 2024](./assets/2024-hero-groningen.jpg)
   <figcaption>Groningen Workation, 2024</figcaption>
 </figure>
 
 <figure>
-  
-  ![WeAreDevelopers Congress, 2024](./assets/2024-hero-congress.jpeg)
+
+![WeAreDevelopers Congress, 2024](./assets/2024-hero-congress.jpeg)
   <figcaption>WeAreDevelopers Congress, 2024</figcaption>
 </figure>
 
 In 2025, I revisited the WeAreDevelopers Congress with an even larger group, making a notable, colourful appearance at the event. Just two months later, a local Prague citizen guided us to an (literal) underground metal bar, where we had the pleasure of sampling local beverages.
 
 <figure>
-  
-  ![WeAreDevelopers Congress, 2025](./assets/2025-hero-congress.png)
+
+![WeAreDevelopers Congress, 2025](./assets/2025-hero-congress.png)
   <figcaption>WeAreDevelopers Congress, 2025</figcaption>
 </figure>
 
 <figure>
-  
-  ![Prague Workation, 2025](./assets/2025-hero-prague.png)
+
+![Prague Workation, 2025](./assets/2025-hero-prague.png)
   <figcaption>Prague Workation, 2025</figcaption>
 </figure>
 

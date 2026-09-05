@@ -4,7 +4,7 @@ date: 2024-04-01
 description: "Obsidian, a tool for building a 'second brain' - a system for organizing and managing information effectively. Learn how this free, open source platform can help you organize notes, connect ideas and potentially improve workflow efficiency."
 ---
 
-[Obsidian](https://obsidian.md/) describes itself as ***”… the private and flexible writing app that adapts to the way you think”*** and offers besides a Markdown text editor the capability to build your own knowledge base.
+[Obsidian](https://obsidian.md/) describes itself as _**”… the private and flexible writing app that adapts to the way you think”**_ and offers besides a Markdown text editor the capability to build your own knowledge base.
 
 I’ve been using Obsidian personally for a year now, and I’ve grown quite fond of its focused approach to writing and organization. So I thought a dip into Obsidian’s feature pool might be in order.
 
@@ -22,7 +22,7 @@ The look and feel of the interface and editor can be customized using custom fon
 
 ![Subset of available appearance options](./assets/obsidian-appearance.png)
 
-*If the base application does not have a feature you may need, have a look at the available* [_plugins_](#plugins)_._
+_If the base application does not have a feature you may need, have a look at the available_ [_plugins_](#plugins)_._
 
 ## Vaults
 
@@ -32,7 +32,7 @@ You can use multiple vaults to separate concerns, as a single vault can contain 
 
 > Using Obsidian in a commercial context requires you to [obtain a license](https://obsidian.md/pricing).
 
-*We’ll dive deeper into storing your vaults to access them across devices in* [_Storage, Sync & Publish_](#storage-sync--publish)_._
+_We’ll dive deeper into storing your vaults to access them across devices in_ [_Storage, Sync & Publish_](#storage-sync--publish)_._
 
 ## Links
 
@@ -45,7 +45,7 @@ Obsidian offers two methods for linking files and attachments together:
 
 ## Graph
 
-Linked or tagged files can be visualized in a graph that can be customised to display your linked files in a way that suits your needs. The floral nature of the patterns that appear has led the community to refer to some of their vaults as *digital gardens*.
+Linked or tagged files can be visualized in a graph that can be customised to display your linked files in a way that suits your needs. The floral nature of the patterns that appear has led the community to refer to some of their vaults as _digital gardens_.
 
 Your garden grows with your vault and the knowledge it contains. In extreme cases, this can lead to huge interconnected documents on entire research topics, as is the case with [The Quantum Well](https://publish.obsidian.md/myquantumwell):
 

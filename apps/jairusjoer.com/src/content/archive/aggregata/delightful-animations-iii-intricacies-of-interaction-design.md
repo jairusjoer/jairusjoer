@@ -48,7 +48,7 @@ Both companies promote design and interaction, [provide us with methods](https:
   <source src="/assets/family.mp4" type="video/mp4" />
 </video>
 
-> *From* [_Great Animations_](https://emilkowal.ski/ui/great-animations)_, Emil Kowalski showcases the fluidity of user interfaces through transforms and presence animation. This creates the perception of continuity and increases relevance for on-screen elements throughout the user journey._
+> _From_ [_Great Animations_](https://emilkowal.ski/ui/great-animations)_, Emil Kowalski showcases the fluidity of user interfaces through transforms and presence animation. This creates the perception of continuity and increases relevance for on-screen elements throughout the user journey._
 
 ---
 

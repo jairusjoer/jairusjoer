@@ -24,7 +24,7 @@ I've discovered many talented artists, designers, and developers, as well as pro
 
 As May 16th draws closer by the day, I find myself spending more and more time preserving the people I've found while trying to capture the essence of an amazing platform that will soon be gone.
 
-In this endeavor, I'm answering the call to *carry the torch* and rebuild my own resume in the spirit of Read.cv. I'm currently researching a possible candidate that uses [Astro](https://astro.build/) to display and manage its content, and hope to share it soon.
+In this endeavor, I'm answering the call to _carry the torch_ and rebuild my own resume in the spirit of Read.cv. I'm currently researching a possible candidate that uses [Astro](https://astro.build/) to display and manage its content, and hope to share it soon.
 
 ---
 
@@ -32,7 +32,7 @@ In the meantime, I'll be spending some more time on Read.cv, reading the resumes
 
 I highly recommend browsing Read.cv while it's still online. No new content can be posted, so it serves as a snapshot of the community as it was in February 2025. Who knows what gems you might unearth in this frozen place.
 
-I'll leave you with three resumes from my extensive collection of bookmarks that I return to time and again for inspiration. *Please try to enjoy each resume equally, and not show preference for any over the others.*
+I'll leave you with three resumes from my extensive collection of bookmarks that I return to time and again for inspiration. _Please try to enjoy each resume equally, and not show preference for any over the others._
 
 ---
 
