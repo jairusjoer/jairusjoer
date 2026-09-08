@@ -15,8 +15,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify:
-    name: Verify (lint, typecheck, build, a11y)
+  verify-affected:
+    name: 'Verify (affected): lint, typecheck, build, a11y'
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
@@ -62,7 +63,57 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v6
         with:
-          name: playwright-report
+          name: playwright-report-affected
+          path: |
+            apps/**/playwright-report
+            apps/**/test-results
+          if-no-files-found: ignore
+          retention-days: 7
+
+  verify-all:
+    name: 'Verify (all): lint, typecheck, build, a11y'
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Check formatting
+        run: pnpm exec prettier --check .
+
+      - name: Lint
+        run: pnpm exec eslint .
+
+      - name: Type check root configs
+        run: pnpm exec tsc -p tsconfig.root.json
+
+      - name: Type check all projects
+        run: pnpm exec nx run-many -t typecheck
+
+      - name: Build all projects
+        run: pnpm exec nx run-many -t build
+
+      - name: Restore Playwright browsers
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install Playwright browsers for all projects
+        run: pnpm exec nx run-many -t install-browsers
+
+      - name: Run accessibility tests for all projects
+        run: pnpm exec nx run-many -t a11y
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: playwright-report-all
           path: |
             apps/**/playwright-report
             apps/**/test-results
