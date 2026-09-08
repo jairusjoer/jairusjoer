@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Timeline Mockup 01 — Lifeline Rail (vertical)</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: light-dark(#f7f3f2, #171414);
+        --fg: light-dark(#171414, #f7f3f2);
+        --mut: light-dark(#726e6e, #a39e9e);
+        --faint: light-dark(#ada8a8, #726e6e);
+        --line: light-dark(#e5e0df, #272525);
+        --card: light-dark(#fdfaf9, #1e1b1b);
+        --border: light-dark(#cac5c4, #3c3838);
+        --xp: #4a7ba6;
+        --edu: #7c6ba6;
+        --proj: #5f9e76;
+        --award: #b3893c;
+        --other: #a6687c;
+        --post: #6b7f92;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(12px);
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        border-bottom: 1px solid var(--line);
+        padding: 14px 28px;
+        display: flex;
+        align-items: baseline;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      header h1 {
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      header p {
+        color: var(--mut);
+        font-size: 12px;
+      }
+      .legend {
+        margin-left: auto;
+        display: flex;
+        gap: 14px;
+        font-size: 11px;
+        color: var(--mut);
+      }
+      .legend span::before {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c);
+        margin-right: 5px;
+      }
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 24px 24px 120px;
+        position: relative;
+      }
+      /* the rail */
+      .rail {
+        position: absolute;
+        top: 40px;
+        bottom: 60px;
+        left: 46px;
+        width: 2px;
+        background: var(--border);
+        border-radius: 2px;
+        transform-origin: top;
+        animation: draw 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @keyframes draw {
+        from {
+          transform: scaleY(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .rail {
+          animation: none;
+        }
+        section {
+          animation: none !important;
+          opacity: 1 !important;
+        }
+      }
+      section {
+        position: relative;
+        padding: 34px 0 34px 46px;
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      section.in {
+        opacity: 1;
+        transform: none;
+      }
+      .yr {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .yr b {
+        font-size: 26px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+      }
+      .yr i {
+        font-style: normal;
+        font-size: 11px;
+        color: var(--faint);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      /* year dot on the rail */
+      section::before {
+        content: '';
+        position: absolute;
+        left: 41px;
+        top: 42px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--fg);
+        z-index: 2;
+      }
+      /* role lanes rendered on the rail */
+      .lanes {
+        position: absolute;
+        left: 34px;
+        top: 34px;
+        bottom: -34px;
+        width: 26px;
+        display: flex;
+        gap: 3px;
+        justify-content: center;
+      }
+      .lane {
+        width: 3px;
+        border-radius: 3px;
+        background: var(--c);
+        opacity: 0.85;
+      }
+      .lane.start {
+        border-radius: 3px 3px 0 0;
+      }
+      .lane.end {
+        border-radius: 0 0 3px 3px;
+        bottom: 34px;
+      }
+      .lane.now {
+        background: linear-gradient(var(--c), color-mix(in srgb, var(--c) 10%, transparent));
+      }
+      article {
+        position: relative;
+        margin: 0 0 10px;
+        padding: 12px 16px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--c, var(--border));
+        border-radius: 6px;
+      }
+      article h3 {
+        font-size: 15px;
+        font-weight: 600;
+      }
+      article p {
+        font-size: 12.5px;
+        color: var(--mut);
+        margin-top: 2px;
+      }
+      article .range {
+        float: right;
+        font-size: 11px;
+        color: var(--faint);
+        border: 1px solid var(--border);
+        border-radius: 99px;
+        padding: 1px 9px;
+      }
+      .posts {
+        margin-top: 14px;
+        border-top: 1px dashed var(--border);
+        padding-top: 10px;
+      }
+      .posts > i {
+        font-style: normal;
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--post);
+        margin-bottom: 6px;
+      }
+      .posts a {
+        display: flex;
+        gap: 10px;
+        padding: 3px 0;
+        color: var(--fg);
+        text-decoration: none;
+        font-size: 13px;
+      }
+      .posts a:hover {
+        text-decoration: underline;
+        color: var(--post);
+      }
+      .posts time {
+        flex: none;
+        width: 42px;
+        color: var(--faint);
+        font-size: 11.5px;
+        padding-top: 2px;
+      }
+      footer {
+        text-align: center;
+        color: var(--faint);
+        font-size: 12px;
+        padding: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Jairus Joer</h1>
+      <p>Mockup 01 — Lifeline rail, vertical (closest port of the reference)</p>
+      <div class="legend">
+        <span style="--c: var(--xp)">Work</span> <span style="--c: var(--edu)">Education</span>
+        <span style="--c: var(--proj)">Projects</span> <span style="--c: var(--award)">Awards</span>
+        <span style="--c: var(--post)">Writing</span>
+      </div>
+    </header>
+    <main>
+      <div class="rail"></div>
+      <div id="years"></div>
+    </main>
+    <footer>draw the rail on load · lanes on the rail track concurrent roles · writing nests under each year</footer>
+    <script>
+      const RAW = `edu|Kooperative Gesamtschule Gronau (Leine)|Matura in Linguistics|2015|2018
+      xp|World of Bass Records|Marketing Manager|2015|2016
+      xp|XVI CHAPEL|Co-Founder|2016|2017
+      edu|Multi Media Berufsbildende Schulen Hannover|Media Design Apprenticeship|2018|2021
+      xp|TA Bildungszentrum|Apprentice Media Designer|2018|2019
+      xp|neuwaerts|Apprentice Media Designer|2019|2024
+      other|neuwaerts|Workshop: New Work|2019
+      xp|Freelance|Developer and Designer|2020|Now
+      proj|Sesame AI|Social signal analysis for stock trading|2021
+      xp|neuwaerts|Junior Frontend Developer|2021|2022
+      award|BCM|Content Platforms B2C Gold|2022
+      proj|Aggregata|Technical blog about the web and machine learning|2022|2025
+      xp|neuwaerts|Full Stack Developer|2022|2024
+      post|Aggregata|Include Alpine.js in a production environment|2022-10-09
+      post|Aggregata|Interactive forms with Alpine.js|2022-11-25
+      post|Aggregata|Visualize and update products with Alpine.js|2022-12-26
+      post|Aggregata|Working with Artificial Intelligence|2023-05-02
+      post|Aggregata|Colophon: How we build Aggregata|2023-06-12
+      post|Aggregata|Temporary and persistent state management with Alpine.js|2023-07-24
+      post|Aggregata|How does A.I. learn? Impressions from our first seminar|2023-10-02
+      post|Aggregata|One year of Aggregata|2023-10-16
+      post|Aggregata|Astro — An introduction to your next project|2023-10-30
+      post|Aggregata|Dynamic imports with Alpine.js|2023-11-13
+      other|neuwaerts|Workshop: Figma Onboardings for various clients|2023
+      other|neuwaerts|Workshop: Working with Figma in real-time|2023
+      other|neuwaerts|Workshop: Digital Tools for Clients|2023
+      other|neuwaerts|Workshop: Generative Texts|2023
+      post|Aggregata|Working with the Arc Browser|2024-01-08
+      post|Aggregata|Advanced forms with Alpine.js|2024-02-05
+      post|Aggregata|Deploying dynamic content as static HTML|2024-03-18
+      post|Aggregata|Beyond bullet points: A dive into Obsidian|2024-04-01
+      xp|HERO Software|Senior Full Stack Engineer|2024|2026
+      other|HERO Software|Hackathon: Modular dashboard and interface redesign demo|2024
+      post|Aggregata|Why we are moving Aggregata from Astro to Ghost|2024-05-13
+      post|Aggregata|Develop design systems with accessibility in mind|2024-05-27
+      post|Aggregata|Accessibility — a Necessity, not an Afterthought|2024-07-08
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2024|2024-07-22
+      post|Aggregata|Crafting a detailed Dialog element using Microinteractions|2024-09-02
+      post|Aggregata|Define a Component Library for Designers and Developers|2024-09-16
+      post|Aggregata|Adapting and Evolving: Year two of Aggregata|2024-10-14
+      post|Aggregata|Create a Component Library for Designers and Developers|2024-10-29
+      post|Aggregata|Expand a Component Library for Designers and Developers|2024-11-11
+      post|Aggregata|Set up a new project with Tailwind CSS 4.0|2024-12-23
+      post|Aggregata|Leverage the View Transition API in any Project|2025-01-06
+      post|Aggregata|Improve a Component Library for Designers and Developers|2025-02-17
+      post|Aggregata|Cross-Document View Transitions for Multi-Page Applications|2025-03-03
+      post|Aggregata|Goodbye Read.cv|2025-04-14
+      post|Aggregata|Delightful Animations I: Gallery|2025-05-26
+      post|Aggregata|The future of the web might be native|2025-05-31
+      post|Aggregata|Migrating the Monolith I: Conceptualization|2025-06-09
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2025|2025-07-21
+      post|Aggregata|Delightful Animations II: Tiles|2025-08-04
+      post|Aggregata|Delightful Animations III: Intricacies of Interaction Design|2025-09-15
+      post|Aggregata|The Sisyphean Struggle for Simplicity|2025-09-29
+      other|HERO Software|Workshop: Expectations and Standards for the Design Vision|2025
+      other|HERO Software|Hackathon: Complete rework of the software personalisation|2025
+      proj|find.ski|Ski data aggregator and comparison portal|2025
+      post|Aggregata|Migrating the Monolith II: Design|2025-11-11
+      post|Aggregata|Delightful Animations IV: Mind the Gap|2025-11-25
+      post|Aggregata|We're saying Goodbye|2025-11-30
+      xp|BWI|Senior Software Engineer|2026|Now
+      proj|quote.work|Real-time calendar slot bidding embed|2026
+      post|Writing|About Personal Software|2026-01-07
+      post|Writing|The Future of the Web Ought to Be Native|2026-02-19
+      post|Writing|Two Years At HERO Software|2026-03-30
+      post|Writing|Demonstrating Software Personalisation|2026-06-02
+      post|Writing|Thoughts on Resilience, Sustainability and Sovereignty|2026-07-13
+      post|Writing|Working with local AI models|2026-08-01`;
+
+      const NOW = 2026;
+      const TYPE = {
+        xp: ['Work', '--xp'],
+        edu: ['Education', '--edu'],
+        proj: ['Project', '--proj'],
+        award: ['Award', '--award'],
+        other: ['Other', '--other'],
+        post: ['Writing', '--post'],
+      };
+      const D = RAW.split('\n')
+        .map((l) => l.trim().split('|'))
+        .map(([t, o, n, f, x]) => ({ t, o, n, f, x, y: +f.slice(0, 4) }));
+      const span = (e) => [e.y, e.x === 'Now' ? NOW : e.x ? +e.x.slice(0, 4) : e.y];
+
+      const root = document.getElementById('years');
+      for (let y = 2015; y <= NOW; y++) {
+        const inYear = D.filter((e) => (e.t === 'post' ? e.y === y : span(e)[0] <= y && y <= span(e)[1]));
+        if (!inYear.length) continue;
+        const starts = D.filter((e) => e.y === y && e.t !== 'post');
+        const posts = D.filter((e) => e.t === 'post' && e.y === y);
+        if (!starts.length && !posts.length) continue;
+
+        // lanes on the rail for every role active this year
+        const active = inYear.filter((e) => e.t === 'xp' || e.t === 'edu');
+        const lanes = active
+          .map((e) => {
+            const [a, b] = span(e);
+            const v = `var(${TYPE[e.t][1]})`;
+            const cls = 'lane ' + (a === y ? 'start ' : '') + (b === y ? 'end' : b === NOW ? 'now' : '');
+            return `<div class="${cls}" style="--c:${v}"></div>`;
+          })
+          .join('');
+
+        const cards = starts
+          .sort((a, b) => TYPE[a.t][0].localeCompare(TYPE[b.t][0]))
+          .map((e) => {
+            const [a, b] = span(e);
+            const range =
+              e.t === 'proj' || e.t === 'award' || e.t === 'other'
+                ? String(a)
+                : `${a === b ? a : a + ' — ' + (e.x === 'Now' ? 'Now' : b)}`;
+            return `<article style="--c:var(${TYPE[e.t][1]})">
+        <span class="range">${range}</span>
+        <h3>${e.n}</h3>
+        <p>${TYPE[e.t][0]} · ${e.o}</p></article>`;
+          })
+          .join('');
+
+        const postBlock = posts.length
+          ? `<div class="posts"><i>Writing — ${posts.length}</i>${posts
+              .map(
+                (e) =>
+                  `<a href="#"><time>${new Date(e.f).toLocaleDateString('en', { month: 'short' })}</time><span>${e.n}</span></a>`,
+              )
+              .join('')}</div>`
+          : '';
+
+        const tag = y === NOW ? `<i>Present</i>` : `<i>${D.filter((e) => e.y === y).length} milestones</i>`;
+        root.insertAdjacentHTML(
+          'beforeend',
+          `<section><div class="lanes">${lanes}</div><div class="yr"><b>${y}</b>${tag}</div>${cards}${postBlock}</section>`,
+        );
+      }
+
+      const io = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && x.target.classList.add('in')), {
+        threshold: 0.1,
+      });
+      document.querySelectorAll('section').forEach((s) => io.observe(s));
+      document.querySelectorAll('section').forEach((s, i) => setTimeout(() => s.classList.add('in'), 400 + i * 60));
+    </script>
+  </body>
+</html>

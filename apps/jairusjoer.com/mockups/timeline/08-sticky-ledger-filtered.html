@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Timeline Mockup 08 — Sticky Ledger with Filters</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: light-dark(#f7f3f2, #171414);
+        --fg: light-dark(#171414, #f7f3f2);
+        --mut: light-dark(#726e6e, #a39e9e);
+        --faint: light-dark(#ada8a8, #726e6e);
+        --line: light-dark(#e5e0df, #2c2929);
+        --border: light-dark(#cac5c4, #3c3838);
+        --hover: light-dark(#efeae9, #1f1c1c);
+        --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+        --xp: #4a7ba6;
+        --edu: #7c6ba6;
+        --proj: #5f9e76;
+        --award: #b3893c;
+        --other: #a6687c;
+        --post: #6b7f92;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      /* sticky top bar: title + filter chips */
+      .top {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--bg) 86%, transparent);
+        backdrop-filter: blur(12px);
+        border-top: 2px solid var(--fg);
+        border-bottom: 1px solid var(--line);
+        padding: 14px 28px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 22px;
+      }
+      .top h1 {
+        font-size: 15px;
+        font-weight: 650;
+        margin-right: auto;
+      }
+      .top h1 span {
+        font: 10px/1 var(--mono);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--faint);
+        margin-left: 10px;
+      }
+      .chips {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--mut);
+        font: 11px/1 var(--mono);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border-radius: 99px;
+        padding: 5px 11px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.15s ease;
+      }
+      .chip::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--c);
+      }
+      .chip[aria-pressed='true'] {
+        color: var(--fg);
+        border-color: var(--c);
+        background: color-mix(in srgb, var(--c) 14%, transparent);
+      }
+      .chip[aria-pressed='false']::before {
+        background: var(--faint);
+        opacity: 0.4;
+      }
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 14px 28px 140px;
+      }
+      /* year blocks from 03 */
+      .era {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 28px;
+        border-bottom: 1px solid var(--border);
+        padding: 26px 0;
+      }
+      .era > aside {
+        position: sticky;
+        top: 76px;
+        align-self: start;
+        text-align: right;
+      }
+      .era .num {
+        display: block;
+        font-size: 40px;
+        font-weight: 750;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        color: var(--faint);
+        transition: color 0.3s ease;
+      }
+      .era.active .num {
+        color: var(--fg);
+      }
+      .era .name {
+        display: block;
+        margin-top: 8px;
+        font: 10px/1 var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--mut);
+      }
+      .era .count {
+        display: block;
+        margin-top: 7px;
+        font: 9.5px/1 var(--mono);
+        letter-spacing: 0.1em;
+        color: var(--faint);
+      }
+      /* ledger rows from 07, dot moved right, no category label */
+      .rows {
+        display: flex;
+        flex-direction: column;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 62px 1fr 10px;
+        gap: 14px;
+        align-items: baseline;
+        padding: 7px 8px 7px 0;
+        border-bottom: 1px solid var(--line);
+        transition: background 0.12s ease;
+        opacity: 0;
+        translate: 0 8px;
+      }
+      .row.in {
+        opacity: 1;
+        translate: 0;
+        transition:
+          opacity 0.5s ease,
+          translate 0.5s ease,
+          background 0.12s ease;
+      }
+      .row:hover {
+        background: var(--hover);
+      }
+      .row time {
+        font: 11px/1.6 var(--mono);
+        letter-spacing: 0.04em;
+        color: var(--faint);
+        text-align: right;
+        white-space: nowrap;
+      }
+      .row.post time {
+        color: var(--post);
+      }
+      .row.now time {
+        color: var(--fg);
+      }
+      .row h3 {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .row h3 em {
+        font-style: normal;
+        color: var(--mut);
+        font-weight: 400;
+      }
+      .row.major h3 {
+        font-weight: 650;
+      }
+      .row .dot {
+        justify-self: center;
+        translate: 0 -3px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c);
+        transition: transform 0.12s ease;
+      }
+      .row:hover .dot {
+        transform: scale(1.35);
+      }
+      .empty {
+        padding: 60px 0;
+        text-align: center;
+        color: var(--faint);
+        font: 11px/1.6 var(--mono);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      @media (max-width: 640px) {
+        .era {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .era > aside {
+          position: static;
+          text-align: left;
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+        }
+        .era .num {
+          font-size: 26px;
+        }
+        .era .name,
+        .era .count {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <h1>Jairus Joer — Timeline<span>Mockup 08 / Sticky Ledger</span></h1>
+      <div
+        class="chips"
+        id="chips"
+      ></div>
+    </div>
+    <main id="eras"></main>
+    <script>
+      const RAW = `edu|Kooperative Gesamtschule Gronau (Leine)|Matura in Linguistics|2015|2018
+      xp|World of Bass Records|Marketing Manager|2015|2016
+      xp|XVI CHAPEL|Co-Founder|2016|2017
+      edu|Multi Media Berufsbildende Schulen Hannover|Media Design Apprenticeship|2018|2021
+      xp|TA Bildungszentrum|Apprentice Media Designer|2018|2019
+      xp|neuwaerts|Apprentice Media Designer|2019|2024
+      other|neuwaerts|Workshop: New Work|2019
+      xp|Freelance|Developer and Designer|2020|Now
+      proj|Sesame AI|Social signal analysis for stock trading|2021
+      xp|neuwaerts|Junior Frontend Developer|2021|2022
+      award|BCM|Content Platforms B2C Gold|2022
+      proj|Aggregata|Technical blog about the web and machine learning|2022|2025
+      xp|neuwaerts|Full Stack Developer|2022|2024
+      post|Aggregata|Include Alpine.js in a production environment|2022-10-09
+      post|Aggregata|Interactive forms with Alpine.js|2022-11-25
+      post|Aggregata|Visualize and update products with Alpine.js|2022-12-26
+      post|Aggregata|Working with Artificial Intelligence|2023-05-02
+      post|Aggregata|Colophon: How we build Aggregata|2023-06-12
+      post|Aggregata|Temporary and persistent state management with Alpine.js|2023-07-24
+      post|Aggregata|How does A.I. learn? Impressions from our first seminar|2023-10-02
+      post|Aggregata|One year of Aggregata|2023-10-16
+      post|Aggregata|Astro — An introduction to your next project|2023-10-30
+      post|Aggregata|Dynamic imports with Alpine.js|2023-11-13
+      other|neuwaerts|Workshop: Figma Onboardings for various clients|2023
+      other|neuwaerts|Workshop: Working with Figma in real-time|2023
+      other|neuwaerts|Workshop: Digital Tools for Clients|2023
+      other|neuwaerts|Workshop: Generative Texts|2023
+      post|Aggregata|Working with the Arc Browser|2024-01-08
+      post|Aggregata|Advanced forms with Alpine.js|2024-02-05
+      post|Aggregata|Deploying dynamic content as static HTML|2024-03-18
+      post|Aggregata|Beyond bullet points: A dive into Obsidian|2024-04-01
+      xp|HERO Software|Senior Full Stack Engineer|2024|2026
+      other|HERO Software|Hackathon: Modular dashboard and interface redesign demo|2024
+      post|Aggregata|Why we are moving Aggregata from Astro to Ghost|2024-05-13
+      post|Aggregata|Develop design systems with accessibility in mind|2024-05-27
+      post|Aggregata|Accessibility — a Necessity, not an Afterthought|2024-07-08
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2024|2024-07-22
+      post|Aggregata|Crafting a detailed Dialog element using Microinteractions|2024-09-02
+      post|Aggregata|Define a Component Library for Designers and Developers|2024-09-16
+      post|Aggregata|Adapting and Evolving: Year two of Aggregata|2024-10-14
+      post|Aggregata|Create a Component Library for Designers and Developers|2024-10-29
+      post|Aggregata|Expand a Component Library for Designers and Developers|2024-11-11
+      post|Aggregata|Set up a new project with Tailwind CSS 4.0|2024-12-23
+      post|Aggregata|Leverage the View Transition API in any Project|2025-01-06
+      post|Aggregata|Improve a Component Library for Designers and Developers|2025-02-17
+      post|Aggregata|Cross-Document View Transitions for Multi-Page Applications|2025-03-03
+      post|Aggregata|Goodbye Read.cv|2025-04-14
+      post|Aggregata|Delightful Animations I: Gallery|2025-05-26
+      post|Aggregata|The future of the web might be native|2025-05-31
+      post|Aggregata|Migrating the Monolith I: Conceptualization|2025-06-09
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2025|2025-07-21
+      post|Aggregata|Delightful Animations II: Tiles|2025-08-04
+      post|Aggregata|Delightful Animations III: Intricacies of Interaction Design|2025-09-15
+      post|Aggregata|The Sisyphean Struggle for Simplicity|2025-09-29
+      other|HERO Software|Workshop: Expectations and Standards for the Design Vision|2025
+      other|HERO Software|Hackathon: Complete rework of the software personalisation|2025
+      proj|find.ski|Ski data aggregator and comparison portal|2025
+      post|Aggregata|Migrating the Monolith II: Design|2025-11-11
+      post|Aggregata|Delightful Animations IV: Mind the Gap|2025-11-25
+      post|Aggregata|We're saying Goodbye|2025-11-30
+      xp|BWI|Senior Software Engineer|2026|Now
+      proj|quote.work|Real-time calendar slot bidding embed|2026
+      post|Writing|About Personal Software|2026-01-07
+      post|Writing|The Future of the Web Ought to Be Native|2026-02-19
+      post|Writing|Two Years At HERO Software|2026-03-30
+      post|Writing|Demonstrating Software Personalisation|2026-06-02
+      post|Writing|Thoughts on Resilience, Sustainability and Sovereignty|2026-07-13
+      post|Writing|Working with local AI models|2026-08-01`;
+
+      const NOW = 2026;
+      const TYPE = {
+        xp: 'Work',
+        edu: 'Education',
+        proj: 'Projects',
+        award: 'Awards',
+        other: 'Other',
+        post: 'Writing',
+      };
+      const BORN = 1997; // 10 May 1997 — age reached within the year
+      const D = RAW.split('\n')
+        .map((l) => l.trim().split('|'))
+        .map(([t, o, n, f, x]) => ({ t, o, n, f, x, y: +f.slice(0, 4) }));
+
+      let on = new Set(Object.keys(TYPE));
+
+      const chips = document.getElementById('chips');
+      function renderChips() {
+        chips.innerHTML = Object.entries(TYPE)
+          .map(
+            ([k, label]) =>
+              `<button class="chip" data-k="${k}" style="--c:var(--${k})" aria-pressed="${on.has(k)}">${label} ${D.filter((e) => e.t === k).length}</button>`,
+          )
+          .join('');
+        chips.querySelectorAll('.chip').forEach((b) =>
+          b.addEventListener('click', () => {
+            const k = b.dataset.k;
+            on.has(k) ? on.delete(k) : on.add(k);
+            if (!on.size) on = new Set(Object.keys(TYPE));
+            renderChips();
+            render();
+          }),
+        );
+      }
+
+      const ageOf = (y) => y - BORN;
+      const whenOf = (e) => {
+        if (e.t === 'post') return new Date(e.f).toLocaleDateString('en', { month: 'short' });
+        if (e.x === 'Now') return e.y + '→now';
+        if (e.x) return String(e.y).slice(2) + '→' + String(e.x).slice(2);
+        return '·';
+      };
+      const MAJOR = new Set(['xp', 'edu', 'proj', 'award']);
+
+      const root = document.getElementById('eras');
+      const io = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && x.target.classList.add('in')), {
+        threshold: 0.15,
+      });
+      let spy;
+
+      function render() {
+        root.innerHTML = '';
+        let shown = 0;
+        for (let y = NOW; y >= 2015; y--) {
+          const rows = D.filter((e) => e.y === y && on.has(e.t)).sort((a, b) => b.f.localeCompare(a.f));
+          if (!rows.length) continue;
+          shown += rows.length;
+          const html = rows
+            .map(
+              (e) =>
+                `<div class="row ${e.t} ${e.t !== 'post' && e.t !== 'other' ? 'major' : ''} ${e.x === 'Now' ? 'now' : ''}" style="--c:var(--${e.t})">
+        <time>${whenOf(e)}</time>
+        <h3>${e.n} <em>· ${e.o}</em></h3>
+        <span class="dot" title="${TYPE[e.t]}"></span></div>`,
+            )
+            .join('');
+          root.insertAdjacentHTML(
+            'beforeend',
+            `<section class="era" data-y="${y}">
+        <aside><span class="num">${y}</span><span class="name">${ageOf(y)} years</span><span class="count">${rows.length} ${rows.length > 1 ? 'milestones' : 'milestone'}</span></aside>
+        <div class="rows">${html}</div></section>`,
+          );
+        }
+        if (!shown) root.innerHTML = '<div class="empty">no categories selected</div>';
+        root.querySelectorAll('.row').forEach((r) => io.observe(r));
+        spy?.disconnect();
+        spy = new IntersectionObserver(
+          (es) => es.forEach((x) => x.target.classList.toggle('active', x.isIntersecting)),
+          { rootMargin: '-76px 0px -60% 0px' },
+        );
+        root.querySelectorAll('.era').forEach((e) => spy.observe(e));
+      }
+      renderChips();
+      render();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Timeline Mockup 06 — Editorial Eras</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: light-dark(#f7f3f2, #171414);
+        --fg: light-dark(#171414, #f7f3f2);
+        --mut: light-dark(#726e6e, #a39e9e);
+        --faint: light-dark(#ada8a8, #726e6e);
+        --border: light-dark(#cac5c4, #3c3838);
+        --line: light-dark(#e5e0df, #272525);
+        --card: light-dark(#fdfaf9, #1e1b1b);
+        --xp: #4a7ba6;
+        --edu: #7c6ba6;
+        --proj: #5f9e76;
+        --award: #b3893c;
+        --other: #a6687c;
+        --post: #6b7f92;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.55 system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      .mast {
+        padding: 84px 28px 56px;
+        max-width: 1020px;
+        margin: 0 auto;
+        border-bottom: 2px solid var(--fg);
+      }
+      .mast .tag {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--mut);
+      }
+      .mast h1 {
+        font-size: clamp(38px, 7vw, 64px);
+        font-weight: 780;
+        letter-spacing: -0.035em;
+        line-height: 1.05;
+        margin-top: 10px;
+        max-width: 18ch;
+      }
+      .mast h1 em {
+        font-style: normal;
+        color: var(--faint);
+      }
+      .era {
+        max-width: 1020px;
+        margin: 0 auto;
+        padding: 72px 28px;
+        border-bottom: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 290px 1fr;
+        gap: 40px;
+      }
+      .era .head {
+        position: sticky;
+        top: 24px;
+        align-self: start;
+      }
+      .head .no {
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--faint);
+      }
+      .head h2 {
+        font-size: clamp(26px, 3.4vw, 36px);
+        font-weight: 720;
+        letter-spacing: -0.025em;
+        line-height: 1.1;
+        margin: 6px 0 4px;
+      }
+      .head .span {
+        font-size: 14px;
+        color: var(--mut);
+      }
+      .head .blurb {
+        margin-top: 14px;
+        font-size: 13.5px;
+        color: var(--mut);
+        max-width: 34ch;
+      }
+      .head .rule {
+        margin-top: 18px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--c, var(--fg)), transparent);
+        border-radius: 2px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+        gap: 12px;
+        align-content: start;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px;
+        opacity: 0;
+        translate: 0 12px;
+        transition:
+          opacity 0.6s ease,
+          translate 0.6s ease;
+      }
+      .card.in {
+        opacity: 1;
+        translate: 0;
+      }
+      .card .k {
+        font-size: 10.5px;
+        font-weight: 650;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: var(--c);
+      }
+      .card h3 {
+        font-size: 15.5px;
+        margin: 3px 0 2px;
+        font-weight: 620;
+      }
+      .card p {
+        font-size: 12.5px;
+        color: var(--mut);
+      }
+      .card .when {
+        font-size: 12px;
+        color: var(--faint);
+        margin-top: 8px;
+      }
+      .card.wide {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 2px 18px;
+        align-content: center;
+      }
+      .card.wide h3 {
+        grid-column: 1 / -1;
+      }
+      details.wlist {
+        grid-column: 1 / -1;
+        border-top: 1px solid var(--line);
+        margin-top: 10px;
+        padding-top: 10px;
+        font-size: 13.5px;
+      }
+      details.wlist summary {
+        cursor: pointer;
+        color: var(--post);
+        font-weight: 620;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      details.wlist ul {
+        list-style: none;
+        margin-top: 10px;
+        columns: 2;
+        column-gap: 28px;
+      }
+      details.wlist li {
+        break-inside: avoid;
+        padding: 2.5px 0;
+        display: flex;
+        gap: 9px;
+      }
+      details.wlist time {
+        flex: none;
+        color: var(--faint);
+        font-size: 11px;
+        width: 38px;
+      }
+      details.wlist a {
+        color: var(--fg);
+        text-decoration: none;
+      }
+      details.wlist a:hover {
+        text-decoration: underline;
+      }
+      .colophon {
+        text-align: center;
+        color: var(--faint);
+        font-size: 12px;
+        padding: 48px;
+      }
+      @media (max-width: 780px) {
+        .era {
+          grid-template-columns: 1fr;
+          gap: 22px;
+          padding: 52px 22px;
+        }
+        .era .head {
+          position: static;
+        }
+        details.wlist ul {
+          columns: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mast">
+      <span class="tag">Mockup 06 · Vertical · Editorial</span>
+      <h1>Every era <em>left a mark.</em></h1>
+    </div>
+    <div id="eras"></div>
+    <div class="colophon">2015 → now · eras scroll-pinned headings · writing folds into per-era lists</div>
+    <script>
+      const RAW = `edu|Kooperative Gesamtschule Gronau (Leine)|Matura in Linguistics|2015|2018
+      xp|World of Bass Records|Marketing Manager|2015|2016
+      xp|XVI CHAPEL|Co-Founder|2016|2017
+      edu|Multi Media Berufsbildende Schulen Hannover|Media Design Apprenticeship|2018|2021
+      xp|TA Bildungszentrum|Apprentice Media Designer|2018|2019
+      xp|neuwaerts|Apprentice Media Designer|2019|2024
+      other|neuwaerts|Workshop: New Work|2019
+      xp|Freelance|Developer and Designer|2020|Now
+      proj|Sesame AI|Social signal analysis for stock trading|2021
+      xp|neuwaerts|Junior Frontend Developer|2021|2022
+      award|BCM|Content Platforms B2C Gold|2022
+      proj|Aggregata|Technical blog about the web and machine learning|2022|2025
+      xp|neuwaerts|Full Stack Developer|2022|2024
+      post|Aggregata|Include Alpine.js in a production environment|2022-10-09
+      post|Aggregata|Interactive forms with Alpine.js|2022-11-25
+      post|Aggregata|Visualize and update products with Alpine.js|2022-12-26
+      post|Aggregata|Working with Artificial Intelligence|2023-05-02
+      post|Aggregata|Colophon: How we build Aggregata|2023-06-12
+      post|Aggregata|Temporary and persistent state management with Alpine.js|2023-07-24
+      post|Aggregata|How does A.I. learn? Impressions from our first seminar|2023-10-02
+      post|Aggregata|One year of Aggregata|2023-10-16
+      post|Aggregata|Astro — An introduction to your next project|2023-10-30
+      post|Aggregata|Dynamic imports with Alpine.js|2023-11-13
+      other|neuwaerts|Workshop: Figma Onboardings for various clients|2023
+      other|neuwaerts|Workshop: Working with Figma in real-time|2023
+      other|neuwaerts|Workshop: Digital Tools for Clients|2023
+      other|neuwaerts|Workshop: Generative Texts|2023
+      post|Aggregata|Working with the Arc Browser|2024-01-08
+      post|Aggregata|Advanced forms with Alpine.js|2024-02-05
+      post|Aggregata|Deploying dynamic content as static HTML|2024-03-18
+      post|Aggregata|Beyond bullet points: A dive into Obsidian|2024-04-01
+      xp|HERO Software|Senior Full Stack Engineer|2024|2026
+      other|HERO Software|Hackathon: Modular dashboard and interface redesign demo|2024
+      post|Aggregata|Why we are moving Aggregata from Astro to Ghost|2024-05-13
+      post|Aggregata|Develop design systems with accessibility in mind|2024-05-27
+      post|Aggregata|Accessibility — a Necessity, not an Afterthought|2024-07-08
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2024|2024-07-22
+      post|Aggregata|Crafting a detailed Dialog element using Microinteractions|2024-09-02
+      post|Aggregata|Define a Component Library for Designers and Developers|2024-09-16
+      post|Aggregata|Adapting and Evolving: Year two of Aggregata|2024-10-14
+      post|Aggregata|Create a Component Library for Designers and Developers|2024-10-29
+      post|Aggregata|Expand a Component Library for Designers and Developers|2024-11-11
+      post|Aggregata|Set up a new project with Tailwind CSS 4.0|2024-12-23
+      post|Aggregata|Leverage the View Transition API in any Project|2025-01-06
+      post|Aggregata|Improve a Component Library for Designers and Developers|2025-02-17
+      post|Aggregata|Cross-Document View Transitions for Multi-Page Applications|2025-03-03
+      post|Aggregata|Goodbye Read.cv|2025-04-14
+      post|Aggregata|Delightful Animations I: Gallery|2025-05-26
+      post|Aggregata|The future of the web might be native|2025-05-31
+      post|Aggregata|Migrating the Monolith I: Conceptualization|2025-06-09
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2025|2025-07-21
+      post|Aggregata|Delightful Animations II: Tiles|2025-08-04
+      post|Aggregata|Delightful Animations III: Intricacies of Interaction Design|2025-09-15
+      post|Aggregata|The Sisyphean Struggle for Simplicity|2025-09-29
+      other|HERO Software|Workshop: Expectations and Standards for the Design Vision|2025
+      other|HERO Software|Hackathon: Complete rework of the software personalisation|2025
+      proj|find.ski|Ski data aggregator and comparison portal|2025
+      post|Aggregata|Migrating the Monolith II: Design|2025-11-11
+      post|Aggregata|Delightful Animations IV: Mind the Gap|2025-11-25
+      post|Aggregata|We're saying Goodbye|2025-11-30
+      xp|BWI|Senior Software Engineer|2026|Now
+      proj|quote.work|Real-time calendar slot bidding embed|2026
+      post|Writing|About Personal Software|2026-01-07
+      post|Writing|The Future of the Web Ought to Be Native|2026-02-19
+      post|Writing|Two Years At HERO Software|2026-03-30
+      post|Writing|Demonstrating Software Personalisation|2026-06-02
+      post|Writing|Thoughts on Resilience, Sustainability and Sovereignty|2026-07-13
+      post|Writing|Working with local AI models|2026-08-01`;
+
+      const TYPE = {
+        xp: ['Work', '--xp'],
+        edu: ['Education', '--edu'],
+        proj: ['Project', '--proj'],
+        award: ['Award', '--award'],
+        other: ['Other', '--other'],
+        post: ['Writing', '--post'],
+      };
+      const ERAS = [
+        [
+          'Roots',
+          2015,
+          2017,
+          'School in Gronau, first jobs and a co-founder streak — long before code was the plan.',
+          '--other',
+        ],
+        [
+          'Hannover',
+          2018,
+          2020,
+          'A media design apprenticeship at MMBBS, TA Bildungszentrum, and the start at neuwaerts. Freelancing begins.',
+          '--edu',
+        ],
+        [
+          'The Craft Years',
+          2021,
+          2023,
+          'From junior frontend to full stack at neuwaerts. Sesame AI, a BCM gold award — and Aggregata launches.',
+          '--xp',
+        ],
+        [
+          'Peak Output',
+          2024,
+          2025,
+          'Senior at HERO Software, find.ski, and eighteen Aggregata articles in a single year. Then, goodbye.',
+          '--proj',
+        ],
+        [
+          'Now',
+          2026,
+          2026,
+          'BWI. quote.work. And a personal writing practice of six essays on software, sovereignty and local AI.',
+          '--award',
+        ],
+      ];
+      const D = RAW.split('\n')
+        .map((l) => l.trim().split('|'))
+        .map(([t, o, n, f, x]) => ({ t, o, n, f, x, y: +f.slice(0, 4) }));
+
+      const root = document.getElementById('eras');
+      ERAS.forEach(([name, a, b, blurb, c], i) => {
+        const evs = D.filter((e) => e.t !== 'post' && e.y >= a && e.y <= b).sort((x, y) => x.y - y.y);
+        const posts = D.filter((e) => e.t === 'post' && e.y >= a && e.y <= b);
+        const cards = evs
+          .map(
+            (e) =>
+              `<div class="card" style="--c:var(${TYPE[e.t][1]})"><span class="k">${TYPE[e.t][0]}</span><h3>${e.n}</h3><p>${e.o}</p><div class="when">${e.x ? e.y + ' — ' + (e.x === 'Now' ? 'now' : e.x.slice(0, 4)) : e.y}</div></div>`,
+          )
+          .join('');
+        const wlist = posts.length
+          ? `<div class="card wide in" style="--c:var(--post)"><span class="k">Writing</span><h3>${posts.length} article${posts.length > 1 ? 's' : ''} across ${a === b ? a : a + '–' + b}</h3><details class="wlist" ${a === 2026 ? 'open' : ''}><summary>${posts.length} titles</summary><ul>${posts
+              .map(
+                (p) =>
+                  `<li><time>${new Date(p.f).toLocaleDateString('en', { month: 'short', year: '2-digit' })}</time><a href="#">${p.n}</a></li>`,
+              )
+              .join('')}</ul></details></div>`
+          : '';
+        root.insertAdjacentHTML(
+          'beforeend',
+          `<section class="era">
+        <div class="head"><span class="no">Era ${String(i + 1).padStart(2, '0')}</span>
+        <h2>${name}</h2><span class="span">${a === b ? a : a + ' — ' + b}</span>
+        <p class="blurb">${blurb}</p><div class="rule" style="--c:var(${c})"></div></div>
+        <div class="grid">${cards}${wlist}</div></section>`,
+        );
+      });
+      const io = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && x.target.classList.add('in')), {
+        threshold: 0.15,
+      });
+      document.querySelectorAll('.card').forEach((s) => io.observe(s));
+    </script>
+  </body>
+</html>

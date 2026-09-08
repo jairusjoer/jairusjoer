@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Timeline Mockup 03 — Sticky Year Gutter</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: light-dark(#f7f3f2, #171414);
+        --fg: light-dark(#171414, #f7f3f2);
+        --mut: light-dark(#726e6e, #a39e9e);
+        --faint: light-dark(#ada8a8, #726e6e);
+        --line: light-dark(#e5e0df, #272525);
+        --border: light-dark(#cac5c4, #3c3838);
+        --xp: #4a7ba6;
+        --edu: #7c6ba6;
+        --proj: #5f9e76;
+        --award: #b3893c;
+        --other: #a6687c;
+        --post: #6b7f92;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      header {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 72px 28px 40px;
+      }
+      header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      header p {
+        color: var(--mut);
+        margin-top: 6px;
+      }
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0 28px 140px;
+      }
+      .era {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 28px;
+        border-top: 1px solid var(--border);
+        padding: 28px 0;
+      }
+      .era > aside {
+        position: sticky;
+        top: 28px;
+        align-self: start;
+        text-align: right;
+      }
+      .era .num {
+        display: block;
+        font-size: 40px;
+        font-weight: 750;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+      .era.active .num {
+        color: var(--fg);
+      }
+      .era:not(.active) .num {
+        color: var(--faint);
+      }
+      .era .name {
+        display: block;
+        margin-top: 8px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--mut);
+      }
+      .rows {
+        display: flex;
+        flex-direction: column;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 8px 1fr auto;
+        gap: 14px;
+        align-items: baseline;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--line);
+        opacity: 0;
+        translate: 0 8px;
+        transition:
+          opacity 0.5s ease,
+          translate 0.5s ease;
+      }
+      .row.in {
+        opacity: 1;
+        translate: 0;
+      }
+      .row::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c);
+        translate: 0 -2px;
+      }
+      .row.post::before {
+        width: 5px;
+        height: 5px;
+        translate: 1.5px -2px;
+      }
+      .row h3 {
+        font-size: 15px;
+        font-weight: 550;
+        display: inline;
+      }
+      .row .org {
+        color: var(--mut);
+        font-weight: 400;
+      }
+      .row .when {
+        font-size: 12px;
+        color: var(--faint);
+        white-space: nowrap;
+      }
+      .row .kind {
+        font-size: 10.5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--c);
+        margin-right: 8px;
+      }
+      .row.now .when {
+        color: var(--fg);
+      }
+      @media (max-width: 640px) {
+        .era {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+        .era > aside {
+          position: static;
+          text-align: left;
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+        }
+        .era .num {
+          font-size: 28px;
+        }
+        .era .name {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Timeline — Jairus Joer</h1>
+      <p>
+        Mockup 03 — sticky year gutter, release-notes density. Left column pins the year as its block scrolls; every
+        milestone is one quiet row.
+      </p>
+    </header>
+    <main id="eras"></main>
+    <script>
+      const RAW = `edu|Kooperative Gesamtschule Gronau (Leine)|Matura in Linguistics|2015|2018
+      xp|World of Bass Records|Marketing Manager|2015|2016
+      xp|XVI CHAPEL|Co-Founder|2016|2017
+      edu|Multi Media Berufsbildende Schulen Hannover|Media Design Apprenticeship|2018|2021
+      xp|TA Bildungszentrum|Apprentice Media Designer|2018|2019
+      xp|neuwaerts|Apprentice Media Designer|2019|2024
+      other|neuwaerts|Workshop: New Work|2019
+      xp|Freelance|Developer and Designer|2020|Now
+      proj|Sesame AI|Social signal analysis for stock trading|2021
+      xp|neuwaerts|Junior Frontend Developer|2021|2022
+      award|BCM|Content Platforms B2C Gold|2022
+      proj|Aggregata|Technical blog about the web and machine learning|2022|2025
+      xp|neuwaerts|Full Stack Developer|2022|2024
+      post|Aggregata|Include Alpine.js in a production environment|2022-10-09
+      post|Aggregata|Interactive forms with Alpine.js|2022-11-25
+      post|Aggregata|Visualize and update products with Alpine.js|2022-12-26
+      post|Aggregata|Working with Artificial Intelligence|2023-05-02
+      post|Aggregata|Colophon: How we build Aggregata|2023-06-12
+      post|Aggregata|Temporary and persistent state management with Alpine.js|2023-07-24
+      post|Aggregata|How does A.I. learn? Impressions from our first seminar|2023-10-02
+      post|Aggregata|One year of Aggregata|2023-10-16
+      post|Aggregata|Astro — An introduction to your next project|2023-10-30
+      post|Aggregata|Dynamic imports with Alpine.js|2023-11-13
+      other|neuwaerts|Workshop: Figma Onboardings for various clients|2023
+      other|neuwaerts|Workshop: Working with Figma in real-time|2023
+      other|neuwaerts|Workshop: Digital Tools for Clients|2023
+      other|neuwaerts|Workshop: Generative Texts|2023
+      post|Aggregata|Working with the Arc Browser|2024-01-08
+      post|Aggregata|Advanced forms with Alpine.js|2024-02-05
+      post|Aggregata|Deploying dynamic content as static HTML|2024-03-18
+      post|Aggregata|Beyond bullet points: A dive into Obsidian|2024-04-01
+      xp|HERO Software|Senior Full Stack Engineer|2024|2026
+      other|HERO Software|Hackathon: Modular dashboard and interface redesign demo|2024
+      post|Aggregata|Why we are moving Aggregata from Astro to Ghost|2024-05-13
+      post|Aggregata|Develop design systems with accessibility in mind|2024-05-27
+      post|Aggregata|Accessibility — a Necessity, not an Afterthought|2024-07-08
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2024|2024-07-22
+      post|Aggregata|Crafting a detailed Dialog element using Microinteractions|2024-09-02
+      post|Aggregata|Define a Component Library for Designers and Developers|2024-09-16
+      post|Aggregata|Adapting and Evolving: Year two of Aggregata|2024-10-14
+      post|Aggregata|Create a Component Library for Designers and Developers|2024-10-29
+      post|Aggregata|Expand a Component Library for Designers and Developers|2024-11-11
+      post|Aggregata|Set up a new project with Tailwind CSS 4.0|2024-12-23
+      post|Aggregata|Leverage the View Transition API in any Project|2025-01-06
+      post|Aggregata|Improve a Component Library for Designers and Developers|2025-02-17
+      post|Aggregata|Cross-Document View Transitions for Multi-Page Applications|2025-03-03
+      post|Aggregata|Goodbye Read.cv|2025-04-14
+      post|Aggregata|Delightful Animations I: Gallery|2025-05-26
+      post|Aggregata|The future of the web might be native|2025-05-31
+      post|Aggregata|Migrating the Monolith I: Conceptualization|2025-06-09
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2025|2025-07-21
+      post|Aggregata|Delightful Animations II: Tiles|2025-08-04
+      post|Aggregata|Delightful Animations III: Intricacies of Interaction Design|2025-09-15
+      post|Aggregata|The Sisyphean Struggle for Simplicity|2025-09-29
+      other|HERO Software|Workshop: Expectations and Standards for the Design Vision|2025
+      other|HERO Software|Hackathon: Complete rework of the software personalisation|2025
+      proj|find.ski|Ski data aggregator and comparison portal|2025
+      post|Aggregata|Migrating the Monolith II: Design|2025-11-11
+      post|Aggregata|Delightful Animations IV: Mind the Gap|2025-11-25
+      post|Aggregata|We're saying Goodbye|2025-11-30
+      xp|BWI|Senior Software Engineer|2026|Now
+      proj|quote.work|Real-time calendar slot bidding embed|2026
+      post|Writing|About Personal Software|2026-01-07
+      post|Writing|The Future of the Web Ought to Be Native|2026-02-19
+      post|Writing|Two Years At HERO Software|2026-03-30
+      post|Writing|Demonstrating Software Personalisation|2026-06-02
+      post|Writing|Thoughts on Resilience, Sustainability and Sovereignty|2026-07-13
+      post|Writing|Working with local AI models|2026-08-01`;
+
+      const NOW = 2026;
+      const TYPE = {
+        xp: ['Work', '--xp'],
+        edu: ['Education', '--edu'],
+        proj: ['Project', '--proj'],
+        award: ['Award', '--award'],
+        other: ['Other', '--other'],
+        post: ['Writing', '--post'],
+      };
+      const NAMES = {
+        2015: 'Roots',
+        2016: 'First ventures',
+        2018: 'Hannover',
+        2019: 'neuwaerts begins',
+        2020: 'Going freelance',
+        2021: 'Into engineering',
+        2022: 'Aggregata era',
+        2024: 'HERO Software',
+        2025: 'Peak output',
+        2026: 'Now',
+      };
+      const D = RAW.split('\n')
+        .map((l) => l.trim().split('|'))
+        .map(([t, o, n, f, x]) => ({ t, o, n, f, x, y: +f.slice(0, 4) }));
+
+      const root = document.getElementById('eras');
+      for (let y = 2015; y <= NOW; y++) {
+        const rows = D.filter((e) => e.y === y).sort((a, b) => (a.t === 'post') - (b.t === 'post'));
+        if (!rows.length) continue;
+        const html = rows
+          .map((e) => {
+            const when =
+              e.t === 'post'
+                ? new Date(e.f).toLocaleDateString('en', { month: 'short', day: 'numeric' })
+                : e.x
+                  ? `${e.y} — ${e.x === 'Now' ? 'Now' : e.x.slice(0, 4)}`
+                  : String(e.y);
+            return `<div class="row ${e.t} ${e.x === 'Now' ? 'now' : ''}" style="--c:var(${TYPE[e.t][1]})">
+        <span><i class="kind">${TYPE[e.t][0]}</i><h3>${e.n}</h3> <span class="org">— ${e.o}</span></span>
+        <span class="when">${when}</span></div>`;
+          })
+          .join('');
+        root.insertAdjacentHTML(
+          'beforeend',
+          `<section class="era" data-y="${y}">
+        <aside><span class="num">${y}</span><span class="name">${NAMES[y] || '—'}</span></aside>
+        <div class="rows">${html}</div></section>`,
+        );
+      }
+
+      const io = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && x.target.classList.add('in')), {
+        threshold: 0.15,
+      });
+      document.querySelectorAll('.row').forEach((s) => io.observe(s));
+
+      // mark the era whose rows dominate the viewport as active
+      const eras = [...document.querySelectorAll('.era')];
+      const spy = new IntersectionObserver(
+        (es) => {
+          es.forEach((x) => x.target.classList.toggle('active', x.isIntersecting));
+        },
+        { rootMargin: '-30% 0px -60% 0px' },
+      );
+      eras.forEach((e) => spy.observe(e));
+    </script>
+  </body>
+</html>

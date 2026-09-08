@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Timeline Mockup 04 — Horizontal Ruler (scroll-scrubbed)</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #171414;
+        --fg: #f7f3f2;
+        --mut: #a39e9e;
+        --faint: #726e6e;
+        --border: #3c3838;
+        --card: #1e1b1b;
+        --xp: #4a7ba6;
+        --edu: #7c6ba6;
+        --proj: #5f9e76;
+        --award: #b3893c;
+        --other: #a6687c;
+        --post: #6b7f92;
+        --slot: 350px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          14px/1.45 system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 20;
+        display: flex;
+        align-items: baseline;
+        gap: 18px;
+        padding: 18px 28px;
+        background: linear-gradient(var(--bg) 55%, transparent);
+      }
+      header h1 {
+        font-size: 16px;
+        font-weight: 650;
+      }
+      header p {
+        color: var(--mut);
+        font-size: 12px;
+      }
+      .hint {
+        margin-left: auto;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--faint);
+        animation: pulse 2.4s ease infinite;
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.35;
+        }
+      }
+      .stage {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        cursor: grab;
+      }
+      .stage:active {
+        cursor: grabbing;
+      }
+      .track {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: calc(var(--slot) * 13);
+        will-change: transform;
+      }
+      /* the rail */
+      .axis {
+        position: absolute;
+        left: 60px;
+        right: 0;
+        top: 58%;
+        height: 2px;
+        background: var(--border);
+        transform-origin: left;
+        animation: draw 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .axis::after {
+        content: '';
+        position: absolute;
+        inset: -1px 0;
+        background: linear-gradient(90deg, var(--fg), var(--faint));
+        opacity: 0.5;
+        transform-origin: left;
+        animation: draw 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @keyframes draw {
+        from {
+          transform: scaleX(0);
+        }
+      }
+      .slot {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: var(--slot);
+        padding: 0 26px;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+      .slot.in {
+        opacity: 1;
+      }
+      .slot::before {
+        /* year tick */
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 58%;
+        width: 2px;
+        height: 14px;
+        margin-top: -6px;
+        background: var(--faint);
+      }
+      .slot .dot {
+        position: absolute;
+        left: -5px;
+        top: 58%;
+        width: 12px;
+        height: 12px;
+        margin-top: -5px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--fg);
+        z-index: 3;
+      }
+      .slot b.yr {
+        position: absolute;
+        left: 14px;
+        top: 58%;
+        margin-top: 16px;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--faint);
+      }
+      .slot b.yr i {
+        display: block;
+        font-style: normal;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--faint);
+      }
+      .up,
+      .down {
+        position: absolute;
+        left: 26px;
+        right: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .up {
+        bottom: 42%;
+        justify-content: flex-end;
+      }
+      .down {
+        top: calc(58% + 64px);
+      }
+      .ev {
+        position: relative;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 9px 12px;
+        max-width: 280px;
+      }
+      .ev::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        width: 1px;
+        height: 10px;
+        background: var(--border);
+      }
+      .up .ev::before {
+        top: 100%;
+      }
+      .down .ev::before {
+        bottom: 100%;
+      }
+      .ev .k {
+        font-size: 10px;
+        font-weight: 650;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--c);
+      }
+      .ev h3 {
+        font-size: 13.5px;
+        font-weight: 600;
+        margin-top: 1px;
+      }
+      .ev p {
+        font-size: 11.5px;
+        color: var(--mut);
+      }
+      .ev.award {
+        border-color: var(--award);
+      }
+      .posts .ev {
+        padding: 6px 10px;
+      }
+      .posts {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-width: 280px;
+      }
+      .posts .pp {
+        font-size: 11.5px;
+        color: var(--mut);
+        display: flex;
+        gap: 8px;
+      }
+      .posts .pp::before {
+        content: '✎';
+        color: var(--post);
+      }
+      .posts .pp time {
+        color: var(--faint);
+        width: 30px;
+        flex: none;
+      }
+      .more {
+        color: var(--post);
+        font-size: 11px;
+        font-weight: 600;
+      }
+      /* role span bars riding the axis */
+      .bar {
+        position: absolute;
+        top: calc(58% + 5px);
+        height: 4px;
+        border-radius: 4px;
+        background: var(--c);
+        opacity: 0.75;
+        z-index: 2;
+      }
+      .bar.edu {
+        top: calc(58% + 13px);
+        opacity: 0.55;
+      }
+      .bar em {
+        position: absolute;
+        right: 0;
+        top: -16px;
+        font-style: normal;
+        font-size: 10px;
+        color: var(--faint);
+        white-space: nowrap;
+      }
+      /* footer progress */
+      .progress {
+        position: fixed;
+        bottom: 18px;
+        left: 28px;
+        right: 28px;
+        height: 2px;
+        background: var(--border);
+        z-index: 20;
+      }
+      .progress i {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 20%;
+        background: var(--fg);
+      }
+      /* narrow fallback: vertical */
+      @media (max-width: 760px) {
+        html,
+        body {
+          overflow: auto;
+        }
+        .stage {
+          position: static;
+          overflow: visible;
+          cursor: auto;
+        }
+        .track {
+          position: static;
+          width: auto;
+          display: flex;
+          flex-direction: column;
+          padding: 90px 20px 60px;
+        }
+        .axis,
+        .progress,
+        .bar,
+        .hint {
+          display: none;
+        }
+        .slot {
+          position: static;
+          width: auto;
+          padding: 22px 0 22px 26px;
+          border-left: 2px solid var(--border);
+          opacity: 1;
+        }
+        .slot::before,
+        .slot .dot {
+          left: -7px;
+          top: 26px;
+          margin: 0;
+        }
+        .slot b.yr {
+          position: static;
+          display: block;
+          margin: 0 0 12px;
+        }
+        .up,
+        .down {
+          position: static;
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Jairus Joer — Lifeline</h1>
+      <p>Mockup 04 — horizontal ruler, scrubbed by scroll (the reference's desktop mode)</p>
+      <span class="hint">scroll · drag · ← →</span>
+    </header>
+    <div
+      class="stage"
+      id="stage"
+      tabindex="0"
+    >
+      <div
+        class="track"
+        id="track"
+      >
+        <div class="axis"></div>
+      </div>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+    <script>
+      const RAW = `edu|Kooperative Gesamtschule Gronau (Leine)|Matura in Linguistics|2015|2018
+      xp|World of Bass Records|Marketing Manager|2015|2016
+      xp|XVI CHAPEL|Co-Founder|2016|2017
+      edu|Multi Media Berufsbildende Schulen Hannover|Media Design Apprenticeship|2018|2021
+      xp|TA Bildungszentrum|Apprentice Media Designer|2018|2019
+      xp|neuwaerts|Apprentice Media Designer|2019|2024
+      other|neuwaerts|Workshop: New Work|2019
+      xp|Freelance|Developer and Designer|2020|Now
+      proj|Sesame AI|Social signal analysis for stock trading|2021
+      xp|neuwaerts|Junior Frontend Developer|2021|2022
+      award|BCM|Content Platforms B2C Gold|2022
+      proj|Aggregata|Technical blog about the web and machine learning|2022|2025
+      xp|neuwaerts|Full Stack Developer|2022|2024
+      post|Aggregata|Include Alpine.js in a production environment|2022-10-09
+      post|Aggregata|Interactive forms with Alpine.js|2022-11-25
+      post|Aggregata|Visualize and update products with Alpine.js|2022-12-26
+      post|Aggregata|Working with Artificial Intelligence|2023-05-02
+      post|Aggregata|Colophon: How we build Aggregata|2023-06-12
+      post|Aggregata|Temporary and persistent state management with Alpine.js|2023-07-24
+      post|Aggregata|How does A.I. learn? Impressions from our first seminar|2023-10-02
+      post|Aggregata|One year of Aggregata|2023-10-16
+      post|Aggregata|Astro — An introduction to your next project|2023-10-30
+      post|Aggregata|Dynamic imports with Alpine.js|2023-11-13
+      other|neuwaerts|Workshop: Figma Onboardings for various clients|2023
+      other|neuwaerts|Workshop: Working with Figma in real-time|2023
+      other|neuwaerts|Workshop: Digital Tools for Clients|2023
+      other|neuwaerts|Workshop: Generative Texts|2023
+      post|Aggregata|Working with the Arc Browser|2024-01-08
+      post|Aggregata|Advanced forms with Alpine.js|2024-02-05
+      post|Aggregata|Deploying dynamic content as static HTML|2024-03-18
+      post|Aggregata|Beyond bullet points: A dive into Obsidian|2024-04-01
+      xp|HERO Software|Senior Full Stack Engineer|2024|2026
+      other|HERO Software|Hackathon: Modular dashboard and interface redesign demo|2024
+      post|Aggregata|Why we are moving Aggregata from Astro to Ghost|2024-05-13
+      post|Aggregata|Develop design systems with accessibility in mind|2024-05-27
+      post|Aggregata|Accessibility — a Necessity, not an Afterthought|2024-07-08
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2024|2024-07-22
+      post|Aggregata|Crafting a detailed Dialog element using Microinteractions|2024-09-02
+      post|Aggregata|Define a Component Library for Designers and Developers|2024-09-16
+      post|Aggregata|Adapting and Evolving: Year two of Aggregata|2024-10-14
+      post|Aggregata|Create a Component Library for Designers and Developers|2024-10-29
+      post|Aggregata|Expand a Component Library for Designers and Developers|2024-11-11
+      post|Aggregata|Set up a new project with Tailwind CSS 4.0|2024-12-23
+      post|Aggregata|Leverage the View Transition API in any Project|2025-01-06
+      post|Aggregata|Improve a Component Library for Designers and Developers|2025-02-17
+      post|Aggregata|Cross-Document View Transitions for Multi-Page Applications|2025-03-03
+      post|Aggregata|Goodbye Read.cv|2025-04-14
+      post|Aggregata|Delightful Animations I: Gallery|2025-05-26
+      post|Aggregata|The future of the web might be native|2025-05-31
+      post|Aggregata|Migrating the Monolith I: Conceptualization|2025-06-09
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2025|2025-07-21
+      post|Aggregata|Delightful Animations II: Tiles|2025-08-04
+      post|Aggregata|Delightful Animations III: Intricacies of Interaction Design|2025-09-15
+      post|Aggregata|The Sisyphean Struggle for Simplicity|2025-09-29
+      other|HERO Software|Workshop: Expectations and Standards for the Design Vision|2025
+      other|HERO Software|Hackathon: Complete rework of the software personalisation|2025
+      proj|find.ski|Ski data aggregator and comparison portal|2025
+      post|Aggregata|Migrating the Monolith II: Design|2025-11-11
+      post|Aggregata|Delightful Animations IV: Mind the Gap|2025-11-25
+      post|Aggregata|We're saying Goodbye|2025-11-30
+      xp|BWI|Senior Software Engineer|2026|Now
+      proj|quote.work|Real-time calendar slot bidding embed|2026
+      post|Writing|About Personal Software|2026-01-07
+      post|Writing|The Future of the Web Ought to Be Native|2026-02-19
+      post|Writing|Two Years At HERO Software|2026-03-30
+      post|Writing|Demonstrating Software Personalisation|2026-06-02
+      post|Writing|Thoughts on Resilience, Sustainability and Sovereignty|2026-07-13
+      post|Writing|Working with local AI models|2026-08-01`;
+
+      const NOW = 2026,
+        Y0 = 2015;
+      const TYPE = {
+        xp: ['Work', '--xp'],
+        edu: ['Education', '--edu'],
+        proj: ['Project', '--proj'],
+        award: ['Award', '--award'],
+        other: ['Other', '--other'],
+        post: ['Writing', '--post'],
+      };
+      const D = RAW.split('\n')
+        .map((l) => l.trim().split('|'))
+        .map(([t, o, n, f, x]) => ({ t, o, n, f, x, y: +f.slice(0, 4) }));
+
+      const track = document.getElementById('track');
+      const slotHTML = [];
+      for (let y = Y0; y <= NOW; y++) {
+        const starts = D.filter((e) => e.y === y && e.t !== 'post');
+        const posts = D.filter((e) => e.t === 'post' && e.y === y);
+        const ev = (e) =>
+          `<div class="ev ${e.t}" style="--c:var(${TYPE[e.t][1]})"><span class="k">${TYPE[e.t][0]}${e.x ? ` · ${e.x === 'Now' ? 'now' : '→' + e.x.slice(2)}` : ''}</span><h3>${e.n}</h3><p>${e.o}</p></div>`;
+        const up = starts
+          .filter((_, i) => i % 2 === 0)
+          .map(ev)
+          .join('');
+        const down = [...starts.filter((_, i) => i % 2 === 1).map(ev)];
+        if (posts.length)
+          down.push(
+            `<div class="posts"><span class="more">Writing · ${posts.length}</span>${posts
+              .slice(0, 3)
+              .map(
+                (p) =>
+                  `<div class="pp"><time>${new Date(p.f).toLocaleDateString('en', { month: 'short' })}</time>${p.n}</div>`,
+              )
+              .join('')}${posts.length > 3 ? `<span class="more">+${posts.length - 3} more</span>` : ''}</div>`,
+          );
+        slotHTML.push(
+          `<div class="slot" style="left:calc(60px + var(--slot) * ${y - Y0})"><span class="dot"></span><b class="yr">${y}${y === NOW ? '<i>Present</i>' : ''}</b><div class="up">${up}</div><div class="down">${down}</div></div>`,
+        );
+      }
+      // role span bars
+      const bars = D.filter((e) => (e.t === 'xp' || e.t === 'edu') && e.x)
+        .map((e, i) => {
+          const a = e.y,
+            b = e.x === 'Now' ? NOW : +e.x.slice(0, 4);
+          return `<div class="bar ${e.t}" title="${e.n} · ${e.o}" style="--c:var(${TYPE[e.t][1]});left:calc(60px + var(--slot) * ${a - Y0} + 26px);width:calc(var(--slot) * ${b - a} + 8px)"></div>`;
+        })
+        .join('');
+      track.insertAdjacentHTML('beforeend', bars + slotHTML.join(''));
+
+      /* horizontal scrubbing */
+      const stage = document.getElementById('stage'),
+        prog = document.getElementById('prog');
+      let x = 0,
+        max = 0;
+      const measure = () => {
+        max = Math.max(0, track.scrollWidth - window.innerWidth + 80);
+        clamp();
+      };
+      const clamp = () => {
+        x = Math.max(-max, Math.min(0, x));
+        track.style.transform = `translateX(${x}px)`;
+        prog.style.width = `${100 * ((-x + window.innerWidth) / (max + window.innerWidth))}%`;
+      };
+      addEventListener('wheel', (e) => {
+        if (innerWidth <= 760) return;
+        e.preventDefault();
+        x -= (e.deltaY + e.deltaX) * 1.15;
+        clamp();
+      });
+      let drag = null;
+      stage.addEventListener('pointerdown', (e) => {
+        drag = [e.clientX, x];
+        stage.setPointerCapture(e.pointerId);
+      });
+      stage.addEventListener('pointermove', (e) => {
+        if (drag) {
+          x = drag[1] + (e.clientX - drag[0]);
+          clamp();
+        }
+      });
+      stage.addEventListener('pointerup', () => (drag = null));
+      addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') x -= 160;
+        if (e.key === 'ArrowLeft') x += 160;
+        clamp();
+      });
+      addEventListener('resize', measure);
+      measure();
+
+      const io = new IntersectionObserver((es) => es.forEach((x) => x.isIntersecting && x.target.classList.add('in')), {
+        root: stage,
+        threshold: 0.05,
+      });
+      document.querySelectorAll('.slot').forEach((s, i) => {
+        io.observe(s);
+        setTimeout(() => s.classList.add('in'), 1500 + i * 80);
+      });
+    </script>
+  </body>
+</html>

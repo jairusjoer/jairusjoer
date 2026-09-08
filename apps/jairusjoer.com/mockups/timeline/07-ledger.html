@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Timeline Mockup 07 — Typographic Ledger</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #171414;
+        --fg: #f7f3f2;
+        --mut: #a39e9e;
+        --faint: #726e6e;
+        --line: #2c2929;
+        --post: #6b7f92;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          15px/1.5 system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+        font-variant-numeric: tabular-nums;
+      }
+      .page {
+        max-width: 690px;
+        margin: 0 auto;
+        padding: 96px 28px 160px;
+      }
+      .mast {
+        border-top: 2px solid var(--fg);
+        border-bottom: 1px solid var(--line);
+        padding: 18px 0 22px;
+        margin-bottom: 42px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .mast h1 {
+        font-size: 17px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+      .mast span {
+        font:
+          10.5px/1 ui-monospace,
+          'SF Mono',
+          Menlo,
+          monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--faint);
+      }
+      .yr {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin: 38px 0 2px;
+        font:
+          600 11px/1 ui-monospace,
+          'SF Mono',
+          Menlo,
+          monospace;
+        letter-spacing: 0.16em;
+        color: var(--fg);
+        width: 100%;
+      }
+      .yr::after {
+        content: '';
+        flex: 1;
+        border-top: 1px dotted var(--faint);
+        translate: 0 -3px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 62px 1fr auto;
+        gap: 14px;
+        padding: 7px 8px 7px 0;
+        border-bottom: 1px solid var(--line);
+        transition: background 0.12s ease;
+      }
+      .row:hover {
+        background: #1f1c1c;
+      }
+      .row time {
+        font:
+          11px/1.6 ui-monospace,
+          'SF Mono',
+          Menlo,
+          monospace;
+        color: var(--faint);
+        padding-top: 3px;
+        text-align: right;
+      }
+      .row.post time {
+        color: var(--post);
+      }
+      .row h3 {
+        font-size: 15px;
+        font-weight: 500;
+        grid-column: 2;
+      }
+      .row h3 em {
+        font-style: normal;
+        color: var(--mut);
+        font-weight: 400;
+      }
+      .row .cat {
+        grid-column: 3;
+        align-self: center;
+        font:
+          9.5px/1 ui-monospace,
+          'SF Mono',
+          Menlo,
+          monospace;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--faint);
+        white-space: nowrap;
+      }
+      .row.major h3 {
+        font-weight: 650;
+      }
+      .row.major .cat {
+        color: var(--fg);
+      }
+      .row.award .cat::before {
+        content: '✳ ';
+      }
+      .legend {
+        margin-top: 56px;
+        font:
+          10.5px/1.9 ui-monospace,
+          'SF Mono',
+          Menlo,
+          monospace;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--faint);
+        border-top: 2px solid var(--fg);
+        padding-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 6px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="mast">
+        <h1>Jairus Joer — Timeline</h1>
+        <span>Mockup 07 / Ledger</span>
+      </div>
+      <div id="out"></div>
+      <div class="legend"><span>68 milestones</span><span>2015 — 2026</span><span>12 years · 46 writings</span></div>
+    </div>
+    <script>
+      const RAW = `edu|Kooperative Gesamtschule Gronau (Leine)|Matura in Linguistics|2015|2018
+      xp|World of Bass Records|Marketing Manager|2015|2016
+      xp|XVI CHAPEL|Co-Founder|2016|2017
+      edu|Multi Media Berufsbildende Schulen Hannover|Media Design Apprenticeship|2018|2021
+      xp|TA Bildungszentrum|Apprentice Media Designer|2018|2019
+      xp|neuwaerts|Apprentice Media Designer|2019|2024
+      other|neuwaerts|Workshop: New Work|2019
+      xp|Freelance|Developer and Designer|2020|Now
+      proj|Sesame AI|Social signal analysis for stock trading|2021
+      xp|neuwaerts|Junior Frontend Developer|2021|2022
+      award|BCM|Content Platforms B2C Gold|2022
+      proj|Aggregata|Technical blog about the web and machine learning|2022|2025
+      xp|neuwaerts|Full Stack Developer|2022|2024
+      post|Aggregata|Include Alpine.js in a production environment|2022-10-09
+      post|Aggregata|Interactive forms with Alpine.js|2022-11-25
+      post|Aggregata|Visualize and update products with Alpine.js|2022-12-26
+      post|Aggregata|Working with Artificial Intelligence|2023-05-02
+      post|Aggregata|Colophon: How we build Aggregata|2023-06-12
+      post|Aggregata|Temporary and persistent state management with Alpine.js|2023-07-24
+      post|Aggregata|How does A.I. learn? Impressions from our first seminar|2023-10-02
+      post|Aggregata|One year of Aggregata|2023-10-16
+      post|Aggregata|Astro — An introduction to your next project|2023-10-30
+      post|Aggregata|Dynamic imports with Alpine.js|2023-11-13
+      other|neuwaerts|Workshop: Figma Onboardings for various clients|2023
+      other|neuwaerts|Workshop: Working with Figma in real-time|2023
+      other|neuwaerts|Workshop: Digital Tools for Clients|2023
+      other|neuwaerts|Workshop: Generative Texts|2023
+      post|Aggregata|Working with the Arc Browser|2024-01-08
+      post|Aggregata|Advanced forms with Alpine.js|2024-02-05
+      post|Aggregata|Deploying dynamic content as static HTML|2024-03-18
+      post|Aggregata|Beyond bullet points: A dive into Obsidian|2024-04-01
+      xp|HERO Software|Senior Full Stack Engineer|2024|2026
+      other|HERO Software|Hackathon: Modular dashboard and interface redesign demo|2024
+      post|Aggregata|Why we are moving Aggregata from Astro to Ghost|2024-05-13
+      post|Aggregata|Develop design systems with accessibility in mind|2024-05-27
+      post|Aggregata|Accessibility — a Necessity, not an Afterthought|2024-07-08
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2024|2024-07-22
+      post|Aggregata|Crafting a detailed Dialog element using Microinteractions|2024-09-02
+      post|Aggregata|Define a Component Library for Designers and Developers|2024-09-16
+      post|Aggregata|Adapting and Evolving: Year two of Aggregata|2024-10-14
+      post|Aggregata|Create a Component Library for Designers and Developers|2024-10-29
+      post|Aggregata|Expand a Component Library for Designers and Developers|2024-11-11
+      post|Aggregata|Set up a new project with Tailwind CSS 4.0|2024-12-23
+      post|Aggregata|Leverage the View Transition API in any Project|2025-01-06
+      post|Aggregata|Improve a Component Library for Designers and Developers|2025-02-17
+      post|Aggregata|Cross-Document View Transitions for Multi-Page Applications|2025-03-03
+      post|Aggregata|Goodbye Read.cv|2025-04-14
+      post|Aggregata|Delightful Animations I: Gallery|2025-05-26
+      post|Aggregata|The future of the web might be native|2025-05-31
+      post|Aggregata|Migrating the Monolith I: Conceptualization|2025-06-09
+      post|Aggregata|Visiting the WeAreDevelopers World Congress 2025|2025-07-21
+      post|Aggregata|Delightful Animations II: Tiles|2025-08-04
+      post|Aggregata|Delightful Animations III: Intricacies of Interaction Design|2025-09-15
+      post|Aggregata|The Sisyphean Struggle for Simplicity|2025-09-29
+      other|HERO Software|Workshop: Expectations and Standards for the Design Vision|2025
+      other|HERO Software|Hackathon: Complete rework of the software personalisation|2025
+      proj|find.ski|Ski data aggregator and comparison portal|2025
+      post|Aggregata|Migrating the Monolith II: Design|2025-11-11
+      post|Aggregata|Delightful Animations IV: Mind the Gap|2025-11-25
+      post|Aggregata|We're saying Goodbye|2025-11-30
+      xp|BWI|Senior Software Engineer|2026|Now
+      proj|quote.work|Real-time calendar slot bidding embed|2026
+      post|Writing|About Personal Software|2026-01-07
+      post|Writing|The Future of the Web Ought to Be Native|2026-02-19
+      post|Writing|Two Years At HERO Software|2026-03-30
+      post|Writing|Demonstrating Software Personalisation|2026-06-02
+      post|Writing|Thoughts on Resilience, Sustainability and Sovereignty|2026-07-13
+      post|Writing|Working with local AI models|2026-08-01`;
+
+      const NOW = 2026;
+      const CAT = { xp: 'Work', edu: 'Educ', proj: 'Proj', award: 'Award', other: 'Other', post: 'Text' };
+      const D = RAW.split('\n')
+        .map((l) => l.trim().split('|'))
+        .map(([t, o, n, f, x]) => ({ t, o, n, f, x, y: +f.slice(0, 4) }));
+
+      const out = document.getElementById('out');
+      for (let y = 2015; y <= NOW; y++) {
+        const rows = D.filter((e) => e.y === y).sort((a, b) => a.f.localeCompare(b.f));
+        if (!rows.length) continue;
+        out.insertAdjacentHTML('beforeend', `<div class="yr">${y}${y === NOW ? ' · PRESENT' : ''}</div>`);
+        out.insertAdjacentHTML(
+          'beforeend',
+          rows
+            .map((e) => {
+              const when =
+                e.t === 'post'
+                  ? new Date(e.f).toLocaleDateString('en-GB', { month: '2-digit', day: '2-digit' })
+                  : e.x && e.x !== 'Now'
+                    ? String(e.x).slice(2)
+                    : e.x === 'Now'
+                      ? 'now→'
+                      : '—';
+              const major = e.t === 'xp' || e.t === 'edu' || e.t === 'award' || e.t === 'proj';
+              const org = e.t === 'post' ? (e.o === 'Writing' ? 'jairusjoer.com' : e.o) : e.o;
+              return `<div class="row ${e.t} ${major ? 'major' : ''}">
+          <time>${when}</time><h3>${e.n} <em>· ${org}</em></h3><span class="cat">${CAT[e.t]}</span></div>`;
+            })
+            .join(''),
+        );
+      }
+    </script>
+  </body>
+</html>

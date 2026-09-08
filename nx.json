@@ -23,6 +23,10 @@
   ],
   "release": {
     "projects": ["apps/*"],
+    "git": {
+      "commitMessage": "chore(release): publish {version} [skip ci]",
+      "pushArgs": "origin HEAD:refs/heads/main"
+    },
     "version": {
       "conventionalCommits": true,
       "fallbackCurrentVersionResolver": "disk"
@@ -30,7 +34,8 @@
     "changelog": {
       "automaticFromRef": true,
       "workspaceChangelog": {
-        "fileOutput": "CHANGELOG.md"
+        "fileOutput": "CHANGELOG.md",
+        "createRelease": "github"
       },
       "projectChangelogs": false
     }
