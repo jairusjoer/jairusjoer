@@ -21,6 +21,20 @@
       }
     }
   ],
+  "release": {
+    "projects": ["apps/*"],
+    "version": {
+      "conventionalCommits": true,
+      "fallbackCurrentVersionResolver": "disk"
+    },
+    "changelog": {
+      "automaticFromRef": true,
+      "workspaceChangelog": {
+        "fileOutput": "CHANGELOG.md"
+      },
+      "projectChangelogs": false
+    }
+  },
   "neverConnectToCloud": true,
   "analytics": false
 }
