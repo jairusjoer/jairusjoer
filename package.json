@@ -1,7 +1,7 @@
 {
-  "name": "@org/source",
+  "name": "jairusjoer",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "packageManager": "pnpm@11.24.0",
   "scripts": {
