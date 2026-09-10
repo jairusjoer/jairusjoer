@@ -7,7 +7,8 @@ const experiences = {
       'Developer and Designer': '2020 — Now',
     },
     'HERO Software': {
-      'Senior Full Stack Engineer': '2024 — 2026',
+      'Senior Full Stack Engineer': '2025 — 2026',
+      'Full Stack Engineer': '2024 — 2025',
     },
     neuwaerts: {
       'Full Stack Developer': '2022 — 2024',
