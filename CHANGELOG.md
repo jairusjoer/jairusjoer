@@ -1,3 +1,13 @@
+## 0.0.3 (2026-09-10)
+
+### 🩹 Fixes
+
+- **jairusjoer.com:** add missing experience at HERO Software ([3233f91](https://github.com/jairusjoer/jairusjoer/commit/3233f91))
+
+### ❤️ Thank You
+
+- Jairus 'JJ' Joer
+
 ## 0.0.2 (2026-09-08)
 
 ### 🚀 Features
