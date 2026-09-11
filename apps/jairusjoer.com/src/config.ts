@@ -16,7 +16,7 @@ export const page: PageConfig = {
   url: 'https://jairusjoer.com',
   image: async () => (await import('./assets/image.png')).default,
   title: 'Jairus Joer',
-  description: 'Senior Software Engineer & Designer',
+  description: 'Developer and Designer',
   locale: 'en-US',
   datetime: {
     day: '2-digit',
