@@ -1,16 +1,12 @@
 name: Release
 
 on:
-  workflow_run:
-    workflows:
-      - CI
-    types:
-      - completed
+  schedule:
+    - cron: '0 0 1 * *'
   workflow_dispatch:
 
 permissions:
   contents: write
-  actions: read
 
 concurrency:
   group: release-${{ github.workflow }}-${{ github.ref }}
@@ -19,17 +15,13 @@ concurrency:
 jobs:
   release:
     name: 'Version, tag and create GitHub release'
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'main')
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
 
       - name: Set up workspace
         uses: ./.github/actions/workspace-setup
