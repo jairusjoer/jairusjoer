@@ -1,3 +1,17 @@
+## 0.0.4 (2026-09-16)
+
+### 🚀 Features
+
+- **repo:** enforce scope for commit messages ([e356a39](https://github.com/jairusjoer/jairusjoer/commit/e356a39))
+
+### 🩹 Fixes
+
+- **jairusjoer.com:** Restrict usage of term "engineer" ([e062474](https://github.com/jairusjoer/jairusjoer/commit/e062474))
+
+### ❤️ Thank You
+
+- Jairus 'JJ' Joer
+
 ## 0.0.3 (2026-09-10)
 
 ### 🩹 Fixes
