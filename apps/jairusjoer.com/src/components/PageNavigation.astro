@@ -17,14 +17,20 @@ function current(path: string) {
 
 {
   links && (
-    <nav class:list={['w-full print:hidden', className]}>
-      <ul class="flex flex-wrap items-center gap-6 font-medium">
+    <nav class:list={['page-navigation', 'w-full print:hidden', className]}>
+      <ul class="flex flex-wrap items-center gap-1.5 font-medium">
         <slot />
         {Object.entries(links).map(([title, href]) => (
-          <li>
+          <li class="relative">
+            {current(href) && <div class="bg-background-subtle rounded-inner absolute inset-0 -z-10!" />}
             <a
-              class:list={['hover:text-foreground focus:text-foreground block', current(href) && 'text-foreground']}
+              class:list={[
+                'motion-safe:transition-colors',
+                'hover:text-foreground focus:text-foreground block px-1.5',
+                current(href) && 'text-foreground',
+              ]}
               href={href}
+              aria-current={current(href) ? 'page' : null}
             >
               {title}
             </a>
@@ -34,3 +40,47 @@ function current(path: string) {
     </nav>
   )
 }
+
+<script>
+  import { createLayout } from 'animejs';
+
+  const { matches: prefersReducedMotion } = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (!prefersReducedMotion) {
+    const $lists = document.querySelectorAll<HTMLUListElement>('.page-navigation ul');
+
+    for (const $list of $lists) {
+      const layout = createLayout($list);
+      const $current = layout.root.querySelector<HTMLDivElement>('[aria-current]');
+      const $backdrop = $current?.parentElement?.querySelector('div');
+
+      if ($backdrop) {
+        const $origin = $backdrop.parentElement!;
+        const $children = [...layout.root.children] as HTMLElement[];
+
+        const moveBackdropTo = (parent: HTMLElement) => {
+          layout.update(
+            () => {
+              for (const $child of $children) $child.style.zIndex = '1';
+              parent.style.zIndex = '0';
+
+              parent.appendChild($backdrop);
+            },
+            {
+              duration: 150,
+              ease: 'linear',
+            },
+          );
+        };
+
+        for (const $child of $children) {
+          $child.addEventListener('mouseenter', () => moveBackdropTo($child));
+          $child.addEventListener('focusin', () => moveBackdropTo($child));
+        }
+
+        layout.root.addEventListener('mouseleave', () => moveBackdropTo($origin));
+        layout.root.addEventListener('focusout', () => moveBackdropTo($origin));
+      }
+    }
+  }
+</script>

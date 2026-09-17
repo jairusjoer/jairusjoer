@@ -3,9 +3,10 @@
   "type": "module",
   "version": "0.0.1",
   "license": "MIT",
-  "packageManager": "pnpm@11.24.0",
+  "packageManager": "pnpm@12.4.2",
   "scripts": {
     "nx": "nx",
+    "dev": "nx run-many -t dev",
     "prepare": "husky",
     "format": "prettier --write --ignore-unknown",
     "lint": "eslint --fix --no-warn-ignored",
