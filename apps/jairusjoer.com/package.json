@@ -2,31 +2,15 @@
   "name": "jairusjoer.com",
   "type": "module",
   "version": "0.0.4",
-  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "typecheck": "astro check",
-    "install-browsers": "playwright install --with-deps chromium",
     "astro": "astro",
+    "install-browsers": "playwright install --with-deps chromium",
     "open-graph": "bash actions/open-graph.sh",
     "a11y": "playwright test tests/a11y.test.ts"
-  },
-  "nx": {
-    "targets": {
-      "typecheck": {
-        "cache": true
-      },
-      "build": {
-        "cache": true
-      },
-      "a11y": {
-        "dependsOn": [
-          "build"
-        ]
-      }
-    }
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",

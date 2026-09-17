@@ -8,5 +8,5 @@
     "types": ["node"]
   },
   "include": ["*.ts"],
-  "exclude": ["eslint.config.ts", "node_modules"]
+  "exclude": ["node_modules"]
 }
