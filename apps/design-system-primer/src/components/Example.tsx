@@ -1,30 +1,18 @@
 import * as stylex from '@stylexjs/stylex';
-import { useState } from 'react';
+import { colors } from '../stylex/semantics.stylex';
+import { dark } from '../stylex/themes.stylex';
 
 const styles = stylex.create({
   base: {
-    fontSize: 16,
-    lineHeight: 1.5,
-    color: 'red',
-  },
-  highlight: {
-    color: 'rebeccapurple',
+    backgroundColor: colors.background,
+    color: colors.foreground,
   },
 });
 
 export function Example() {
-  const [highlight, setHighlight] = useState(false);
-
-  function toggleHighlight() {
-    setHighlight((prev) => !prev);
-  }
-
   return (
-    <button
-      onClick={toggleHighlight}
-      {...stylex.props(styles.base, highlight && styles.highlight)}
-    >
-      Example
-    </button>
+    <div {...stylex.props(dark)}>
+      <div {...stylex.props(styles.base)}>Example</div>
+    </div>
   );
 }
