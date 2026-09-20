@@ -10,7 +10,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig(
-  globalIgnores(['**/.astro', '**/.opencode', '**/.vscode', '**/dist', '**/public', '.agents', '.nx']),
+  globalIgnores(['**/.agents', '**/.astro', '**/.nx', '**/.opencode', '**/.vscode', '**/dist', '**/public']),
   {
     files: ['**/*.astro'],
     plugins: { astro },

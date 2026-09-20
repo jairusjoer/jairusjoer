@@ -1,12 +1,19 @@
-# Formatting handled by the generators / package manager
+# Agents
+.agents/
+.opencode/
+
+# Editors
+**/.vscode
+
+# Frameworks
+**/.astro
+
+# Managers
 pnpm-lock.yaml
 
-# Nx caches
+# Nx
 .nx/
 
-# Vendored Nx agent skills
-.agents/
-
-# Generated files
-apps/jairusjoer.com/.astro/
-apps/jairusjoer.com/dist/
+# Output
+**/dist
+**/public
