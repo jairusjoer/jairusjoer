@@ -2,8 +2,33 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "production": ["default"],
-    "sharedGlobals": []
+    "production": [
+      "default",
+      "!{projectRoot}/.astro/**",
+      "!{projectRoot}/dist/**",
+      "!{projectRoot}/node_modules/**",
+      "!{projectRoot}/playwright-report/**",
+      "!{projectRoot}/test-results/**"
+    ],
+    "sharedGlobals": ["{workspaceRoot}/tsconfig.base.json"]
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "typecheck": {
+      "cache": true,
+      "inputs": ["production", "^production"]
+    },
+    "a11y": {
+      "dependsOn": ["build"]
+    },
+    "open-graph": {
+      "dependsOn": ["build"]
+    }
   },
   "release": {
     "projects": ["apps/*"],

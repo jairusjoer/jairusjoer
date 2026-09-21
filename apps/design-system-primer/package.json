@@ -9,22 +9,23 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "typecheck": "astro check",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.6",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "astro": "^7.3.3",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "@astrojs/react": "catalog:",
+    "astro": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "allowScripts": {
     "esbuild": true
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "catalog:",
     "@stylexjs/stylex": "^0.19.1",
-    "@stylexjs/unplugin": "^0.19.1"
+    "@stylexjs/unplugin": "^0.19.1",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
   }
 }

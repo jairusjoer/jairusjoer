@@ -1,6 +1,16 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+catalog:
+  '@astrojs/check': ^0.9.10
+  '@astrojs/react': ^6.0.6
+  '@types/node': ^24.13.6
+  '@types/react': ^19.3.0
+  '@types/react-dom': ^19.3.0
+  astro: ^7.3.3
+  react: ^19.3.0
+  react-dom: ^19.3.0
+  typescript: ~6.0.3
 allowBuilds:
   '@swc/core': true
   esbuild: true

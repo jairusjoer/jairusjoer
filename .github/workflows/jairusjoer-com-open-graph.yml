@@ -16,11 +16,11 @@ permissions:
 
 concurrency:
   group: jairusjoer-com-open-graph-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
-    if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'ci:')
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +41,7 @@ jobs:
 
   open-graph:
     needs: build
-    if: github.event_name != 'push' || !contains(github.event.head_commit.message, 'ci:')
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
 
     steps:
@@ -86,5 +86,7 @@ jobs:
             exit 0
           fi
 
-          git commit -m "ci(jairusjoer.com): Update open graph images"
-          git push origin HEAD:${{ github.ref_name }}
+          git commit --no-verify -m "ci(jairusjoer.com): update open graph images [skip ci]"
+          git fetch origin "${{ github.ref_name }}"
+          git rebase "origin/${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"

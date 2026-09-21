@@ -9,3 +9,23 @@ Previously at HERO Software, I led the adoption of design systems, monorepo orch
 ---
 
 Head to [jairusjoer/jairusjoer](https://github.com/jairusjoer/jairusjoer) to discover my projects.
+
+---
+
+## Workspace
+
+An Nx monorepo managed with pnpm. Apps live in `apps/`:
+
+- `jairusjoer.com`: Personal website (Astro, React, Tailwind; Playwright a11y suite)
+- `design-system-primer`: Design system playground (Astro, React, StyleX)
+
+```sh
+pnpm install                    # install workspace dependencies
+pnpm nx run <project>:<target>  # e.g. pnpm nx run jairusjoer.com:dev
+pnpm build                      # build all projects (nx run-many)
+pnpm typecheck                  # typecheck root configs and all projects
+pnpm lint                       # lint the workspace with ESLint
+pnpm format                     # format with Prettier
+```
+
+Conventions for CI, releases, and commits are documented in [AGENTS.md](./AGENTS.md).
