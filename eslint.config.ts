@@ -5,6 +5,7 @@ import markdown from '@eslint/markdown';
 import astro from 'eslint-plugin-astro';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import * as mdx from 'eslint-plugin-mdx';
+import sonarjs from 'eslint-plugin-sonarjs';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -35,7 +36,12 @@ export default defineConfig(
   {
     files: ['**/*.{cjs,js,jsx,mjs,mjsx,mtsx,ts,tsx}'],
     plugins: { jsxA11y },
-    extends: [js.configs.recommended, tseslint.configs.recommended, jsxA11y.flatConfigs.recommended],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      sonarjs.configs.recommended,
+      jsxA11y.flatConfigs.recommended,
+    ],
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
       parserOptions: {
