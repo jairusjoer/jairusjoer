@@ -13,6 +13,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.1",
+    "@astrojs/mdx": "^8.0.1",
     "@astrojs/react": "catalog:",
     "astro": "catalog:",
     "react": "catalog:",
@@ -26,6 +28,7 @@
     "@stylexjs/stylex": "^0.19.1",
     "@stylexjs/unplugin": "^0.19.1",
     "@types/react": "catalog:",
-    "@types/react-dom": "catalog:"
+    "@types/react-dom": "catalog:",
+    "style-dictionary": "^5.5.5"
   }
 }
