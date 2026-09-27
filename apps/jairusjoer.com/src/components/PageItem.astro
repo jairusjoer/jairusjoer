@@ -14,6 +14,7 @@ const Container = href ? 'a' : 'div';
 <Container
   class:list={['rounded-inner not-prose w-full', { 'flex gap-x-3 max-sm:flex-col sm:items-center': wrap }, className]}
   {href}
+  title={href ? title : undefined}
 >
   <p class:list={['mr-auto truncate font-medium', href ? 'text-accent' : 'text-foreground']}>
     {title}
