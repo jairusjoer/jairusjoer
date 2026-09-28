@@ -8,7 +8,7 @@ Since May, I've had the delight of experimenting and working with AI models thro
 
 I’d like to share the progress I’ve made since then on my local setup, which partially motivated me also to share my [_Thoughts on Resilience, Sustainability and Sovereignty_](/writing/thoughts-on-resilience-sustainability-and-sovereignty) in a previous post.
 
-Bear in mind that the progress I am sharing here is that of an enthusiast in the field of _agentic engineering_, particularly in this particular context. With that in mind, let's delve into my progress.
+Bear in mind that the progress I am sharing here is that of an enthusiast in the field of _agentic engineering_, particularly in this context. With that in mind, let's delve into my progress.
 
 ---
 
