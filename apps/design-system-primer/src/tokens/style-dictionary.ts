@@ -3,9 +3,11 @@ import StyleDictionary from 'style-dictionary';
 StyleDictionary.registerFormat({
   name: 'stylex/variables',
   format: ({ dictionary }) => {
-    const vars = dictionary.allTokens
-      .filter((token) => typeof token.$value === 'string' || typeof token.$value === 'number')
-      .map((token) => `  ${token.name}: ${JSON.stringify(token.$value)},`);
+    const lines: string[] = [];
+
+    for (const token of dictionary.allTokens) {
+      lines.push(`  ${token.name}: '${token.$value}',`);
+    }
 
     return [
       '/**',
@@ -15,7 +17,7 @@ StyleDictionary.registerFormat({
       "import * as stylex from '@stylexjs/stylex';",
       '',
       'export const vars = stylex.defineVars({',
-      ...vars,
+      ...lines,
       '});',
       '',
     ].join('\n');
