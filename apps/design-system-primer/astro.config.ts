@@ -12,7 +12,7 @@ export default defineConfig({
     port: 4322,
   },
   vite: {
-    plugins: [stylex.vite({ useCSSLayers: true })],
+    plugins: [stylex.vite()],
     server: {
       fs: {
         allow: [resolve(process.cwd(), '../..')],
