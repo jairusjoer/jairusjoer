@@ -3,10 +3,11 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import stylex from '@stylexjs/unplugin';
 import { defineConfig } from 'astro/config';
+import { tokens } from './src/tokens/tokens';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx()],
+  integrations: [tokens(), react(), mdx()],
   server: {
     port: 4322,
   },
