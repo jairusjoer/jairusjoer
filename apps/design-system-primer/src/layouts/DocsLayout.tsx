@@ -1,48 +1,53 @@
 import * as stylex from '@stylexjs/stylex';
+import { LucideProvider } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { vars } from '../tokens/tokens.stylex';
+import { AsideLeft } from '../components/AsideLeft';
+import { AsideRight } from '../components/AsideRight';
+import { Media } from '../stylex/consts.stylex';
+import { Color, Space } from '../stylex/tokens.stylex';
 
 const styles = stylex.create({
   layout: {
-    backgroundColor: vars.ColorBackgroundDefault,
-    color: vars.ColorForegroundDefault,
-    display: 'grid',
+    backgroundColor: Color.BackgroundDefault,
+    color: Color.ForegroundDefault,
+    display: 'flex',
+    gap: Space['2x'],
     minHeight: '100dvh',
+    padding: Space['2x'],
     gridTemplateColumns: {
       default: '1fr',
-      '@media (min-width: 640px)': '16rem 1fr',
-      '@media (min-width: 1280px)': '16rem 1fr 16rem',
+      [Media.Tablet]: '16rem 1fr',
+      [Media.Desktop]: '16rem 1fr 16rem',
     },
   },
   asideLeft: {
-    padding: vars.Space4x,
-    backgroundColor: vars.ColorBackgroundSubtle,
+    width: '16rem',
+    padding: Space['4x'],
     position: {
       default: 'absolute',
-      '@media (min-width: 640px)': 'initial',
+      [Media.Tablet]: 'initial',
     },
   },
   content: {
-    margin: vars.Space4x,
-    gridColumn: '2/-1',
-    backgroundColor: 'red',
-    display: 'grid',
-    gridTemplateColumns: 'subgrid',
+    flexGrow: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    backgroundColor: Color.BackgroundSubtle,
+    borderRadius: Space['2x'],
+    display: 'flex',
   },
   main: {
-    justifySelf: 'center',
-    width: '100%',
-    maxWidth: '65ch',
-    padding: vars.Space4x,
+    padding: Space['4x'],
+    flexGrow: 1,
   },
   asideRight: {
-    padding: vars.Space4x,
+    padding: Space['4x'],
     top: 0,
     right: 0,
-    backgroundColor: vars.ColorBackgroundDefault,
+    width: '16rem',
     position: {
       default: 'absolute',
-      '@media (min-width: 1280px)': 'initial',
+      [Media.Desktop]: 'initial',
     },
   },
 });
@@ -53,14 +58,16 @@ export interface DocsLayoutProps {
 
 export function DocsLayout(props: DocsLayoutProps) {
   return (
-    <div {...stylex.props(styles.layout)}>
-      <aside {...stylex.props(styles.asideLeft)}>Left</aside>
+    <LucideProvider size={20}>
+      <div {...stylex.props(styles.layout)}>
+        <AsideLeft />
 
-      <div {...stylex.props(styles.content)}>
-        <main {...stylex.props(styles.main)}>{props.children}</main>
+        <div {...stylex.props(styles.content)}>
+          <main {...stylex.props(styles.main)}>{props.children}</main>
 
-        <aside {...stylex.props(styles.asideRight)}>Right</aside>
+          <AsideRight />
+        </div>
       </div>
-    </div>
+    </LucideProvider>
   );
 }

@@ -1,3 +1,16 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  border: 0 solid var(--ColorBorderDefault);
+}
+
+html {
+  overscroll-behavior: none;
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: 'IBM Plex Sans Variable', sans-serif;
 }
