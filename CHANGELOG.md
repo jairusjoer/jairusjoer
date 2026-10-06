@@ -1,3 +1,29 @@
+## 0.0.5 (2026-10-06)
+
+### 🚀 Features
+
+- **design-system-primer:** initialise project with Starlight ([fc0f3d7](https://github.com/jairusjoer/jairusjoer/commit/fc0f3d7))
+- **design-system-primer:** re-initialise project with astro ([6095397](https://github.com/jairusjoer/jairusjoer/commit/6095397))
+- **design-system-primer:** set up stylex example ([c8a34e0](https://github.com/jairusjoer/jairusjoer/commit/c8a34e0))
+- **design-system-primer:** set up theme example ([499f90d](https://github.com/jairusjoer/jairusjoer/commit/499f90d))
+- **design-system-primer:** generate stylex vars from design tokens ([b3e6da4](https://github.com/jairusjoer/jairusjoer/commit/b3e6da4))
+- **design-system-primer:** add content-driven docs pages ([d0a199b](https://github.com/jairusjoer/jairusjoer/commit/d0a199b))
+- **design-system-primer:** update stylex formatter to accept Figma token export ([2cd5d2b](https://github.com/jairusjoer/jairusjoer/commit/2cd5d2b))
+- **design-system-primer:** adopt IBM Plex Sans webfont and rework docs layout ([a31dbc4](https://github.com/jairusjoer/jairusjoer/commit/a31dbc4))
+- **design-system-primer:** emit stylex tokens grouped by set ([7ce4b8b](https://github.com/jairusjoer/jairusjoer/commit/7ce4b8b))
+- **design-system-primer:** add collapsible sidebars to docs layout ([633e0ad](https://github.com/jairusjoer/jairusjoer/commit/633e0ad))
+- **jairusjoer.com:** add page navigation item animation ([f163cbc](https://github.com/jairusjoer/jairusjoer/commit/f163cbc))
+
+### 🩹 Fixes
+
+- **jairusjoer.com:** add title for page item links ([d04c220](https://github.com/jairusjoer/jairusjoer/commit/d04c220))
+- **jairusjoer.com:** address truncation behavior on mobile screens ([ff31df8](https://github.com/jairusjoer/jairusjoer/commit/ff31df8))
+- **repo:** allow "release" scope in commit messages ([2542eea](https://github.com/jairusjoer/jairusjoer/commit/2542eea))
+
+### ❤️ Thank You
+
+- Jairus 'JJ' Joer
+
 ## 0.0.4 (2026-09-16)
 
 ### 🚀 Features
