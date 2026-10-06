@@ -9,7 +9,7 @@ const dirs = (path: string) =>
 export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    'scope-enum': [2, 'always', ['repo', ...dirs('apps'), ...dirs('packages')]],
+    'scope-enum': [2, 'always', ['repo', 'release', ...dirs('apps'), ...dirs('packages')]],
     'scope-empty': [RuleConfigSeverity.Error, 'never'],
   },
 } satisfies UserConfig;
