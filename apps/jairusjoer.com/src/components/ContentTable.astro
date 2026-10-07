@@ -2,15 +2,16 @@
 import type { MarkdownHeading } from 'astro';
 
 export interface Props {
+  class?: string;
   headings: MarkdownHeading[];
 }
 
-const { headings } = Astro.props;
+const { class: className, headings } = Astro.props;
 ---
 
 {
   headings.length > 0 && (
-    <details>
+    <details class:list={className}>
       <summary>Contents</summary>
 
       <ol>

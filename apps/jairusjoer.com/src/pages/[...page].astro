@@ -39,9 +39,12 @@ const metadata: Metadata = {
 
 <PageLayout {metadata}>
   <ContentHeader {entry} />
-  <hr class="my-6" />
   <div class="prose">
-    <ContentTable {headings} />
+    <ContentTable
+      class="mt-6"
+      {headings}
+    />
+    <hr class="my-6" />
     <Content />
   </div>
 </PageLayout>
