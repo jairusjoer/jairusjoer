@@ -68,3 +68,7 @@ The "repeat N times until green" loop needs a **termination rule**:
 - hard cap: e.g. 3 CI-fix rounds, then stop,
 - no-progress cap: stop if the failing job set doesn't shrink between rounds,
 - user-freeze: agent detects ambiguity → comments on MR asking a human (`/hold` style), state becomes `awaiting-human`, no further rounds until the ticket gets a "pick up" event again.
+
+---
+
+Prev: [01-event-sources.md](01-event-sources.md) · Next: [03-delivery-reliability-security.md](03-delivery-reliability-security.md) · Back to [README](README.md)

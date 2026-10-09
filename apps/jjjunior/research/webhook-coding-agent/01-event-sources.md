@@ -43,6 +43,11 @@ Project-level webhook (admin of the project), events to enable: **Work item / Is
 ## Common filtering needs (all platforms)
 
 1. `action`/`type` filter — most events are irrelevant.
-2. Actor filter — ignore events caused by your own bot (e.g. the agent closing tickets, CI triggered by the agent's own push, loops). Compare actor IDs / bot user IDs.
+2. Actor filter — ignore events caused by your own bot (the agent itself). This is what makes the mode lanes work: the orchestrator moves tickets into the mode lanes on completion, and those self-moves must not retrigger pickup.
 3. Dedup on the delivery ID (webhooks retry delivery; linear & github retry on non-2xx).
 4. Repo/team allowlist so stray webhooks don't spawn agents.
+5. Lane matching — "run this ticket" is expressed as a ticket moved into one of the two mode lanes (see 04 — Execution modes), so the trigger filter compares the new state/label against the configured lane IDs rather than a hard-coded "To Do".
+
+---
+
+Next: [02-agent-runtime.md](02-agent-runtime.md) · Back to [README](README.md)

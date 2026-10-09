@@ -30,3 +30,5 @@ Research findings for a system that:
 3. **Session reuse vs respawn**: reuse the OpenCode session for CI-fix rounds (it remembers context). Cap rounds (e.g. N=3) — if still red, stop and comment on the ticket/MR instead of burning tokens in a loop.
 4. **Polling fallback first**: webhooks-through-tunnel is nice but polling GitLab/Linear every 30–60 s is ~30 lines and works before any network setup. Build polling, add webhooks as an optimization.
 5. **Gate what the agent may do** with OpenCode permissions config — same as the pipeline skill's hard rules, plus refusal-on-private contexts.
+6. **Two execution modes**: `human_in_the_loop` (default — CI-failure fix rounds pause and wait for owner approval) and `fully_autonomous` (automatic fix loop to green or cap). Each mode has its **own board lane in the ticketing provider**: dropping a ticket into a lane starts a run in that mode; on completion the orchestrator moves the ticket back into the lane with a summary comment.
+7. **Provider-agnostic adapters**: ticketing (Linear/GitLab/GitHub) and SCM+CI (GitLab/GitHub) are swappable config adapters around a provider-neutral core loop.

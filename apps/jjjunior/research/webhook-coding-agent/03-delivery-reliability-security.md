@@ -51,3 +51,7 @@
 ```
 
 Atomic writes (tmp+rename). One ticket-row per concurrent task — also gives you observability: a `TUI`/web dashboard over this file is a ~100-line addition and is where you'd surface OpenCode's SSE stream.
+
+---
+
+Prev: [02-agent-runtime.md](02-agent-runtime.md) · Next: [04-prototype-plan.md](04-prototype-plan.md) · Back to [README](README.md)
