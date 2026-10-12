@@ -16,3 +16,5 @@ allowBuilds:
   esbuild: true
   nx: true
   sharp: true
+minimumReleaseAgeExclude:
+  - effect@4.0.3

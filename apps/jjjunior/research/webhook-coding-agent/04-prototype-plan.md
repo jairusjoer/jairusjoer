@@ -171,4 +171,4 @@ async function onCiFailed(key: string, log: string) {
 
 ---
 
-Prev: [03-delivery-reliability-security.md](03-delivery-reliability-security.md) · Back to [README](README.md)
+Prev: [03-delivery-reliability-security.md](03-delivery-reliability-security.md) · Next: [05-implementation-checklist.md](05-implementation-checklist.md) · Back to [README](README.md)

@@ -22,6 +22,7 @@ Research findings for a system that:
 - [02-agent-runtime.md](02-agent-runtime.md) — spawning OpenCode headlessly, session lifecycle, resuming with CI failures; how the existing `pipeline` skill maps to it.
 - [03-delivery-reliability-security.md](03-delivery-reliability-security.md) — how events reach a local machine (tunnel vs polling), dedup/debounce, signature verification, secrets.
 - [04-prototype-plan.md](04-prototype-plan.md) — MVP architecture and a phased build plan with rough effort.
+- [05-implementation-checklist.md](05-implementation-checklist.md) — step-by-step build checklist derived from the prototype plan.
 
 ## Key design decisions up front
 
