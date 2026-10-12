@@ -1,3 +1,13 @@
+## 0.0.6 (2026-10-12)
+
+### 🩹 Fixes
+
+- **jairusjoer.com:** swap content table and divider ([d1fd79e](https://github.com/jairusjoer/jairusjoer/commit/d1fd79e))
+
+### ❤️ Thank You
+
+- Jairus 'JJ' Joer
+
 ## 0.0.5 (2026-10-06)
 
 ### 🚀 Features
