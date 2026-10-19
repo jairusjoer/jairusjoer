@@ -1,3 +1,18 @@
+## 0.0.7 (2026-10-19)
+
+### 🚀 Features
+
+- **jjjunior:** add rough research notes ([4d6ed51](https://github.com/jairusjoer/jairusjoer/commit/4d6ed51))
+- **jjjunior:** scaffold orchestrator with Hono receiver and config ([5c5bd35](https://github.com/jairusjoer/jairusjoer/commit/5c5bd35))
+
+### 🩹 Fixes
+
+- **jairusjoer.com:** adjust spacing for safari browsers ([c1f2376](https://github.com/jairusjoer/jairusjoer/commit/c1f2376))
+
+### ❤️ Thank You
+
+- Jairus 'JJ' Joer
+
 ## 0.0.6 (2026-10-12)
 
 ### 🩹 Fixes
