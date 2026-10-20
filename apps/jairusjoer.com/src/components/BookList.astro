@@ -22,7 +22,7 @@ const collection = (await getCollection('books')).sort((a, b) => b.data.date.get
           <PageItem
             wrap={false}
             title={book.id}
-            meta={`${book.status} • ${book.author}`}
+            meta={book.author}
           />
         </li>
       ))

@@ -9,7 +9,6 @@ const books = defineCollection({
       author: z.string(),
       image: image().optional(),
       id: z.string(),
-      status: z.enum(['Bought', 'Reading', 'Finished', 'Abandoned']),
       date: z.coerce.date(),
     }),
 });
