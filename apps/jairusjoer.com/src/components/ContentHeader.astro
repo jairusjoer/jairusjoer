@@ -9,7 +9,7 @@ export interface Props {
 const { entry } = Astro.props;
 ---
 
-<header class="not-prose space-y-1.5">
+<header class="not-prose">
   <h1 class="text-heading">
     {entry.data.status && <span class="text-accent">{entry.data.status}: </span>}
     {entry.data.title}
