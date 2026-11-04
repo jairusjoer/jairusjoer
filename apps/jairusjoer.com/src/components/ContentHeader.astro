@@ -15,7 +15,7 @@ const { entry } = Astro.props;
     {entry.data.title}
   </h1>
 
-  {entry.data.description && <p>{entry.data.description}</p>}
-
   {entry.data.date && <time class="tabular-nums">{formatDateTime(entry.data.date)}</time>}
+
+  {entry.data.description && <p class="mt-6">{entry.data.description}</p>}
 </header>
