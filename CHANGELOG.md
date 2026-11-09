@@ -1,3 +1,14 @@
+## 0.0.8 (2026-11-09)
+
+### 🩹 Fixes
+
+- **jairusjoer.com:** adjust spacing for content header ([41cb25b](https://github.com/jairusjoer/jairusjoer/commit/41cb25b))
+- **jairusjoer.com:** adjust structure of content header ([bd25125](https://github.com/jairusjoer/jairusjoer/commit/bd25125))
+
+### ❤️ Thank You
+
+- Jairus 'JJ' Joer
+
 ## 0.0.7 (2026-10-19)
 
 ### 🚀 Features
