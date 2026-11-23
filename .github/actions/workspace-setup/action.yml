@@ -21,7 +21,6 @@ runs:
       uses: actions/setup-node@v5
       with:
         node-version: ${{ inputs.node-version }}
-        cache: pnpm
 
     - name: Restore node_modules
       id: modules

@@ -47,6 +47,7 @@ jobs:
         uses: nrwl/nx-set-shas@v5
 
       - name: Restore Nx cache
+        if: contains(fromJSON('["typecheck", "build"]'), matrix.target)
         uses: actions/cache@v5
         with:
           path: .nx/cache
@@ -56,8 +57,7 @@ jobs:
       - name: Run ${{ matrix.target }}
         run: pnpm exec nx $NX_SCOPE -t ${{ matrix.target }} -c check
 
-  # Runs after `nx` so it replays the build from the Nx cache instead of
-  # building the site a second time.
+  # Runs after `nx` so it replays the build from the Nx cache.
   test:
     name: test
     needs: nx
