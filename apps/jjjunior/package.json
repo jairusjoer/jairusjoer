@@ -2,22 +2,16 @@
   "name": "jjjunior",
   "type": "module",
   "version": "0.0.8",
-  "scripts": {
-    "dev": "tsx watch src/main.ts",
-    "start": "tsx src/main.ts",
-    "build": "tsc -p tsconfig.build.json",
-    "typecheck": "tsc -p tsconfig.json"
+  "private": true,
+  "engines": {
+    "node": ">=23.6"
   },
-  "dependencies": {
-    "@effect/platform-node": "^4.0.3",
-    "@hono/node-server": "^2.1.4",
-    "@opencode-ai/sdk": "^1.19.0",
-    "effect": "^4.0.3",
-    "hono": "^4.13.13"
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/main.ts",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "catalog:",
-    "tsx": "^4.23.15",
     "typescript": "catalog:"
   }
 }
