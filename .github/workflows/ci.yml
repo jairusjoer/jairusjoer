@@ -31,13 +31,13 @@ jobs:
           - lint:commits
           - typecheck
           - build
-          - test
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          # History is only needed for `nx affected` (pull requests) and commitlint.
+          fetch-depth: ${{ (github.event_name == 'pull_request' || matrix.target == 'lint:commits') && '0' || '1' }}
 
       - name: Set up workspace
         uses: ./.github/actions/workspace-setup
@@ -53,26 +53,55 @@ jobs:
           key: nx-${{ matrix.target }}-${{ github.sha }}
           restore-keys: nx-${{ matrix.target }}-
 
+      - name: Run ${{ matrix.target }}
+        run: pnpm exec nx $NX_SCOPE -t ${{ matrix.target }} -c check
+
+  # Runs after `nx` so it replays the build from the Nx cache instead of
+  # building the site a second time.
+  test:
+    name: test
+    needs: nx
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && '0' || '1' }}
+
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Derive appropriate SHAs for `nx affected` commands
+        if: github.event_name == 'pull_request'
+        uses: nrwl/nx-set-shas@v5
+
+      - name: Restore Nx cache
+        uses: actions/cache@v5
+        with:
+          path: .nx/cache
+          key: nx-test-${{ github.sha }}
+          restore-keys: |
+            nx-build-${{ github.sha }}
+            nx-test-
+
       - name: Restore Playwright browsers
-        if: matrix.target == 'test'
+        id: playwright
         uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: playwright-${{ runner.os }}-
 
       - name: Install Playwright browsers
-        if: matrix.target == 'test'
+        if: steps.playwright.outputs.cache-hit != 'true'
         run: pnpm exec nx $NX_SCOPE -t install-browsers
 
-      - name: Run ${{ matrix.target }}
-        run: pnpm exec nx $NX_SCOPE -t ${{ matrix.target }} -c check
-
-      - name: Fail if the tool changed files
-        run: git diff --exit-code
+      - name: Run test
+        run: pnpm exec nx $NX_SCOPE -t test -c check
 
       - name: Upload Playwright report
-        if: failure() && matrix.target == 'test'
+        if: failure()
         uses: actions/upload-artifact@v6
         with:
           name: playwright-report

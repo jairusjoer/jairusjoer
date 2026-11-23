@@ -45,7 +45,7 @@ GitHub Actions runs the checks defined in `.github/workflows/ci.yml` on pushes t
 
 - **Verify** — Prettier format check, ESLint, root config type checking, and `nx affected` typecheck, build, and Playwright axe-core accessibility checks (Chromium, cached between runs) for the changed projects.
 
-Affected detection uses [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only projects changed since the last successful run on `main` are verified. The workspace runs without Nx Cloud (`neverConnectToCloud`), so everything is computed on the runner. All checks share one job because Nx's local task cache is per-machine: the `test` target depends on `build`, so the site is built once and replayed from cache on the same runner.
+Affected detection uses [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only projects changed since the last successful run on `main` are verified. The workspace runs without Nx Cloud (`neverConnectToCloud`), so everything is computed on the runner. The `test` job runs after the `nx` matrix and restores the Nx cache the `build` entry saved, so the site is built once and replayed from cache.
 
 This app plugs into CI through its Nx targets (`typecheck`, `build`, `test`, `install-browsers`), and its app-owned automation lives in `.github/workflows/jairusjoer-com-*.yml`. See the CI conventions in the repository root `AGENTS.md` for the full rules.
 
