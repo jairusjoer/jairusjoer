@@ -2,7 +2,7 @@
 
 Runs local Claude Code agents for cards on a GitLab group board (`GITLAB_GROUP`), with a human review at the end.
 
-The board's lists are **work item statuses** (To do, In progress, In Review, …), not labels. Moves are detected by polling one GraphQL query every 30 seconds. That query covers every project in the group, needs no webhook, tunnel or public endpoint, and misses nothing while the machine is off.
+The board's lists are **work item statuses** (To do, In progress, In Review, …), not labels. Moves are detected by polling one GraphQL query every 60 seconds. That query covers every project in the group, needs no webhook, tunnel or public endpoint, and misses nothing while the machine is off.
 
 ## Flow
 
@@ -32,8 +32,8 @@ Every outcome that needs a person ends up in **In Review** with a comment: appro
 
 - The orchestrator's own status moves never trigger anything. It records them and skips poll data that is older than its last move.
 - Agents write code and the orchestrator moves tickets: statuses, comments, push and MR are handled in code. Agents return JSON checked against a schema.
-- CI gate: after each push the orchestrator waits for every pipeline on that commit (push and MR pipelines). Failed jobs' log tails go back to the implementer, which must fix the root cause and must not skip or disable tests. If no pipeline appears within 3 minutes, the repo is treated as having no CI. `PIPELINE_TIMEOUT_MIN=0` turns the gate off.
-- One git worktree per issue, at most `MAX_PARALLEL` runs at once, `AGENT_TIMEOUT_MIN` per agent.
+- CI gate: after each push the orchestrator waits for every pipeline on that commit (push and MR pipelines). Failed jobs' log tails go back to the implementer, which must fix the root cause and must not skip or disable tests. If no pipeline appears within 3 minutes, the repo is treated as having no CI. CI that has not finished after 30 minutes fails the run.
+- Clones live in `repos/<project path>` and worktrees in `worktrees/` at the monorepo root (both gitignored). One git worktree per issue, at most `MAX_PARALLEL` runs at once, `AGENT_TIMEOUT_MIN` per agent.
 
 ## Setup
 

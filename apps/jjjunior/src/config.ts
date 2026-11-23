@@ -1,6 +1,8 @@
-import { homedir } from 'node:os';
+import { fileURLToPath } from 'node:url';
 
-const env = (key: string, fallback: string): string => (process.env[key] ?? fallback).replace(/^~(?=\/|$)/, homedir());
+const env = (key: string, fallback: string): string => process.env[key] ?? fallback;
+/** Monorepo root; clones and worktrees live there (gitignored). */
+const root = fileURLToPath(new URL('../../../', import.meta.url));
 
 const required = (key: string): string => {
   const value = process.env[key];
@@ -20,14 +22,14 @@ export const config = {
     doing: env('STATUS_DOING', 'In progress'),
     review: env('STATUS_REVIEW', 'In Review'),
   },
-  pollIntervalMs: Number(env('POLL_INTERVAL_SEC', '30')) * 1000,
-  reposDir: env('REPOS_DIR', '~/Git/jjjunior-repos'),
-  worktreesDir: env('WORKTREES_DIR', '~/Git/jjjunior-worktrees'),
+  pollIntervalMs: 60_000,
+  reposDir: `${root}repos`,
+  worktreesDir: `${root}worktrees`,
   maxRounds: Number(env('MAX_ROUNDS', '3')),
   maxParallel: Number(env('MAX_PARALLEL', '2')),
-  /** How long to wait for CI on a pushed commit; 0 disables the CI gate. */
-  pipelineTimeoutMs: Number(env('PIPELINE_TIMEOUT_MIN', '45')) * 60_000,
+  /** How long to wait for CI on a pushed commit. */
+  pipelineTimeoutMs: 30 * 60_000,
   agentTimeoutMs: Number(env('AGENT_TIMEOUT_MIN', '60')) * 60_000,
   permissionMode: env('PERMISSION_MODE', 'auto'),
-  model: process.env.CLAUDE_MODEL,
+  model: env('CLAUDE_MODEL', 'claude-sonnet-5-5'),
 };

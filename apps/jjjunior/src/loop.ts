@@ -289,7 +289,6 @@ const handleFailure = async (issue: Issue, error: unknown, signal: AbortSignal) 
 // --- CI gate -----------------------------------------------------------------
 /** Wait until every pipeline for the commit has finished. No pipeline within 3 minutes means "no CI". */
 const waitForPipelines = async (issue: Issue, project: Project, sha: string, signal: AbortSignal) => {
-  if (!config.pipelineTimeoutMs) return { status: 'skipped' as const, logs: '', urls: '' };
   const started = Date.now();
   log(issue, `waiting for CI on ${sha.slice(0, 8)}`);
   for (;;) {
