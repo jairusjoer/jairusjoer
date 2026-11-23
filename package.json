@@ -1,18 +1,18 @@
 {
   "name": "jairusjoer",
   "type": "module",
-  "version": "0.0.1",
   "license": "MIT",
   "packageManager": "pnpm@12.4.2",
   "scripts": {
     "dev": "nx run-many -t dev",
     "build": "nx run-many -t build",
+    "test": "nx run-many -t test",
     "preview": "nx run-many -t preview",
-    "typecheck": "tsc -p tsconfig.root.json && pnpm nx run-many -t typecheck",
+    "typecheck": "nx run-many -t typecheck",
     "nx": "nx",
     "prepare": "husky",
-    "format": "prettier --write --ignore-unknown .",
-    "lint": "eslint --fix --no-warn-ignored"
+    "format": "nx run-many -t format",
+    "lint": "nx run-many -t lint"
   },
   "private": true,
   "devDependencies": {
@@ -42,5 +42,8 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "catalog:",
     "typescript-eslint": "^8.70.0"
+  },
+  "nx": {
+    "includedScripts": []
   }
 }

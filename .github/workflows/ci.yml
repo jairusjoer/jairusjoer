@@ -14,13 +14,23 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-jobs:
-  verify:
-    name: 'Verify: lint, typecheck, build, a11y'
-    runs-on: ubuntu-latest
+env:
+  NX_SCOPE: ${{ github.event_name == 'pull_request' && 'affected' || 'run-many' }}
 
-    env:
-      NX_SCOPE: ${{ github.event_name == 'pull_request' && 'affected' || 'run-many' }}
+jobs:
+  nx:
+    name: ${{ matrix.target }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - format
+          - lint
+          - typecheck
+          - build
+          - test
 
     steps:
       - name: Check out repository
@@ -35,20 +45,57 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: nrwl/nx-set-shas@v5
 
-      - name: Check formatting
-        run: pnpm exec prettier --check .
+      - name: Restore Nx cache
+        uses: actions/cache@v5
+        with:
+          path: .nx/cache
+          key: nx-${{ matrix.target }}-${{ github.sha }}
+          restore-keys: nx-${{ matrix.target }}-
 
-      - name: Lint
-        run: pnpm exec eslint .
+      - name: Run ${{ matrix.target }}
+        run: pnpm exec nx $NX_SCOPE -t ${{ matrix.target }} -c check
 
-      - name: Type check root configs
-        run: pnpm exec tsc -p tsconfig.root.json
+      - name: Fail if the tool changed files
+        run: git diff --exit-code
 
-      - name: Type check projects
-        run: pnpm exec nx $NX_SCOPE -t typecheck
+  commits:
+    name: lint:commits
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
 
-      - name: Build projects
-        run: pnpm exec nx $NX_SCOPE -t build
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Lint commit messages
+        run: >-
+          pnpm exec commitlint --verbose
+          --from ${{ github.event.pull_request.base.sha }}
+          --to ${{ github.event.pull_request.head.sha }}
+
+  a11y:
+    name: a11y
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Set up workspace
+        uses: ./.github/actions/workspace-setup
+
+      - name: Derive appropriate SHAs for `nx affected` commands
+        if: github.event_name == 'pull_request'
+        uses: nrwl/nx-set-shas@v5
 
       - name: Restore Playwright browsers
         uses: actions/cache@v5
