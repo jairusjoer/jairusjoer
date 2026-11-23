@@ -1,14 +1,12 @@
 import { config } from './config.ts';
+import { banner, logError } from './log.ts';
 import { poll } from './loop.ts';
 
-console.log(
-  `Polling ${config.group} every ${config.pollIntervalMs / 1000}s for @${config.assignee}` +
-    (config.triggerLabel ? ` issues labelled "${config.triggerLabel}"` : ''),
-);
+banner();
 
 let first = true;
 const tick = async () => {
-  await poll(first).catch((e) => console.error(`[${new Date().toISOString()}] poll failed:`, e));
+  await poll(first).catch((e) => logError('POLL', e));
   first = false;
   setTimeout(tick, config.pollIntervalMs);
 };
