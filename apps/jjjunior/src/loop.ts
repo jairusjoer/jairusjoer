@@ -16,7 +16,7 @@ import {
   type Issue,
   type Project,
 } from './gitlab.ts';
-import { log } from './log.ts';
+import { log, logError } from './log.ts';
 import { branchName, hasCommits, headSha, prepareWorktree, push, removeWorktree } from './workspace.ts';
 
 const { todo, doing, review } = config.status;
@@ -87,15 +87,17 @@ const handleGone = async (key: string, issue: Issue) => {
   if (active) abort(issue, active, 'issue left the board query (closed, unassigned, label or iteration removed)');
   if (!(await isClosed(issue).catch(() => false))) return;
   await active?.done;
-  await removeWorktree(await getProject(issue.project), issue).catch((e) =>
-    log('FAIL', `cleanup failed: ${e}`, keyOf(issue)),
-  );
-  log('CLEANUP', 'closed, worktree removed', keyOf(issue));
+  try {
+    await removeWorktree(await getProject(issue.project), issue);
+    log('CLEANUP', 'closed, worktree removed', issue);
+  } catch (e) {
+    logError('FAIL', e, issue);
+  }
 };
 
 const abort = (issue: Issue, active: { controller: AbortController }, reason: string) => {
   if (active.controller.signal.aborted) return;
-  log('ABORT', reason, keyOf(issue));
+  log('ABORT', reason, issue);
   active.controller.abort();
 };
 
@@ -136,7 +138,7 @@ const work = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
 };
 
 const runLoop = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
-  log('START', mode, keyOf(issue));
+  log('START', mode, issue);
   if (mode === 'implement') {
     await moveTo(issue, doing);
     await comment(issue, '🤖 Picked up by Claude Code — implementing.');
@@ -187,7 +189,7 @@ const implement = async (run: Run, round: number) => {
   const { issue, project, dir } = run;
   for (let attempt = 1; ; attempt++) {
     const ciFix = attempt > 1 ? ` · CI fix ${attempt - 1}` : '';
-    log('IMPLEMENT', `round ${round}${ciFix}`, keyOf(issue));
+    log('IMPLEMENT', `round ${round}${ciFix}`, issue);
     const impl = await runAgent<Implementation>({
       cwd: dir,
       prompt: run.prompt,
@@ -236,7 +238,7 @@ const implement = async (run: Run, round: number) => {
 /** One adversarial review. Returns true when the loop is finished (approved or out of rounds). */
 const reviewRound = async (run: Run, round: number) => {
   const { issue, project, context } = run;
-  log('REVIEW', `round ${round}`, keyOf(issue));
+  log('REVIEW', `round ${round}`, issue);
   const rev = await runAgent<Review>({
     cwd: run.dir,
     prompt: reviewPrompt(context, project, run.summary),
@@ -247,7 +249,7 @@ const reviewRound = async (run: Run, round: number) => {
   });
 
   if (rev.output.approved) {
-    log('DONE', 'approved', keyOf(issue));
+    log('DONE', 'approved', issue);
     await comment(
       issue,
       `✅ Loop completed\n\nMerge request: ${run.mrUrl}\n\n**Summary**\n\n${run.summary}\n\n**Reviewer verification**\n\n${rev.output.verification}\n\n_Ready for human review._`,
@@ -276,12 +278,12 @@ const reviewRound = async (run: Run, round: number) => {
 
 const handleFailure = async (issue: Issue, error: unknown, signal: AbortSignal) => {
   if (signal.aborted) {
-    log('ABORT', 'aborted', keyOf(issue));
+    // abort() already logged the reason.
     await comment(issue, '⏹️ Claude Code run aborted because the issue left the workflow.').catch(() => {});
     return;
   }
   const message = error instanceof Error ? error.message : String(error);
-  log('FAIL', message, keyOf(issue));
+  logError('FAIL', error, issue);
   await comment(
     issue,
     `❌ **Claude Code run failed**\n\n\`\`\`\n${message}\n\`\`\`\n\n_Move the issue back to **${todo}** to retry._`,
@@ -293,7 +295,7 @@ const handleFailure = async (issue: Issue, error: unknown, signal: AbortSignal) 
 /** Wait until every pipeline for the commit has finished. No pipeline within 3 minutes means "no CI". */
 const waitForPipelines = async (issue: Issue, project: Project, sha: string, signal: AbortSignal) => {
   const started = Date.now();
-  log('CI', `waiting on ${styleText('yellow', sha.slice(0, 8))}`, keyOf(issue));
+  log('CI', `waiting on ${styleText('yellow', sha.slice(0, 8))}`, issue);
   for (;;) {
     const pipelines = await pipelinesFor(project.id, sha);
     const elapsed = Date.now() - started;
