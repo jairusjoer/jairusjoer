@@ -8,7 +8,9 @@
   },
   "scripts": {
     "dev": "node --env-file-if-exists=.env src/main.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --no-warn-ignored .",
+    "test": "node --test"
   },
   "devDependencies": {
     "@types/node": "catalog:",

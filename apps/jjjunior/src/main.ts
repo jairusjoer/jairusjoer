@@ -1,6 +1,6 @@
-import { config } from './config.ts';
-import { banner, logError } from './log.ts';
-import { poll } from './loop.ts';
+import { config } from './config/config.ts';
+import { banner, logError } from './lib/log.ts';
+import { poll } from './loop/poll.ts';
 
 banner();
 

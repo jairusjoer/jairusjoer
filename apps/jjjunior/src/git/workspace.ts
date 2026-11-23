@@ -1,9 +1,9 @@
 import { existsSync } from 'node:fs';
 import { mkdir, rm } from 'node:fs/promises';
 import { basename, join } from 'node:path';
-import { config } from './config.ts';
-import { run } from './exec.ts';
-import type { Issue, Project } from './gitlab.ts';
+import { config } from '../config/config.ts';
+import type { Issue, Project } from '../gitlab/types.ts';
+import { run } from '../lib/exec.ts';
 
 const git = (cwd: string, ...args: string[]) => run('git', args, { cwd });
 

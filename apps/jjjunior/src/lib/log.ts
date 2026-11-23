@@ -1,6 +1,6 @@
 import { styleText } from 'node:util';
-import pkg from '../package.json' with { type: 'json' };
-import { config } from './config.ts';
+import pkg from '../../package.json' with { type: 'json' };
+import { config } from '../config/config.ts';
 
 type Colour = Extract<Parameters<typeof styleText>[0], string>;
 
