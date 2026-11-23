@@ -1,17 +1,14 @@
 {
   "compilerOptions": {
-    "lib": ["es2023"],
+    "target": "esnext",
     "module": "nodenext",
-    "moduleResolution": "nodenext",
     "types": ["node"],
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
     "strict": true,
-    "target": "es2023"
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true
   },
   "include": ["src"]
 }
