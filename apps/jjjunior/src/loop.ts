@@ -1,4 +1,5 @@
 import { setTimeout as sleep } from 'node:timers/promises';
+import { styleText } from 'node:util';
 import { implementationSchema, reviewSchema, runAgent, type Implementation, type Review } from './agent.ts';
 import { config } from './config.ts';
 import {
@@ -15,6 +16,7 @@ import {
   type Issue,
   type Project,
 } from './gitlab.ts';
+import { log } from './log.ts';
 import { branchName, hasCommits, headSha, prepareWorktree, push, removeWorktree } from './workspace.ts';
 
 const { todo, doing, review } = config.status;
@@ -27,7 +29,6 @@ const seen = new Map<string, { issue: Issue; status: string | null }>();
 const ourMoves = new Map<string, number>();
 
 const keyOf = (issue: Issue) => `${issue.project}#${issue.iid}`;
-const log = (issue: Issue, msg: string) => console.log(`[${new Date().toISOString()}] ${keyOf(issue)} ${msg}`);
 
 const moveTo = async (issue: Issue, status: string) => {
   await setStatus(issue, status);
@@ -86,13 +87,15 @@ const handleGone = async (key: string, issue: Issue) => {
   if (active) abort(issue, active, 'issue left the board query (closed, unassigned, label or iteration removed)');
   if (!(await isClosed(issue).catch(() => false))) return;
   await active?.done;
-  await removeWorktree(await getProject(issue.project), issue).catch((e) => log(issue, `cleanup failed: ${e}`));
-  log(issue, 'closed, worktree removed');
+  await removeWorktree(await getProject(issue.project), issue).catch((e) =>
+    log('FAIL', `cleanup failed: ${e}`, keyOf(issue)),
+  );
+  log('CLEANUP', 'closed, worktree removed', keyOf(issue));
 };
 
 const abort = (issue: Issue, active: { controller: AbortController }, reason: string) => {
   if (active.controller.signal.aborted) return;
-  log(issue, `aborting: ${reason}`);
+  log('ABORT', reason, keyOf(issue));
   active.controller.abort();
 };
 
@@ -133,7 +136,7 @@ const work = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
 };
 
 const runLoop = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
-  log(issue, `starting (${mode})`);
+  log('START', mode, keyOf(issue));
   if (mode === 'implement') {
     await moveTo(issue, doing);
     await comment(issue, '🤖 Picked up by Claude Code — implementing.');
@@ -183,8 +186,8 @@ const stop = async (issue: Issue, message: string) => {
 const implement = async (run: Run, round: number) => {
   const { issue, project, dir } = run;
   for (let attempt = 1; ; attempt++) {
-    const ciFix = attempt > 1 ? ` (CI fix ${attempt - 1})` : '';
-    log(issue, `round ${round}: implementing${ciFix}`);
+    const ciFix = attempt > 1 ? ` · CI fix ${attempt - 1}` : '';
+    log('IMPLEMENT', `round ${round}${ciFix}`, keyOf(issue));
     const impl = await runAgent<Implementation>({
       cwd: dir,
       prompt: run.prompt,
@@ -233,7 +236,7 @@ const implement = async (run: Run, round: number) => {
 /** One adversarial review. Returns true when the loop is finished (approved or out of rounds). */
 const reviewRound = async (run: Run, round: number) => {
   const { issue, project, context } = run;
-  log(issue, `round ${round}: reviewing`);
+  log('REVIEW', `round ${round}`, keyOf(issue));
   const rev = await runAgent<Review>({
     cwd: run.dir,
     prompt: reviewPrompt(context, project, run.summary),
@@ -244,7 +247,7 @@ const reviewRound = async (run: Run, round: number) => {
   });
 
   if (rev.output.approved) {
-    log(issue, 'approved');
+    log('DONE', 'approved', keyOf(issue));
     await comment(
       issue,
       `✅ Loop completed\n\nMerge request: ${run.mrUrl}\n\n**Summary**\n\n${run.summary}\n\n**Reviewer verification**\n\n${rev.output.verification}\n\n_Ready for human review._`,
@@ -273,12 +276,12 @@ const reviewRound = async (run: Run, round: number) => {
 
 const handleFailure = async (issue: Issue, error: unknown, signal: AbortSignal) => {
   if (signal.aborted) {
-    log(issue, 'aborted');
+    log('ABORT', 'aborted', keyOf(issue));
     await comment(issue, '⏹️ Claude Code run aborted because the issue left the workflow.').catch(() => {});
     return;
   }
   const message = error instanceof Error ? error.message : String(error);
-  log(issue, `failed: ${message}`);
+  log('FAIL', message, keyOf(issue));
   await comment(
     issue,
     `❌ **Claude Code run failed**\n\n\`\`\`\n${message}\n\`\`\`\n\n_Move the issue back to **${todo}** to retry._`,
@@ -290,7 +293,7 @@ const handleFailure = async (issue: Issue, error: unknown, signal: AbortSignal) 
 /** Wait until every pipeline for the commit has finished. No pipeline within 3 minutes means "no CI". */
 const waitForPipelines = async (issue: Issue, project: Project, sha: string, signal: AbortSignal) => {
   const started = Date.now();
-  log(issue, `waiting for CI on ${sha.slice(0, 8)}`);
+  log('CI', `waiting on ${styleText('yellow', sha.slice(0, 8))}`, keyOf(issue));
   for (;;) {
     const pipelines = await pipelinesFor(project.id, sha);
     const elapsed = Date.now() - started;
