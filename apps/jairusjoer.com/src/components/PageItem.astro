@@ -16,9 +16,7 @@ const Container = href ? 'a' : 'div';
   {href}
   title={href ? title : undefined}
 >
-  <p class:list={['mr-auto font-medium sm:truncate', href ? 'text-accent' : 'text-foreground']}>
-    {title}
-  </p>
+  <p class:list={['mr-auto font-medium sm:truncate', href ? 'text-accent' : 'text-foreground']}>{title}</p>
 
   {meta && <p class="whitespace-nowrap tabular-nums">{meta}</p>}
 </Container>

@@ -9,21 +9,19 @@ export interface Props {
 const { class: className, headings } = Astro.props;
 ---
 
-{
-  headings.length > 0 && (
-    <details class:list={className}>
-      <summary>Contents</summary>
+{headings.length > 0 && (
+  <details class:list={className}>
+    <summary>Contents</summary>
 
-      <ol>
-        {headings.map(({ depth, slug, text }) => (
-          <li style={`--toc-level: ${Math.max(0, depth - 2)}`}>
-            <a href={`#${slug}`}>{text}</a>
-          </li>
-        ))}
-      </ol>
-    </details>
-  )
-}
+    <ol>
+      {headings.map(({ depth, slug, text }) => (
+        <li style={`--toc-level: ${Math.max(0, depth - 2)}`}>
+          <a href={`#${slug}`}>{text}</a>
+        </li>
+      ))}
+    </ol>
+  </details>
+)}
 
 <style>
   ol li {

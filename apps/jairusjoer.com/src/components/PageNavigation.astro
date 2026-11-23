@@ -15,31 +15,29 @@ function current(path: string) {
 }
 ---
 
-{
-  links && (
-    <nav class:list={['page-navigation', 'w-full print:hidden', className]}>
-      <ul class="flex flex-wrap items-center gap-1.5 font-medium">
-        <slot />
-        {Object.entries(links).map(([title, href]) => (
-          <li class="relative">
-            {current(href) && <div class="bg-background-subtle rounded-inner absolute inset-0 -z-10!" />}
-            <a
-              class:list={[
-                'motion-safe:transition-colors',
-                'hover:text-foreground focus:text-foreground block px-1.5',
-                current(href) && 'text-foreground',
-              ]}
-              href={href}
-              aria-current={current(href) ? 'page' : null}
-            >
-              {title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
+{links && (
+  <nav class:list={['page-navigation', 'w-full print:hidden', className]}>
+    <ul class="flex flex-wrap items-center gap-1.5 font-medium">
+      <slot />
+      {Object.entries(links).map(([title, href]) => (
+        <li class="relative">
+          {current(href) && <div class="bg-background-subtle rounded-inner absolute inset-0 -z-10!" />}
+          <a
+            class:list={[
+              'motion-safe:transition-colors',
+              'hover:text-foreground focus:text-foreground block px-1.5',
+              current(href) && 'text-foreground',
+            ]}
+            href={href}
+            aria-current={current(href) ? 'page' : null}
+          >
+            {title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
 
 <script>
   import { createLayout } from 'animejs';

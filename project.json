@@ -7,8 +7,17 @@
       "configurations": { "check": { "command": "prettier --check --ignore-unknown ." } }
     },
     "lint": {
+      "executor": "nx:noop",
+      "dependsOn": ["lint:*"]
+    },
+    "lint:eslint": {
       "command": "eslint --fix --no-warn-ignored .",
       "configurations": { "check": { "command": "eslint --no-warn-ignored ." } }
+    },
+    "lint:commits": {
+      "command": "commitlint --verbose --from ${NX_BASE:-HEAD~1} --to ${NX_HEAD:-HEAD}",
+      "cache": false,
+      "configurations": { "check": {} }
     },
     "typecheck": {
       "command": "tsc -p tsconfig.root.json"

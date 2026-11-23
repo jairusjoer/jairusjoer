@@ -46,21 +46,19 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
   href={new URL('rss.xml', Astro.site)}
 />
 
-{
-  page?.image && (
-    <>
-      <link
-        rel="icon"
-        href={(await getImage({ src: await page.image(), width: 48, height: 48, format: 'png' })).src}
-        sizes="48x48"
-      />
-      <link
-        rel="apple-touch-icon"
-        href={(await getImage({ src: await page.image(), width: 180, height: 180, format: 'png' })).src}
-      />
-    </>
-  )
-}
+{page?.image && (
+  <>
+    <link
+      rel="icon"
+      href={(await getImage({ src: await page.image(), width: 48, height: 48, format: 'png' })).src}
+      sizes="48x48"
+    />
+    <link
+      rel="apple-touch-icon"
+      href={(await getImage({ src: await page.image(), width: 180, height: 180, format: 'png' })).src}
+    />
+  </>
+)}
 
 <title>{titleTemplate}</title>
 <meta
@@ -76,24 +74,22 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
   content={titleTemplate}
 />
 
-{
-  description && (
-    <>
-      <meta
-        name="description"
-        content={description}
-      />
-      <meta
-        property="og:description"
-        content={description}
-      />
-      <meta
-        name="twitter:description"
-        content={description}
-      />
-    </>
-  )
-}
+{description && (
+  <>
+    <meta
+      name="description"
+      content={description}
+    />
+    <meta
+      property="og:description"
+      content={description}
+    />
+    <meta
+      name="twitter:description"
+      content={description}
+    />
+  </>
+)}
 
 <meta
   property="og:image"
@@ -113,14 +109,12 @@ const pageImage = image ? getURL(image.src) : getURL(`og/${id ?? 'index'}.png`);
   content={getURL(Astro.url.pathname)}
 />
 
-{
-  status === 'Draft' && (
-    <meta
-      name="robots"
-      content="noindex"
-    />
-  )
-}
+{status === 'Draft' && (
+  <meta
+    name="robots"
+    content="noindex"
+  />
+)}
 
 <meta
   property="og:type"

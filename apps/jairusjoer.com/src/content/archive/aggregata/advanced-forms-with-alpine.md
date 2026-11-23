@@ -129,7 +129,8 @@ const { name, ...props } = Astro.props;
       for={name}
       title={capitalize(name)}
     >
-      {capitalize(name)}{props?.required && '*'}
+      {capitalize(name)}
+      {props?.required && '*'}
     </label>
     <div
       class="ml-3 flex justify-end gap-1 overflow-hidden"
