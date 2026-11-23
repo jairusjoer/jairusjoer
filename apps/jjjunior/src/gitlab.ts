@@ -20,7 +20,16 @@ export type Project = {
   default_branch: string;
 };
 
-type Note = { body: string; system: boolean; author: { username: string }; created_at: string };
+export type Note = {
+  body: string;
+  system: boolean;
+  author: { username: string };
+  created_at: string;
+  resolved?: boolean;
+  position?: { new_path: string; new_line: number | null; old_path: string; old_line: number | null };
+  /** Where the note was left, e.g. "MR src/a.ts:12"; unset for issue comments. */
+  where?: string;
+};
 
 const glab = async <T>(args: string[], body?: object): Promise<T> => {
   if (body) args.push('--input', '-');
@@ -37,10 +46,11 @@ const graphql = async <T>(query: string, variables: object = {}): Promise<T> => 
   return res.data;
 };
 
-const ITEMS = `query($group: ID!, $assignee: String!, $labels: [String!], $iteration: IterationWildcardId) {
+const ITEMS = `query($group: ID!, $assignee: String!, $labels: [String!], $iteration: IterationWildcardId, $after: String) {
   group(fullPath: $group) {
     workItems(includeDescendants: true, state: opened, assigneeUsernames: [$assignee],
-              labelName: $labels, iterationWildcardId: $iteration, types: [ISSUE], first: 100) {
+              labelName: $labels, iterationWildcardId: $iteration, types: [ISSUE], first: 100, after: $after) {
+      pageInfo { hasNextPage endCursor }
       nodes {
         id iid title webUrl namespace { fullPath }
         widgets {
@@ -63,13 +73,22 @@ type Node = {
 
 /** Every open, assigned, labelled, current-iteration issue across the group's projects. */
 export const listIssues = async (): Promise<Issue[]> => {
-  const data = await graphql<{ group: { workItems: { nodes: Node[] } } }>(ITEMS, {
-    group: config.group,
-    assignee: config.assignee,
-    labels: config.triggerLabel ? [config.triggerLabel] : null,
-    iteration: config.currentIterationOnly ? 'CURRENT' : null,
-  });
-  return data.group.workItems.nodes.map((n) => ({
+  const nodes: Node[] = [];
+  let after: string | null = null;
+  do {
+    const data: { group: { workItems: { nodes: Node[]; pageInfo: { hasNextPage: boolean; endCursor: string } } } } =
+      await graphql(ITEMS, {
+        group: config.group,
+        assignee: config.assignee,
+        labels: config.triggerLabel ? [config.triggerLabel] : null,
+        iteration: config.currentIterationOnly ? 'CURRENT' : null,
+        after,
+      });
+    const { nodes: page, pageInfo } = data.group.workItems;
+    nodes.push(...page);
+    after = pageInfo.hasNextPage ? pageInfo.endCursor : null;
+  } while (after);
+  return nodes.map((n) => ({
     gid: n.id,
     iid: Number(n.iid),
     project: n.namespace.fullPath,
@@ -105,18 +124,41 @@ export const getProject = (fullPath: string) => rest<Project>('GET', `projects/$
 export const getNotes = async (issue: Issue) =>
   (await rest<Note[]>('GET', `${issuePath(issue)}/notes?sort=asc&per_page=100`)).filter((n) => !n.system);
 
+/** Unresolved, non-system notes from the open MR of `branch`, including inline diff comments. */
+export const getMergeRequestNotes = async (project: Project, branch: string) => {
+  const mr = await findMergeRequest(project, branch);
+  if (!mr) return [];
+  const discussions = await rest<{ notes: Note[] }[]>(
+    'GET',
+    `projects/${project.id}/merge_requests/${mr.iid}/discussions?per_page=100`,
+  );
+  return discussions
+    .flatMap((d) => d.notes)
+    .filter((n) => !n.system && !n.resolved)
+    .map((n): Note => {
+      const p = n.position;
+      const line = p && (p.new_line ? `${p.new_path}:${p.new_line}` : `${p.old_path}:${p.old_line} (removed)`);
+      return { ...n, where: line ? `MR ${line}` : 'MR' };
+    });
+};
+
 export const comment = (issue: Issue, body: string) => rest('POST', `${issuePath(issue)}/notes`, { body });
 
 let myId: Promise<number> | undefined;
 const me = () => (myId ??= rest<{ id: number }>('GET', 'user').then((u) => u.id));
 
+const findMergeRequest = async (project: Project, branch: string) =>
+  (
+    await rest<{ iid: number; web_url: string }[]>(
+      'GET',
+      `projects/${project.id}/merge_requests?state=opened&source_branch=${enc(branch)}`,
+    )
+  )[0];
+
 /** Create a draft MR assigned to the token's user unless one is already open; return its URL. */
 export const ensureMergeRequest = async (issue: Issue, project: Project, branch: string) => {
-  const existing = await rest<{ web_url: string }[]>(
-    'GET',
-    `projects/${project.id}/merge_requests?state=opened&source_branch=${enc(branch)}`,
-  );
-  if (existing[0]) return existing[0].web_url;
+  const existing = await findMergeRequest(project, branch);
+  if (existing) return existing.web_url;
   const mr = await rest<{ web_url: string }>('POST', `projects/${project.id}/merge_requests`, {
     source_branch: branch,
     target_branch: project.default_branch,

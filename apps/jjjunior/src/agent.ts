@@ -15,7 +15,6 @@ export const runAgent = async <T>(opts: {
 }): Promise<AgentResult<T>> => {
   const args = [
     '-p',
-    opts.prompt,
     '--output-format',
     'json',
     '--json-schema',
@@ -31,7 +30,7 @@ export const runAgent = async <T>(opts: {
   if (opts.readOnly) args.push('--disallowedTools', 'Edit', 'Write', 'NotebookEdit');
 
   const signal = AbortSignal.any([opts.signal, AbortSignal.timeout(config.agentTimeoutMs)]);
-  const raw = JSON.parse(await run('claude', args, { cwd: opts.cwd, signal }));
+  const raw = JSON.parse(await run('claude', args, { cwd: opts.cwd, signal, input: opts.prompt }));
   if (raw.is_error || !raw.structured_output) {
     throw new Error(`Agent ended without a result (${raw.subtype}): ${String(raw.result ?? '').slice(0, 500)}`);
   }

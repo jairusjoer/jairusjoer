@@ -13,6 +13,7 @@ export const run = (
     child.stdout.on('data', (d) => (out += d));
     child.stderr.on('data', (d) => (err += d));
     child.on('error', reject);
+    child.stdin.on('error', () => {}); // child gone before reading input; close/error report it
     child.on('close', (code) =>
       code === 0
         ? resolve(out)

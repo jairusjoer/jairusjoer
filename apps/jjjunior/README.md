@@ -19,7 +19,7 @@ To do ───────────▶ In progress   implementer agent (work
 moved into In Review by a human ─▶ adversarial review of the existing branch (same loop from there)
 ```
 
-Every outcome that needs a person ends up in **In Review** with a comment: approved, blocked on a question, review round cap reached, CI still failing, failed, or no commits. To retry or ask for changes, comment on the issue and move it back to **To do**. The next run reuses the branch and MR, and its prompt includes the whole discussion.
+Every outcome that needs a person ends up in **In Review** with a comment: approved, blocked on a question, review round cap reached, CI still failing, failed, or no commits. To retry or ask for changes, comment on the issue or review the MR, then move the issue back to **To do**. The next run reuses the branch and MR, and its prompt includes the issue discussion plus every unresolved MR comment (inline diff comments carry their file and line). Resolve threads that are done so they drop out of the prompt.
 
 ## Rules
 
@@ -41,7 +41,7 @@ Every outcome that needs a person ends up in **In Review** with a comment: appro
 glab auth login              # api scope; agents and orchestrator both use glab
 cp .env.example .env
 pnpm install && pnpm nx run jjjunior:typecheck
-pnpm nx run jjjunior:start    # Node ≥ 23.6 runs .ts natively
+pnpm nx run jjjunior:dev    # Node ≥ 23.6 runs .ts natively
 ```
 
 Create the `claude` label in the group once, then add it to any issue you want an agent to take.

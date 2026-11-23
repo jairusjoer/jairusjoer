@@ -6,6 +6,7 @@ import {
   comment,
   ensureMergeRequest,
   failedJobLogs,
+  getMergeRequestNotes,
   getNotes,
   getProject,
   isClosed,
@@ -14,6 +15,7 @@ import {
   pipelinesFor,
   setStatus,
   type Issue,
+  type Note,
   type Project,
 } from './gitlab.ts';
 import { log, logError } from './log.ts';
@@ -27,6 +29,9 @@ const running = new Map<string, { controller: AbortController; done: Promise<voi
 const seen = new Map<string, { issue: Issue; status: string | null }>();
 /** When we last changed an issue's status; poll results older than that are stale for it. */
 const ourMoves = new Map<string, number>();
+
+/** Issues whose failure could not be recorded on the board; not retried until their status changes. */
+const failed = new Set<string>();
 
 const keyOf = (issue: Issue) => `${issue.project}#${issue.iid}`;
 
@@ -71,11 +76,12 @@ const handleIssue = (issue: Issue, firstPoll: boolean) => {
   const previous = seen.get(key);
   seen.set(key, { issue, status: issue.status });
   const active = running.get(key);
+  if (issue.status !== todo) failed.delete(key);
 
   if (active) {
     if (![todo, doing, review].includes(issue.status ?? '')) abort(issue, active, `status is "${issue.status}"`);
   } else if (issue.status === todo) {
-    start(issue, 'implement');
+    if (!failed.has(key)) start(issue, 'implement');
   } else if (issue.status === review && !firstPoll && previous && previous.status !== review) {
     start(issue, 'review');
   }
@@ -83,6 +89,7 @@ const handleIssue = (issue: Issue, firstPoll: boolean) => {
 
 const handleGone = async (key: string, issue: Issue) => {
   seen.delete(key);
+  failed.delete(key);
   const active = running.get(key);
   if (active) abort(issue, active, 'issue left the board query (closed, unassigned, label or iteration removed)');
   if (!(await isClosed(issue).catch(() => false))) return;
@@ -148,7 +155,8 @@ const runLoop = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
 
   const project = await getProject(issue.project);
   const dir = await prepareWorktree(project, issue);
-  const context = issueContext(issue, await getNotes(issue));
+  const notes = [...(await getNotes(issue)), ...(await getMergeRequestNotes(project, branchName(issue)))];
+  const context = issueContext(issue, notes);
 
   if (mode === 'review' && !(await hasCommits(dir, project))) {
     return comment(
@@ -288,7 +296,7 @@ const handleFailure = async (issue: Issue, error: unknown, signal: AbortSignal) 
     issue,
     `❌ **Claude Code run failed**\n\n\`\`\`\n${message}\n\`\`\`\n\n_Move the issue back to **${todo}** to retry._`,
   ).catch(() => {});
-  await moveTo(issue, review).catch(() => {});
+  await moveTo(issue, review).catch(() => failed.add(keyOf(issue)));
 };
 
 // --- CI gate -----------------------------------------------------------------
@@ -327,9 +335,13 @@ const REVIEWER = `You are an adversarial code reviewer. Your job is to find reas
 - Approve only if there are no blocking issues. Nitpicks and style preferences are not blocking — omit them.
 - If rejecting, list each blocking finding concretely (file, line, what is wrong, what is expected).`;
 
-const issueContext = (issue: Issue, notes: Awaited<ReturnType<typeof getNotes>>) => {
-  const discussion = notes.map((n) => `**@${n.author.username}** (${n.created_at}):\n${n.body}`).join('\n\n---\n\n');
-  return `# Issue #${issue.iid}: ${issue.title}\n${issue.webUrl}\n\n${issue.description || '(no description)'}\n\n## Discussion (oldest first; later human comments override earlier requirements)\n\n${discussion || '(none)'}`;
+/** Issue description plus issue comments and unresolved MR review comments, merged chronologically. */
+const issueContext = (issue: Issue, notes: Note[]) => {
+  const discussion = notes
+    .toSorted((a, b) => a.created_at.localeCompare(b.created_at))
+    .map((n) => `**@${n.author.username}** (${[n.created_at, n.where].filter(Boolean).join(', ')}):\n${n.body}`)
+    .join('\n\n---\n\n');
+  return `# Issue #${issue.iid}: ${issue.title}\n${issue.webUrl}\n\n${issue.description || '(no description)'}\n\n## Discussion (oldest first; issue comments and unresolved merge request review comments; later human comments override earlier requirements)\n\n${discussion || '(none)'}`;
 };
 
 const implementPrompt = (context: string, project: Project) =>
