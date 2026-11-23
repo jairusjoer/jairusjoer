@@ -32,12 +32,12 @@ Available scripts:
 | `pnpm build`       | Create a production build                                           |
 | `pnpm preview`     | Preview the production build locally                                |
 | `pnpm open-graph`  | Generate Open Graph images (starts and stops its own dev server)    |
-| `pnpm a11y`        | Run Playwright axe-core checks against the production build         |
+| `pnpm test`        | Run Playwright axe-core checks against the production build         |
 | `pnpm lint-staged` | Run `astro check`, ESLint, and Prettier on staged files (via Husky) |
 
 Formatting and linting use Prettier (with the Astro, Tailwind, and import-sorting plugins) and ESLint (with Astro, jsxA11y, Markdown, JSON, and CSS configs).
 
-The `a11y` script expects a production build to exist (the Playwright server only previews it). Run it through Nx — `pnpm exec nx run jairusjoer.com:a11y` — to build first automatically.
+The `test` script expects a production build to exist (the Playwright server only previews it). Run it through Nx — `pnpm exec nx run jairusjoer.com:test` — to build first automatically.
 
 ## Continuous Integration
 
@@ -45,9 +45,9 @@ GitHub Actions runs the checks defined in `.github/workflows/ci.yml` on pushes t
 
 - **Verify** — Prettier format check, ESLint, root config type checking, and `nx affected` typecheck, build, and Playwright axe-core accessibility checks (Chromium, cached between runs) for the changed projects.
 
-Affected detection uses [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only projects changed since the last successful run on `main` are verified. The workspace runs without Nx Cloud (`neverConnectToCloud`), so everything is computed on the runner. All checks share one job because Nx's local task cache is per-machine: the `a11y` target depends on `build`, so the site is built once and replayed from cache on the same runner.
+Affected detection uses [`nrwl/nx-set-shas`](https://github.com/nrwl/nx-set-shas) so only projects changed since the last successful run on `main` are verified. The workspace runs without Nx Cloud (`neverConnectToCloud`), so everything is computed on the runner. All checks share one job because Nx's local task cache is per-machine: the `test` target depends on `build`, so the site is built once and replayed from cache on the same runner.
 
-This app plugs into CI through its Nx targets (`typecheck`, `build`, `a11y`, `install-browsers`), and its app-owned automation lives in `.github/workflows/jairusjoer-com-*.yml`. See the CI conventions in the repository root `AGENTS.md` for the full rules.
+This app plugs into CI through its Nx targets (`typecheck`, `build`, `test`, `install-browsers`), and its app-owned automation lives in `.github/workflows/jairusjoer-com-*.yml`. See the CI conventions in the repository root `AGENTS.md` for the full rules.
 
 To run the same checks locally:
 
@@ -55,7 +55,7 @@ To run the same checks locally:
 pnpm exec prettier --check .
 pnpm lint
 pnpm typecheck
-pnpm nx affected -t typecheck build a11y
+pnpm nx affected -t typecheck build test
 ```
 
 ## Site Configuration

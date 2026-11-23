@@ -1,21 +1,21 @@
-name: apps/jairusjoer.com — Open Graph Image Generation
+name: apps/jairusjoer.com
 
 on:
   push:
     branches:
       - main
     paths:
+      - .github/workflows/jairusjoer.com-open-graph.yml
+      - apps/jairusjoer.com/actions/**
       - apps/jairusjoer.com/src/content/**
       - apps/jairusjoer.com/src/pages/open-graph.astro
-      - apps/jairusjoer.com/actions/**
-      - .github/workflows/jairusjoer-com-open-graph.yml
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: jairusjoer-com-open-graph-${{ github.ref }}
+  group: jairusjoer.com-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -36,7 +36,7 @@ jobs:
       - name: Upload dist artifact
         uses: actions/upload-artifact@v6
         with:
-          name: jairusjoer-com-dist
+          name: jairusjoer.com-dist
           path: apps/jairusjoer.com/dist
 
   open-graph:
@@ -63,7 +63,7 @@ jobs:
       - name: Download dist artifact
         uses: actions/download-artifact@v6
         with:
-          name: jairusjoer-com-dist
+          name: jairusjoer.com-dist
           path: apps/jairusjoer.com/dist
 
       - name: Generate Open Graph images

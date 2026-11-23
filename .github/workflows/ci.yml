@@ -53,31 +53,8 @@ jobs:
           key: nx-${{ matrix.target }}-${{ github.sha }}
           restore-keys: nx-${{ matrix.target }}-
 
-      - name: Run ${{ matrix.target }}
-        run: pnpm exec nx $NX_SCOPE -t ${{ matrix.target }} -c check
-
-      - name: Fail if the tool changed files
-        run: git diff --exit-code
-
-  a11y:
-    name: a11y
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: Set up workspace
-        uses: ./.github/actions/workspace-setup
-
-      - name: Derive appropriate SHAs for `nx affected` commands
-        if: github.event_name == 'pull_request'
-        uses: nrwl/nx-set-shas@v5
-
       - name: Restore Playwright browsers
+        if: matrix.target == 'test'
         uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
@@ -85,13 +62,17 @@ jobs:
           restore-keys: playwright-${{ runner.os }}-
 
       - name: Install Playwright browsers
+        if: matrix.target == 'test'
         run: pnpm exec nx $NX_SCOPE -t install-browsers
 
-      - name: Run accessibility tests
-        run: pnpm exec nx $NX_SCOPE -t a11y
+      - name: Run ${{ matrix.target }}
+        run: pnpm exec nx $NX_SCOPE -t ${{ matrix.target }} -c check
+
+      - name: Fail if the tool changed files
+        run: git diff --exit-code
 
       - name: Upload Playwright report
-        if: failure()
+        if: failure() && matrix.target == 'test'
         uses: actions/upload-artifact@v6
         with:
           name: playwright-report

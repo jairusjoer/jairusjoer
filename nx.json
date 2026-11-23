@@ -23,9 +23,6 @@
       "cache": true,
       "inputs": ["production", "^production"]
     },
-    "a11y": {
-      "dependsOn": ["build"]
-    },
     "open-graph": {
       "dependsOn": ["build"]
     }
