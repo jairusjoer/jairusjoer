@@ -24,8 +24,9 @@ export const runAgent = async <T>(opts: {
     opts.systemPrompt,
     '--permission-mode',
     config.permissionMode,
+    '--model',
+    config.model,
   ];
-  if (config.model) args.push('--model', config.model);
   if (opts.resume) args.push('--resume', opts.resume);
   if (opts.readOnly) args.push('--disallowedTools', 'Edit', 'Write', 'NotebookEdit');
 
