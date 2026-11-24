@@ -24,7 +24,7 @@ export const implement = async (run: Run, round: number): Promise<ImplementResul
   const { issue, project, dir } = run;
   for (let attempt = 1; ; attempt++) {
     const ciFix = attempt > 1 ? ` · CI fix ${attempt - 1}` : '';
-    log('IMPLEMENT', `round ${round}${ciFix}`, issue);
+    log('IMPLEMENT', `attempt ${round}${ciFix}`, issue);
     const impl = await runAgent<Implementation>({
       cwd: dir,
       prompt: run.prompt,
