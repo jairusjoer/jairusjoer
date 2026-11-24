@@ -34,6 +34,9 @@ export const runAgent = async <T>(opts: {
     config.permissionMode,
     '--model',
     config.model,
+    // Resumed sessions re-read the whole transcript every turn; compact early to keep that bounded.
+    '--autocompact',
+    '100k',
   ];
   if (opts.resume) args.push('--resume', opts.resume);
   if (opts.readOnly) args.push('--disallowedTools', 'Edit', 'Write', 'NotebookEdit');

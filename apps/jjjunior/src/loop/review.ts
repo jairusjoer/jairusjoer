@@ -47,7 +47,7 @@ export const reviewRound = async (run: Run, round: number): Promise<Outcome | un
   }
 
   await moveTo(issue, doing);
-  run.prompt = run.session
-    ? `An adversarial reviewer rejected your implementation. Findings:\n\n${rev.output.findings}\n\nAddress every finding (or explain in your summary why one is invalid), commit, and report again.`
-    : `${implementPrompt(context, project)}\n\nAn adversarial reviewer rejected the current state of this branch. Findings:\n\n${rev.output.findings}\n\nAddress every finding (or explain in your summary why one is invalid).`;
+  // Fresh session: the branch and the findings carry everything needed, and a resumed transcript is costly to re-read.
+  run.session = undefined;
+  run.prompt = `${implementPrompt(context, project)}\n\nAn adversarial reviewer rejected the current state of this branch. Findings:\n\n${rev.output.findings}\n\nAddress every finding (or explain in your summary why one is invalid), commit, and report again.`;
 };
