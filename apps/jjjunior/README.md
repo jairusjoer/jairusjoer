@@ -35,6 +35,11 @@ Every outcome that needs a person ends up in **In Review** with a comment: appro
 - CI gate: after each push the orchestrator waits for every pipeline on that commit (push and MR pipelines). Failed jobs' log tails go back to the implementer, which must fix the root cause and must not skip or disable tests. If no pipeline appears within 3 minutes, the repo is treated as having no CI. CI that has not finished after 30 minutes fails the run.
 - Clones live in `repos/<project path>` and worktrees in `worktrees/` at the monorepo root (both gitignored). One git worktree per issue, at most `MAX_PARALLEL` runs at once, `AGENT_TIMEOUT_MIN` per agent.
 
+## Prompts and stats
+
+- The agents' system prompts are `prompts/implementer.md` and `prompts/reviewer.md`, read at startup. Edit them, or point `PROMPTS_DIR` at your own directory. The target repo's `CLAUDE.md` still applies on top.
+- Every finished run appends one JSON line to `stats.jsonl` (`STATS_FILE`, gitignored): outcome, model, wall time and per-call tokens, cost and turns. `pnpm nx run jjjunior:stats` prints outcome counts, success and first-pass rates, average review rounds, tokens, cost and duration, and the cache hit rate.
+
 ## Setup
 
 ```sh

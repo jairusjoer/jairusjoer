@@ -16,6 +16,8 @@ export const config = {
     doing: env('STATUS_DOING', 'In progress'),
     review: env('STATUS_REVIEW', 'In Review'),
   },
+  promptsDir: env('PROMPTS_DIR', fileURLToPath(new URL('../../prompts', import.meta.url))),
+  statsFile: env('STATS_FILE', fileURLToPath(new URL('../../stats.jsonl', import.meta.url))),
   pollIntervalMs: 60_000,
   reposDir: `${root}repos`,
   worktreesDir: `${root}worktrees`,

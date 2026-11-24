@@ -5,6 +5,7 @@ import { ensureMergeRequest, getMergeRequestNotes } from '../gitlab/merge-reques
 import { getProject } from '../gitlab/projects.ts';
 import { type Issue } from '../gitlab/types.ts';
 import { log, logError } from '../lib/log.ts';
+import { cost, record, tokens, type Call, type Outcome } from '../lib/stats.ts';
 import { implement } from './implement.ts';
 import { implementPrompt, issueContext } from './prompts.ts';
 import { reviewRound } from './review.ts';
@@ -14,14 +15,38 @@ import type { Mode, Run } from './types.ts';
 const { todo, doing, review } = config.status;
 
 export const work = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
+  const started = Date.now();
+  const calls: Call[] = [];
+  let outcome: Outcome;
   try {
-    if (!signal.aborted) await runLoop(issue, mode, signal);
+    outcome = signal.aborted ? 'aborted' : await runLoop(issue, mode, signal, calls);
   } catch (error) {
+    outcome = signal.aborted ? 'aborted' : 'failed';
     await handleFailure(issue, error, signal);
   }
+  const durationMs = Date.now() - started;
+  try {
+    record({
+      at: new Date().toISOString(),
+      project: issue.project,
+      iid: issue.iid,
+      mode,
+      model: config.model,
+      outcome,
+      durationMs,
+      calls,
+    });
+  } catch (e) {
+    logError('FAIL', e, issue);
+  }
+  log(
+    'STATS',
+    `${outcome} · ${Math.round(tokens(calls) / 1000)}k tokens · $${cost(calls).toFixed(2)} · ${(durationMs / 60_000).toFixed(1)} min`,
+    issue,
+  );
 };
 
-const runLoop = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
+const runLoop = async (issue: Issue, mode: Mode, signal: AbortSignal, calls: Call[]): Promise<Outcome> => {
   log('START', mode, issue);
   if (mode === 'implement') {
     await moveTo(issue, doing);
@@ -36,10 +61,11 @@ const runLoop = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
   const context = issueContext(issue, notes);
 
   if (mode === 'review' && !(await hasCommits(dir, project))) {
-    return comment(
+    await comment(
       issue,
       `⚠️ Nothing to review: branch \`${branchName(issue)}\` has no commits ahead of \`${project.default_branch}\`.`,
     );
+    return 'no-commits';
   }
 
   const run: Run = {
@@ -51,16 +77,20 @@ const runLoop = async (issue: Issue, mode: Mode, signal: AbortSignal) => {
     prompt: implementPrompt(context, project),
     summary: '(review triggered by a manual move; no implementer summary)',
     mrUrl: '',
+    calls,
   };
 
   for (let round = 1; round <= config.maxRounds; round++) {
     if (mode === 'review' && round === 1) {
       run.mrUrl = await ensureMergeRequest(issue, project, branchName(issue));
-    } else if (!(await implement(run, round))) {
-      return;
+    } else {
+      const result = await implement(run, round);
+      if (result !== 'ok') return result;
     }
-    if (await reviewRound(run, round)) return;
+    const outcome = await reviewRound(run, round);
+    if (outcome) return outcome;
   }
+  return 'rounds-exhausted';
 };
 
 const handleFailure = async (issue: Issue, error: unknown, signal: AbortSignal) => {

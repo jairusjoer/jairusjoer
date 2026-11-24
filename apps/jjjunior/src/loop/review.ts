@@ -3,14 +3,15 @@ import { reviewSchema, type Review } from '../agent/schemas.ts';
 import { config } from '../config/config.ts';
 import { comment } from '../gitlab/issues.ts';
 import { log } from '../lib/log.ts';
+import type { Outcome } from '../lib/stats.ts';
 import { implementPrompt, REVIEWER, reviewPrompt } from './prompts.ts';
 import { moveTo } from './state.ts';
 import type { Run } from './types.ts';
 
 const { doing } = config.status;
 
-/** One adversarial review. Returns true when the loop is finished (approved or out of rounds). */
-export const reviewRound = async (run: Run, round: number) => {
+/** One adversarial review. Returns the final outcome, or undefined when the implementer should go again. */
+export const reviewRound = async (run: Run, round: number): Promise<Outcome | undefined> => {
   const { issue, project, context } = run;
   log('REVIEW', `round ${round}`, issue);
   const rev = await runAgent<Review>({
@@ -22,13 +23,15 @@ export const reviewRound = async (run: Run, round: number) => {
     signal: run.signal,
   });
 
+  run.calls.push({ role: 'reviewer', ...rev.usage });
+
   if (rev.output.approved) {
     log('DONE', 'approved', issue);
     await comment(
       issue,
       `✅ Loop completed\n\nMerge request: ${run.mrUrl}\n\n**Summary**\n\n${run.summary}\n\n**Reviewer verification**\n\n${rev.output.verification}\n\n_Ready for human review._`,
     );
-    return true;
+    return 'approved';
   }
 
   await comment(
@@ -40,12 +43,11 @@ export const reviewRound = async (run: Run, round: number) => {
       issue,
       `⚠️ Stopped after ${config.maxRounds} rounds without approval — needs a human decision.\n\nMerge request: ${run.mrUrl}`,
     );
-    return true;
+    return 'rounds-exhausted';
   }
 
   await moveTo(issue, doing);
   run.prompt = run.session
     ? `An adversarial reviewer rejected your implementation. Findings:\n\n${rev.output.findings}\n\nAddress every finding (or explain in your summary why one is invalid), commit, and report again.`
     : `${implementPrompt(context, project)}\n\nAn adversarial reviewer rejected the current state of this branch. Findings:\n\n${rev.output.findings}\n\nAddress every finding (or explain in your summary why one is invalid).`;
-  return false;
 };

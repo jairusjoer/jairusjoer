@@ -9,7 +9,7 @@ import { log } from '../lib/log.ts';
 import { waitForPipelines } from './ci.ts';
 import { IMPLEMENTER } from './prompts.ts';
 import { moveTo } from './state.ts';
-import type { Run } from './types.ts';
+import type { ImplementResult, Run } from './types.ts';
 
 const { todo, review } = config.status;
 
@@ -19,8 +19,8 @@ const stop = async (issue: Issue, message: string) => {
   await moveTo(issue, review);
 };
 
-/** implement → push → CI; failed CI goes straight back to the implementer. Returns false if the run stopped. */
-export const implement = async (run: Run, round: number) => {
+/** implement → push → CI; failed CI goes straight back to the implementer. Anything but 'ok' means the run stopped. */
+export const implement = async (run: Run, round: number): Promise<ImplementResult> => {
   const { issue, project, dir } = run;
   for (let attempt = 1; ; attempt++) {
     const ciFix = attempt > 1 ? ` · CI fix ${attempt - 1}` : '';
@@ -33,6 +33,7 @@ export const implement = async (run: Run, round: number) => {
       resume: run.session,
       signal: run.signal,
     });
+    run.calls.push({ role: 'implementer', ...impl.usage });
     run.session = impl.sessionId;
     run.summary = impl.output.summary;
 
@@ -41,11 +42,11 @@ export const implement = async (run: Run, round: number) => {
         issue,
         `❓ **Claude Code needs input** before continuing:\n\n${impl.output.question ?? run.summary}\n\n_Answer in a comment and move the issue back to **${todo}** to resume._`,
       );
-      return false;
+      return 'blocked';
     }
     if (!(await hasCommits(dir, project))) {
       await stop(issue, `⚠️ The agent reported done but produced no commits.\n\n${run.summary}`);
-      return false;
+      return 'no-commits';
     }
     await push(dir, issue);
     run.mrUrl = await ensureMergeRequest(issue, project, branchName(issue));
@@ -53,14 +54,14 @@ export const implement = async (run: Run, round: number) => {
     const ci = await waitForPipelines(issue, project, await headSha(dir), run.signal);
     if (ci.status !== 'failed') {
       await moveTo(issue, review);
-      return true;
+      return 'ok';
     }
     if (attempt >= config.maxRounds) {
       await stop(
         issue,
         `⚠️ CI still failing after ${attempt} attempts — needs a human.\n\n${ci.urls}\n\nMerge request: ${run.mrUrl}`,
       );
-      return false;
+      return 'ci-failed';
     }
     await comment(
       issue,

@@ -1,18 +1,13 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { config } from '../config/config.ts';
 import type { Issue, Note, Project } from '../gitlab/types.ts';
 
-export const IMPLEMENTER = `You are an autonomous engineer implementing a GitLab issue in a dedicated git worktree.
-- Follow the repository's conventions (read CLAUDE.md/README/CONTRIBUTING if present). Prefer simple, minimal changes.
-- Verify your work: run the relevant tests, linters and type checks. Add tests for new behaviour.
-- Make sure the project's CI checks would pass (run the same commands CI runs, see .gitlab-ci.yml).
-- Commit your work on the current branch with clear messages. Do NOT push, do NOT create merge requests, do NOT change the issue status — the orchestrator does that.
-- If requirements are ambiguous or contradictory such that you would have to guess at product decisions, stop and report status "blocked" with a precise question instead of guessing.`;
+/** System prompts live in `prompts/*.md` (override the directory with PROMPTS_DIR). */
+const prompt = (name: string) => readFileSync(join(config.promptsDir, `${name}.md`), 'utf8').trim();
 
-export const REVIEWER = `You are an adversarial code reviewer. Your job is to find reasons this change should NOT ship.
-- You must NOT modify files, commit, or push. Read, run tests, and inspect only.
-- Check: does it fully satisfy the issue and any human comments? Correctness and edge cases, regressions, missing or weak tests, security, scope creep, needless complexity.
-- Before deciding, you MUST run the test suite, type check and linter yourself (install dependencies if needed) and report the exact commands and results. Never trust the implementer's summary. If you could not run them, do not approve.
-- Approve only if there are no blocking issues. Nitpicks and style preferences are not blocking — omit them.
-- If rejecting, list each blocking finding concretely (file, line, what is wrong, what is expected).`;
+export const IMPLEMENTER = prompt('implementer');
+export const REVIEWER = prompt('reviewer');
 
 /** Issue description plus issue comments and unresolved MR review comments, merged chronologically. */
 export const issueContext = (issue: Issue, notes: Note[]) => {
