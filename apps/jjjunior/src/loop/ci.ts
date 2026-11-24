@@ -8,7 +8,7 @@ import { log } from '../lib/log.ts';
 /** Wait until every pipeline for the commit has finished. No pipeline within 3 minutes means "no CI". */
 export const waitForPipelines = async (issue: Issue, project: Project, sha: string, signal: AbortSignal) => {
   const started = Date.now();
-  log('CI', `waiting on ${styleText('yellow', sha.slice(0, 8))}`, issue);
+  log('CI', `awaiting ${styleText('yellow', sha.slice(0, 8))}`, issue);
   for (;;) {
     const pipelines = await pipelinesFor(project.id, sha);
     const elapsed = Date.now() - started;

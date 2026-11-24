@@ -4,7 +4,7 @@ import { config } from '../config/config.ts';
 
 type Colour = Extract<Parameters<typeof styleText>[0], string>;
 
-type State = 'START' | 'IMPLEMENT' | 'CI' | 'REVIEW' | 'DONE' | 'CLEANUP' | 'ABORT' | 'FAIL' | 'POLL';
+type State = 'START' | 'IMPLEMENT' | 'CI' | 'REVIEW' | 'DONE' | 'CLEANUP' | 'ABORT' | 'FAIL' | 'POLL' | 'STATS';
 const errors: State[] = ['FAIL', 'POLL'];
 
 /** Steps run as a rainbow, magenta → green (named fallback first); outcomes use the terminal's own colours. */
@@ -14,6 +14,7 @@ const tones: Record<State, readonly [Colour, string?]> = {
   CI: ['cyan', '#63a6e9'],
   REVIEW: ['cyan', '#63e9c7'],
   DONE: ['green', '#63e963'],
+  STATS: ['gray'],
   CLEANUP: ['gray'],
   ABORT: ['yellow'],
   FAIL: ['red'],
@@ -36,9 +37,9 @@ const time = () => new Date().toISOString().replace(/\.\d+Z$/, 'Z');
 const short = (project: string) =>
   project.startsWith(config.group + '/') ? project.slice(config.group.length + 1) : project;
 
-/** `2026-11-23T10:32:15Z [REVIEW]    web/app#42 round 1`, Vite style. Failures go to stderr. */
+/** `2026-11-23T10:32:15Z [review]    web/app#42 round 1`, Vite style. Failures go to stderr. */
 export const log = (state: State, message: string, issue?: { project: string; iid: number }) => {
-  const tag = paint(state, `[${state}]`.padEnd(width));
+  const tag = paint(state, `[${state.toLowerCase()}]`.padEnd(width));
   const subject = issue ? styleText('bold', `${short(issue.project)}#${issue.iid}`) + ' ' : '';
   const write = errors.includes(state) ? console.error : console.log;
   write(`${styleText('dim', time())} ${tag} ${subject}${message}`);
