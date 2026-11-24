@@ -31,13 +31,13 @@ const paint = (state: State, text: string) => {
 };
 
 const width = Math.max(...Object.keys(tones).map((s) => s.length)) + 2;
-/** UTC, to the second: sortable across days and comparable with GitLab's timestamps. */
-const time = () => new Date().toISOString().replace(/\.\d+Z$/, 'Z');
+/** UTC time of day, to the second. */
+const time = () => new Date().toISOString().slice(11, 19);
 /** The group is in the banner; `my-group/web/app#42` → `web/app#42`. */
 const short = (project: string) =>
   project.startsWith(config.group + '/') ? project.slice(config.group.length + 1) : project;
 
-/** `2026-11-23T10:32:15Z [review]    web/app#42 round 1`, Vite style. Failures go to stderr. */
+/** `10:32:15 [review]    web/app#42 round 1`, Vite style. Failures go to stderr. */
 export const log = (state: State, message: string, issue?: { project: string; iid: number }) => {
   const tag = paint(state, `[${state.toLowerCase()}]`.padEnd(width));
   const subject = issue ? styleText('bold', `${short(issue.project)}#${issue.iid}`) + ' ' : '';
