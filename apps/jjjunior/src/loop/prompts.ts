@@ -1,13 +1,23 @@
-import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { config } from '../config/config.ts';
+import { Context, Effect, FileSystem, Layer } from 'effect';
+import { AppConfig } from '../config/config.ts';
 import type { Issue, Note, Project } from '../gitlab/types.ts';
 
-/** System prompts live in `prompts/*.md` (override the directory with PROMPTS_DIR). */
-const prompt = (name: string) => readFileSync(join(config.promptsDir, `${name}.md`), 'utf8').trim();
-
-export const IMPLEMENTER = prompt('implementer');
-export const REVIEWER = prompt('reviewer');
+/** System prompts live in `prompts/*.md` (override the directory with PROMPTS_DIR), read once at startup. */
+export class Prompts extends Context.Service<Prompts, { readonly implementer: string; readonly reviewer: string }>()(
+  'jjjunior/Prompts',
+) {
+  static readonly layer = Layer.effect(
+    Prompts,
+    Effect.gen(function* () {
+      const fs = yield* FileSystem.FileSystem;
+      const { promptsDir } = yield* AppConfig;
+      const read = (name: string) =>
+        fs.readFileString(join(promptsDir, `${name}.md`)).pipe(Effect.map((s) => s.trim()));
+      return { implementer: yield* read('implementer'), reviewer: yield* read('reviewer') };
+    }),
+  );
+}
 
 /** Issue description plus issue comments and unresolved MR review comments, merged chronologically. */
 export const issueContext = (issue: Issue, notes: Note[]) => {

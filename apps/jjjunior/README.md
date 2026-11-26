@@ -49,6 +49,10 @@ pnpm install && pnpm nx run jjjunior:typecheck
 pnpm nx run jjjunior:dev    # Node ≥ 23.6 runs .ts natively
 ```
 
+## Code layout
+
+Built on [Effect 4](https://effect.website): config is read through `Config` (`AppConfig`), shared state and prompts are `Context.Service` layers (`State`, `Prompts`), `claude`/`git`/`glab` run through the `ChildProcessSpawner` (interrupting a fiber kills the process), and every run is a fiber, so aborting an issue is a fiber interrupt and `MAX_PARALLEL` is a `Semaphore`.
+
 Create the `claude` label in the group once, then add it to any issue you want an agent to take.
 
 ## Known limits

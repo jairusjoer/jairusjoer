@@ -1,23 +1,29 @@
-import { spawn } from 'node:child_process';
+import { Effect, Schema, Stream } from 'effect';
+import { ChildProcess, ChildProcessSpawner } from 'effect/process';
 
-/** Run a command, resolve stdout, reject with stderr on non-zero exit or abort. */
-export const run = (
-  cmd: string,
-  args: string[],
-  opts: { cwd?: string; input?: string; signal?: AbortSignal } = {},
-): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const child = spawn(cmd, args, { cwd: opts.cwd, signal: opts.signal, stdio: 'pipe' });
-    let out = '';
-    let err = '';
-    child.stdout.on('data', (d) => (out += d));
-    child.stderr.on('data', (d) => (err += d));
-    child.on('error', reject);
-    child.stdin.on('error', () => {}); // child gone before reading input; close/error report it
-    child.on('close', (code) =>
-      code === 0
-        ? resolve(out)
-        : reject(new Error(`${cmd} ${args[0]} exited ${code}: ${err.trim() || out.trim()}`.slice(0, 2000))),
+export class ExecError extends Schema.TaggedError<ExecError>()('ExecError', { message: Schema.String }) {}
+
+const text = <E>(stream: Stream.Stream<Uint8Array, E>) => stream.pipe(Stream.decodeText(), Stream.mkString);
+
+/** Run a command and return stdout; fails with stderr on a non-zero exit. Interrupting kills the process. */
+export const run = (cmd: string, args: string[], opts: { cwd?: string; input?: string } = {}) =>
+  Effect.gen(function* () {
+    const spawner = yield* ChildProcessSpawner.ChildProcessSpawner;
+    const handle = yield* spawner.spawn(
+      ChildProcess.make(cmd, args, {
+        cwd: opts.cwd,
+        stdin: opts.input === undefined ? 'ignore' : Stream.make(new TextEncoder().encode(opts.input)),
+      }),
     );
-    child.stdin.end(opts.input ?? '');
-  });
+    return yield* Effect.all([text(handle.stdout), text(handle.stderr), handle.exitCode], { concurrency: 'unbounded' });
+  }).pipe(
+    Effect.scoped,
+    Effect.mapError((e) => new ExecError({ message: `${cmd} ${args[0]}: ${e.message}` })),
+    Effect.flatMap(([out, err, code]) =>
+      code === 0
+        ? Effect.succeed(out)
+        : Effect.fail(
+            new ExecError({ message: `${cmd} ${args[0]} exited ${code}: ${err.trim() || out.trim()}`.slice(0, 2000) }),
+          ),
+    ),
+  );

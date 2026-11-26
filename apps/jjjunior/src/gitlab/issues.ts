@@ -1,5 +1,6 @@
-import { config } from '../config/config.ts';
-import { enc, graphql, rest } from './client.ts';
+import { Effect } from 'effect';
+import { AppConfig } from '../config/config.ts';
+import { enc, GitlabError, graphql, rest } from './client.ts';
 import type { Issue, Note } from './types.ts';
 
 const ITEMS = `query($group: ID!, $assignee: String!, $labels: [String!], $iteration: IterationWildcardId, $after: String) {
@@ -27,24 +28,27 @@ type Node = {
   widgets: { description?: string | null; status?: { name: string } | null }[];
 };
 
+type Page = { group: null | { workItems: { nodes: Node[]; pageInfo: { hasNextPage: boolean; endCursor: string } } } };
+
 /** Every open, assigned, labelled, current-iteration issue across the group's projects. */
-export const listIssues = async (): Promise<Issue[]> => {
+export const listIssues = Effect.gen(function* () {
+  const config = yield* AppConfig;
   const nodes: Node[] = [];
   let after: string | null = null;
   do {
-    const data: { group: { workItems: { nodes: Node[]; pageInfo: { hasNextPage: boolean; endCursor: string } } } } =
-      await graphql(ITEMS, {
-        group: config.group,
-        assignee: config.assignee,
-        labels: config.triggerLabel ? [config.triggerLabel] : null,
-        iteration: config.currentIterationOnly ? 'CURRENT' : null,
-        after,
-      });
+    const data: Page = yield* graphql<Page>(ITEMS, {
+      group: config.group,
+      assignee: config.assignee,
+      labels: config.triggerLabel ? [config.triggerLabel] : null,
+      iteration: config.currentIterationOnly ? 'CURRENT' : null,
+      after,
+    });
+    if (!data.group) return yield* new GitlabError({ message: `Group "${config.group}" not found or not accessible` });
     const { nodes: page, pageInfo } = data.group.workItems;
     nodes.push(...page);
     after = pageInfo.hasNextPage ? pageInfo.endCursor : null;
   } while (after);
-  return nodes.map((n) => ({
+  return nodes.map((n): Issue => ({
     gid: n.id,
     iid: Number(n.iid),
     project: n.namespace.fullPath,
@@ -53,15 +57,15 @@ export const listIssues = async (): Promise<Issue[]> => {
     status: n.widgets.find((w) => 'status' in w)?.status?.name ?? null,
     webUrl: n.webUrl,
   }));
-};
+});
 
 const issuePath = (issue: Issue) => `projects/${enc(issue.project)}/issues/${issue.iid}`;
 
-export const isClosed = async (issue: Issue) =>
-  (await rest<{ state: string }>('GET', issuePath(issue))).state === 'closed';
+export const isClosed = (issue: Issue) =>
+  rest<{ state: string }>('GET', issuePath(issue)).pipe(Effect.map((i) => i.state === 'closed'));
 
-export const setStatus = async (issue: Issue, name: string) => {
-  const data = await graphql<{ workItemUpdate: { errors: string[] } }>(
+export const setStatus = (issue: Issue, name: string) =>
+  graphql<{ workItemUpdate: { errors: string[] } }>(
     `
       mutation ($id: WorkItemID!, $name: String!) {
         workItemUpdate(input: { id: $id, statusWidget: { name: $name } }) {
@@ -70,11 +74,15 @@ export const setStatus = async (issue: Issue, name: string) => {
       }
     `,
     { id: issue.gid, name },
+  ).pipe(
+    Effect.flatMap(({ workItemUpdate: { errors } }) =>
+      errors.length ? Effect.fail(new GitlabError({ message: `setStatus: ${errors.join('; ')}` })) : Effect.void,
+    ),
   );
-  if (data.workItemUpdate.errors.length) throw new Error(`setStatus: ${data.workItemUpdate.errors.join('; ')}`);
-};
 
-export const getNotes = async (issue: Issue) =>
-  (await rest<Note[]>('GET', `${issuePath(issue)}/notes?sort=asc&per_page=100`)).filter((n) => !n.system);
+export const getNotes = (issue: Issue) =>
+  rest<Note[]>('GET', `${issuePath(issue)}/notes?sort=asc&per_page=100`).pipe(
+    Effect.map((notes) => notes.filter((n) => !n.system)),
+  );
 
 export const comment = (issue: Issue, body: string) => rest('POST', `${issuePath(issue)}/notes`, { body });

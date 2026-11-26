@@ -1,6 +1,6 @@
-import { appendFileSync, existsSync, readFileSync } from 'node:fs';
+import { Effect, FileSystem } from 'effect';
 import type { Usage } from '../agent/run.ts';
-import { config } from '../config/config.ts';
+import { AppConfig } from '../config/config.ts';
 
 export type Outcome = 'approved' | 'rounds-exhausted' | 'blocked' | 'no-commits' | 'ci-failed' | 'failed' | 'aborted';
 export type Call = Usage & { role: 'implementer' | 'reviewer' };
@@ -17,15 +17,22 @@ export type Entry = {
 };
 
 /** One JSON line per finished run. */
-export const record = (entry: Entry) => appendFileSync(config.statsFile, JSON.stringify(entry) + '\n');
+export const record = (entry: Entry) =>
+  Effect.gen(function* () {
+    const fs = yield* FileSystem.FileSystem;
+    const { statsFile } = yield* AppConfig;
+    yield* fs.writeFileString(statsFile, JSON.stringify(entry) + '\n', { flag: 'a' });
+  });
 
-export const load = (file = config.statsFile): Entry[] =>
-  existsSync(file)
-    ? readFileSync(file, 'utf8')
-        .split('\n')
-        .filter(Boolean)
-        .map((line) => JSON.parse(line))
-    : [];
+export const load = Effect.gen(function* () {
+  const fs = yield* FileSystem.FileSystem;
+  const { statsFile } = yield* AppConfig;
+  if (!(yield* fs.exists(statsFile))) return [];
+  return (yield* fs.readFileString(statsFile))
+    .split('\n')
+    .filter(Boolean)
+    .map((line): Entry => JSON.parse(line));
+});
 
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
 const avg = (xs: number[]) => (xs.length ? sum(xs) / xs.length : 0);

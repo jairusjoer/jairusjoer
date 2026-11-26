@@ -1,6 +1,7 @@
 import { styleText } from 'node:util';
+import { Effect } from 'effect';
 import pkg from '../../package.json' with { type: 'json' };
-import { config } from '../config/config.ts';
+import { AppConfig } from '../config/config.ts';
 
 type Colour = Extract<Parameters<typeof styleText>[0], string>;
 
@@ -34,25 +35,29 @@ const width = Math.max(...Object.keys(tones).map((s) => s.length)) + 2;
 /** UTC time of day, to the second. */
 const time = () => new Date().toISOString().slice(11, 19);
 /** The group is in the banner; `my-group/web/app#42` → `web/app#42`. */
-const short = (project: string) =>
-  project.startsWith(config.group + '/') ? project.slice(config.group.length + 1) : project;
+const short = (group: string, project: string) =>
+  project.startsWith(group + '/') ? project.slice(group.length + 1) : project;
 
 /** `10:32:15 [review]    web/app#42 round 1`, Vite style. Failures go to stderr. */
-export const log = (state: State, message: string, issue?: { project: string; iid: number }) => {
-  const tag = paint(state, `[${state.toLowerCase()}]`.padEnd(width));
-  const subject = issue ? styleText('bold', `${short(issue.project)}#${issue.iid}`) + ' ' : '';
-  const write = errors.includes(state) ? console.error : console.log;
-  write(`${styleText('dim', time())} ${tag} ${subject}${message}`);
-};
+export const log = (state: State, message: string, issue?: { project: string; iid: number }) =>
+  Effect.gen(function* () {
+    const { group } = yield* AppConfig;
+    const tag = paint(state, `[${state.toLowerCase()}]`.padEnd(width));
+    const subject = issue ? styleText('bold', `${short(group, issue.project)}#${issue.iid}`) + ' ' : '';
+    const write = errors.includes(state) ? console.error : console.log;
+    write(`${styleText('dim', time())} ${tag} ${subject}${message}`);
+  });
 
-export const logError = (state: State, error: unknown, issue?: { project: string; iid: number }) => {
-  log(state, error instanceof Error ? error.message : String(error), issue);
-  if (error instanceof Error && error.stack) {
-    console.error(styleText('dim', error.stack.split('\n').slice(1).join('\n')));
-  }
-};
+export const logError = (state: State, error: unknown, issue?: { project: string; iid: number }) =>
+  Effect.gen(function* () {
+    yield* log(state, error instanceof Error ? error.message : String(error), issue);
+    if (error instanceof Error && error.stack) {
+      console.error(styleText('dim', error.stack.split('\n').slice(1).join('\n')));
+    }
+  });
 
-export const banner = () => {
+export const banner = Effect.gen(function* () {
+  const config = yield* AppConfig;
   const bold = (s: string) => styleText('bold', s);
   const arrow = styleText('green', '➜');
   const row = (label: string, value: string) => `  ${arrow}  ${styleText('dim', (label + ':').padEnd(10))} ${value}`;
@@ -81,4 +86,4 @@ export const banner = () => {
       '',
     ].join('\n'),
   );
-};
+});
