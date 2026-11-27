@@ -21,7 +21,6 @@ jobs:
   nx:
     name: ${{ matrix.target }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
@@ -36,7 +35,6 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v5
         with:
-          # History is only needed for `nx affected` (pull requests) and commitlint.
           fetch-depth: ${{ (github.event_name == 'pull_request' || matrix.target == 'lint:commits') && '0' || '1' }}
 
       - name: Set up workspace
@@ -57,12 +55,10 @@ jobs:
       - name: Run ${{ matrix.target }}
         run: pnpm exec nx $NX_SCOPE -t ${{ matrix.target }} -c check
 
-  # Runs after `nx` so it replays the build from the Nx cache.
   test:
     name: test
     needs: nx
     runs-on: ubuntu-latest
-    timeout-minutes: 20
 
     steps:
       - name: Check out repository
