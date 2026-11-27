@@ -1,3 +1,25 @@
+## 0.0.9 (2026-11-27)
+
+### 🚀 Features
+
+- **jjjunior:** replace webhook scaffold with gitlab board polling loop ([daca0b6](https://github.com/jairusjoer/jairusjoer/commit/daca0b6))
+- **jjjunior:** add vite-style cli output ([c372b53](https://github.com/jairusjoer/jairusjoer/commit/c372b53))
+- **jjjunior:** move system prompts to files and track run stats ([532d7bb](https://github.com/jairusjoer/jairusjoer/commit/532d7bb))
+
+### 🩹 Fixes
+
+- **jairusjoer.com:** correct apprentice media designer end year ([557401c](https://github.com/jairusjoer/jairusjoer/commit/557401c))
+- **jjjunior:** address cli output review findings ([dccc124](https://github.com/jairusjoer/jairusjoer/commit/dccc124))
+- **jjjunior:** address adversarial review findings ([e825ca9](https://github.com/jairusjoer/jairusjoer/commit/e825ca9))
+
+### 🔥 Performance
+
+- **jjjunior:** cut token usage with autocompact, fresh sessions after review and leaner prompts ([53d90c8](https://github.com/jairusjoer/jairusjoer/commit/53d90c8))
+
+### ❤️ Thank You
+
+- Jairus 'JJ' Joer
+
 ## 0.0.8 (2026-11-09)
 
 ### 🩹 Fixes
