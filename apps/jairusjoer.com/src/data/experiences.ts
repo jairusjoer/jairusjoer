@@ -13,7 +13,7 @@ const experiences = {
     neuwaerts: {
       'Full Stack Developer': '2022 — 2024',
       'Junior Frontend Developer': '2021 — 2022',
-      'Apprentice Media Designer': '2019 — 2024',
+      'Apprentice Media Designer': '2019 — 2021',
     },
     'TA Bildungszentrum': {
       'Apprentice Media Designer': '2018 — 2019',
