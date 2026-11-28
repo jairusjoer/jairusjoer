@@ -17,7 +17,7 @@ export default memo(function Showcase({ children, footer, links }: Props) {
             <a
               key={label}
               className="bg-background-subtle rounded-inner hover:text-foreground focus:text-foreground px-1.5"
-              href={`https://github.com/jairusjoer/jairusjoer.com/blob/main/${path}`}
+              href={`https://github.com/jairusjoer/jairusjoer/blob/main/apps/jairusjoer.com/${path}`}
               rel="noopener noreferrer"
               target="_blank"
             >
