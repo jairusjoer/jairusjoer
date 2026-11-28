@@ -1,0 +1,226 @@
+---
+---
+
+<button
+  type="button"
+  class="walrus"
+  aria-label="Squish the walrus"
+>
+  <span class="walrus-eye is-left">
+    <span class="walrus-pupil"></span>
+  </span>
+  <span class="walrus-eye is-right">
+    <span class="walrus-pupil"></span>
+  </span>
+  <span class="walrus-whiskers">
+    <span class="walrus-whisker is-left"></span>
+    <span class="walrus-whisker is-right"></span>
+  </span>
+</button>
+
+<style>
+  .walrus {
+    --base: calc(var(--spacing) * 6);
+    --fill: var(--color-border);
+
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    height: calc(6 * var(--base));
+    padding: 0;
+    position: relative;
+    width: calc(8 * var(--base));
+  }
+
+  .walrus-eye {
+    align-items: center;
+    aspect-ratio: 1;
+    display: flex;
+    margin: calc(-0.5 * var(--base)) var(--base) calc(0.5 * var(--base));
+  }
+
+  .walrus-pupil {
+    background: var(--fill);
+    border-radius: var(--base) var(--base) 0 0;
+    display: block;
+    height: var(--base);
+    width: calc(2 * var(--base));
+  }
+
+  .walrus-whiskers {
+    display: flex;
+  }
+
+  .walrus-whisker {
+    background: var(--fill);
+    height: calc(4 * var(--base));
+    width: calc(4 * var(--base));
+
+    &.is-left {
+      border-radius: calc(2 * var(--base)) 0;
+      transform-origin: top right;
+    }
+
+    &.is-right {
+      border-radius: 0 calc(2 * var(--base));
+      transform-origin: top left;
+    }
+  }
+</style>
+
+<script>
+  import { animate, createAnimatable } from 'animejs';
+
+  interface Settings {
+    tilt?: number;
+    reach?: number;
+    sensitivity?: number;
+  }
+
+  interface Part {
+    element: HTMLElement;
+    direction: number;
+    tilt: number;
+    animatable: ReturnType<typeof createAnimatable>;
+  }
+
+  const config = {
+    eye: {
+      tilt: 15,
+      reach: 0.5,
+      sensitivity: 10,
+      flip: { from: 180, to: 225, decay: 0.5 },
+    },
+    whiskers: { tilt: 7.5, reach: 0.5, sensitivity: 10 },
+    squish: { scale: 0.95, press: 100, release: 500 },
+  };
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const createPart = (element: HTMLElement, direction: number, properties: Record<string, number>): Part => ({
+    element,
+    direction,
+    tilt: 0,
+    animatable: createAnimatable(element, properties),
+  });
+
+  const initializeWalrus = (walrus: HTMLButtonElement) => {
+    const pupil = walrus.querySelector<HTMLElement>('.walrus-pupil');
+    const whiskerGroupElement = walrus.querySelector<HTMLElement>('.walrus-whiskers');
+
+    if (!pupil || !whiskerGroupElement) {
+      return;
+    }
+
+    const getBase = () => pupil.offsetHeight;
+
+    const eyes = [...walrus.querySelectorAll<HTMLElement>('.walrus-eye')].map((element) =>
+      createPart(element, element.classList.contains('is-left') ? 1 : -1, { x: 300, y: 300, rotate: 300 }),
+    );
+
+    const whiskerGroup = createPart(whiskerGroupElement, 0, { x: 300, y: 300 });
+
+    const whiskers = [...walrus.querySelectorAll<HTMLElement>('.walrus-whisker')].map((element) =>
+      createPart(element, 0, { rotate: 300 }),
+    );
+
+    const groups: { parts: Part[]; settings: Settings }[] = [
+      { parts: eyes, settings: config.eye },
+      {
+        parts: [whiskerGroup],
+        settings: { reach: config.whiskers.reach, sensitivity: config.whiskers.sensitivity },
+      },
+      { parts: whiskers, settings: { tilt: config.whiskers.tilt } },
+    ];
+
+    let clicks = 0;
+
+    const getFlipAngle = () => {
+      const { from, to, decay } = config.eye.flip;
+
+      return clicks ? to - (to - from) * decay ** (clicks - 1) : 0;
+    };
+
+    const rotatePart = (part: Part) => part.animatable.rotate(part.tilt + part.direction * getFlipAngle());
+
+    const followPointer = ({ clientX, clientY }: PointerEvent) => {
+      if (reducedMotion.matches) {
+        return;
+      }
+
+      const bounds = walrus.getBoundingClientRect();
+      const scale = bounds.width / walrus.offsetWidth;
+
+      groups.forEach(({ parts, settings }) =>
+        parts.forEach((part) => {
+          const { element, animatable } = part;
+          const { tilt, reach, sensitivity = 1 } = settings;
+          const centerX = bounds.left + (element.offsetLeft + element.offsetWidth / 2) * scale;
+          const centerY = bounds.top + (element.offsetTop + element.offsetHeight / 2) * scale;
+          const dx = clientX - centerX;
+          const dy = clientY - centerY;
+          const angle = Math.atan2(dy, dx);
+
+          if (reach) {
+            const distance = Math.min(Math.hypot(dx, dy) / sensitivity, reach * getBase());
+
+            animatable.x(Math.cos(angle) * distance);
+            animatable.y(Math.sin(angle) * distance);
+          }
+
+          if (tilt) {
+            part.tilt = -Math.cos(angle) * tilt;
+            rotatePart(part);
+          }
+        }),
+      );
+    };
+
+    const squish = () => {
+      const { scale, press, release } = config.squish;
+
+      animate(walrus, {
+        scale: [
+          { to: scale, duration: press, ease: 'out(2)' },
+          { to: 1, duration: release, ease: 'outElastic(1, .5)' },
+        ],
+      });
+    };
+
+    const resetFlip = () => {
+      clicks = 0;
+      eyes.forEach(rotatePart);
+    };
+
+    const press = () => {
+      if (reducedMotion.matches) {
+        return;
+      }
+
+      clicks++;
+      eyes.forEach(rotatePart);
+      squish();
+    };
+
+    const ignoreTouch = (handler: () => void) => (event: PointerEvent) => {
+      if (event.pointerType !== 'touch') {
+        handler();
+      }
+    };
+
+    window.addEventListener('pointermove', followPointer);
+    walrus.addEventListener('pointerleave', ignoreTouch(resetFlip));
+    walrus.addEventListener('blur', resetFlip);
+    document.addEventListener('pointerdown', ({ target }) => {
+      if (!(target instanceof Node && walrus.contains(target))) {
+        resetFlip();
+      }
+    });
+    walrus.addEventListener('click', press);
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('.walrus').forEach(initializeWalrus);
+</script>

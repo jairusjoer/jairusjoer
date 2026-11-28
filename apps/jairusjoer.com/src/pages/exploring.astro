@@ -4,6 +4,7 @@ import SuperMono from '@components/content/SuperMono.astro';
 import ThemeContrast from '@components/content/ThemeContrast';
 import ThemeControls from '@components/content/ThemeControls';
 import ThemePalette from '@components/content/ThemePalette';
+import Walrus from '@components/content/Walrus.astro';
 import type { Metadata } from '@components/PageMeta.astro';
 import Showcase from '@components/Showcase';
 import PageLayout from '@layouts/PageLayout.astro';
@@ -39,6 +40,24 @@ const metadata: Metadata = {
   <hr class="my-12" />
   -->
 
+  <h2 class="text-heading">Walrus</h2>
+  <div class="prose">
+    <p>
+      A small walrus whose eyes and whiskers follow your pointer, built with Anime.js animatables. Click it to squish
+      it, and keep clicking to see how its mood changes.
+    </p>
+
+    <Showcase
+      links={{
+        Code: 'src/components/content/Walrus.astro',
+      }}
+    >
+      <Walrus />
+    </Showcase>
+  </div>
+
+  <hr class="my-12" />
+
   <h2 class="text-heading">Theme Contrast & Palette</h2>
   <div class="prose">
     <p>
@@ -65,7 +84,7 @@ const metadata: Metadata = {
 
     <Showcase
       links={{
-        Usage: 'src/pages/exploring.astro',
+        Usage: 'src/pages/exploring.astro#L72-L141',
         Code: 'src/components/content/DotMatrix.astro',
       }}
     >
